@@ -1,0 +1,18 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_17_3171)">
+<rect x="20" y="16" width="40" height="40" rx="20" fill="#0F4881"/>
+<path d="M35.1711 31.1711H35.1811M38.6331 27.1213H35.9213C34.2412 27.1213 33.4011 27.1213 32.7594 27.4483C32.1949 27.7359 31.7359 28.1949 31.4483 28.7594C31.1213 29.4011 31.1213 30.2412 31.1213 31.9213V34.6331C31.1213 35.3669 31.1213 35.7338 31.2042 36.079C31.2777 36.3851 31.3989 36.6778 31.5634 36.9462C31.7489 37.2489 32.0084 37.5084 32.5272 38.0272L37.2272 42.7272C38.4153 43.9153 39.0093 44.5093 39.6943 44.7319C40.2968 44.9276 40.9459 44.9276 41.5484 44.7319C42.2334 44.5093 42.8274 43.9153 44.0155 42.7272L46.7272 40.0154C47.9153 38.8274 48.5093 38.2334 48.7319 37.5484C48.9276 36.9458 48.9276 36.2968 48.7319 35.6943C48.5093 35.0093 47.9153 34.4153 46.7272 33.2272L42.0272 28.5272C41.5084 28.0084 41.2489 27.7489 40.9462 27.5634C40.6778 27.3989 40.3851 27.2777 40.079 27.2042C39.7338 27.1213 39.3669 27.1213 38.6331 27.1213ZM35.6711 31.1711C35.6711 31.4473 35.4473 31.6711 35.1711 31.6711C34.895 31.6711 34.6711 31.4473 34.6711 31.1711C34.6711 30.895 34.895 30.6711 35.1711 30.6711C35.4473 30.6711 35.6711 30.895 35.6711 31.1711Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_d_17_3171" x="0" y="0" width="80" height="80" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_17_3171"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_17_3171" result="shape"/>
+</filter>
+</defs>
+</svg>
