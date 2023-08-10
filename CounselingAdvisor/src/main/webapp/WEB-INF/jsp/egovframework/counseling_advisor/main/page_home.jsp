@@ -717,13 +717,6 @@
 											        			</main>
 											        	</article>
 									        	</section>
-									 
-									        	
-									        	
-									        	
-									        	
-									        	
-									        	
 						        	</section>
 						        
 						        </div>

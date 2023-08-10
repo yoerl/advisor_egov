@@ -11,7 +11,7 @@
   
 <script src="<c:url value='/js/sockjs.client.min.js' />"></script>
 <script src="<c:url value='/js/stomp-2.3.4.min.js' />"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="<c:url value='/js/chart.min.js' />"></script>
 <script>
 $(document).ready(  function() {
 	
