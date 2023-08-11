@@ -11,7 +11,7 @@ public class Recv {
     // RabbitMQ에서 메시지를 가져올 대기열의 이름을 설정합니다.
     private final static String QUEUE_NAME = "hello";
 
-    public static void main(String[] argv) throws Exception {
+    public static void message(String[] argv) throws Exception {
         // ConnectionFactory는 RabbitMQ 서버에 대한 연결을 설정하는 데 사용됩니다.
         ConnectionFactory factory = new ConnectionFactory();
         // RabbitMQ 서버의 위치(여기서는 localhost)를 설정합니다.

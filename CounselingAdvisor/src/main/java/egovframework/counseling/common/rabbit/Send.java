@@ -13,7 +13,7 @@ public class Send {
     private final static String QUEUE_NAME = "hello";
 
     // 메인 메서드에서 메시지 전송 과정이 이루어집니다.
-    public static void main(String[] args) {
+    public static void message(String[] args) {
         // ConnectionFactory 인스턴스를 생성하여 RabbitMQ 서버와의 연결을 설정합니다.
         ConnectionFactory factory = new ConnectionFactory();
         // Host, Port, Username, Password를 설정합니다. 
