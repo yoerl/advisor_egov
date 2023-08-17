@@ -16,7 +16,7 @@
 $(document).ready(  function() {
 	
 	connectStomp();
-
+	btnRecv
 	$('#btnSend').on('click', function(event) {
 		event.preventDefault();
 		
@@ -27,26 +27,13 @@ $(document).ready(  function() {
         
         stomp.send("/testStomp", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
     });
-	
-
 	$('#btnRecv').on('click', function(event) {
 		event.preventDefault();
 		
         if (socket.readyState !== 1) return;
         
-        // Message 토픽 구독!
-        stomp.subscribe('/topic/message', function (event) {
-        	console.log("받은 메세지");
-        	console.log("topic/message return = "+event);
-        	console.log("topic/message return = "+event.body);
-        	console.log("-----------------------------------------------");
-        });
         
-
-        stomp.send("/consumer");
-        
-        
-/*         stomp.send("/testStomp", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg})); */
+        stomp.send("/recv", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
     });
 });
 
@@ -58,35 +45,6 @@ function connectStomp() {
     stomp = Stomp.over(socket);
     
     stomp.connect({}, function () {
-        console.log("Connected stomp!");
-        console.log(stomp.ws._transport.url); 
-/*         
-        // Controller's MessageMapping, header, message(자유형식)
-        stomp.send("/initStomp", {}, '{"roomId": "message", "id": "test", msg: "init message"}');
-
-        // CPULoad 토픽 구독!
-        stomp.subscribe('/topic/cpuLoad', function (event) {
-
-        	//console.log("!!!!!!!!!!!!event>>", event)
-            let ret = JSON.parse(event.body).map( (value,index,array) => {
-            	//console.log(value["cpuLoad"]);
-            	return value["cpuLoad"];}
-            );
-            console.log("data count ="+ret.length);
-            /* updateChart(ret); 
-            //console.log("=>>>"+ ret.length);
-        }); 
-        */
-/*         // Message 토픽 구독!
-        stomp.subscribe('/topic/message', function (event) {
-        	console.log("topic/message return = "+event);
-        	console.log("topic/message return = "+event.body);
-        	console.log("-----------------------------------------------");
-        }); */
-    });
-    
-    
-    /* stomp.connect({}, function () {
         console.log("Connected stomp!");
         console.log(stomp.ws._transport.url); 
         
@@ -112,7 +70,7 @@ function connectStomp() {
         	console.log("topic/message return = "+event.body);
         	console.log("-----------------------------------------------");
         });
-    }); */
+    });
 
 }
 
@@ -177,10 +135,7 @@ const updateChart = (data) => {
 	<div class="well">
        <input type="text" id="msg" value="test message!!!" class="form-control" />
        <button id="btnSend" class="btn btn-primary">Send Message</button>
-    </div>
-    
-    
-	<div class="well">
+       
        <button id="btnRecv" class="btn btn-primary">Recv Message</button>
     </div>
 	

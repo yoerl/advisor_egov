@@ -12,7 +12,7 @@ import egov.sample.stomp.annotation.EgovScheduler;
 
 @EgovScheduler
 public class EgovConfigScheduling {
-
+//
 //	@Bean
 //	public MethodInvokingJobDetailFactoryBean jobDetail(@Autowired SchedulingJobCpu schedulingJobCpu) {
 //		

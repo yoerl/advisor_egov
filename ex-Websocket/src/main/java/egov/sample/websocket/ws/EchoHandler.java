@@ -21,7 +21,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(
 			WebSocketSession session, TextMessage message) throws Exception {
-		LOGGER.info("%s로부터 [%s] 받음\n" +message.getPayload(), 
+		LOGGER.info("%s로부터 [%s] 받음\n", 
 				session.getId(), message.getPayload());
 		session.sendMessage(new TextMessage("echo: " + message.getPayload()));
 	}

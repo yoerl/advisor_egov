@@ -18,20 +18,24 @@
 	<script src="<c:url value='/js/egovframework/stomp-2.3.4.min.js' />"></script>
 	<script src="<c:url value='/js/egovframework/chart.min.js' />"></script>
 	<script>
+	
+
+	function send() {
+        if (socket.readyState !== 1) return;
+        stomp.send("/sendRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": "보내는 메세지"}));
+    }
+	
+
+	function recv() {
+        if (socket.readyState !== 1) return;
+        stomp.send("/recvRabbit");
+    }
+	
 		$(document).ready(  function() {
 			
 			connectStomp();
+
 			
-			$('#btnSend').on('click', function(event) {
-				event.preventDefault();
-				
-		        if (socket.readyState !== 1) return;
-		        
-		        let msg = $('input#msg').val();
-		        console.log("===>>", msg)
-		        
-		        stomp.send("/testStomp", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
-		    });
 		});
 		
 		var socket = null;
@@ -39,14 +43,14 @@
 		
 		function connectStomp() {
 			/*socket = new SockJS("<c:url value='/stomp' />"); // endpoint */
-			socket = new SockJS("http://112.175.61.182:8081/ex-Stomp/stomp"); // endpoint
+			socket = new SockJS("http://localhost:8081/ex-Stomp/stomp"); // endpoint
 			
 		    stomp = Stomp.over(socket);
 		    
 		    stomp.connect({}, function () {
 		        console.log("Connected stomp!");
 		        console.log(stomp.ws._transport.url); 
-		        
+		        /* 
 		        // Controller's MessageMapping, header, message(자유형식)
 		        stomp.send("/initStomp", {}, '{"roomId": "message", "id": "test", msg: "init message"}');
 		
@@ -61,7 +65,7 @@
 		            console.log("data count ="+ret.length);
 		            updateChart(ret);
 		            //console.log("=>>>"+ ret.length);
-		        });
+		        }); */
 		        
 		        // Message 토픽 구독!
 		        stomp.subscribe('/topic/message', function (event) {
