@@ -1,7 +1,10 @@
 package egov.sample.rabbit;
 
 import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeoutException;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
@@ -14,8 +17,14 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+
+
 public class AMQPConsumer {
 
+
+	@Resource(name = "rabbitmqProperties")
+	Properties rabbitmqProperties;
+	
     private final static String host = "localhost";
     int port = 5672;
     private final static String username = "guest";
@@ -25,12 +34,15 @@ public class AMQPConsumer {
     private final static String queueName = "hello";
     String routingKey = "routingkey";
 
-    public static String directConsumer() throws IOException, TimeoutException {
+    public String directConsumer() throws IOException, TimeoutException {
+    	
+    	
+    	
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost(host);
-        factory.setPort(5672);
-        factory.setUsername(username);
-        factory.setPassword(password);
+        factory.setHost(rabbitmqProperties.getProperty("Globals.rabbitmq.Host"));
+        factory.setPort(Integer.parseInt(rabbitmqProperties.getProperty("Globals.rabbitmq.Port").toString()));
+        factory.setUsername(rabbitmqProperties.getProperty("Globals.rabbitmq.Username"));
+        factory.setPassword(rabbitmqProperties.getProperty("Globals.rabbitmq.Password"));
 
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();

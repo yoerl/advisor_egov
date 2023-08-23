@@ -20,16 +20,17 @@
 	<script>
 	
 
-	function send() {
+/* 	function send() {
         if (socket.readyState !== 1) return;
         stomp.send("/sendRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": "보내는 메세지"}));
+        stomp.send("/sendRabbit_a", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": "보내는 메세지"}));
     }
 	
 
 	function recv() {
         if (socket.readyState !== 1) return;
         stomp.send("/recvRabbit");
-    }
+    } */
 	
 		$(document).ready(  function() {
 			
@@ -66,13 +67,33 @@
 		            updateChart(ret);
 		            //console.log("=>>>"+ ret.length);
 		        }); */
-		        
+
 		        // Message 토픽 구독!
 		        stomp.subscribe('/topic/message', function (event) {
 		        	console.log("topic/message return = "+event);
 		        	console.log("topic/message return = "+event.body);
 		        	console.log("-----------------------------------------------");
 		        });
+		        // Message 토픽 구독!
+		        stomp.subscribe('/topic/message_a', function (event) {
+		        	console.log("topic/message_a return = "+event);
+		        	console.log("topic/message_a return = "+event.body);
+		        	console.log("-----------------------------------------------");
+		        });
+		        
+
+		        stomp.send("/recvRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": ""}));
+		        stomp.send("/recvRabbit_a", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": ""}));
+		        
+/* 		     // 구독 객체 저장
+		        var subscription = stomp.subscribe('/topic/message', function (event) {
+		            console.log("topic/message return = " + event);
+		            console.log("topic/message return = " + event.body);
+		            console.log("-----------------------------------------------");
+		        });
+
+		        // 구독 취소
+		        subscription.unsubscribe(); */
 		    });
 		
 		}

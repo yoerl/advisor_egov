@@ -16,7 +16,6 @@
 $(document).ready(  function() {
 	
 	connectStomp();
-	btnRecv
 	$('#btnSend').on('click', function(event) {
 		event.preventDefault();
 		
@@ -24,16 +23,18 @@ $(document).ready(  function() {
         
         let msg = $('input#msg').val();
         console.log("===>>", msg)
-        
-        stomp.send("/testStomp", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+
+        stomp.send("/sendRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+        stomp.send("/sendRabbit_a", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
     });
 	$('#btnRecv').on('click', function(event) {
 		event.preventDefault();
 		
         if (socket.readyState !== 1) return;
         
-        
-        stomp.send("/recv", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+
+        stomp.send("/recvRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+        stomp.send("/recvRabbit_a", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
     });
 });
 
@@ -48,7 +49,7 @@ function connectStomp() {
         console.log("Connected stomp!");
         console.log(stomp.ws._transport.url); 
         
-        // Controller's MessageMapping, header, message(자유형식)
+/*         // Controller's MessageMapping, header, message(자유형식)
         stomp.send("/initStomp", {}, '{"roomId": "message", "id": "test", msg: "init message"}');
 
         // CPULoad 토픽 구독!
@@ -69,7 +70,7 @@ function connectStomp() {
         	console.log("topic/message return = "+event);
         	console.log("topic/message return = "+event.body);
         	console.log("-----------------------------------------------");
-        });
+        }); */
     });
 
 }

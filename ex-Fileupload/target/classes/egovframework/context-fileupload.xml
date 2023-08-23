@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- 파일업로드를 위한 MultipartResolver 정의 -->
+	<!-- spring multi file resolver -->
+	<bean id="spring.RegularCommonsMultipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>
+
+	<!-- egov multi file resolver -->
+	<bean id="egov.MultiCommonsMultipartResolver"
+		class="egovframework.com.web.EgovMultipartResolver">
+		<property name="maxUploadSize" value="50000000" />
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>
+
+	<!-- Spring CommonsMultipartResolver 사용시 확장자 체크 사용 불가 하니 주의 -->
+	<!-- <alias name="spring.RegularCommonsMultipartResolver"
+		alias="multipartResolver" /> -->
+	<!-- 확장자 점검 기능 추가 -->
+	<alias name="egov.MultiCommonsMultipartResolver"
+		alias="multipartResolver" />
+
+	<util:properties id="fileUploadProperties"
+		location="classpath:/egovframework/fileUpload.properties" />
+</beans>

@@ -5,24 +5,39 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeoutException;
+
+import javax.annotation.Resource;
 
 import com.rabbitmq.client.BuiltinExchangeType;
  
 public class AMQPProducer{
 
+
+	@Resource(name = "rabbitmqProperties")
+	Properties rabbitmqProperties;
+	
     // QUEUE_NAME은 메시지가 전송될 큐의 이름을 상수로 선언합니다.
     private final static String QUEUE_NAME = "hello";
 
     // 메인 메서드에서 메시지 전송 과정이 이루어집니다.
-    public static void directProducer(String message) {
+    public void directProducer(String message) {
         // ConnectionFactory 인스턴스를 생성하여 RabbitMQ 서버와의 연결을 설정합니다.
         ConnectionFactory factory = new ConnectionFactory();
-        // Host, Port, Username, Password를 설정합니다. 
+        
+
+//        factory.setHost(rabbitmqProperties.getProperty("Globals.rabbitmq.Host"));
+//        factory.setPort(Integer.parseInt(rabbitmqProperties.getProperty("Globals.rabbitmq.Port").toString()));
+//        factory.setUsername(rabbitmqProperties.getProperty("Globals.rabbitmq.Username"));
+//        factory.setPassword(rabbitmqProperties.getProperty("Globals.rabbitmq.Password"));
+//        
+
         factory.setHost("localhost");
         factory.setPort(5672);
         factory.setUsername("guest");
         factory.setPassword("guest");
+        
         // try-with-resources 구문을 사용하여 Connection과 Channel을 자동으로 닫도록 합니다.
         try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
             // 100,000번 메시지를 전송하는 반복문입니다.
