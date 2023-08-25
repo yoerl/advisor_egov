@@ -176,7 +176,11 @@
         <directory>${basedir}/target</directory>
         <finalName>${artifactId}-${version}</finalName>
         <pluginManagement>
-            <plugins>
+	            <plugins>
+				    <plugin>
+				      <groupId>org.codehaus.mojo</groupId>
+				      <artifactId>sonar-maven-plugin</artifactId>
+				</plugin>
 				<plugin>
 					<groupId>org.codehaus.cargo</groupId>
 					<artifactId>cargo-maven3-plugin</artifactId>
@@ -243,6 +247,11 @@
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>3.17.0</version>
                 </plugin>
+                <plugin>
+			        <groupId>org.sonarsource.scanner.maven</groupId>
+			        <artifactId>sonar-maven-plugin</artifactId>
+			        <version>3.7.0.1746</version>
+			     </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
