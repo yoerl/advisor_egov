@@ -42,11 +42,6 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<repository>
-		    <id>projectRepository</id> 
-		    <name>Project Repository</name> 
-		    <url>file://${project.basedir}/src/main/webapp/WEB-INF/lib</url>
-		</repository>
     </repositories>
 
 	<dependencies>
@@ -104,7 +99,43 @@
 			<artifactId>hsqldb</artifactId>
 			<version>2.5.2</version>
 		</dependency>
-        
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream</artifactId>
+			<version>3.2.4</version>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.apache.logging.log4j</groupId>
+		            <artifactId>log4j-to-slf4j</artifactId>
+		        </exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+			<version>3.2.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-amqp</artifactId>
+		    <version>3.1.1</version>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.apache.logging.log4j</groupId>
+		            <artifactId>log4j-to-slf4j</artifactId>
+		        </exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-websocket</artifactId>
+	    <version>5.3.20</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-messaging</artifactId>
+	    <version>5.3.20</version>
+	</dependency>
         <!-- mysql이나 oracle DB 사용시 아래 설정 추가  
         <dependency>
             <groupId>com.googlecode.log4jdbc</groupId>
@@ -145,7 +176,11 @@
         <directory>${basedir}/target</directory>
         <finalName>${artifactId}-${version}</finalName>
         <pluginManagement>
-            <plugins>
+	            <plugins>
+				    <plugin>
+				      <groupId>org.codehaus.mojo</groupId>
+				      <artifactId>sonar-maven-plugin</artifactId>
+				</plugin>
 				<plugin>
 					<groupId>org.codehaus.cargo</groupId>
 					<artifactId>cargo-maven3-plugin</artifactId>
@@ -212,6 +247,11 @@
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>3.17.0</version>
                 </plugin>
+                <plugin>
+			        <groupId>org.sonarsource.scanner.maven</groupId>
+			        <artifactId>sonar-maven-plugin</artifactId>
+			        <version>3.7.0.1746</version>
+			     </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
