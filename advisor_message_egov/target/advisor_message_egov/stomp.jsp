@@ -11,7 +11,6 @@
   
 <script src="<c:url value='/js/sockjs.client.min.js' />"></script>
 <script src="<c:url value='/js/stomp-2.3.4.min.js' />"></script>
-<script src="<c:url value='/js/chart.min.js' />"></script>
 <script>
 $(document).ready(  function() {
 	
@@ -116,21 +115,10 @@ const config = {
 		  options: options,
 		};
 
-var cpuChart;
 
-const initChart = () => {
-	const ctx = document.getElementById('cpuChart').getContext('2d');
-	cpuChart= new Chart(ctx, config);
-}
-
-const updateChart = (data) => {
-	//myChart.data.datasets[0].data = [1,2,3,4,5,6,7,8,9,10,11,12,13];
-	cpuChart.data.datasets[0].data = data;
-	cpuChart.update();
-}
 
 </script>
-<body onLoad="initChart()">
+<body onLoad="">
 	<h1>Stomp Example Page</h1>
 	
 	<div class="well">
