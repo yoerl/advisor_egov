@@ -110,7 +110,7 @@
 					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->권한설정</h2>
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
-							<span><img src="<c:url value='/images/icons/btn_close.gif'/>"></span>
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
 						</a>
 					</div>
 				</div>

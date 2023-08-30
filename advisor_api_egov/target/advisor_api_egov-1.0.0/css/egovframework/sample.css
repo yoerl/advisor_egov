@@ -7,25 +7,25 @@
 /********************************************************************************/
 * {margin:0;padding:0;}
 * html {height:1px;}
-body {margin:0; padding:0; font-family:"굴림"; font-size:12px; color:#666; scroll:auto;}
-table, tr, td, th {font-family:"돋움"; font-size:11px; color:#333333;}
+body {margin:0; padding:0; font-family:"굴림", sans-serif; font-size:12px; color:#666;}
+table, tr, td, th {font-family:"돋움", sans-serif; font-size:11px; color:#333333;}
 .listtd {padding:10px 5px 8px 5px; border-bottom:1px solid #e5e5e5;}
-th {background-color:#F3F5E0; background:url(../../images/egovframework/example/th_bg.gif) 0 0 repeat; height:26px; text-align:center; vertical-align:middle; color:#003366;}
+th {background-color:#F3F5E0; background-color:url(../../images/egovframework/example/th_bg.gif) 0 0 repeat; height:26px; text-align:center; vertical-align:middle; color:#003366;}
 img {border:0; vertical-align:middle;}
 p { height:20px; margin:0; padding:5 0 0 0;}
 .check ul {margin:0; padding:0; float:left;}
 .check li {list-style-type:none; float:left; margin:0 0 0 0; padding:0 0 0 3px;}
 .top {vertical-align:top;}
 
-a:link { font-size:11px; font-family:"돋움"; color:#3A5870; text-decoration:none; line-height:100%;}
-a:visited { font-size:11px; font-family:"돋움"; color:#3A5870; text-decoration:none}
-a:active { font-size:11px; font-family:"돋움"; color:#339999; text-decoration:none;}
-a:hover { font-size:11px; font-family:"돋움"; color:#339999; text-decoration:none;}
+a:link { font-size:11px; font-family:"돋움", sans-serif; color:#3A5870; text-decoration:none; line-height:100%;}
+a:visited { font-size:11px; font-family:"돋움", sans-serif; color:#3A5870; text-decoration:none}
+a:active { font-size:11px; font-family:"돋움", sans-serif; color:#339999; text-decoration:none;}
+a:hover { font-size:11px; font-family:"돋움", sans-serif; color:#339999; text-decoration:none;}
 
-.login {position:relative; margin:0; padding:0 0 0 0px; text-align:left; vertical-align:top; padding:52px 0px 0px 270px; /*overflow:hidden;*/ width:330px; height:260px;background:url(../../images/egovframework/example/login_bg.jpg) 0 0 no-repeat; }
-.login_en {position:relative; margin:0; padding:0 0 0 0px; text-align:left; vertical-align:top; padding:52px 0px 0px 270px; /*overflow:hidden;*/ width:330px; height:260px;background:url(../../images/egovframework/example/login_bg_en.jpg) 0 0 no-repeat; }
-.error {position:relative; margin:0; padding:0 0 0 0px; text-align:left; vertical-align:top; padding:120px 0px 0px 80px; /*overflow:hidden;*/ width:520px; height:260px;background:url(../../images/egovframework/example/error_bg.jpg) 0 0 no-repeat; }
-.error_en {position:relative; margin:0; padding:0 0 0 0px; text-align:left; vertical-align:top; padding:120px 0px 0px 80px; /*overflow:hidden;*/ width:520px; height:260px;background:url(../../images/egovframework/example/error_bg_en.jpg) 0 0 no-repeat; }
+.login {position:relative; margin:0; text-align:left; vertical-align:top; padding:52px 0px 0px 270px; /*overflow:hidden;*/ width:330px; height:260px;background:url(../../images/egovframework/example/login_bg.jpg) 0 0 no-repeat; }
+.login_en {position:relative; margin:0; text-align:left; vertical-align:top; padding:52px 0px 0px 270px; /*overflow:hidden;*/ width:330px; height:260px;background:url(../../images/egovframework/example/login_bg_en.jpg) 0 0 no-repeat; }
+.error {position:relative; margin:0; text-align:left; vertical-align:top; padding:120px 0px 0px 80px; /*overflow:hidden;*/ width:520px; height:260px;background:url(../../images/egovframework/example/error_bg.jpg) 0 0 no-repeat; }
+.error_en {position:relative; margin:0; text-align:left; vertical-align:top; padding:120px 0px 0px 80px; /*overflow:hidden;*/ width:520px; height:260px;background:url(../../images/egovframework/example/error_bg_en.jpg) 0 0 no-repeat; }
 #logo {margin:0; padding:0; text-align:left; /*overflow:hidden;*/ width:910px;}
 #header {height:74px; background:url(../../images/egovframework/example/civilappeal_topmn_bg.jpg) repeat-x;}
 #top {width:910px;}
@@ -33,15 +33,15 @@ a:hover { font-size:11px; font-family:"돋움"; color:#339999; text-decoration:n
 .menu ul {display:inline; width:910px;}
 .menu li {display:inline; list-style-type:none; margin:0; padding:14px 28px 0 28px; background:url(../../images/egovframework/example/civilappeal_topmn_bar.jpg) 0 15px no-repeat;}
 .menu li.last {width:1px; padding:15px 0 0 0; background:url(../../images/egovframework/example/civilappeal_topmn_bar.jpg) 0 0 no-repeat;}
-.menu a.top:link {font-family:"굴림"; font-weight:bold; color:#FFFFFF; text-decoration:none; font-size:12px;}
-.menu a.top:visited {font-family:"굴림"; font-weight:bold; color:#FFFFFF; text-decoration:none; font-size:12px;}
-.menu a.top:hover {font-family:"굴림"; font-weight:bold; color: #00CCFF; text-decoration:none; font-size:12px;}	
-.menu a.top:active {font-family:"굴림"; font-weight:bold; color:#FFFFFF; text-decoration:none; font-size:12px;}	
+.menu a.top:link {font-family:"굴림", sans-serif; font-weight:bold; color:#FFFFFF; text-decoration:none; font-size:12px;}
+.menu a.top:visited {font-family:"굴림", sans-serif; font-weight:bold; color:#FFFFFF; text-decoration:none; font-size:12px;}
+.menu a.top:hover {font-family:"굴림", sans-serif; font-weight:bold; color: #00CCFF; text-decoration:none; font-size:12px;}	
+.menu a.top:active {font-family:"굴림", sans-serif; font-weight:bold; color:#FFFFFF; text-decoration:none; font-size:12px;}	
 
-.menu .on a.top:link {font-family:"굴림"; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;}
-.menu .on a.top:visited {font-family:"굴림"; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;}
-.menu .on a.top:hover {font-family:"굴림"; font-weight:bold; color: #00CCFF; text-decoration:none; font-size:12px;}	
-.menu .on a.top:active {font-family:"굴림"; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;}	
+.menu .on a.top:link {font-family:"굴림", sans-serif; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;}
+.menu .on a.top:visited {font-family:"굴림", sans-serif; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;}
+.menu .on a.top:hover {font-family:"굴림", sans-serif; font-weight:bold; color: #00CCFF; text-decoration:none; font-size:12px;}	
+.menu .on a.top:active {font-family:"굴림", sans-serif; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;}	
 		
 .right_area {float:right; height:38px; margin:0; padding:0 8px 0 0; background:url(../../images/egovframework/example/civilappeal_topmn_bg11.jpg) right no-repeat;}
 #sub {float:left; padding:10px 10px 10px 10px; /*overflow:hidden;*/width:180px; margin-right:30px;}
@@ -59,16 +59,16 @@ a:hover { font-size:11px; font-family:"돋움"; color:#339999; text-decoration:n
 #content_pop {float:left; text-align:left; /*overflow:hidden;*/width:680px; background-color:#FFFFFF; padding:10px 10px 10px 10px;}
 #title {float:left; text-align:left; margin:0 0 10 0; padding:0; height:30px; border-bottom:1px solid #e5e5e5; width:680px;}
 #title ul {float:left; margin:0; padding:0;}
-#title li {list-style-type:none; width:200px; padding:3px 0px 2px 0px; float:left; font-family:"돋움"; font-size:16px; font-weight:bold; color:#000000;}
-#title .location {float:right; height:20px; margin:0; padding:5 0 0 0; font-family:"돋움"; font-size:11px;}
-#foot {margin:0; padding:0 0 0 0; text-align:left; /*overflow:hidden;*/ height:40px; clear:both; background-color:#F7F7F7; border-top:1px solid #e5e5e5; font-family:Tahoma; font-size:11px; color:#999999;}
+#title li {list-style-type:none; width:200px; padding:3px 0px 2px 0px; float:left; font-family:"돋움", sans-serif, sans-serif; font-size:16px; font-weight:bold; color:#000000;}
+#title .location {float:right; height:20px; margin:0; padding:5 0 0 0; font-family:"돋움", sans-serif; font-size:11px;}
+#foot {margin:0; padding:0 0 0 0; text-align:left; /*overflow:hidden;*/ height:40px; clear:both; background-color:#F7F7F7; border-top:1px solid #e5e5e5; font-family:Tahoma, sans-serif; font-size:11px; color:#999999;}
 #search {float:right; margin:0; padding:10px 0 10px 0; width:680px;}
 #search ul {margin:0; float:right;}
 #search li {list-style-type:none; float:left; margin:0 0 0 0; padding:0 0 0 3px;}
 #table {float:left; margin:0 0 10px 0; padding:0 0 0 0; width:680px;}
 #paging {padding:0 0 0 0; text-align:center; width:680px;}
 #paging ul {display:inline;}
-#paging li {display:inline; list-style-type:none; padding:0 10px 0 10px; font-family: Tahoma; font-size:11px; color: #333333;}
+#paging li {display:inline; list-style-type:none; padding:0 10px 0 10px; font-family: Tahoma, sans-serif; font-size:11px; color: #333333;}
 #paging li.pre10 {padding:0 2px 0 2px;}
 #paging li.pre1 {padding:0 2px 0 2px;}
 #paging li.next10 {padding:0 2px 0 2px;}
@@ -88,9 +88,9 @@ a:hover { font-size:11px; font-family:"돋움"; color:#339999; text-decoration:n
 #idwrap li {list-style-type:none; float:left; margin:0; padding-right:3px;}
 button {cursor:hand; border:0px solid #FFFFFF; padding:0px 0px 0px 0px; background-color:#FFFFFF; white-space:nowrap;}
 .btn_blue_l {float:left; background:url(../../images/egovframework/example/btn_bg_l.gif) 0 0 no-repeat; height:20px; padding:0px 0px 0px 10px; margin:0px 0px 0px 0px;}
-.btn_blue_r {float:left; background:url(../../images/egovframework/example/btn_bg_r.gif) 0 0 no-repeat; background-position:right; height:20px; font-family:"돋움"; font-size:11px; color:#000000; margin:0px 0px 0px 0px; padding-top:0px; _padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:0px; text-align:center;}
-input { height:20px; font-family:"돋움"; font-size:12px; color:#000000; padding:2px 2px 0px 2px; margin-top:0px; _margin-top:-1px;}
-select {font-family:'돋움'; font-size:12px; margin-top:0px; height:20px; padding-top:0px;}
+.btn_blue_r {float:left; background:url(../../images/egovframework/example/btn_bg_r.gif) 0 0 no-repeat; background-position:right; height:20px; font-family:"돋움", sans-serif; font-size:11px; color:#000000; margin:0px 0px 0px 0px; padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:0px; text-align:center;}
+input { height:20px; font-family:"돋움", sans-serif; font-size:12px; color:#000000; padding:2px 2px 0px 2px; margin-top:0px; _margin-top:-1px;}
+select {font-family:'돋움', sans-serif; font-size:12px; margin-top:0px; height:20px; padding-top:0px;}
 .tbtd_caption {font-weight:bold; color:#003366; background-color:#E5EDF3; text-align:right; padding:10px 10px 9px 5px; margin:0;}
 .tbtd_content {background-color:#F5F8FA; padding:7px 10px 5px 10px; margin:0;}
 .tbtd_caption_re {font-weight:bold; color:#666633; background-color:#F6F5E5; text-align:right; padding:10px 10px 9px 5px; margin:0;}

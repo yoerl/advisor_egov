@@ -20,7 +20,7 @@
 }
 
 [class^="ri-"], [class*=" ri-"] {
-  font-family: 'remixicon' !important;
+  font-family: 'remixicon', 'Noto Sans KR', sans-serif; /* 'Noto Sans KR'라는 한글 폰트를 백업 옵션으로 추가 */
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

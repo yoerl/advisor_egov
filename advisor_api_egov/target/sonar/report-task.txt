@@ -1,6 +1,6 @@
-projectKey=cube
+projectKey=advisor_api_egov
 serverUrl=http://localhost:9000
 serverVersion=10.0.0.68432
-dashboardUrl=http://localhost:9000/dashboard?id=cube
-ceTaskId=AYo1ZWoyWGCj_s8Hg7Wo
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYo1ZWoyWGCj_s8Hg7Wo
+dashboardUrl=http://localhost:9000/dashboard?id=advisor_api_egov
+ceTaskId=AYpEjE14CSapu078m1KO
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYpEjE14CSapu078m1KO

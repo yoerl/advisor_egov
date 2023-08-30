@@ -1,4 +1,5 @@
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/common/websocket/MyHandler.java
+/Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/common/web/PageController.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/example/sample/service/SampleDefaultVO.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/advisor/web/AdvisorController.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/auth/web/AuthController.java
@@ -24,7 +25,6 @@
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/api/web/ApiController.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/example/sample/service/impl/SampleDAO.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/common/rabbit/Send.java
-/Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/common/web/CommonController.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/counseling/app/web/AppController.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/example/websocket/config/WsConfig.java
 /Users/wooyoerl/project/advisor_egov/advisor_api_egov/src/main/java/egovframework/example/sample/service/SampleVO.java

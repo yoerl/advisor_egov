@@ -25,28 +25,13 @@
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
 	<script src="<c:url value='/js/egovframework/sockjs.client.min.js' />"></script>
 	<script src="<c:url value='/js/egovframework/stomp-2.3.4.min.js' />"></script>
-	<script src="<c:url value='/js/egovframework/chart.min.js' />"></script>
 	
 	
 	<script>
 	
-
-/* 	function send() {
-        if (socket.readyState !== 1) return;
-        stomp.send("/sendRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": "보내는 메세지"}));
-        stomp.send("/sendRabbit_a", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": "보내는 메세지"}));
-    }
-	
-
-	function recv() {
-        if (socket.readyState !== 1) return;
-        stomp.send("/recvRabbit");
-    } */
-	
 		$(document).ready(  function() {
 			
 			connectStomp();
-
 			
 		});
 		
@@ -102,16 +87,17 @@
 	<header id="header">
 		<div id="logo">
 			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			<span>범정통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 		</div>
 		<nav id="gnb">
-			<a href="#" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
+			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
+			<a href="${path}/page/history.do"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
+			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
+			<a href="${path}/page/monitoring.do"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
+			<a href="${path}/page/authority.do"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
 			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
 		</nav>
+			
 		<div id="lnb">
 			<a href="#" class="call"></a>
 			<a href="#" class="push"><span>99+</span></a>

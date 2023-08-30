@@ -107,7 +107,7 @@
 			<section id="sub_right_con"><form name="" method="" action="">
 				<div class="right_input_title">
 					<h2><a href="javascript:history.go(-1);"><img src="../img/arrow-left.png" alt=""></a><input type="text" size="20" maxlength="30" name="" value="" placeholder="공지사항 제목을 작성해주세요."></h2>
-					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>"><span></div>
+					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
 				</div>
 				<div class="right_contents">
 					<div class="view_con_inner">

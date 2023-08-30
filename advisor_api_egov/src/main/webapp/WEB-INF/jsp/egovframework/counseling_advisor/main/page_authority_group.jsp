@@ -143,7 +143,10 @@
 								</div>
 								<div class="group_autho_list">
 									<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									
+									<caption></caption>
+									  <tr>
+										<th></th>
+									  </tr>
 									  <tr>
 										<td rowspan="6" class="border_none p30">메뉴권한</td>
 										<td  class="border_none w30">메모</td>

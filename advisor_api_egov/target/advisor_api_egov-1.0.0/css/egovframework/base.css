@@ -1,5 +1,5 @@
 /* common*/
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,span,form,fieldset,p,button,address,table, tbody, tfoot, thead, th, tr, tdvideo, tt{margin:0;padding:0;box-sizing: border-box;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,span,form,fieldset,p,button,address,table, tbody, tfoot, thead, th, tr, td, video, tt{margin:0;padding:0;box-sizing: border-box;}
 header,article,aside,canvas,details,figcaption,figure,footer,hgroup,menu,nav,section,summary,mark {display:block;margin: 0; padding: 0;box-sizing: border-box;}
 
 h1,h2,h3,h4,h5,h6,input,button,textarea,select,table{box-sizing: border-box;}
@@ -83,45 +83,45 @@ select:disabled{background-color:#ebebeb}
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 100;
-    src: url(../../fonts/NotoSans-Thin.woff2) format("woff2"),
-		url(../../fonts/NotoSans-Thin.woff) format("woff"),
-		url(../../fonts/NotoSans-Thin.otf) format("opentype");
+    src: url(../fonts/NotoSans-Thin.woff2) format("woff2"),
+		url(../fonts/NotoSans-Thin.woff) format("woff"),
+		url(../fonts/NotoSans-Thin.otf) format("opentype");
 }
 
 @font-face {
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 300;
-    src: url(../../fonts/NotoSans-Light.woff2) format("woff2"),
-		url(../../fonts/NotoSans-Light.woff) format("woff"),
-		url(../../fonts/NotoSans-Light.otf) format("opentype");
+    src: url(../fonts/NotoSans-Light.woff2) format("woff2"),
+		url(../fonts/NotoSans-Light.woff) format("woff"),
+		url(../fonts/NotoSans-Light.otf) format("opentype");
 }
 
 @font-face {
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 400;
-    src: url(../../fonts/NotoSans-Regular.woff2) format("woff2"),
-		url(../../fonts/NotoSans-Regular.woff) format("woff"),
-		url(../../fonts/NotoSans-Regular.otf) format("opentype");
+    src: url(../fonts/NotoSans-Regular.woff2) format("woff2"),
+		url(../fonts/NotoSans-Regular.woff) format("woff"),
+		url(../fonts/NotoSans-Regular.otf) format("opentype");
 }
 
 @font-face {
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
-    src: url(../../fonts/NotoSans-Medium.woff2) format("woff2"),
-		url(../../fonts/NotoSans-Medium.woff) format("woff"),
-		url(../../fonts/NotoSans-Medium.otf) format("opentype");
+    src: url(../fonts/NotoSans-Medium.woff2) format("woff2"),
+		url(../fonts/NotoSans-Medium.woff) format("woff"),
+		url(../fonts/NotoSans-Medium.otf) format("opentype");
 }
 
 @font-face {
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 600;
-    src: url(../../fonts/NotoSans-Bold.woff2) format("woff2"),
-		url(../../fonts/NotoSans-Bold.woff) format("woff"),
-		url(../../fonts/NotoSans-Bold.otf) format("opentype");
+    src: url(../fonts/NotoSans-Bold.woff2) format("woff2"),
+		url(../fonts/NotoSans-Bold.woff) format("woff"),
+		url(../fonts/NotoSans-Bold.otf) format("opentype");
 }
 
 
@@ -131,26 +131,26 @@ select:disabled{background-color:#ebebeb}
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 300;
-    src: url(../../fonts/Roboto-Regular.woff2) format("woff2"),
-		url(../../fonts/Roboto-Regular.woff) format("woff"),
-		url(../../fonts/Roboto-Regular.otf) format("opentype");
+    src: url(../fonts/Roboto-Regular.woff2) format("woff2"),
+		url(../fonts/Roboto-Regular.woff) format("woff"),
+		url(../fonts/Roboto-Regular.otf) format("opentype");
 }
 
 @font-face {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    src: url(../../fonts/Roboto-Medium.woff2) format("woff2"),
-		url(../../fonts/Roboto-Medium.woff) format("woff"),
-		url(../../fonts/Roboto-Medium.otf) format("opentype");
+    src: url(../fonts/Roboto-Medium.woff2) format("woff2"),
+		url(../fonts/Roboto-Medium.woff) format("woff"),
+		url(../fonts/Roboto-Medium.otf) format("opentype");
 }
 
 @font-face {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 600;
-    src: url(../../fonts/Roboto-Bold.woff2) format("woff2"),
-	     url(../../fonts/Roboto-Bold.woff) format("woff"),
-		 url(../../fonts/Roboto-Bold.otf) format("opentype");
+    src: url(../fonts/Roboto-Bold.woff2) format("woff2"),
+	     url(../fonts/Roboto-Bold.woff) format("woff"),
+		 url(../fonts/Roboto-Bold.otf) format("opentype");
 }
 

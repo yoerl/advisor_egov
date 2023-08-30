@@ -25,7 +25,7 @@
 	<header id="header">
 		<div id="logo">
 			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
+			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -111,7 +111,7 @@
 					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->모니터링</h2>
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
-							<span><img src="<c:url value='/images/icons/btn_close.gif'/>"></span>
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
 						</a>
 					</div>
 				</div>
@@ -237,7 +237,7 @@
 		</div>
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
-							<span><img src="<c:url value='/images/icons/btn_close.gif'/>"></span>
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
 						</a>
 					</div>
 	</div>

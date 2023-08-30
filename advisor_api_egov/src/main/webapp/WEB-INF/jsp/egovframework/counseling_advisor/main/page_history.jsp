@@ -116,7 +116,7 @@
 					
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
-							<span><img src="<c:url value='/images/icons/btn_close.gif'/>"></span>
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
 						</a>
 					</div>
 				</div>
@@ -236,9 +236,9 @@
 	<div class="history_pop_header">
 		<div id="logo">
 			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
+			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 		</div>
-		<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>"><span></div>
+		<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
 	</div>
 		<!-- body -->
 	<div class="detail_pop_container">
@@ -414,7 +414,7 @@
 						</div>
 						<!-- 팝업창 내용 -->
 							<div class="counsel_popup">
-								<div class="btn_popup_close"><a href="#"><img src="<c:url value='/images/icons/btn_close.gif'/>"></a></div>
+								<div class="btn_popup_close"><a href="#"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a></div>
 								<h2>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h2>
 								<div class="counsel_poopup_con">
 									<p>병역의무 이행<br />

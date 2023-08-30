@@ -107,7 +107,7 @@
 			<section id="sub_right_con">
 				<div class="right_title">
 					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->공지사항</h2>
-					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>"><span></div>
+					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
 				</div>
 				<div class="right_contents">
 					<div class="notice_con_inner">

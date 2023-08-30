@@ -139,6 +139,9 @@
 							</div>
 							<div class="group_setting_con">
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								
+									<caption></caption>
+									
 								  <tr>
 									<th>사용자명</th>
 									<th>내선번호</th>
