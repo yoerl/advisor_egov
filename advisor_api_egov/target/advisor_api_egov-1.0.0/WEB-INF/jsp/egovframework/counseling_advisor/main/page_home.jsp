@@ -55,8 +55,8 @@
 		
 		function connectStomp() {
 			/*socket = new SockJS("<c:url value='/stomp' />"); // endpoint */
-			/* socket = new SockJS("http://112.175.61.182:8081/ex-Stomp/stomp"); // endpoint */
-			socket = new SockJS("http://112.175.61.182:8081/ex-Stomp/stomp"); // endpoint
+			/* socket = new SockJS("http://112.175.61.182:8081/advisor_message_egov/stomp"); // endpoint */
+			socket = new SockJS("http://localhost:8081/advisor_message_egov/stomp"); // endpoint
 			
 		    stomp = Stomp.over(socket);
 		    

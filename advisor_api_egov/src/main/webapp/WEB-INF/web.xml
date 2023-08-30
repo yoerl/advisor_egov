@@ -73,8 +73,8 @@
 	</error-page>
 	
 	
-	<session-config>
+<!-- 	<session-config>
 		<tracking-mode>COOKIE</tracking-mode>
-	</session-config>
+	</session-config> -->
     
 </web-app>

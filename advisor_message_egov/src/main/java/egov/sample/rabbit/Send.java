@@ -42,8 +42,13 @@ public class Send {
             // 입출력 예외를 처리합니다.
             e.printStackTrace();
         } catch (InterruptedException e) {
+//            LOGGER.log(Level.WARN, "Interrupted!", e);
+            // Restore interrupted state...
+            Thread.currentThread().interrupt();
             // 쓰레드가 중단되었을 때의 예외를 처리합니다.
             e.printStackTrace();
+
+            
         }
     }
 }

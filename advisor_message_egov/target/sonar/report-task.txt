@@ -1,0 +1,6 @@
+projectKey=cube2
+serverUrl=http://localhost:9000
+serverVersion=10.0.0.68432
+dashboardUrl=http://localhost:9000/dashboard?id=cube2
+ceTaskId=AYo1t7XsWGCj_s8Hg7XL
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYo1t7XsWGCj_s8Hg7XL
