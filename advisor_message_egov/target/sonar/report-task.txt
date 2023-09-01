@@ -2,5 +2,5 @@ projectKey=advisor_message_egov
 serverUrl=http://localhost:9000
 serverVersion=10.0.0.68432
 dashboardUrl=http://localhost:9000/dashboard?id=advisor_message_egov
-ceTaskId=AYpGIQvsz0aQ5NNiPNVX
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYpGIQvsz0aQ5NNiPNVX
+ceTaskId=AYpPgZynRZcQwtlKSogj
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYpPgZynRZcQwtlKSogj
