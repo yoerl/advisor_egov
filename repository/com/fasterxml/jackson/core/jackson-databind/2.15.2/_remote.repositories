@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Aug 30 13:10:07 KST 2023
+jackson-databind-2.15.2-sources.jar>mvn2=
+jackson-databind-2.15.2.pom>mvn2=
+jackson-databind-2.15.2.jar>mvn2=

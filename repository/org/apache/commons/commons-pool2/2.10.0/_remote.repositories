@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 15:44:25 KST 2023
+commons-pool2-2.10.0.jar>mvn2s=
+commons-pool2-2.10.0.pom>mvn2s=
+commons-pool2-2.10.0-sources.jar>mvn2s=

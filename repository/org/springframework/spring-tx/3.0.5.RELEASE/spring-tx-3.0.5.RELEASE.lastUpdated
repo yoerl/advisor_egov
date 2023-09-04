@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 01:30:26 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact org.springframework\:spring-tx\:\:3.0.5.RELEASE from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693758626430
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693758626383
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693758626209
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693758625917
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.springframework\:spring-tx\:\:3.0.5.RELEASE from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/springframework/spring-tx/3.0.5.RELEASE/spring-tx-3.0.5.RELEASE. Error code 400, Bad Request
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693758621926
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693758622270
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.springframework\:spring-tx\:\:3.0.5.RELEASE from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/springframework/spring-tx/3.0.5.RELEASE/spring-tx-3.0.5.RELEASE. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693758622239
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

@@ -1,0 +1,8 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:53:03 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687769073
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.codehaus.jackson\:jackson-mapper-asl\:jar\:1.8.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.8.0/jackson-mapper-asl-1.8.0.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687767372
+https\://repo1.maven.org/maven2/.lastUpdated=1693756383728
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687831529
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.codehaus.jackson\:jackson-mapper-asl\:jar\:1.8.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/codehaus/jackson/jackson-mapper-asl/1.8.0/jackson-mapper-asl-1.8.0.jar. Error code 400, Bad Request

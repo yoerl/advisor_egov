@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:49:16 KST 2023
+commons-logging-1.1.1-sources.jar>atlassian=
+commons-logging-1.1.1.jar>atlassian=
+commons-logging-1.1.1.pom>mvn2=

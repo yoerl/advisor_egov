@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 19:13:54 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact com.oracle\:ojdbc14\:jar\:10.2.0.4.0 from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693822434256
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693822433759
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693822433281
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693822432793
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact com.oracle\:ojdbc14\:jar\:10.2.0.4.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar. Error code 400, Bad Request
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693822430181
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693822434793
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact com.oracle\:ojdbc14\:jar\:10.2.0.4.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693822429881
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

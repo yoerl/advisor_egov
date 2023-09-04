@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 16:02:09 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687727812
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact jakarta-regexp\:jakarta-regexp\:pom\:1.4 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687727726
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687729750
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact jakarta-regexp\:jakarta-regexp\:pom\:1.4 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.pom. Error code 400, Bad Request

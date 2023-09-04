@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:50:10 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756208026
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact com.artofsolving\:jodconverter\:jar\:sources\:2.2.1 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/com/artofsolving/jodconverter/2.2.1/jodconverter-2.2.1-sources.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756208011
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756210127
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact com.artofsolving\:jodconverter\:jar\:sources\:2.2.1 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/com/artofsolving/jodconverter/2.2.1/jodconverter-2.2.1-sources.jar. Error code 400, Bad Request

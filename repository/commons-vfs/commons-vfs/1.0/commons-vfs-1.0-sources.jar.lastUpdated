@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:51:44 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact commons-vfs\:commons-vfs\:jar\:sources\:1.0 from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693756304115
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693756304110
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693756304002
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756303774
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact commons-vfs\:commons-vfs\:jar\:sources\:1.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/commons-vfs/commons-vfs/1.0/commons-vfs-1.0-sources.jar. Error code 400, Bad Request
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756302256
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693756304438
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact commons-vfs\:commons-vfs\:jar\:sources\:1.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/commons-vfs/commons-vfs/1.0/commons-vfs-1.0-sources.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756302241
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

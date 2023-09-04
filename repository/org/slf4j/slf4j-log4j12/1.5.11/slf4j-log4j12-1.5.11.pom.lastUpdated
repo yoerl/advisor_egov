@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 15:58:09 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687486199
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.slf4j\:slf4j-log4j12\:pom\:1.5.11 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/slf4j/slf4j-log4j12/1.5.11/slf4j-log4j12-1.5.11.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687486108
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687489900
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.slf4j\:slf4j-log4j12\:pom\:1.5.11 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/slf4j/slf4j-log4j12/1.5.11/slf4j-log4j12-1.5.11.pom. Error code 400, Bad Request

@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 16:03:51 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687769057
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.springframework\:spring-asm\:jar\:3.0.5.RELEASE from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687767353
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687831499
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.springframework\:spring-asm\:jar\:3.0.5.RELEASE from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar. Error code 400, Bad Request

@@ -1,0 +1,11 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 15:58:05 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687482805
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact log4j\:log4j\:pom\:1.3alpha-8 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/log4j/log4j/1.3alpha-8/log4j-1.3alpha-8.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687482655
+http\://maven.atlassian.com/repository/public/.error=
+http\://www.egovframe.go.kr/maven/.lastUpdated=1692687485742
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1692687484912
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687484540
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact log4j\:log4j\:pom\:1.3alpha-8 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/log4j/log4j/1.3alpha-8/log4j-1.3alpha-8.pom. Error code 400, Bad Request
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 16:00:18 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687615889
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact com.oracle\:ojdbc14\:pom\:10.2.0.4.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687615797
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687618925
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact com.oracle\:ojdbc14\:pom\:10.2.0.4.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.pom. Error code 400, Bad Request

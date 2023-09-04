@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 18:01:34 KST 2023
+commons-dbcp-1.4.jar>atlassian=
+commons-dbcp-1.4.jar>central=
+commons-dbcp-1.4.pom>central=
+commons-dbcp-1.4-sources.jar>atlassian=
+commons-dbcp-1.4.pom>atlassian=

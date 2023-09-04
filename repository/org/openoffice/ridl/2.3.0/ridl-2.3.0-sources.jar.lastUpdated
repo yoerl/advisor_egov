@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:50:19 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact org.openoffice\:ridl\:jar\:sources\:2.3.0 from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693756218869
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693756218863
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693756218751
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756218523
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.openoffice\:ridl\:jar\:sources\:2.3.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/openoffice/ridl/2.3.0/ridl-2.3.0-sources.jar. Error code 400, Bad Request
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756216242
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693756219091
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.openoffice\:ridl\:jar\:sources\:2.3.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/openoffice/ridl/2.3.0/ridl-2.3.0-sources.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756216227
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

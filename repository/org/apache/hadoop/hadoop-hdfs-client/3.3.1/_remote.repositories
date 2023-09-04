@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 10:09:33 KST 2023
+hadoop-hdfs-client-3.3.1-sources.jar>mvn2=
+hadoop-hdfs-client-3.3.1.jar>mvn2=
+hadoop-hdfs-client-3.3.1.pom>mvn2=

@@ -1,0 +1,8 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Aug 30 13:09:30 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687423415
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693368570536
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact commons-collections\:commons-collections\:pom\:3.1 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/commons-collections/commons-collections/3.1/commons-collections-3.1.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687423258
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687426324
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact commons-collections\:commons-collections\:pom\:3.1 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/commons-collections/commons-collections/3.1/commons-collections-3.1.pom. Error code 400, Bad Request

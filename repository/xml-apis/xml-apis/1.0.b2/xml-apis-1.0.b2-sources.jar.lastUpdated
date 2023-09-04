@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:51:00 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756255827
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact xml-apis\:xml-apis\:jar\:sources\:1.0.b2 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756255795
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756260610
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact xml-apis\:xml-apis\:jar\:sources\:1.0.b2 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar. Error code 400, Bad Request

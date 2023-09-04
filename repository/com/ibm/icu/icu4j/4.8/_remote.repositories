@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:49:57 KST 2023
+icu4j-4.8.pom>atlassian=
+icu4j-4.8-sources.jar>atlassian=
+icu4j-4.8.jar>atlassian=

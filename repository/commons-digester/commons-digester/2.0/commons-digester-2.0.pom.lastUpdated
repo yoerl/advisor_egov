@@ -1,0 +1,10 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 18:01:20 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687739970
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693818080677
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact commons-digester\:commons-digester\:pom\:2.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/commons-digester/commons-digester/2.0/commons-digester-2.0.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687739894
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693818080590
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687743334
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact commons-digester\:commons-digester\:pom\:2.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/commons-digester/commons-digester/2.0/commons-digester-2.0.pom. Error code 400, Bad Request

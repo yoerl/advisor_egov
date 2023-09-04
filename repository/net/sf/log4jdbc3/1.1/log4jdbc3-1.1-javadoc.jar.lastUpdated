@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:52:51 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact net.sf\:log4jdbc3\:jar\:javadoc\:1.1 from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693756371511
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693756371506
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693756371376
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756371107
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact net.sf\:log4jdbc3\:jar\:javadoc\:1.1 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/net/sf/log4jdbc3/1.1/log4jdbc3-1.1-javadoc.jar. Error code 400, Bad Request
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756367731
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693756371747
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact net.sf\:log4jdbc3\:jar\:javadoc\:1.1 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/net/sf/log4jdbc3/1.1/log4jdbc3-1.1-javadoc.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756367689
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

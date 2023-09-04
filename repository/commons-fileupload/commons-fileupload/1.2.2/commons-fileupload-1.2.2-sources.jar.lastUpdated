@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:49:53 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756188890
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact commons-fileupload\:commons-fileupload\:jar\:sources\:1.2.2 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/commons-fileupload/commons-fileupload/1.2.2/commons-fileupload-1.2.2-sources.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756188871
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756193163
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact commons-fileupload\:commons-fileupload\:jar\:sources\:1.2.2 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/commons-fileupload/commons-fileupload/1.2.2/commons-fileupload-1.2.2-sources.jar. Error code 400, Bad Request

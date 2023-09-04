@@ -1,0 +1,8 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Aug 25 17:50:35 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687744283
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687743938
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687746993
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.apache.commons\:commons-parent\:pom\:11 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/apache/commons/commons-parent/11/commons-parent-11.pom. Error code 501, HTTPS Required
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.apache.commons\:commons-parent\:pom\:11 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/apache/commons/commons-parent/11/commons-parent-11.pom. Error code 400, Bad Request
+https\://repo.maven.apache.org/maven2/.lastUpdated=1692953435927

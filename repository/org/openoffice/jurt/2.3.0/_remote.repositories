@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 16:03:51 KST 2023
+jurt-2.3.0.jar>atlassian=
+jurt-2.3.0.pom>atlassian=

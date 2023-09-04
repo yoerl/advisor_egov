@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 15:44:27 KST 2023
+protobuf-java-3.19.4.jar>mvn2s=
+protobuf-java-3.19.4-sources.jar>mvn2s=
+protobuf-java-3.19.4.pom>mvn2s=

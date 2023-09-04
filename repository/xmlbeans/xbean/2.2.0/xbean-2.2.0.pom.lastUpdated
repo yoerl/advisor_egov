@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 15:59:50 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687585767
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact xmlbeans\:xbean\:pom\:2.2.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/xmlbeans/xbean/2.2.0/xbean-2.2.0.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687585678
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687590885
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact xmlbeans\:xbean\:pom\:2.2.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/xmlbeans/xbean/2.2.0/xbean-2.2.0.pom. Error code 400, Bad Request

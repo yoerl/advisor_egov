@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 16:01:07 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687664963
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact avalon-framework\:avalon-framework\:pom\:4.1.3 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687664867
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687667028
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact avalon-framework\:avalon-framework\:pom\:4.1.3 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.pom. Error code 400, Bad Request

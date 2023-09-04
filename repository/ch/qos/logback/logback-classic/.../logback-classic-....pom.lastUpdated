@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Aug 25 18:27:57 KST 2023
+@default-maven-default-http-blocker-http\://0.0.0.0/.lastUpdated=1692955677617
+http\://0.0.0.0/.error=Could not transfer artifact ch.qos.logback\:logback-classic\:pom\:... from/to maven-default-http-blocker (http\://0.0.0.0/)\: Blocked mirror for repositories\: [sonar (http\://repository.sonarsource.org/content/repositories/sonar, default, releases)]
+https\://repo.maven.apache.org/maven2/.error=
+https\://repo.maven.apache.org/maven2/.lastUpdated=1692955615396

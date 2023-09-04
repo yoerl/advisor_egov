@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 15:59:57 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687594032
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact net.sf.ehcache\:ehcache-core\:pom\:2.4.1 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/net/sf/ehcache/ehcache-core/2.4.1/ehcache-core-2.4.1.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687593936
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687597809
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact net.sf.ehcache\:ehcache-core\:pom\:2.4.1 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/net/sf/ehcache/ehcache-core/2.4.1/ehcache-core-2.4.1.pom. Error code 400, Bad Request

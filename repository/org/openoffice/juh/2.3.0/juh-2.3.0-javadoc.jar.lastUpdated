@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:52:58 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact org.openoffice\:juh\:jar\:javadoc\:2.3.0 from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693756377951
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693756377950
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693756377850
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756377621
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.openoffice\:juh\:jar\:javadoc\:2.3.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/openoffice/juh/2.3.0/juh-2.3.0-javadoc.jar. Error code 400, Bad Request
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756375334
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693756378186
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.openoffice\:juh\:jar\:javadoc\:2.3.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/openoffice/juh/2.3.0/juh-2.3.0-javadoc.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756375318
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

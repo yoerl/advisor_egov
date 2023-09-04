@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 16:02:32 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687749891
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact commons-jexl\:commons-jexl\:pom\:1.1 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/commons-jexl/commons-jexl/1.1/commons-jexl-1.1.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687749752
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687752236
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact commons-jexl\:commons-jexl\:pom\:1.1 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/commons-jexl/commons-jexl/1.1/commons-jexl-1.1.pom. Error code 400, Bad Request

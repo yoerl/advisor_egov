@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Aug 22 15:59:45 KST 2023
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687582973
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.openoffice\:unoil\:pom\:2.3.0 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/openoffice/unoil/2.3.0/unoil-2.3.0.pom. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687582883
+http\://maven.atlassian.com/repository/public/.lastUpdated=1692687585333
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.openoffice\:unoil\:pom\:2.3.0 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/openoffice/unoil/2.3.0/unoil-2.3.0.pom. Error code 400, Bad Request

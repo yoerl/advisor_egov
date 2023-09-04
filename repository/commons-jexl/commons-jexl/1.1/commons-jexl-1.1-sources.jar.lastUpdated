@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:51:54 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact commons-jexl\:commons-jexl\:jar\:sources\:1.1 from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693756313890
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693756313888
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693756313781
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756313550
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact commons-jexl\:commons-jexl\:jar\:sources\:1.1 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/commons-jexl/commons-jexl/1.1/commons-jexl-1.1-sources.jar. Error code 400, Bad Request
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756311963
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693756314163
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact commons-jexl\:commons-jexl\:jar\:sources\:1.1 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/commons-jexl/commons-jexl/1.1/commons-jexl-1.1-sources.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756311950
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=

@@ -1,0 +1,16 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Sep 04 00:50:07 KST 2023
+http\://repository.codehaus.org/org/codehaus/jackson/.error=Could not transfer artifact ldapsdk\:ldapsdk\:jar\:sources\:4.1 from/to org.codehaus.jackson (http\://repository.codehaus.org/org/codehaus/jackson)\: repository.codehaus.org
+@default-org.codehaus.jackson-http\://repository.codehaus.org/org/codehaus/jackson/.lastUpdated=1693756207490
+http\://www.egovframe.go.kr/maven/.lastUpdated=1693756207486
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.lastUpdated=1693756207378
+http\://maven.atlassian.com/repository/public/.lastUpdated=1693756207156
+http\://repository.jboss.com/maven2/.error=Could not transfer artifact ldapsdk\:ldapsdk\:jar\:sources\:4.1 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/ldapsdk/ldapsdk/4.1/ldapsdk-4.1-sources.jar. Error code 400, Bad Request
+@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756203971
+https\://repo.maven.apache.org/maven2/.lastUpdated=1693756207723
+http\://www.egovframe.go.kr/maven/.error=
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact ldapsdk\:ldapsdk\:jar\:sources\:4.1 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/ldapsdk/ldapsdk/4.1/ldapsdk-4.1-sources.jar. Error code 501, HTTPS Required
+@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756203956
+http\://maven.atlassian.com/repository/public/.error=
+https\://repo.maven.apache.org/maven2/.error=
+http\://mesir.googlecode.com/svn/trunk/mavenrepo/.error=
