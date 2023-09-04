@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Sep 04 18:01:40 KST 2023
-https\://repo.maven.apache.org/maven2/.lastUpdated=1693818100386
-http\://www.egovframe.go.kr/maven/.error=
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.apache.poi\:poi-contrib\:pom\:3.7-beta3 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/apache/poi/poi-contrib/3.7-beta3/poi-contrib-3.7-beta3.pom. Error code 501, HTTPS Required
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693818099980
-http\://www.egovframe.go.kr/maven/.lastUpdated=1693818100184

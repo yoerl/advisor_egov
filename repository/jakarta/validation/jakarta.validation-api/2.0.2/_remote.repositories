@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Thu Aug 17 18:36:52 KST 2023
-jakarta.validation-api-2.0.2.jar>mvn2s=
-jakarta.validation-api-2.0.2-sources.jar>mvn2s=
-jakarta.validation-api-2.0.2.jar>mvn2=
-jakarta.validation-api-2.0.2.pom>mvn2=
-jakarta.validation-api-2.0.2.pom>mvn2s=

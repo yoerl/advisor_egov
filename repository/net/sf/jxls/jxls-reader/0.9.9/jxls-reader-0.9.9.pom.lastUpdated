@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Tue Aug 22 16:02:38 KST 2023
-@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687755627
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact net.sf.jxls\:jxls-reader\:pom\:0.9.9 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/net/sf/jxls/jxls-reader/0.9.9/jxls-reader-0.9.9.pom. Error code 501, HTTPS Required
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687755494
-http\://maven.atlassian.com/repository/public/.lastUpdated=1692687758107
-http\://repository.jboss.com/maven2/.error=Could not transfer artifact net.sf.jxls\:jxls-reader\:pom\:0.9.9 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/net/sf/jxls/jxls-reader/0.9.9/jxls-reader-0.9.9.pom. Error code 400, Bad Request

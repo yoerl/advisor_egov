@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Tue Aug 22 16:03:51 KST 2023
-@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687769062
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact javax.xml.stream\:stax-api\:jar\:1.0-2 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar. Error code 501, HTTPS Required
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687767362
-http\://maven.atlassian.com/repository/public/.lastUpdated=1692687831509
-http\://repository.jboss.com/maven2/.error=Could not transfer artifact javax.xml.stream\:stax-api\:jar\:1.0-2 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar. Error code 400, Bad Request

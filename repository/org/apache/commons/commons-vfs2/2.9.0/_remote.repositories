@@ -1,5 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Tue Aug 22 10:09:31 KST 2023
-commons-vfs2-2.9.0.jar>mvn2=
-commons-vfs2-2.9.0-sources.jar>mvn2=
-commons-vfs2-2.9.0.pom>mvn2=

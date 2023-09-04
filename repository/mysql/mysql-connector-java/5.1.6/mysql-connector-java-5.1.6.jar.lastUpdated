@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Tue Aug 22 16:03:51 KST 2023
-@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687769072
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact mysql\:mysql-connector-java\:jar\:5.1.6 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar. Error code 501, HTTPS Required
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687767371
-http\://maven.atlassian.com/repository/public/.lastUpdated=1692687831528
-http\://repository.jboss.com/maven2/.error=Could not transfer artifact mysql\:mysql-connector-java\:jar\:5.1.6 from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar. Error code 400, Bad Request

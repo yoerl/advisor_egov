@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Sep 04 00:48:45 KST 2023
-@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1693756123642
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.springframework\:spring-web\:jar\:sources\:3.0.5.RELEASE from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/springframework/spring-web/3.0.5.RELEASE/spring-web-3.0.5.RELEASE-sources.jar. Error code 501, HTTPS Required
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693756123626
-http\://maven.atlassian.com/repository/public/.lastUpdated=1693756125600
-http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.springframework\:spring-web\:jar\:sources\:3.0.5.RELEASE from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/springframework/spring-web/3.0.5.RELEASE/spring-web-3.0.5.RELEASE-sources.jar. Error code 400, Bad Request

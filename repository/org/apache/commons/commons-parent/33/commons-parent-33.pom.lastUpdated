@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Sep 04 18:01:41 KST 2023
-https\://repo.maven.apache.org/maven2/.lastUpdated=1693818101694
-http\://www.egovframe.go.kr/maven/.error=
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.apache.commons\:commons-parent\:pom\:33 from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/apache/commons/commons-parent/33/commons-parent-33.pom. Error code 501, HTTPS Required
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693818101441
-http\://www.egovframe.go.kr/maven/.lastUpdated=1693818101542

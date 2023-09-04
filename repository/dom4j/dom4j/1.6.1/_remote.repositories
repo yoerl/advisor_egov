@@ -1,6 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Fri Aug 25 17:50:43 KST 2023
-dom4j-1.6.1.jar>atlassian=
-dom4j-1.6.1.jar>central=
-dom4j-1.6.1.pom>atlassian=
-dom4j-1.6.1.pom>central=

@@ -1,9 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Sep 04 00:53:04 KST 2023
-jackson-mapper-asl-1.8.0-sources.jar>atlassian=
-jackson-mapper-asl-1.8.0.pom>atlassian=
-jackson-mapper-asl-1.8.0.jar>atlassian=
-jackson-mapper-asl-1.8.0.pom>mvn2=
-jackson-mapper-asl-1.8.0.jar>mvn2s=
-jackson-mapper-asl-1.8.0.jar>mvn2=
-jackson-mapper-asl-1.8.0.pom>mvn2s=

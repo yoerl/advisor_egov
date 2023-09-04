@@ -1,8 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Fri Aug 25 17:50:33 KST 2023
-@default-jboss-http\://repository.jboss.com/maven2/.lastUpdated=1692687393213
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1692687393108
-http\://maven.atlassian.com/repository/public/.lastUpdated=1692687396611
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.hibernate\:hibernate-commons-annotations\:pom\:3.1.0.GA from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/hibernate/hibernate-commons-annotations/3.1.0.GA/hibernate-commons-annotations-3.1.0.GA.pom. Error code 501, HTTPS Required
-http\://repository.jboss.com/maven2/.error=Could not transfer artifact org.hibernate\:hibernate-commons-annotations\:pom\:3.1.0.GA from/to jboss (http\://repository.jboss.com/maven2/)\: Failed to transfer http\://repository.jboss.com/maven2/org/hibernate/hibernate-commons-annotations/3.1.0.GA/hibernate-commons-annotations-3.1.0.GA.pom. Error code 400, Bad Request
-https\://repo.maven.apache.org/maven2/.lastUpdated=1692953433784

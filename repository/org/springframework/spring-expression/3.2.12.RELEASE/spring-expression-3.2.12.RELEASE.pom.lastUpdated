@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Sep 04 18:01:41 KST 2023
-https\://repo.maven.apache.org/maven2/.lastUpdated=1693818101417
-http\://www.egovframe.go.kr/maven/.error=
-http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.springframework\:spring-expression\:pom\:3.2.12.RELEASE from/to mvn2 (http\://repo1.maven.org/maven2/)\: Failed to transfer http\://repo1.maven.org/maven2/org/springframework/spring-expression/3.2.12.RELEASE/spring-expression-3.2.12.RELEASE.pom. Error code 501, HTTPS Required
-@default-mvn2-http\://repo1.maven.org/maven2/.lastUpdated=1693818101093
-http\://www.egovframe.go.kr/maven/.lastUpdated=1693818101207
