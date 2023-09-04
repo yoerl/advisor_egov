@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package egovframework.counseling.common.web;
+package egovframework.counseling.page.web;
 
 import java.util.List;
 
@@ -70,10 +70,15 @@ public class PageController {
 		return "main/page_summary";
 	}
 	
-	
+
 	@RequestMapping(value = "/page/history.do", method = RequestMethod.GET)
 	public String movePageHistory(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_history";
+	}
+	
+	@RequestMapping(value = "/page/history_popup.do", method = RequestMethod.GET)
+	public String movePageHistoryPopup(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
+		return "main/page_history_popup";
 	}
 
 	@RequestMapping(value = "/page/setting.do", method = RequestMethod.GET)
@@ -133,8 +138,6 @@ public class PageController {
 	public String moveSummaryModify(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_summary_modify";
 	}
-
-	
 	
 	@RequestMapping(value = "/page/notice.do", method = RequestMethod.GET)
 	public String moveNotice(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
@@ -149,9 +152,24 @@ public class PageController {
 	public String moveRanking(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_ranking";
 	}
+
+	@RequestMapping(value = "/page/news_write.do", method = RequestMethod.GET)
+	public String moveNewswrite(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
+		return "main/page_news_write";
+	}
+
+	@RequestMapping(value = "/page/monitoring_popup.do", method = RequestMethod.GET)
+	public String moveMonitoringPopup(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
+		return "main/page_monitoring_popup";
+	}
 	
 
-	
-
-	
+	@RequestMapping(value = "/page/news_view.do", method = RequestMethod.GET)
+	public String moveNewsView(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
+		return "main/page_news_view";
+	}
+	@RequestMapping(value = "/page/news_modify.do", method = RequestMethod.GET)
+	public String moveNewsModify() throws Exception {
+		return "main/page_news_modify";
+	}
 }

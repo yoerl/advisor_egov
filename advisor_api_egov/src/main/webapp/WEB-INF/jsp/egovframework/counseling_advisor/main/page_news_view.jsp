@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -9,9 +13,10 @@
 <title>범정부통합콜센터</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
 </head>
 
 <body>
@@ -102,8 +107,16 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><a href="javascript:history.go(-1);"><img src="../img/arrow-left.png" alt=""></a>공지사항 제목표시</h2>
-					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
+					<h2>
+						<a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>공지사항 제목표시</h2>
+					
+					<div class="btn_close">
+						<a href="${path}/page/home.do">
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
+						</a>
+					</div>
 				</div>
 				<div class="right_contents">
 					<div class="view_con_inner">

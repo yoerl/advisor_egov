@@ -106,8 +106,16 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><a href="javascript:history.go(-1);"><img src="../img/arrow-left.png" alt=""></a>01012341234/상담사명(1234)</h2>
-					<div class="btn_close"><span><img src="../img/btn_close.gif" alt=""><span></div>
+					<h2>
+						<a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>01012341234/상담사명(1234)</h2>
+					
+					<div class="btn_close">
+						<a href="${path}/page/home.do">
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
+						</a>
+					</div>
 				</div>
 				<div class="right_contents">
 					<div class="view_con_inner">

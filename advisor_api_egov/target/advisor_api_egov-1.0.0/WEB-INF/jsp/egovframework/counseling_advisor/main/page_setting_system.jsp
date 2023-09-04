@@ -107,8 +107,8 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->설정</h2>
-					<div class="btn_close"><span><img src="../img/btn_close.gif" alt=""><span></div>
+					<h2><!-- <a href="#"><img src="../images/icons/arrow-left.png" alt=""></a> -->설정</h2>
+					<div class="btn_close"><span><img src="../images/icons/btn_close.gif" alt=""><span></div>
 				</div>
 				<div class="right_contents">
 					<div class="notice_con_inner">
@@ -122,7 +122,7 @@
 										<option id="" value="${path}/page/setting_my.do">마이페이지</option>
 								</select>	
 						</div>	
-						<div class="setting_content"><img src="../img/system.gif" alt=""></div>
+						<div class="setting_content"><img src="../images/icons/system.gif" alt=""></div>
 					</form>
 				</div>
 			</section>

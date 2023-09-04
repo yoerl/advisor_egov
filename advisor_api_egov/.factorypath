@@ -91,6 +91,12 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-jcl/5.3.20/spring-jcl-5.3.20.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-messaging/5.3.20/spring-messaging-5.3.20.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-beans/5.3.20/spring-beans-5.3.20.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/googlecode/log4jdbc/log4jdbc/1.2/log4jdbc-1.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/commons/commons-dbcp2/2.9.0/commons-dbcp2-2.9.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/commons/commons-pool2/2.10.0/commons-pool2-2.10.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/google/protobuf/protobuf-java/3.19.4/protobuf-java-3.19.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="PLUGIN" id="net.harawata.mybatipse" enabled="false" runInBatchMode="false"/>
     <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="false" runInBatchMode="false"/>
 </factorypath>

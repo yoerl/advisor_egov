@@ -7,7 +7,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,6 +31,21 @@
 	
 		$(document).ready(  function() {
 			
+            $.ajax({
+                type: "GET", // HTTP 요청 방식 (GET, POST 등)
+                url: "http://localhost:8080/advisor_api_egov/hello.do", // 요청할 URL
+                /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
+                success: function(data) {
+                    // 요청 성공 시 실행될 함수
+                    console.log("AJAX  성공: " + data);
+                   	
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행될 함수
+                    console.error("AJAX 요청 실패: " + error);
+                }
+            });
+            
 			connectStomp();
 			
 		});
@@ -39,9 +54,7 @@
 		var stomp = null;
 		
 		function connectStomp() {
-			/*socket = new SockJS("<c:url value='/stomp' />"); // endpoint */
-			/* socket = new SockJS("http://112.175.61.182:8081/advisor_message_egov/stomp"); // endpoint */
-			socket = new SockJS("http://localhost:8081/advisor_message_egov/stomp"); // endpoint
+			socket = new SockJS("http://192.168.90.87:8081/advisor_message_egov/stomp"); // endpoint 
 			
 		    stomp = Stomp.over(socket);
 		    
@@ -99,8 +112,8 @@
 		</nav>
 			
 		<div id="lnb">
-			<a href="#" class="call"></a>
-			<a href="#" class="push"><span>99+</span></a>
+			<a href="${path}/page/news.do" class="call"></a>
+			<a href="${path}/page/notice.do" class="push"><span>99+</span></a>
 		</div>
 	</header>
 	<!-- header -->
@@ -272,6 +285,8 @@
 						<!-- 팝업창 내용 -->
 							<div class="counsel_popup">
 								<div class="btn_popup_close"><a href="#"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a></div>
+								
+								
 								<h2>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h2>
 								<div class="counsel_poopup_con">
 									<p>병역의무 이행<br />

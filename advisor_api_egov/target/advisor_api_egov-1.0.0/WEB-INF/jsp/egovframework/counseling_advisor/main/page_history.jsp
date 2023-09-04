@@ -309,7 +309,7 @@
 					<!-- chating popup -->
 					<div class="chating_popup" style="display:none;">
 						<form name="" method="" action="">
-						<h3><i><img src="../img/smile_icon.png" alt=""></i>상담요약</h3>
+						<h3><i><img src="../images/icons/smile_icon.png" alt=""></i>상담요약</h3>
 						<div class="chating_popup_con">
 							<textarea placeholder="군입대에 대한 상담"></textarea>
 							<button>저장</button>
@@ -340,10 +340,10 @@
 					<!-- 내용 -->
 						<div class="counsel_con">
 							<div class="counsel_con_inner">
-								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="../img/btn_tag.png" alt=""></a></div>
+								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="../images/icons/btn_tag.png" alt=""></a></div>
 								<div class="counsel_pagenation">
 									<ul>
-										<li class="page_prev"><a href="#"><img src="../img/page_prev.png" alt=""></a></li>
+										<li class="page_prev"><a href="#"><img src="../images/icons/page_prev.png" alt=""></a></li>
 										<li class="on"><a href="#">1</a></li>
 										<li><a href="#">2</a></li>
 										<li><a href="#">3</a></li>
@@ -354,7 +354,7 @@
 										<li><a href="#">8</a></li>
 										<li><a href="#">9</a></li>
 										<li><a href="#">10</a></li>
-										<li class="page_next"><a href="#"><img src="../img/page_next.png" alt=""></a></li>
+										<li class="page_next"><a href="#"><img src="../images/icons/page_next.png" alt=""></a></li>
 									</ul>
 								</div>
 								<script>
@@ -387,7 +387,7 @@
 													<h4>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h4>
 													<p>병역의무 이행<br />•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월) <br />•상근예비역(18개월) <br />•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월) <br />•사회복무요원(21개월) <br />•산업기능요원 현역 입영대상사(34개월)</p>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../img/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
 											</div>
 										</li>
 										<li class="kms_part">
@@ -401,7 +401,7 @@
 														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check4" name="check4"><label for="check4"></label></span></div></li>
 													</ul>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../img/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
 											</div>
 										</li>
 									<ul>
@@ -433,11 +433,11 @@
 										•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
 										•사회복무요원(21개월)<br />
 										•산업기능요원 현역 입영대상사(34개월)</p>
-									<p><img src="../img/noimg.gif" alt=""></p>
+									<p><img src="../images/icons/noimg.gif" alt=""></p>
 									<p>별도로 표기 테이블 문서도 있음 
 										별도 퍼플리싱 필요함
 										테이블 색상은 가이드 문서 참고 작성해주세요</p>
-									<p><img src="../img/noimg.gif" alt=""></p>
+									<p><img src="../images/icons/noimg.gif" alt=""></p>
 								</div>
 
 							</div>

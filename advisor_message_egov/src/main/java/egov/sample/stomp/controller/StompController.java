@@ -212,7 +212,7 @@ public class StompController {
                 channel.queueDeclare("hello", false, false, false, null);
                 channel.basicPublish("", "hello", null, userMessage.getMsg().getBytes());
                 System.out.println(" [x] Set '" + userMessage.getMsg() + "'");
-                Thread.sleep(10);
+                Thread.sleep(5);
         } catch (TimeoutException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -238,7 +238,7 @@ public class StompController {
                 channel.queueDeclare("hello_a", false, false, false, null);
                 channel.basicPublish("", "hello_a", null, userMessage.getMsg().getBytes());
                 System.out.println(" [x] Set '" + userMessage.getMsg() + "'");
-                Thread.sleep(10);
+                Thread.sleep(5);
         } catch (TimeoutException e) {
             e.printStackTrace();
         } catch (IOException e) {

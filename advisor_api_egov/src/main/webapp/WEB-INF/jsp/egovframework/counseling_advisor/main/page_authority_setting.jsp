@@ -15,10 +15,10 @@
 <title>범정부통합콜센터</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
 </head>
 
 <body>
@@ -109,8 +109,12 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->권한설정</h2>
-					<div class="btn_close"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
+					<h2>
+						<a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>권한설정</h2>
+					
+						<div class="btn_close"><a href="/advisor_api_egov/page/home.do"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a></div>
 				</div>
 				<div class="right_contents">
 					<div class="notice_con_inner">

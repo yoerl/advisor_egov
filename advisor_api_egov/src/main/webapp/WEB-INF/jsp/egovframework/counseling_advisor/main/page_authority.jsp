@@ -107,7 +107,10 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->권한설정</h2>
+					<h2>
+						<a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>권한설정</h2>
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
 							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
@@ -119,9 +122,9 @@
 					<form name="" method="" action="">
 						<div class="setting_keyword">
 								<select name="" onchange="window.open(value,'_self');">
-									<option id="" value="${path}/page/authority.do">선택</option>
-									<option id="" value="${path}/page/authority_group.do" selected>그룹권한</option>
-									<option id="" value="${path}/page/authority_setting.do" >그룹 창여자 설정</option>
+									<option id="" value="${path}/page/authority.do" selected>선택</option>
+									<option id="" value="${path}/page/authority_group.do">그룹권한</option>
+									<option id="" value="${path}/page/authority_setting.do" >그룹 여자 설정</option>
 								</select>	
 						</div>	
 						<p class="no-massage">메뉴를 선택해 주세요.</p>

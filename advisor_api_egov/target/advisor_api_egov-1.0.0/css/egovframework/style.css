@@ -336,7 +336,7 @@ a.btn_del_con {display: inline-block;width: 62px;height: 39px;border: #293E89 1p
 
 .monitor_head select {float:right;width:182px;font-size: 16px;color: #A0A9B0;border: 1px solid #A0A9B0;height: 48px;padding: 12px 8px 12px 16px;border-radius: 10px;display: inline-block;appearance: none;-webkit-appearance: none;-moz-appearance: none;background: #fff url(../../images/icons/select_arr.gif) 90% 19px no-repeat;}
 .monitor_head select::-ms-expand {display:none;}
-.monitor_head .refresh {display: block;float: left;width: 48px;height: 48px;overflow: hidden;text-indent: -99999px;border: #293E89 1px solid;background: #fff url(../../images/fresh.gif) center center no-repeat;border-radius: 10px;}
+.monitor_head .refresh {display: block;float: left;width: 48px;height: 48px;overflow: hidden;text-indent: -99999px;border: #293E89 1px solid;background: #fff url(../../images/icons/fresh.gif) center center no-repeat;border-radius: 10px;}
 .monitor_head .monitor_history {display: block;float: left;width: 87px;height: 48px;overflow: hidden;border: #293E89 1px solid;background: #fff;border-radius: 10px;color:#293E89;font-size:16px;line-height:46px;margin-left:10px;}
 
 .counseller_monitoring {clear: both;width: 100%;overflow: hidden;}
@@ -388,7 +388,7 @@ a.btn_del_con {display: inline-block;width: 62px;height: 39px;border: #293E89 1p
 .group_autho_list table td {padding:24px 16px;border-top:#C9D0D2 1px solid;color:#474D52;font-size:16px;}
 .group_autho_list table td.border_none {border-top:none;}
 
-.group_head .refresh {display: block;float: right;width: 48px;height: 48px;overflow: hidden;text-indent: -99999px;border: #293E89 1px solid;background: #fff url(../../images/fresh.gif) center center no-repeat;border-radius: 10px;}
+.group_head .refresh {display: block;float: right;width: 48px;height: 48px;overflow: hidden;text-indent: -99999px;border: #293E89 1px solid;background: #fff url(../../images/icons/fresh.gif) center center no-repeat;border-radius: 10px;}
 .group_setting_con table{border-bottom: 1px solid #d3d3d3;}
 .group_setting_con th {color:#282A2E;font-size: 14px;padding: 8px 16px;text-align: center; font-weight:500;background: #D6E2FF;}
 .group_setting_con td {color:#282A2E;font-size: 14px;padding: 8px 16px;text-align: center;border-bottom: 1px solid #DBDFE0;background: #fff;}

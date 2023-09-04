@@ -16,7 +16,7 @@
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
 </head>
 
 <body>
@@ -108,7 +108,7 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->모니터링</h2>
+					<h2><!-- <a href="#"><img src="../images/icons/arrow-left.png" alt=""></a> -->모니터링</h2>
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
 							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>

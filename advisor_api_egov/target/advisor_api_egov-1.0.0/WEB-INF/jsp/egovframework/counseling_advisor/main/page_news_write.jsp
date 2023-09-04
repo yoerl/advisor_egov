@@ -23,8 +23,8 @@
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="../img/mark.png" alt=""></a>
-			<span>범정보통합콜센터<i><img src="../img/logo_arr.png" alt=""></i></span>
+			<a href="#"><img src="../images/icons/mark.png" alt=""></a>
+			<span>범정보통합콜센터<i><img src="../images/icons/logo_arr.png" alt=""></i></span>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -106,7 +106,7 @@
 		<!-- right -->
 			<section id="sub_right_con"><form name="" method="" action="">
 				<div class="right_input_title">
-					<h2><a href="javascript:history.go(-1);"><img src="../img/arrow-left.png" alt=""></a><input type="text" size="20" maxlength="30" name="" value="" placeholder="공지사항 제목을 작성해주세요."></h2>
+					<h2><a href="javascript:history.go(-1);"><img src="../images/icons/arrow-left.png" alt=""></a><input type="text" size="20" maxlength="30" name="" value="" placeholder="공지사항 제목을 작성해주세요."></h2>
 					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
 				</div>
 				<div class="right_contents">
@@ -114,7 +114,7 @@
 						<div class="board_data"><p>작성자명&nbsp; | &nbsp;2023.01.01 12:12</p></div>
 						<div class="edit_write_content">
 							<div class="editor_area">
-								<img src="../img/edit.gif" alt="">
+								<img src="../images/icons/edit.gif" alt="">
 							</div>
 							<textarea> </textarea>
 						</div>

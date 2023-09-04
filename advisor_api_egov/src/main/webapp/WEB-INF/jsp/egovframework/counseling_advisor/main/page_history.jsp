@@ -16,8 +16,26 @@
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>
     
-    
+<script> 
+
+
+$(document).ready(  function() {
+	
+	  $('.btn_view_history').on('click', function() {
+		  
+		  console.log("qqqqq");
+		    // 팝업 창의 URL과 창의 속성을 설정합니다.
+		    var popupURL = "http://localhost:8080/advisor_api_egov/page/history_popup.do";
+		    var popupName = "팝업 이름";
+		    // 팝업 창 열기
+		    window.open(popupURL, "_blank", "width=900, height=600");
+	  });
+});
+
+
+</script>
 </head>
 
 <body>
@@ -109,7 +127,10 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2>이력</h2>
+					
+						<h2><a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>이력</h2>
 					
 					
 					
@@ -136,7 +157,7 @@
 									<p>기관명 또는 그룹명 나타남</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
+								<div class="manager"><span>상담사</span><span>123334</span><a href="#" class="btn_view_history">보기</a></div>
 							</li>
 							<li>
 								<a href="#">
@@ -238,8 +259,12 @@
 			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
 			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 		</div>
-		<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
-	</div>
+	
+					<div class="btn_close">
+						<a href="${path}/page/home.do">
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
+						</a>
+					</div></div>
 		<!-- body -->
 	<div class="detail_pop_container">
 		<!-- 기관명 -->
@@ -309,7 +334,7 @@
 					<!-- chating popup -->
 					<div class="chating_popup" style="display:none;">
 						<form name="" method="" action="">
-						<h3><i><img src="../img/smile_icon.png" alt=""></i>상담요약</h3>
+						<h3><i><img src="../images/icons/smile_icon.png" alt=""></i>상담요약</h3>
 						<div class="chating_popup_con">
 							<textarea placeholder="군입대에 대한 상담"></textarea>
 							<button>저장</button>
@@ -340,10 +365,10 @@
 					<!-- 내용 -->
 						<div class="counsel_con">
 							<div class="counsel_con_inner">
-								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="../img/btn_tag.png" alt=""></a></div>
+								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="../images/icons/btn_tag.png" alt=""></a></div>
 								<div class="counsel_pagenation">
 									<ul>
-										<li class="page_prev"><a href="#"><img src="../img/page_prev.png" alt=""></a></li>
+										<li class="page_prev"><a href="#"><img src="../images/icons/page_prev.png" alt=""></a></li>
 										<li class="on"><a href="#">1</a></li>
 										<li><a href="#">2</a></li>
 										<li><a href="#">3</a></li>
@@ -354,7 +379,7 @@
 										<li><a href="#">8</a></li>
 										<li><a href="#">9</a></li>
 										<li><a href="#">10</a></li>
-										<li class="page_next"><a href="#"><img src="../img/page_next.png" alt=""></a></li>
+										<li class="page_next"><a href="#"><img src="../images/icons/page_next.png" alt=""></a></li>
 									</ul>
 								</div>
 								<script>
@@ -387,7 +412,7 @@
 													<h4>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h4>
 													<p>병역의무 이행<br />•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월) <br />•상근예비역(18개월) <br />•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월) <br />•사회복무요원(21개월) <br />•산업기능요원 현역 입영대상사(34개월)</p>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../img/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
 											</div>
 										</li>
 										<li class="kms_part">
@@ -401,7 +426,7 @@
 														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check4" name="check4"><label for="check4"></label></span></div></li>
 													</ul>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../img/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
 											</div>
 										</li>
 									<ul>
@@ -433,11 +458,11 @@
 										•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
 										•사회복무요원(21개월)<br />
 										•산업기능요원 현역 입영대상사(34개월)</p>
-									<p><img src="../img/noimg.gif" alt=""></p>
+									<p><img src="../images/icons/noimg.gif" alt=""></p>
 									<p>별도로 표기 테이블 문서도 있음 
 										별도 퍼플리싱 필요함
 										테이블 색상은 가이드 문서 참고 작성해주세요</p>
-									<p><img src="../img/noimg.gif" alt=""></p>
+									<p><img src="../images/icons/noimg.gif" alt=""></p>
 								</div>
 
 							</div>
@@ -467,7 +492,7 @@
 
 
 <script> 
-	$(document).ready(function(){ 
+/* 	$(document).ready(function(){ 
 	$(".btn_view_history").click(function(){ 
 	$("#counsel_history_popup").css("display", "block");
 	}); 
@@ -477,7 +502,7 @@
 	$("#counsel_history_popup .btn_close").click(function(){ 
 	$("#counsel_history_popup").css("display", "none"); 
 	}); 
-	}); 
+	});  */
 </script>
 </body>
 </html>

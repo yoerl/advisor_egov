@@ -127,6 +127,8 @@
 		    <artifactId>amqp-client</artifactId>
 		    <version>5.18.0</version>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>

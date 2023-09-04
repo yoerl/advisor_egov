@@ -106,13 +106,21 @@
 		<!-- right -->
 			<section id="notice_con">
 				<div class="notice_title">
-					<h2><a href="#"><img src="<c:url value='/images/icons/arrow-left.png'/>" alt=""></a>알림</h2>
-					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""><span></div>
+					<h2>
+						<a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>알림</h2>
+					
+					<div class="btn_close">
+						<a href="${path}/page/home.do">
+							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
+						</a>
+					</div>
 				</div>
 				<div class="notice_contents">
 					<div class="notice_con_inner">
 					<form name="" method="" action="">
-						<div class="view_total"><button type="button" class="btn_ranking"  onClick="location.href='${path}/page/rangking.do'">키워드 랭킹</button><div class="alim_button"><a href="#" class="btn_choice_total">전체선택</a><a href="#" class="btn_view_total">읽음처리</a></div></div>
+						<div class="view_total"><button type="button" class="btn_ranking"  onClick="location.href='${path}/page/ranking.do'">키워드 랭킹</button><div class="alim_button"><a href="#" class="btn_choice_total">전체선택</a><a href="#" class="btn_view_total">읽음처리</a></div></div>
 						<script>
 							$(document).ready(function() {
 								$('.btn_view_total').on("click",function(){

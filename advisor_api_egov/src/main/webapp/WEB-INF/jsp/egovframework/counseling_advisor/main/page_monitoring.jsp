@@ -16,7 +16,27 @@
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;500;600&display=swap" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>
+    
+    
+<!-- 레이어팝업창 -->
+<script> 
+
+
+$(document).ready(  function() {
+	
+	  $('.monitor_couseller').on('click', function() {
+		    // 팝업 창의 URL과 창의 속성을 설정합니다.
+		    var popupURL = "http://localhost:8080/advisor_api_egov/page/monitoring_popup.do";
+		    var popupName = "팝업 이름";
+		    // 팝업 창 열기
+		    window.open(popupURL, "_blank", "width=900, height=600");
+	  });
+});
+
+
+</script>
 </head>
 
 <body>
@@ -108,7 +128,10 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->모니터링</h2>
+					<h2>
+						<a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>모니터링</h2>
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
 							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
@@ -230,7 +253,7 @@
 	<div class="history_detail_popup">
 	<div class="history_pop_header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/popup_logo.png'/>" alt=""></a>
+			<a href="#"><img src="<c:url value='/images/icons/popup_logo.gif'/>" alt=""></a>
 
 			
 			<span>범정보통합콜센터</span>
@@ -385,19 +408,5 @@
 	</div>
 </div>
 
-<!-- 레이어팝업창 -->
-<script> 
-	$(document).ready(function(){ 
-	$(".monitor_couseller a").click(function(){ 
-	$("#counsel_history_popup").css("display", "block");
-	}); 
-	$("#counsel_dd > li > a").click(function(){ 
-	$("#counsel_history_popup").css("display", "block");
-	}); 
-	$("#counsel_history_popup .btn_close").click(function(){ 
-	$("#counsel_history_popup").css("display", "none"); 
-	}); 
-	}); 
-</script>
 </body>
 </html>

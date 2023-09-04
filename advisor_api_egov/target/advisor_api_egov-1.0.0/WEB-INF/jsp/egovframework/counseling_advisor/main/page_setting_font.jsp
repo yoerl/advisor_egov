@@ -14,10 +14,10 @@
 <title>범정부통합콜센터</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
 </head>
 
 <body>
@@ -25,8 +25,8 @@
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="../img/mark.png" alt=""></a>
-			<span>범정보통합콜센터<i><img src="../img/logo_arr.png" alt=""></i></span>
+			<a href="#"><img src="../images/icons/mark.png" alt=""></a>
+			<span>범정보통합콜센터<i><img src="../images/icons/logo_arr.png" alt=""></i></span>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -108,8 +108,8 @@
 		<!-- right -->
 			<section id="sub_right_con">
 				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../img/arrow-left.png" alt=""></a> -->설정</h2>
-					<div class="btn_close"><span><img src="../img/btn_close.gif" alt=""><span></div>
+					<h2><!-- <a href="#"><img src="../images/icons/arrow-left.png" alt=""></a> -->설정</h2>
+					<div class="btn_close"><span><img src="../images/icons/btn_close.gif" alt=""><span></div>
 				</div>
 				<div class="right_contents">
 					<div class="notice_con_inner">
