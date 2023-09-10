@@ -17,8 +17,10 @@
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
 </head>
 
 <body>
@@ -216,17 +218,6 @@
 								</table>	
 								
 							</div>
-							<div class="pagenation">
-								<ul>
-									<li class="page_prev"><a href="#">이전</a></li>
-									<li class="on"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li class="page_next"><a href="#">다음</a></li>
-								</ul>
-							</div>
 						</div>
 							<div class="setting_btn">
 								<a href="">저장</a>
@@ -246,11 +237,21 @@
 					<!-- 삭제팝업창 -->
 					</form>
 				</div>
+					<div class="code-html pagenation">
+						<div id="pagination1" class="tui-pagination"><span class="tui-page-btn tui-is-disabled tui-first"><span class="tui-ico-first">first</span></span><span class="tui-page-btn tui-is-disabled tui-prev"><span class="tui-ico-prev">prev</span></span><strong class="tui-page-btn tui-is-selected tui-first-child">1</strong><a href="#" class="tui-page-btn">2</a><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+					</div>
 			</section>
 		<!-- right -->
 	</div>
 	<!-- body -->
 </div>
+<script class="code-js">
+	var pagination1 = new tui.Pagination('pagination1', {
+		totalItems: 500,
+		itemsPerPage: 10,
+		visiblePages: 5
+	});
+</script>
 <script> 
 	$(document).ready(function(){ 
 	$("a.btn_autho_setting").click(function(){ 
