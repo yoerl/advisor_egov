@@ -199,19 +199,18 @@
 					<!-- 내용 -->
 						<div class="counsel_con">
 							<div class="counsel_con_inner">
-								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="<c:url value='/images/icons/btn_tag.png'/>" alt=""> </a></div>
+							
+							<div class="label_sticky">
+										<div class="counsel_flag"><a href="#" class="btn_flag"><img src="<c:url value='/images/icons/btn_tag.png'/>" alt=""> </a></div>
+										
+										<div class="counsel_pagenation code-html open" >
 								
-								<div class="counsel_pagenation code-html open">
-									
-								
-
-									<!-- <div class="code-html pagenation"> -->
-										<div id="pagination1" class="tui-pagination"><span class="tui-page-btn tui-is-disabled tui-first"><span class="tui-ico-first">first</span></span><span class="tui-page-btn tui-is-disabled tui-prev"><span class="tui-ico-prev">prev</span></span><strong class="tui-page-btn tui-is-selected tui-first-child">1</strong><a href="#" class="tui-page-btn">2</a><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn">6</a><a href="#" class="tui-page-btn">7</a><a href="#" class="tui-page-btn">8</a><a href="#" class="tui-page-btn">9</a><a href="#" class="tui-page-btn">10</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
-									<!-- </div> -->
-
-									
-								</div>
-								
+										
+		
+												<div id="pagination1" class="tui-pagination"><span class="tui-page-btn tui-is-disabled tui-first"><span class="tui-ico-first">first</span></span><span class="tui-page-btn tui-is-disabled tui-prev"><span class="tui-ico-prev">prev</span></span><strong class="tui-page-btn tui-is-selected tui-first-child">1</strong><a href="#" class="tui-page-btn">2</a><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn">6</a><a href="#" class="tui-page-btn">7</a><a href="#" class="tui-page-btn">8</a><a href="#" class="tui-page-btn">9</a><a href="#" class="tui-page-btn">10</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+											
+										</div>
+							</div>	
 								<script>
 									$( document ).ready(function() {
 									  $('.btn_flag').on('click', function() {
@@ -227,7 +226,7 @@
 								<!-- 1 -->
 								<div class="counsel_date"><p>2023.12.31.23.59.59</p></div>
 
-								<div class="counsel_contents">
+								<div class="counsel_contents" id="scroll_1">
 									<ul>
 										<li class="counsel_kind">
 											<h3>분류</h3>
@@ -282,7 +281,7 @@
 								<!-- 1 -->
 								<div class="counsel_date"><p>2023.12.31.23.59.59</p></div>
 
-								<div class="counsel_contents">
+								<div class="counsel_contents"  id="scroll_2">
 									<ul>
 										<li class="counsel_kind">
 											<h3>분류</h3>
@@ -337,7 +336,7 @@
 								<!-- 1 -->
 								<div class="counsel_date"><p>2023.12.31.23.59.59</p></div>
 
-								<div class="counsel_contents">
+								<div class="counsel_contents" id="scroll_3">
 									<ul>
 										<li class="counsel_kind">
 											<h3>분류</h3>
@@ -455,6 +454,34 @@
 		itemsPerPage: 10,
 		visiblePages: 10
 	});
+	
+/* 	pagination1.on('beforeMove', function(eventData) {
+        return confirm('Go to page ' + eventData.page + '?');
+    });
+ */
+ pagination1.on('afterMove', function(eventData) {
+	    console.log("wqewqe");
+	    // 이벤트 핸들러 내에서 현재 페이지 번호를 가져옵니다.
+	    var currentPage = eventData.page;
+	    
+	    // 대상 아이디를 생성합니다.
+	    var targetId = "#scroll_" + currentPage;
+	    
+	    // 해당 아이디를 가진 요소를 선택합니다.
+	    var targetElement = document.querySelector(targetId); // jQuery 객체 대신 DOM 요소로 선택
+	    
+	    if (targetElement) {
+	        targetElement.scrollIntoView({
+	            behavior: "smooth" // 부드러운 스크롤 사용
+	        });
+	    }
+	});
+
 </script>
+<script type="text/javascript">
+
+
+</script>
+
 </body>
 </html>

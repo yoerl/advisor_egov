@@ -160,6 +160,7 @@ span.dengerus i{margin-right:5px;text-align:center;background:#d64751;color:#fff
     overflow: hidden;
     padding: 20px 0px 10px 0px;
     background: #f3f5f9;
+    scroll-behavior: smooth;
 }
 .counsel_contents > ul > li {clear:both;padding:10px 0;border-top: #a0a9b0 1px solid;position:relative;overflow:hidden;width:100%;}
 .counsel_contents > ul > li h3{
@@ -632,3 +633,11 @@ a.btn_autho_setting {display: inline-block;width: 62px;height: 39px;border: #293
 .group_head select {width: 162px;}
 
 }
+
+.label_sticky {
+	position: sticky;
+    top: 0px;
+    z-index: 999;
+	
+}
+
