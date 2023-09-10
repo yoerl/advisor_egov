@@ -22,29 +22,16 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
 	<script src="<c:url value='/js/egovframework/sockjs.client.min.js' />"></script>
 	<script src="<c:url value='/js/egovframework/stomp-2.3.4.min.js' />"></script>
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
 	
 	
 	<script>
 	
-		$(document).ready(  function() {
-			
-            $.ajax({
-                type: "GET", // HTTP 요청 방식 (GET, POST 등)
-                url: "http://localhost:8080/advisor_api_egov/hello.do", // 요청할 URL
-                /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
-                success: function(data) {
-                    // 요청 성공 시 실행될 함수
-                    console.log("AJAX  성공: " + data);
-                   	
-                },
-                error: function(xhr, status, error) {
-                    // 요청 실패 시 실행될 함수
-                    console.error("AJAX 요청 실패: " + error);
-                }
-            });
+		$(document).ready(function() {
             
 			connectStomp();
 			
@@ -99,8 +86,10 @@
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -112,8 +101,8 @@
 		</nav>
 			
 		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/notice.do" class="push"><span>99+</span></a>
+			<a href="${path}/page/notice.do" class="call"></a>
+			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
 		</div>
 	</header>
 	<!-- header -->
@@ -211,22 +200,18 @@
 						<div class="counsel_con">
 							<div class="counsel_con_inner">
 								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="<c:url value='/images/icons/btn_tag.png'/>" alt=""> </a></div>
-								<div class="counsel_pagenation">
-									<ul>
-										<li class="page_prev"><a href="#"><img src="<c:url value='/images/icons/page_prev.png'/>" alt=""> </a></li>
-										<li class="on"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">6</a></li>
-										<li><a href="#">7</a></li>
-										<li><a href="#">8</a></li>
-										<li><a href="#">9</a></li>
-										<li><a href="#">10</a></li>
-										<li class="page_next"><a href="#"><img src="<c:url value='/images/icons/page_next.png'/>" alt=""></a></li>
-									</ul>
+								
+								<div class="counsel_pagenation code-html open">
+									
+								
+
+									<!-- <div class="code-html pagenation"> -->
+										<div id="pagination1" class="tui-pagination"><span class="tui-page-btn tui-is-disabled tui-first"><span class="tui-ico-first">first</span></span><span class="tui-page-btn tui-is-disabled tui-prev"><span class="tui-ico-prev">prev</span></span><strong class="tui-page-btn tui-is-selected tui-first-child">1</strong><a href="#" class="tui-page-btn">2</a><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn">6</a><a href="#" class="tui-page-btn">7</a><a href="#" class="tui-page-btn">8</a><a href="#" class="tui-page-btn">9</a><a href="#" class="tui-page-btn">10</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+									<!-- </div> -->
+
+									
 								</div>
+								
 								<script>
 									$( document ).ready(function() {
 									  $('.btn_flag').on('click', function() {
@@ -235,6 +220,10 @@
 									  });
 									});
 								</script>
+								
+								
+								
+								
 								<!-- 1 -->
 								<div class="counsel_date"><p>2023.12.31.23.59.59</p></div>
 
@@ -257,7 +246,7 @@
 													<h4>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h4>
 													<p>병역의무 이행<br />•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월) <br />•상근예비역(18개월) <br />•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월) <br />•사회복무요원(21개월) <br />•산업기능요원 현역 입영대상사(34개월)</p>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="<c:url value='/images/icons/arr_down.png'/>" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
 											</div>
 										</li>
 										<li class="kms_part">
@@ -265,19 +254,146 @@
 											<div>
 												<div class="kms_part_txt">
 													<ul>
-														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check5" name="check5"><label for="check5"></label></span></div></li>
-														<li><div class="kms_part_con"><p>병역판정검사</p><span><input type="checkbox" id="check2" name="check2"><label for="check2"></label></span></div></li>
-														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check3" name="check3"><label for="check3"></label></span></div></li>
-														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check4" name="check4"><label for="check4"></label></span></div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해</p>
+															<span><input type="checkbox" id="check2" ><label for="check2"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>병역판정검사</p>
+															<span><input type="checkbox" id="check3" ><label for="check3"></label></span>	
+														
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 </p>
+															<span><input type="checkbox" id="check4" ><label for="check4"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 능력 연령별 </p>
+															<span><input type="checkbox" id="check5" ><label for="check5"></label></span>	
+															
+														</div></li>
 													</ul>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="<c:url value='/images/icons/arr_down.png'/>" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
 											</div>
 										</li>
 									<ul>
 								</div>
-							<!-- 내용 -->
-							<!-- 1 -->
+								<!-- 1 -->
+								
+								<!-- 1 -->
+								<div class="counsel_date"><p>2023.12.31.23.59.59</p></div>
+
+								<div class="counsel_contents">
+									<ul>
+										<li class="counsel_kind">
+											<h3>분류</h3>
+											<div>
+												<span><i>대</i>입영</span><span><i>중</i>입소</span><span><i>소</i>자원입대</span>
+											</div>
+										</li>
+										<li class="ai_part">
+											<h3>AI</h3>
+											<div>
+												<div class="ai_part_txt">
+													<div class="chang_open_con">
+														<span><button class="chang_open_btn trigger"></button></span>
+														<span><input type="checkbox" id="check1" name="check1"><label for="check1"></label></span>														
+													</div>
+													<h4>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h4>
+													<p>병역의무 이행<br />•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월) <br />•상근예비역(18개월) <br />•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월) <br />•사회복무요원(21개월) <br />•산업기능요원 현역 입영대상사(34개월)</p>
+												</div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
+											</div>
+										</li>
+										<li class="kms_part">
+											<h3>KMS</h3>
+											<div>
+												<div class="kms_part_txt">
+													<ul>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해</p>
+															<span><input type="checkbox" id="check2" ><label for="check2"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>병역판정검사</p>
+															<span><input type="checkbox" id="check3" ><label for="check3"></label></span>	
+														
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 </p>
+															<span><input type="checkbox" id="check4" ><label for="check4"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 능력 연령별 </p>
+															<span><input type="checkbox" id="check5" ><label for="check5"></label></span>	
+															
+														</div></li>
+													</ul>
+												</div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
+											</div>
+										</li>
+									<ul>
+								</div>
+								<!-- 1 -->
+								
+								<!-- 1 -->
+								<div class="counsel_date"><p>2023.12.31.23.59.59</p></div>
+
+								<div class="counsel_contents">
+									<ul>
+										<li class="counsel_kind">
+											<h3>분류</h3>
+											<div>
+												<span><i>대</i>입영</span><span><i>중</i>입소</span><span><i>소</i>자원입대</span>
+											</div>
+										</li>
+										<li class="ai_part">
+											<h3>AI</h3>
+											<div>
+												<div class="ai_part_txt">
+													<div class="chang_open_con">
+														<span><button class="chang_open_btn trigger"></button></span>
+														<span><input type="checkbox" id="check1" name="check1"><label for="check1"></label></span>														
+													</div>
+													<h4>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h4>
+													<p>병역의무 이행<br />•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월) <br />•상근예비역(18개월) <br />•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월) <br />•사회복무요원(21개월) <br />•산업기능요원 현역 입영대상사(34개월)</p>
+												</div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
+											</div>
+										</li>
+										<li class="kms_part">
+											<h3>KMS</h3>
+											<div>
+												<div class="kms_part_txt">
+													<ul>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해</p>
+															<span><input type="checkbox" id="check2" ><label for="check2"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>병역판정검사</p>
+															<span><input type="checkbox" id="check3" ><label for="check3"></label></span>	
+														
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 </p>
+															<span><input type="checkbox" id="check4" ><label for="check4"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 능력 연령별 </p>
+															<span><input type="checkbox" id="check5" ><label for="check5"></label></span>	
+															
+														</div></li>
+													</ul>
+												</div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
+											</div>
+										</li>
+									<ul>
+								</div>
+								<!-- 1 -->
+								
+								
+								
+								
+								
+								
 							
 							</div>
 							
@@ -333,5 +449,12 @@
 	</div>
 	<!-- body -->
 </div>
+<script class="code-js">
+	var pagination1 = new tui.Pagination('pagination1', {
+		totalItems: 500,
+		itemsPerPage: 10,
+		visiblePages: 10
+	});
+</script>
 </body>
 </html>

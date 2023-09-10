@@ -25,10 +25,13 @@
 <!-- 레이어팝업창 -->
 <div id="counsel_history_popup" style="display:block;">
 	<div class="history_detail_popup">
-	<div class="history_pop_header">
+	<div class="history_pop_header" id="header">
+
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 	
 					</div>
@@ -179,7 +182,7 @@
 													<h4>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h4>
 													<p>병역의무 이행<br />•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월) <br />•상근예비역(18개월) <br />•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월) <br />•사회복무요원(21개월) <br />•산업기능요원 현역 입영대상사(34개월)</p>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
 											</div>
 										</li>
 										<li class="kms_part">
@@ -193,7 +196,7 @@
 														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check4" name="check4"><label for="check4"></label></span></div></li>
 													</ul>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
 											</div>
 										</li>
 									<ul>

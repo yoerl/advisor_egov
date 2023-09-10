@@ -16,7 +16,52 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>
+    <script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET", // HTTP 요청 방식 (GET, POST 등)
+            url: "/advisor_api_egov/hello.do", // 요청할 URL
+            /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
+            success: function(jsonString) {
+                var jsonArray = JSON.parse(jsonString);
+                // 요청 성공 시 실행될 함수
+                console.log("AJAX  성공: " + jsonString);
+                
+
+				var ulElement = document.querySelector(".board_view_inner");
+				ulElement.innerHTML = '';
+				
+			    for (var i = 0; i < jsonArray.length; i++) {
+			    	
+			        var item = jsonArray[i];
+			        var liElement = document.createElement("p");
+		
+			        liElement.innerHTML += '' +
+			        '<a href=${path}/page/news_view.do>' +
+				        '<p>' + item.notiTitlNm + '</p>' +
+				        '<span class="notice_date">'+item.amntDttm+'</span>' +
+			        '</a>' +
+			        '<div class="manager">' +
+			        '<span>'+item.rgsrId+'</span>' +
+			        '<a href="#" class="btn_del_con">삭제</a>' 
+			        
+			        ulElement.appendChild(liElement);
+			        
+
+		            
+		            
+			    }
+                
+                
+            },
+            error: function(request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    </script>
 </head>
 
 <body>
@@ -24,8 +69,10 @@
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -36,8 +83,8 @@
 			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
 		</nav>
 		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/notice.do" class="push"><span>99+</span></a>
+			<a href="${path}/page/notice.do" class="call"></a>
+			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
 		</div>
 	</header>
 	<!-- header -->

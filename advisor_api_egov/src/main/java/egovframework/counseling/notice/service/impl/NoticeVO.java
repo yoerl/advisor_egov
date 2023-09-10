@@ -1,5 +1,6 @@
 package egovframework.counseling.notice.service.impl;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -20,22 +21,11 @@ import java.util.Date;
  */
 public class NoticeVO{
 
-	private int notiSqno;
-    private String userId;
-    private String notiDivNm;
-    private String notiTitlNm;
-    private String notiCntn;
-    private String useYn;
-    private String amndId;
-    private Date amntDttm;
-    private String rgsrId;
-    private Date rgsnDttm;
-    
 
-    public int getNotiSqno() {
+	public String getNotiSqno() {
 		return notiSqno;
 	}
-	public void setNotiSqno(int notiSqno) {
+	public void setNotiSqno(String notiSqno) {
 		this.notiSqno = notiSqno;
 	}
 	public String getUserId() {
@@ -43,6 +33,12 @@ public class NoticeVO{
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getUserNm() {
+		return userNm;
+	}
+	public void setUserNm(String userNm) {
+		this.userNm = userNm;
 	}
 	public String getNotiDivNm() {
 		return notiDivNm;
@@ -62,10 +58,10 @@ public class NoticeVO{
 	public void setNotiCntn(String notiCntn) {
 		this.notiCntn = notiCntn;
 	}
-	public String getUseYn() {
+	public char getUseYn() {
 		return useYn;
 	}
-	public void setUseYn(String useYn) {
+	public void setUseYn(char useYn) {
 		this.useYn = useYn;
 	}
 	public String getAmndId() {
@@ -74,10 +70,16 @@ public class NoticeVO{
 	public void setAmndId(String amndId) {
 		this.amndId = amndId;
 	}
-	public Date getAmntDttm() {
+	public String getAmndNm() {
+		return amndNm;
+	}
+	public void setAmndNm(String amndNm) {
+		this.amndNm = amndNm;
+	}
+	public Timestamp getAmntDttm() {
 		return amntDttm;
 	}
-	public void setAmntDttm(Date amntDttm) {
+	public void setAmntDttm(Timestamp amntDttm) {
 		this.amntDttm = amntDttm;
 	}
 	public String getRgsrId() {
@@ -86,19 +88,57 @@ public class NoticeVO{
 	public void setRgsrId(String rgsrId) {
 		this.rgsrId = rgsrId;
 	}
-	public Date getRgsnDttm() {
+	public String getRgsrNm() {
+		return rgsrNm;
+	}
+	public void setRgsrNm(String rgsrNm) {
+		this.rgsrNm = rgsrNm;
+	}
+	public Timestamp getRgsnDttm() {
 		return rgsnDttm;
 	}
-	public void setRgsnDttm(Date rgsnDttm) {
+	public void setRgsnDttm(Timestamp rgsnDttm) {
 		this.rgsnDttm = rgsnDttm;
 	}
-
+	public String getPageNumber() {
+		return pageNumber;
+	}
+	public void setPageNumber(String pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	public String getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
 	@Override
 	public String toString() {
-		return "NoticeVO [notiSqno=" + notiSqno + ", userId=" + userId + ", notiDivNm=" + notiDivNm + ", notiTitlNm="
-				+ notiTitlNm + ", notiCntn=" + notiCntn + ", useYn=" + useYn + ", amndId=" + amndId + ", amntDttm="
-				+ amntDttm + ", rgsrId=" + rgsrId + ", rgsnDttm=" + rgsnDttm + "]";
+		return "NoticeVO [notiSqno=" + notiSqno + ", userId=" + userId + ", userNm=" + userNm + ", notiDivNm="
+				+ notiDivNm + ", notiTitlNm=" + notiTitlNm + ", notiCntn=" + notiCntn + ", useYn=" + useYn + ", amndId="
+				+ amndId + ", amndNm=" + amndNm + ", amntDttm=" + amntDttm + ", rgsrId=" + rgsrId + ", rgsrNm=" + rgsrNm
+				+ ", rgsnDttm=" + rgsnDttm + ", pageNumber=" + pageNumber + ", pageSize=" + pageSize + "]";
 	}
+	
+	
+	private String notiSqno;
+	private String userId;
+    private String userNm;
+    private String notiDivNm;
+    private String notiTitlNm;
+    private String notiCntn;
+    private char useYn;
+    private String amndId;
+    private String amndNm;
+    private Timestamp amntDttm;
+    private String rgsrId;
+    private String rgsrNm;
+    private Timestamp rgsnDttm;
+    
+    
+    private String pageNumber;
+    private String pageSize;
+    
     
 
 }

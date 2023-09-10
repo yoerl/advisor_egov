@@ -44,8 +44,10 @@ $(document).ready(  function() {
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -57,8 +59,8 @@ $(document).ready(  function() {
 		</nav>	
 							
 		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/notice.do" class="push"><span>99+</span></a>
+			<a href="${path}/page/notice.do" class="call"></a>
+			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
 		</div>
 	</header>
 	<!-- header -->
@@ -253,10 +255,10 @@ $(document).ready(  function() {
 	<div class="history_detail_popup">
 	<div class="history_pop_header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/popup_logo.gif'/>" alt=""></a>
-
-			
-			<span>범정보통합콜센터</span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 					<div class="btn_close">
 						<a href="${path}/page/home.do">

@@ -14,9 +14,10 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
     
 <script> 
 
@@ -43,8 +44,10 @@ $(document).ready(  function() {
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -149,7 +152,7 @@ $(document).ready(  function() {
 								<button>조회</button>								
 							
 						</div>
-						<p class="no-massage">조회된 내용이 없습니다.</p>
+						<!-- <p class="no-massage">조회된 내용이 없습니다.</p> -->
 					<!-- notice-list -->
 						<ul class="board-list" id="counsel_dd">
 							<li>
@@ -232,19 +235,15 @@ $(document).ready(  function() {
 
 						</ul>
 					<!-- notice-list -->
-						<div class="pagenation">
-							<ul>
-								<li class="page_prev"><a href="#">이전</a></li>
-								<li class="on"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li class="page_next"><a href="#">다음</a></li>
-							</ul>
-						</div>
+						
 					</div>
 					</form>
+					
+					
+					<div class="code-html pagenation">
+						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+					</div>
+					
 				</div>
 			</section>
 		<!-- right -->
@@ -256,8 +255,10 @@ $(document).ready(  function() {
 	<div class="history_detail_popup">
 	<div class="history_pop_header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 	
 					<div class="btn_close">
@@ -363,6 +364,7 @@ $(document).ready(  function() {
 							</form>
 						</div>
 					<!-- 내용 -->
+					
 						<div class="counsel_con">
 							<div class="counsel_con_inner">
 								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="../images/icons/btn_tag.png" alt=""></a></div>
@@ -412,7 +414,7 @@ $(document).ready(  function() {
 													<h4>군입대 지원하려고 합니다. 어떻게 해야 할까요?</h4>
 													<p>병역의무 이행<br />•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월) <br />•상근예비역(18개월) <br />•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월) <br />•사회복무요원(21개월) <br />•산업기능요원 현역 입영대상사(34개월)</p>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
 											</div>
 										</li>
 										<li class="kms_part">
@@ -426,7 +428,7 @@ $(document).ready(  function() {
 														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check4" name="check4"><label for="check4"></label></span></div></li>
 													</ul>
 												</div>
-												<div class="counsel_more_btn"><a href="#">더보기<i><img src="../images/icons/arr_down.png" alt=""></i></a><div>
+												<div class="counsel_more_btn"><a href="#">더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=""></i></a><div>
 											</div>
 										</li>
 									<ul>
@@ -488,11 +490,18 @@ $(document).ready(  function() {
 	</div>
 </div>
 
-<!-- 레이어팝업창 -->
+<!— 레이어팝업창 —>
 
 
+<script class="code-js">
+	var pagination1 = new tui.Pagination('pagination1', {
+		totalItems: 500,
+		itemsPerPage: 10,
+		visiblePages: 5
+	});
+</script>
 <script> 
-/* 	$(document).ready(function(){ 
+	$(document).ready(function(){ 
 	$(".btn_view_history").click(function(){ 
 	$("#counsel_history_popup").css("display", "block");
 	}); 
@@ -502,7 +511,7 @@ $(document).ready(  function() {
 	$("#counsel_history_popup .btn_close").click(function(){ 
 	$("#counsel_history_popup").css("display", "none"); 
 	}); 
-	});  */
+	}); 
 </script>
 </body>
 </html>

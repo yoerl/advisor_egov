@@ -22,8 +22,10 @@
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -34,8 +36,8 @@
 			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
 		</nav>
 		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/notice.do" class="push"><span>99+</span></a>
+			<a href="${path}/page/notice.do" class="call"></a>
+			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
 		</div>
 	</header>
 	<!-- header -->
@@ -130,6 +132,7 @@
 						</div>
 						<div class="rangking_data_table">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<caption></caption>
 								<colgroup>
 									<col style="width:33%;">
 									<col style="width:33%;">

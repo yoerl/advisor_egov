@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
@@ -14,8 +15,82 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
+    <script>
+    $(document).ready(function() {
+    	
+    	
+    	$(document).on("click", "#btn_del", function() {
+
+            // AJAX DELETE 요청 보내기
+            $.ajax({
+                url: "${path}/api/notice/" + $(this).data("noti_sqno") + ".do", // 엔드포인트 URL
+                type: "DELETE", // HTTP DELETE 메서드 사용
+                success: function(response) {
+                    // 요청 성공 시 실행할 코드
+                    if (response === "true") {
+                        alert("공지사항이 삭제되었습니다.");
+                        // 삭제 성공 후 필요한 동작 수행
+                        location.reload();
+                    } else {
+                        alert("공지사항 삭제에 실패하였습니다.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행할 코드
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+    	});
+
+    	
+    	
+    	
+        $.ajax({
+            type: "GET", // HTTP 요청 방식 (GET, POST 등)
+            url: "${path}/api/notices.do",
+            /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
+            success: function(jsonString) {
+                var jsonArray = JSON.parse(jsonString);
+                // 요청 성공 시 실행될 함수
+                console.log("AJAX  성공: " + jsonString);
+                
+
+				var ulElement = document.querySelector(".board-list");
+				ulElement.innerHTML = '';
+				
+			    for (var i = 0; i < jsonArray.length; i++) {
+			    	
+			        var item = jsonArray[i];
+	                console.log("AJAX  성공2222: " + item.amntDttm);
+			        var liElement = document.createElement("li");
+		
+			        liElement.innerHTML += '' +
+			        '<a href=${path}/page/notice_view.do?notiSqno='+item.notiSqno+'>' +
+			        '<p>' + item.notiTitlNm + '</p>' +
+			        '<span class="notice_date">'+item.amntDttm+'</span>' +
+			        '</a>' +
+			        '<div class="manager">' +
+			        '<span>'+item.rgsrId+'</span>' +
+			        '<a href="#" id="btn_del" data-noti_sqno='+item.notiSqno+' class="btn_del_con">삭제</a>' +
+			        '</div>';
+			        
+			        ulElement.appendChild(liElement);
+		            
+			    }
+                
+                
+            },
+            error: function(request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    </script>
 </head>
 
 <body>
@@ -23,8 +98,10 @@
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -35,8 +112,8 @@
 			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
 		</nav>
 		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/notice.do" class="push"><span>99+</span></a>
+			<a href="${path}/page/notice.do" class="call"></a>
+			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
 		</div>
 	</header>
 	<!-- header -->
@@ -104,12 +181,13 @@
 			</section>
 		<!-- chating -->
 		<!-- right -->
-			<section id="notice_con">
-				<div class="notice_title">
+			<section id="sub_right_con">
+				<div class="right_title">
 					<h2>
+						
 						<a href="javascript:history.go(-1);">
 							<img src="../images/icons/arrow-left.png" alt="">
-						</a>알림</h2>
+						</a>공지사항</h2>
 					
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
@@ -117,99 +195,203 @@
 						</a>
 					</div>
 				</div>
-				<div class="notice_contents">
+				<div class="right_contents">
 					<div class="notice_con_inner">
 					<form name="" method="" action="">
-						<div class="view_total"><button type="button" class="btn_ranking"  onClick="location.href='${path}/page/ranking.do'">키워드 랭킹</button><div class="alim_button"><a href="#" class="btn_choice_total">전체선택</a><a href="#" class="btn_view_total">읽음처리</a></div></div>
-						<script>
-							$(document).ready(function() {
-								$('.btn_view_total').on("click",function(){
-								   $('.notice-list li a').addClass("visited");
-								  });
-							 });
-						</script>
-					<!-- notice-list -->
-						<ul class="notice-list">
-							<li><div class="checkbox"><span><input type="checkbox" id="check1" name="check1" value=""><label for="check1"></label></span></div>
-								<a href="#">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check2" name="check2" value=""><label for="check2"></label></span></div>
-								<a href="#">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check3" name="check3" value=""><label for="check3"></label></span></div>
-								<a href="#" class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check4" name="check4" value=""><label for="check4"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check5" name="check5" value=""><label for="check5"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check6" name="check6" value=""><label for="check6"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check7" name="check7" value=""><label for="check7"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check8" name="check8" value=""><label for="check8"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check9" name="check9" value=""><label for="check9"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check10" name="check10" value=""><label for="check10"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-						</ul>
-					<!-- notice-list -->
-						<div class="pagenation">
-							<ul>
-								<li class="page_prev"><a href="#">이전</a></li>
-								<li class="on"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li class="page_next"><a href="#">다음</a></li>
-							</ul>
+						<div class="board_write_btn">
+								<a href="${path}/page/notice_write.do">등록</a>		
 						</div>
+						<ul class="board-list">
+							 <li>
+							</li>
+
+						
+						</ul>
+
+						
+					<!-- pagenation -->
+						
 					</div>
+					<!-- 삭제팝업창 -->
+						<div id="del_alert_popup">
+							<div class="del_alert_head">
+								<h3>삭제</h3>
+							</div>
+							<div class="del_alert_con">
+								<p>게시물을 정말 삭제하시겠습니까?</p>
+							</div>
+							<div class="del_alert_btn">
+								<a href="#" class="bnt_cancle">취소</a><a href="">삭제</a>
+							</div>
+						</div>
+					<!-- 삭제팝업창 -->
 					</form>
+					
+					<div class="code-html pagenation">
+						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+					</div>
 				</div>
 			</section>
 		<!-- right -->
 	</div>
 	<!-- body -->
 </div>
+<script class="code-js">
+	var pagination1 = new tui.Pagination('pagination1', {
+		totalItems: 500,
+		itemsPerPage: 10,
+		visiblePages: 5
+	});
+</script>
+<script> 
+ 	$(document).ready(function(){ 
+	$("a.btn_del_con").click(function(){ 
+	$("#del_alert_popup").css("display", "block");
+	}); 
+	$(".del_alert_btn a.bnt_cancle").click(function(){ 
+	$("#del_alert_popup").css("display", "none"); 
+	}); 
+	}); 
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+<%-- 
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 추가 -->
+    <style>
+        /* CSS 스타일링 */
+        .pagenation {
+            margin: 20px 0;
+        }
+
+        .pagenation ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .pagenation li {
+            margin-right: 10px;
+        }
+
+        .pagenation li a {
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .pagenation li.on a {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 페이징 컨테이너 -->
+    <div class="pagenation" data-page_number="1" data-page_size="10" data-total_pages="14">
+        <ul class="pagenation_content" id="pagination"></ul>
+    </div>
+
+    <script>
+        var paginationContainer = document.querySelector(".pagenation");
+        var pageNumber = parseInt(paginationContainer.getAttribute("data-page_number"));
+        var pageSize = parseInt(paginationContainer.getAttribute("data-page_size"));
+        var totalPageCount = parseInt(paginationContainer.getAttribute("data-total_pages"));
+
+        function fetchDataAndUpdatePage() {
+            $.ajax({
+                type: "GET",
+                url: "${path}/api/notices.do",
+                data: {
+                    pageNumber: pageNumber,
+                    pageSize: pageSize
+                },
+                success: function(response) {
+                    // Here, handle the response. For example, if you receive new page data, render it.
+
+                    // Update the total page count if it's provided in the response
+                    if (response.totalPages) {
+                        totalPageCount = response.totalPages;
+                    }
+
+                    // After handling the data, re-render the pagination
+                    renderPagination();
+                },
+                error: function(request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
+
+        function renderPagination() {
+            var paginationContent = document.getElementById("pagination");
+            paginationContent.innerHTML = ""; 
+            
+            // Previous button
+            var prevButton = document.createElement("li");
+            prevButton.innerHTML = `<a href="#">이전</a>`;
+            prevButton.addEventListener("click", function () {
+                if (pageNumber > 1) {
+                    pageNumber--;
+                    fetchDataAndUpdatePage();
+                }
+            });
+            paginationContent.appendChild(prevButton);
+
+            // Page numbers
+            var pageStart = Math.max(1, Math.ceil(pageNumber / 5) * 5 - 4);
+            var pageEnd = Math.min(totalPageCount, pageStart + 4);
+            for (var i = pageStart; i <= pageEnd; i++) {
+                var pageItem = document.createElement("li");
+                pageItem.className = i === pageNumber ? "on" : "";
+                pageItem.innerHTML = `<a href="#">${i}</a>`;
+                pageItem.addEventListener("click", function () {
+                    pageNumber = parseInt(this.textContent);
+                    fetchDataAndUpdatePage();
+                });
+                paginationContent.appendChild(pageItem);
+            }
+
+            // Next button
+            var nextButton = document.createElement("li");
+            nextButton.innerHTML = `<a href="#">다음</a>`;
+            nextButton.addEventListener("click", function () {
+                if (pageNumber < totalPageCount) {
+                    pageNumber++;
+                    fetchDataAndUpdatePage();
+                }
+            });
+            paginationContent.appendChild(nextButton);
+        }
+
+        // Initially fetch data and render pagination
+        fetchDataAndUpdatePage();
+    </script>
+</body>
+</html>
+ --%>

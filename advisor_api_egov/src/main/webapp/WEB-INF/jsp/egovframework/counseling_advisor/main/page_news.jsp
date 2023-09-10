@@ -14,8 +14,10 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
 </head>
 
 <body>
@@ -23,8 +25,10 @@
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -35,8 +39,8 @@
 			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
 		</nav>
 		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/notice.do" class="push"><span>99+</span></a>
+			<a href="${path}/page/notice.do" class="call"></a>
+			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
 		</div>
 	</header>
 	<!-- header -->
@@ -104,13 +108,12 @@
 			</section>
 		<!-- chating -->
 		<!-- right -->
-			<section id="sub_right_con">
-				<div class="right_title">
+			<section id="notice_con">
+				<div class="notice_title">
 					<h2>
-						
 						<a href="javascript:history.go(-1);">
 							<img src="../images/icons/arrow-left.png" alt="">
-						</a>공지사항</h2>
+						</a>알림</h2>
 					
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
@@ -118,107 +121,80 @@
 						</a>
 					</div>
 				</div>
-				<div class="right_contents">
+				<div class="notice_contents">
 					<div class="notice_con_inner">
 					<form name="" method="" action="">
-						<div class="board_write_btn">
-								<a href="${path}/page/news_write.do">등록</a>							
-							
-						</div>
+						<div class="view_total"><button type="button" class="btn_ranking"  onClick="location.href='${path}/page/ranking.do'">키워드 랭킹</button><div class="alim_button"><a href="#" class="btn_choice_total">전체선택</a><a href="#" class="btn_view_total">읽음처리</a></div></div>
+						<script>
+							$(document).ready(function() {
+								$('.btn_view_total').on("click",function(){
+								   $('.notice-list li a').addClass("visited");
+								  });
+							 });
+						</script>
 					<!-- notice-list -->
-						<ul class="board-list">
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+						<ul class="notice-list">
+							<li><div class="checkbox"><span><input type="checkbox" id="check1" name="check1" value=""><label for="check1"></label></span></div>
+								<a href="#">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check2" name="check2" value=""><label for="check2"></label></span></div>
+								<a href="#">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check3" name="check3" value=""><label for="check3"></label></span></div>
+								<a href="#" class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check4" name="check4" value=""><label for="check4"></label></span></div>
+								<a href="#"  class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check5" name="check5" value=""><label for="check5"></label></span></div>
+								<a href="#"  class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check6" name="check6" value=""><label for="check6"></label></span></div>
+								<a href="#"  class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check7" name="check7" value=""><label for="check7"></label></span></div>
+								<a href="#"  class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check8" name="check8" value=""><label for="check8"></label></span></div>
+								<a href="#"  class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check9" name="check9" value=""><label for="check9"></label></span></div>
+								<a href="#"  class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
+							<li><div class="checkbox"><span><input type="checkbox" id="check10" name="check10" value=""><label for="check10"></label></span></div>
+								<a href="#"  class="visited">
+									<p>공지사항 제목입니다.</p>
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
 							</li>
-							<li>
-								<a href="${path}/page/news_view.do">
-									<p>공지사항 제목</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>작성자</span><a href="#" class="btn_del_con">삭제</a></div>
-							</li>
-
 						</ul>
-					<!-- notice-list -->
-						<div class="pagenation">
-							<ul>
-								<li class="page_prev"><a href="#">이전</a></li>
-								<li class="on"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li class="page_next"><a href="#">다음</a></li>
-							</ul>
-						</div>
-					</div>
 					<!-- 삭제팝업창 -->
 						<div id="del_alert_popup">
 							<div class="del_alert_head">
@@ -232,13 +208,31 @@
 							</div>
 						</div>
 					<!-- 삭제팝업창 -->
+
+					
+					
+					</div>
 					</form>
+					
+					
+					<div class="code-html pagenation">
+						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+					</div>
 				</div>
 			</section>
 		<!-- right -->
 	</div>
 	<!-- body -->
 </div>
+
+
+<script class="code-js">
+	var pagination1 = new tui.Pagination('pagination1', {
+		totalItems: 500,
+		itemsPerPage: 10,
+		visiblePages: 5
+	});
+</script>
 <script> 
 	$(document).ready(function(){ 
 	$("a.btn_del_con").click(function(){ 
@@ -251,3 +245,7 @@
 </script>
 </body>
 </html>
+
+
+
+

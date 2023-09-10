@@ -153,4 +153,14 @@ select:disabled{background-color:#ebebeb}
 	     url(../../fonts/Roboto-Bold.woff) format("woff"),
 		 url(../../fonts/Roboto-Bold.otf) format("opentype");
 }
+@font-face {
+    font-family: 'goverment';
+    font-style: normal;
+    font-weight: 600;
+    src: url(../../fonts/goverment.woff2) format("woff2"),
+	     url(../../fonts/goverment.woff) format("woff"),
+		 url(../../fonts/goverment.otf) format("opentype");
+}
+
+
 

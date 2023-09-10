@@ -25,11 +25,11 @@
 <div id="counsel_history_popup" style="display:block;">
 	<div class="history_detail_popup">
 	<div class="history_pop_header">
-		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/popup_logo.gif'/>" alt=""></a>
-
-			
-			<span>범정보통합콜센터</span>
+		<div id="logo"> 
+			<a href="${path}/page/home.do">
+				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
+				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+			</a>
 		</div>
 	</div>
 		<!-- body -->

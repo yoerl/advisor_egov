@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* common*/
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,span,form,fieldset,p,button,address,table, tbody, tfoot, thead, th, tr, td, video, tt{margin:0;padding:0;box-sizing: border-box;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,span,form,fieldset,p,button,address,table, tbody, tfoot, thead, th, tr, tdvideo, tt{margin:0;padding:0;box-sizing: border-box;}
 header,article,aside,canvas,details,figcaption,figure,footer,hgroup,menu,nav,section,summary,mark {display:block;margin: 0; padding: 0;box-sizing: border-box;}
 
 h1,h2,h3,h4,h5,h6,input,button,textarea,select,table{box-sizing: border-box;}

@@ -13,9 +13,63 @@
 <title>범정부통합콜센터</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>
+	 <script>
+	$(document).ready(function() {
+		
+	    // AJAX 요청 보내기
+	    $.ajax({
+	        type: "GET",
+	        url: "${path}/api/notice/<%= request.getParameter("notiSqno")%>.do",
+	        success: function(jsonString) {
+	            // 요청 성공 시 응답을 처리하는 함수 호출
+	            console.log("AJAX 성공: " + jsonString);
+	            
+
+		        var jsonArray = JSON.parse(jsonString);
+		
+		        // 공지사항 내용 출력
+		        var area_noti_content = document.querySelector(".board_view_inner");
+		        if (area_noti_content) {
+		            area_noti_content.innerHTML = jsonArray[0].notiCntn;
+		        } else {
+		            console.error(".board_view_inner 요소를 찾을 수 없습니다.");
+		        }
+		
+		        // 공지사항 제목 출력
+		        var area_noti_title = document.querySelector(".area_noti_title");
+		        if (area_noti_title) {
+		            area_noti_title.innerHTML = jsonArray[0].notiTitlNm;
+		        } else {
+		            console.error(".area_noti_title 요소를 찾을 수 없습니다.");
+		        }
+	        },
+	        error: function(request, status, error) {
+	            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+	        }
+	    });
+	    
+	    
+
+	    $(document).on("click", "#btn_edit", function() {
+	        // data-noti_sqno 속성에서 notiSqno 값을 가져옴
+	        var notiSqno = $(this).data("noti_sqno");
+
+	        // data-noti_sqno 속성에서 notiSqno 값을 가져옴
+	        var notiSqno = $(this).data("noti_sqno");
+	        
+	        // 이동할 URL 생성
+	        var url = "${path}/page/notice_modify.do?notiSqno=" + notiSqno;
+	        
+	        // URL로 이동
+	        window.location.href = url;
+	    });
+	});
+	</script>
+
 </head>
 
 <body>
@@ -111,7 +165,7 @@
 					<h2>
 						<a href="javascript:history.go(-1);">
 							<img src="../images/icons/arrow-left.png" alt="">
-						</a>01012341234/상담사명(1234)</h2>
+						</a><span class="area_noti_title"></span></h2>
 					
 					<div class="btn_close">
 						<a href="${path}/page/home.do">
@@ -121,15 +175,20 @@
 				</div>
 				<div class="right_contents">
 					<div class="view_con_inner">
-						<div class="board_data"><p>2023.01.01 12:12</p></div>
-						<div class="board_view_content">
-							<p>군입대 지원에 대한 상담  </p>
+						<div class="news_view_content">
+							<div class="board_view_inner">
+								<p> 
+								</p>
+							</div>
 						</div>
 						<!-- button -->
 						<div class="board_bottom_btn">
-							<a href="${path}/page/summary_modify.do">수정</a>
+							<button type="button" id="btn_edit" class="btn" data-noti_sqno="<%= request.getParameter("notiSqno")%>">수정</button>
+
+						<%-- ${path}/page/news_modify.do --%>
 						</div>
-						<!-- button -->
+						
+						
 					
 					</div>
 				</div>

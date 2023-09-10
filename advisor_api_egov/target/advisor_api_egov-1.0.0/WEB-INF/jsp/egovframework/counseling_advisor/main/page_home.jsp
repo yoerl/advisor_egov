@@ -251,12 +251,32 @@
 											<h3>KMS</h3>
 											<div>
 												<div class="kms_part_txt">
-													<ul>
-														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check5" name="check5"><label for="check5"></label></span></div></li>
-														<li><div class="kms_part_con"><p>병역판정검사</p><span><input type="checkbox" id="check2" name="check2"><label for="check2"></label></span></div></li>
-														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check3" name="check3"><label for="check3"></label></span></div></li>
-														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해능력....</p><span><input type="checkbox" id="check4" name="check4"><label for="check4"></label></span></div></li>
+												
+												<ul>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 이해</p>
+															<span><input type="checkbox" id="check2"><label for="check2"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>병역판정검사</p>
+															<span><input type="checkbox" id="check3"><label for="check3"></label></span>	
+														
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 </p>
+															<span><input type="checkbox" id="check4"><label for="check4"></label></span>	
+															
+														</div></li>
+														<li><div class="kms_part_con"><p>연령별 병역의무 이행과 이해능력 연령별 병역의무 이행과 능력 연령별 </p>
+															<span><input type="checkbox" id="check5"><label for="check5"></label></span>	
+															
+														</div></li>
 													</ul>
+												
+												
+												
+												
+												
+												
+													
 												</div>
 												<div class="counsel_more_btn"><a href="#">더보기<i><img src="<c:url value='/images/icons/arr_down.png'/>" alt=""></i></a><div>
 											</div>

@@ -22,6 +22,7 @@ import java.util.List;
 import egovframework.example.sample.service.EgovSampleService;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
+import egovframework.counseling.notice.service.impl.NoticeVO;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -32,10 +33,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
@@ -60,116 +59,142 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 public class PageController {
 
 
-	@RequestMapping(value = "/page/home.do", method = RequestMethod.GET)
+	@GetMapping("/page/home.do")
 	public String movePageHome(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_home";
 	}
 	
-	@RequestMapping(value = "/page/summary.do", method = RequestMethod.GET)
+	@GetMapping("/page/summary.do")
 	public String movePageSummary(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_summary";
 	}
 	
 
-	@RequestMapping(value = "/page/history.do", method = RequestMethod.GET)
+	@GetMapping("/page/history.do")
 	public String movePageHistory(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_history";
 	}
 	
-	@RequestMapping(value = "/page/history_popup.do", method = RequestMethod.GET)
+	@GetMapping("/page/history_popup.do")
 	public String movePageHistoryPopup(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_history_popup";
 	}
 
-	@RequestMapping(value = "/page/setting.do", method = RequestMethod.GET)
+	@GetMapping("/page/setting.do")
 	public String movePageSetting(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_setting";
 	}
 	
 
-	@RequestMapping(value = "/page/setting_font.do", method = RequestMethod.GET)
+	@GetMapping("/page/setting_font.do")
 	public String movePageSettingFont(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_setting_font";
 	}
 	
 
-	@RequestMapping(value = "/page/setting_my.do", method = RequestMethod.GET)
+	@GetMapping("/page/setting_my.do")
 	public String movePageSettingMy(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_setting_my";
 	}
 	
 	
 
-	@RequestMapping(value = "/page/setting_size.do", method = RequestMethod.GET)
+	@GetMapping("/page/setting_size.do")
 	public String movePageSettingSize(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_setting_size";
 	}
-	@RequestMapping(value = "/page/setting_system.do", method = RequestMethod.GET)
+	@GetMapping("/page/setting_system.do")
 	public String movePageSettingSystem(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_setting_system";
 	}
 	
-	@RequestMapping(value = "/page/monitoring.do", method = RequestMethod.GET)
+	@GetMapping("/page/monitoring.do")
 	public String movePageMonitoring(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_monitoring";
 	}
 	
-	@RequestMapping(value = "/page/authority.do", method = RequestMethod.GET)
+	@GetMapping("/page/authority.do")
 	public String movePageAuthority(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_authority";
 	}
 
-	@RequestMapping(value = "/page/authority_setting.do", method = RequestMethod.GET)
+	@GetMapping("/page/authority_setting.do")
 	public String moveAuthoritySetting(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_authority_setting";
 	}
 
-	@RequestMapping(value = "/page/authority_group.do", method = RequestMethod.GET)
+	@GetMapping("/page/authority_group.do")
 	public String moveAuthorityGroup(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_authority_group";
 	}
 
-	@RequestMapping(value = "/page/summary_view.do", method = RequestMethod.GET)
+	@GetMapping("/page/summary_view.do")
 	public String moveSummaryView(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_summary_view";
 	}
 	
-	@RequestMapping(value = "/page/summary_modify.do", method = RequestMethod.GET)
+	@GetMapping("/page/summary_modify.do")
 	public String moveSummaryModify(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_summary_modify";
 	}
 	
-	@RequestMapping(value = "/page/notice.do", method = RequestMethod.GET)
+	@GetMapping("/page/notice.do")
 	public String moveNotice(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_notice";
 	}
 
-	@RequestMapping(value = "/page/news.do", method = RequestMethod.GET)
+	@GetMapping("/page/news.do")
 	public String moveNews(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_news";
 	}
-	@RequestMapping(value = "/page/ranking.do", method = RequestMethod.GET)
+	@GetMapping("/page/ranking.do")
 	public String moveRanking(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_ranking";
 	}
 
-	@RequestMapping(value = "/page/news_write.do", method = RequestMethod.GET)
+	@GetMapping("/page/news_write.do")
 	public String moveNewswrite(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_news_write";
 	}
 
-	@RequestMapping(value = "/page/monitoring_popup.do", method = RequestMethod.GET)
+	@GetMapping("/page/monitoring_popup.do")
 	public String moveMonitoringPopup(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_monitoring_popup";
 	}
 	
 
-	@RequestMapping(value = "/page/news_view.do", method = RequestMethod.GET)
+	@GetMapping("/page/news_view.do")
 	public String moveNewsView(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
 		return "main/page_news_view";
 	}
-	@RequestMapping(value = "/page/news_modify.do", method = RequestMethod.GET)
-	public String moveNewsModify() throws Exception {
+
+	@GetMapping("/page/notice_view.do")
+	public String moveNoticeView(@ModelAttribute("NoticeVo") NoticeVO noticeVO, ModelMap model) throws Exception {
+
+
+        model.addAttribute("noticeInfo", noticeVO);
+		return "main/page_notice_view";
+	}
+
+	@GetMapping("/page/news_modify.do")
+	public String moveNewsModify(@ModelAttribute("NoticeVo") NoticeVO noticeVO, ModelMap model) throws Exception {
+
+        model.addAttribute("noticeInfo", noticeVO);
 		return "main/page_news_modify";
 	}
+	
+
+	@GetMapping("/page/notice_modify.do")
+	public String moveNoticeModify(@ModelAttribute("NoticeVo") NoticeVO noticeVO, ModelMap model) throws Exception {
+
+        model.addAttribute("noticeInfo", noticeVO);
+		return "main/page_notice_modify";
+	}
+	
+	
+	@GetMapping("/page/notice_write.do")
+	public String moveNoticeWrite() throws Exception {
+		return "main/page_notice_write";
+	}
+	
 }
