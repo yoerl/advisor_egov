@@ -22,6 +22,7 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
 	<script src="<c:url value='/js/egovframework/sockjs.client.min.js' />"></script>
 	<script src="<c:url value='/js/egovframework/stomp-2.3.4.min.js' />"></script>

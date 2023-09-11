@@ -544,7 +544,7 @@ input[id="check5"]:checked + label::after {
 .group_menu {width: 200px;border: #A0A9B0 1px solid;border-radius: 10px;overflow:hidden;float:left;}
 .group_autho_list {width: calc(100% - 220px);float: right;border: #A0A9B0 1px solid;border-radius: 10px;overflow:hidden;}
 .group_menu li {border-radius: 0;margin:0;border-top:#C9D0D2 1px solid;}
-.group_menu li:first-child {border-top:none;}
+
 .group_menu li a {display:block;color:#111;font-size:16px;padding:16px 8px;}
 .group_menu li a:hover {background:#F3F5FA;}
 .group_menu li a.active {background:#F3F5FA;font-weight:600;}
@@ -595,9 +595,9 @@ a.btn_autho_setting {display: inline-block;width: 62px;height: 39px;border: #293
 }
 @media all and (max-width:1495px) {
 .group_menu {width: 100%;margin-bottom: 16px;}
-.group_menu li {border-radius: 0;margin: 0;border-top:none;border-left: #C9D0D2 1px solid;width: 25%;float: left;clear: none;}
+.group_menu li {border-radius: 0;margin: 0;border-top:none;border: #C9D0D2 1px solid;width: 25%;float: left;clear: none;}
 .group_menu li a {text-align:center;}
-.group_menu li:first-child {border-left:none;}
+
 .group_autho_list {clear:both;width: 100%;}
 }
 @media all and (max-width:1210px) {

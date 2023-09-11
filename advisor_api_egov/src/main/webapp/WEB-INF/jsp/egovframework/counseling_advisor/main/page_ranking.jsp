@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
+<title>농촌진흥청</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
@@ -24,7 +24,7 @@
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 		<nav id="gnb">

@@ -15,7 +15,7 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="expires" content="0" />
     
-<title>범정부통합콜센터</title>
+<title>농촌진흥청</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
     <link type="text/css" rel="stylesheet" href="<c:url value='/dist/tailwind.min.css'/>"/>
@@ -88,7 +88,7 @@
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 		<nav id="gnb">
@@ -200,7 +200,7 @@
 						<div class="counsel_con">
 							<div class="counsel_con_inner">
 							
-							<div class="label_sticky">
+							<div class="label_stick">
 										<div class="counsel_flag"><a href="#" class="btn_flag"><img src="<c:url value='/images/icons/btn_tag.png'/>" alt=""> </a></div>
 										
 										<div class="counsel_pagenation code-html open" >

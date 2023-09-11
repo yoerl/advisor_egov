@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
+<title>농촌진흥청</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
@@ -46,11 +46,11 @@ $(document).ready(  function() {
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 		<nav id="gnb">
-			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
+			<a href="${path}/page/summary.do"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
 			<a href="${path}/page/history.do"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
 			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
 			<a href="${path}/page/monitoring.do" class="active"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
@@ -257,7 +257,7 @@ $(document).ready(  function() {
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 					<div class="btn_close">

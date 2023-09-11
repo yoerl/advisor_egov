@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
+<title>농촌진흥청</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
@@ -27,7 +27,7 @@
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 		<nav id="gnb">
@@ -158,42 +158,6 @@
 									<span class="notice_date">2023.01.01 16:40</span>
 								</a>
 							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check5" name="check5" value=""><label for="check5"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check6" name="check6" value=""><label for="check6"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check7" name="check7" value=""><label for="check7"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check8" name="check8" value=""><label for="check8"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check9" name="check9" value=""><label for="check9"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check10" name="check10" value=""><label for="check10"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
 						</ul>
 					<!-- 삭제팝업창 -->
 						<div id="del_alert_popup">
@@ -235,13 +199,46 @@
 </script>
 <script> 
 	$(document).ready(function(){ 
-	$("a.btn_del_con").click(function(){ 
-	$("#del_alert_popup").css("display", "block");
+		$("a.btn_del_con").click(function(){ 
+			$("#del_alert_popup").css("display", "block");
+		}); 
+		
+		$(".del_alert_btn a.bnt_cancle").click(function(){ 
+			$("#del_alert_popup").css("display", "none"); 
+		}); 
+	
+	
+/* 	// 모든 체크박스를 선택합니다.
+	const checkboxes = document.querySelectorAll('.checkbox input[type="checkbox"]');
+
+	// 각 체크박스를 클릭합니다.
+	checkboxes.forEach(checkbox => {
+	  checkbox.checked = true; // 체크박스를 클릭(선택)합니다.
+	}); */
+	
+	
 	}); 
-	$(".del_alert_btn a.bnt_cancle").click(function(){ 
-	$("#del_alert_popup").css("display", "none"); 
-	}); 
-	}); 
+	
+	// "btn_choice_total" 클래스를 가진 링크 요소를 가져옵니다.
+	const btnChoiceTotal = document.querySelector('.btn_choice_total');
+
+	// 링크를 클릭하면 이벤트 핸들러를 실행합니다.
+	btnChoiceTotal.addEventListener("click", function(event) {
+	  event.preventDefault(); // 기본 링크 동작을 중지합니다.
+
+	  // 모든 체크박스를 선택합니다.
+	  const checkboxes = document.querySelectorAll('.checkbox input[type="checkbox"]');
+	  
+	  // 모든 체크박스가 선택되어 있는지 확인합니다.
+	  const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+	  // 모든 체크박스를 선택 또는 해제합니다.
+	  checkboxes.forEach(checkbox => {
+	    checkbox.checked = !allChecked;
+	  });
+	});
+
+	
 </script>
 </body>
 </html>

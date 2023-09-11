@@ -10,13 +10,31 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
+<title>농촌진흥청</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    
+    
+    <script>
+    
+        $(document).ready(  function() {
+	
+			  
+	    		document.getElementById("font_rd2").checked = true;
+	    		document.getElementById("font_rd4").checked = true;
+	    		document.getElementById("font_rd6").checked = true;
+	    		document.getElementById("font_rd8").checked = true;
+	    		document.getElementById("font_rd10").checked = true;
+	    		document.getElementById("font_rd12").checked = true;
+	    		document.getElementById("font_rd14").checked = true;
+	    		document.getElementById("font_rd16").checked = true;
+		});
+		    
+    </script>
 </head>
 
 <body>
@@ -26,7 +44,7 @@
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 		<nav id="gnb">
@@ -117,14 +135,14 @@
 					
 					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.png'/>" alt=""><span></div>
 				</div>
-				<div class="right_contents">
+				<div class="right_contents" style="height:100%;">
 					<div class="notice_con_inner">
 					<form name="" method="" action="">
 						<div class="setting_keyword">
 							<select name="" onchange="window.open(value,'_self');">
 									<option id="" value="${path}/page/authority.do">선택</option>
 									<option id="" value="${path}/page/authority_group.do" selected>그룹권한</option>
-									<option id="" value="${path}/page/authority_setting.do" >그룹 창여자 설정</option>
+									<option id="" value="${path}/page/authority_setting.do" >그룹 참여자 설정</option>
 								</select>
 								
 						</div>	
@@ -135,17 +153,20 @@
 									<option id="" value="">기관1</option>
 									<option id="" value="">그룹1</option>
 								</select>
-								<span><input type="checkbox" id="check1" name="check1"><label for="check1">공통 AI</label></span>	
 							</div>
 							<div class="group_authority_con">
-								<div class="group_menu">
-									<ul>
-										<li><a href="#">슈퍼 관리자</a></li>
-										<li><a href="#" class="active">관리자</a></li>
-										<li><a href="#">리더</a></li>
-										<li><a href="#">상담</a></li>
-									</ul>
-								</div>
+							<div class="group_menu">
+							  <ul>
+							    <li><a href="#" onclick="setActive(0)">시스템 관리자</a></li>
+							    <li><a href="#" onclick="setActive(1)">기관 관리자</a></li>
+							    <li><a href="#" onclick="setActive(2)">운영 관리자</a></li>
+							    <li><a href="#" onclick="setActive(3)">강사</a></li>
+							    <li><a href="#" onclick="setActive(4)">팀장</a></li>
+							    <li><a href="#" onclick="setActive(5)">부팀장</a></li>
+							    <li><a href="#" onclick="setActive(6)">상담</a></li>
+							  </ul>
+							</div>
+
 								<div class="group_autho_list">
 									<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<caption></caption>
@@ -155,39 +176,45 @@
 									  <tr>
 										<td rowspan="6" class="border_none p30">메뉴권한</td>
 										<td  class="border_none w30">메모</td>
-										<td  class="border_none w20"><span class="radios"><input type="radio" id="font_rd1"> <label for="font_rd1">미사용</label></span></td>
-										<td  class="border_none w20"><span class="radios"><input type="radio" id="font_rd2"> <label for="font_rd2">사용</label></span></td>
+										<td  class="border_none w20"><span class="radios"><input type="radio"  name = "memo" id="font_rd1"> <label for="font_rd1">미사용</label></span></td>
+										<td  class="border_none w20"><span class="radios"><input type="radio"  name = "memo" id="font_rd2"> <label for="font_rd2">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">이력</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd3"> <label for="font_rd3">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd4"> <label for="font_rd4">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio" name = "history" id="font_rd3"> <label for="font_rd3">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "history"id="font_rd4"> <label for="font_rd4">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">설정</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd5"> <label for="font_rd5">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd6"> <label for="font_rd6">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "setting" id="font_rd5"> <label for="font_rd5">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "setting" id="font_rd6"> <label for="font_rd6">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">모니터링</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd7"> <label for="font_rd7">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd8"> <label for="font_rd8">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "monitering" id="font_rd7"> <label for="font_rd7">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "monitering" id="font_rd8"> <label for="font_rd8">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">권한설정</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd9"> <label for="font_rd9">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd10"> <label for="font_rd10">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "pemission" id="font_rd9"> <label for="font_rd9">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "pemission"id="font_rd10"> <label for="font_rd10">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">공지사항</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd11"> <label for="font_rd11">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd12"> <label for="font_rd12">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "notice" id="font_rd11"> <label for="font_rd11">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "notice"id="font_rd12"> <label for="font_rd12">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">지식보기 권한</td>
 										<td class="w30">공동지식</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd13"> <label for="font_rd13">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd14"> <label for="font_rd14">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "know" id="font_rd13"> <label for="font_rd13">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "know" id="font_rd14"> <label for="font_rd14">사용</label></span></td>
+									  </tr>
+									  <tr>
+										<td class="w30">시스템 점검</td>
+										<td class="w30"></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "systemcheck" id="font_rd15"> <label for="font_rd15">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "systemcheck" id="font_rd16"> <label for="font_rd16">사용</label></span></td>
 									  </tr>
 									</table>						
 								</div>
@@ -204,5 +231,19 @@
 	</div>
 	<!-- body -->
 </div>
+
+<script>
+function setActive(index) {
+  // 모든 메뉴 항목의 "active" 클래스 제거
+  const menuItems = document.querySelectorAll(".group_menu ul li a");
+  menuItems.forEach(item => {
+    item.classList.remove("active");
+  });
+
+  // 클릭한 메뉴 항목에 "active" 클래스 추가
+  menuItems[index].classList.add("active");
+}
+</script>
+
 </body>
 </html>

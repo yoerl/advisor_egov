@@ -11,13 +11,42 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
+<title>농촌진흥청</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
 <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
+
+
+<script>
+
+
+/* $(document).ready(function() {
+    
+	$.ajax({
+	    type: "GET", // HTTP 요청 방식 (GET, POST 등)
+	    url: "${path}/api/fontfamilylist.do",
+	    /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
+	    success: function(jsonString) {
+	        var jsonArray = JSON.parse(jsonString);
+	        // 요청 성공 시 실행될 함수
+	        console.log("AJAX  성공: " + jsonString);
+	        
+
+	    },
+	    error: function(request, status, error) {
+	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+	    }
+	});
+	
+});
+ */
+
+
+</script>
+
 </head>
 
 <body>
@@ -27,7 +56,7 @@
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 		<nav id="gnb">
@@ -136,8 +165,8 @@
 						<div class="setting_content">
 							<div class="font_choice">
 								<ul>
-									<li><span class="radios"><input type="radio" id="font_rd1"> <label for="font_rd1">돋음</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd2"> <label for="font_rd2">명조</label></span></li> 									
+									<li><span class="radios"><input type="radio" id="font_rd1" name="font_family"> <label for="font_rd1">돋음</label></span></li> 
+									<li><span class="radios"><input type="radio" id="font_rd2" name="font_family"> <label for="font_rd2">명조</label></span></li> 									
 								</ul>
 							</div>
 							<div class="setting_btn">

@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
+<title>농촌진흥청</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
@@ -46,7 +46,7 @@ $(document).ready(  function() {
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 		<nav id="gnb">
@@ -154,7 +154,8 @@ $(document).ready(  function() {
 						</div>
 						<!-- <p class="no-massage">조회된 내용이 없습니다.</p> -->
 					<!-- notice-list -->
-						<ul class="board-list" id="counsel_dd">
+						<ul class="board-list" id="
+">
 							<li>
 								<a href="#">
 									<p>기관명 또는 그룹명 나타남</p>
@@ -257,7 +258,7 @@ $(document).ready(  function() {
 		<div id="logo">
 			<a href="${path}/page/home.do">
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>범정부통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
 		</div>
 	
@@ -490,9 +491,6 @@ $(document).ready(  function() {
 	</div>
 </div>
 
-<!— 레이어팝업창 —>
-
-
 <script class="code-js">
 	var pagination1 = new tui.Pagination('pagination1', {
 		totalItems: 500,
@@ -501,17 +499,7 @@ $(document).ready(  function() {
 	});
 </script>
 <script> 
-	$(document).ready(function(){ 
-	$(".btn_view_history").click(function(){ 
-	$("#counsel_history_popup").css("display", "block");
-	}); 
-	$("#counsel_dd > li > a").click(function(){ 
-	$("#counsel_history_popup").css("display", "block");
-	}); 
-	$("#counsel_history_popup .btn_close").click(function(){ 
-	$("#counsel_history_popup").css("display", "none"); 
-	}); 
-	}); 
+
 </script>
 </body>
 </html>
