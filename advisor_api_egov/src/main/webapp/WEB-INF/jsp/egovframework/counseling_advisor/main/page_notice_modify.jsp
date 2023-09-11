@@ -59,7 +59,7 @@
 	                    userId: "test_userId",        // 문자열 데이터
 	                    userNm: "test_userNm",       // 문자열 데이터
 	                    notiTitlNm: document.getElementById("area_noti_title").value, // 문자열 데이
-	                    notiCntn: document.getElementById("area_noti_content").value, // 문자열 데이터
+	                    notiCntn: editor.getData(), // 문자열 데이터
 	                    amndId: "",       // 문자열 데이터
 	                    amndNm: "",          // 문자열 데이터
 	                    amntDttm: "", // Timestamp 형식의 문자열 데이터
