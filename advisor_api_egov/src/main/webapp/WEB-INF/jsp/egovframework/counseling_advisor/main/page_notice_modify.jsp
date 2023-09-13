@@ -16,11 +16,6 @@
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
-	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
-    <style>
-	  .ck-editor__editable { height: 400px; }
-	</style>
     <script>
 	$(document).ready(function() {
 
@@ -38,8 +33,13 @@
 		        var jsonArray = JSON.parse(jsonString);
 
 		        // 공지사항 내용 출력
-		        editor.setData(jsonArray[0].notiCntn);
-
+		        var area_noti_content = document.getElementById("area_noti_content")
+		        if (area_noti_content) {
+		            area_noti_content.innerHTML = jsonArray[0].notiCntn;
+		        } else {
+		            console.error(".board_view_inner 요소를 찾을 수 없습니다.");
+		        }
+		
 		        document.getElementById("area_noti_title").value = jsonArray[0].notiTitlNm;;
 
 		        
@@ -59,7 +59,7 @@
 	                    userId: "test_userId",        // 문자열 데이터
 	                    userNm: "test_userNm",       // 문자열 데이터
 	                    notiTitlNm: document.getElementById("area_noti_title").value, // 문자열 데이
-	                    notiCntn: editor.getData(), // 문자열 데이터
+	                    notiCntn: document.getElementById("area_noti_content").value, // 문자열 데이터
 	                    amndId: "",       // 문자열 데이터
 	                    amndNm: "",          // 문자열 데이터
 	                    amntDttm: "", // Timestamp 형식의 문자열 데이터
@@ -194,8 +194,7 @@
 			</section>
 		<!-- chating -->
 		<!-- right -->
-			<section id="sub_right_con">
-				<form name="frm" id="frm" method="POST">
+			<section id="sub_right_con"><form name="" method="" action="">
 				<div class="right_input_title">
 					<h2>
 						<a href="javascript:history.go(-1);">
@@ -212,19 +211,10 @@
 					<div class="view_con_inner">
 						
 						<div class="edit_write_content">
-							<textarea name="area_noti_content" id="area_noti_content"></textarea>
-							<script type="text/javascript">
-								/* ck editor 5 적용 */
-							  ClassicEditor
-							    .create( document.querySelector( '#area_noti_content' ),{
-							    	language : "ko"
-							    } )
-							    .then( newEditor => {
-								    editor = newEditor;
-								  } )
-							    .catch( error => {
-							    } );
-							</script>
+							<div class="editor_area">
+								<img src="../images/icons/edit.gif" alt="">
+							</div>
+							<textarea id="area_noti_content"></textarea>
 						</div>
 						<!-- button -->
 							<!-- button -->

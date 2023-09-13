@@ -123,7 +123,7 @@ public class StompController {
 //	}
 
 
-	@MessageMapping("/recvRabbit")
+	@MessageMapping("/recvScript")
 	public void sendToAll2() throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
         
@@ -140,7 +140,7 @@ public class StompController {
         // channel.exchangeDeclare(exchangeName, BuiltinExchangeType.DIRECT, true);
 
         // 지정된 이름의 큐를 선언합니다. 이 큐에서 메시지를 가져옵니다.
-        channel.queueDeclare("hello", false, false, false, null);
+        channel.queueDeclare("SCRIPT", false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
         // 메시지를 저장할 변수
@@ -151,15 +151,15 @@ public class StompController {
                 String message = new String(body, "UTF-8");
                 System.out.println("received : " + message);
                 
-                messagingTemplate.convertAndSend("/topic/message", message);
+                messagingTemplate.convertAndSend("/topic/script", message);
                 
             }
         };
-        channel.basicConsume("hello", true, consumer);
+        channel.basicConsume("SCRIPT", true, consumer);
         
 		
 	}
-	@MessageMapping("/recvRabbit_a")
+	@MessageMapping("/recvAnswer")
 	public void sendToAll2_a() throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
         
@@ -176,28 +176,27 @@ public class StompController {
         // channel.exchangeDeclare(exchangeName, BuiltinExchangeType.DIRECT, true);
 
         // 지정된 이름의 큐를 선언합니다. 이 큐에서 메시지를 가져옵니다.
-        channel.queueDeclare("hello_a", false, false, false, null);
+        channel.queueDeclare("ANSWER", false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C_a");
 
         // 메시지를 저장할 변수
-
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
                 System.out.println("received_a : " + message);
                 
-                messagingTemplate.convertAndSend("/topic/message_a", message);
+                messagingTemplate.convertAndSend("/topic/answer", message);
                 
             }
         };
-        channel.basicConsume("hello_a", true, consumer);
+        channel.basicConsume("ANSWER", true, consumer);
         
 		
 	}
 	
 	
-	@MessageMapping("/sendRabbit")
+	@MessageMapping("/sendScript")
 	public void sendToRabbit(UserMessage userMessage) throws Exception {
 		log.debug("===>>> sendToAll >>" + userMessage);
 
@@ -209,8 +208,8 @@ public class StompController {
         factory.setPassword(rabbitmqProperties.getProperty("Globals.rabbitmq.Password"));
 
         try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
-                channel.queueDeclare("hello", false, false, false, null);
-                channel.basicPublish("", "hello", null, userMessage.getMsg().getBytes());
+                channel.queueDeclare("SCRIPT", false, false, false, null);
+                channel.basicPublish("", "SCRIPT", null, userMessage.getMsg().getBytes());
                 System.out.println(" [x] Set '" + userMessage.getMsg() + "'");
                 Thread.sleep(5);
         } catch (TimeoutException e) {
@@ -223,7 +222,7 @@ public class StompController {
 		
 	}
 	
-	@MessageMapping("/sendRabbit_a")
+	@MessageMapping("/sendAnswer")
 	public void sendToRabbit_a(UserMessage userMessage) throws Exception {
 		log.debug("===>>> sendToAll >>" + userMessage);
 
@@ -235,8 +234,8 @@ public class StompController {
         factory.setPassword(rabbitmqProperties.getProperty("Globals.rabbitmq.Password"));
 
         try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
-                channel.queueDeclare("hello_a", false, false, false, null);
-                channel.basicPublish("", "hello_a", null, userMessage.getMsg().getBytes());
+                channel.queueDeclare("ANSWER", false, false, false, null);
+                channel.basicPublish("", "ANSWER", null, userMessage.getMsg().getBytes());
                 System.out.println(" [x] Set '" + userMessage.getMsg() + "'");
                 Thread.sleep(5);
         } catch (TimeoutException e) {

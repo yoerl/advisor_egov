@@ -26,8 +26,8 @@ $(document).ready(  function() {
         let msg = $('input#msg').val();
         console.log("===>>", msg)
 
-        stomp.send("/sendRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
-        stomp.send("/sendRabbit_a", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+        stomp.send("/sendScript", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+        stomp.send("/sendAnswer", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
     });
 	$('#btnRecv').on('click', function(event) {
 		event.preventDefault();
@@ -35,8 +35,8 @@ $(document).ready(  function() {
         if (socket.readyState !== 1) return;
         
 
-        stomp.send("/recvRabbit", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
-        stomp.send("/recvRabbit_a", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+        stomp.send("/recvScript", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+        stomp.send("/recvAnswer", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
     });
 });
 

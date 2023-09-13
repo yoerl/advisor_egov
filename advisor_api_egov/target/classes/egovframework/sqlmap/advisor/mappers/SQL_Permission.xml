@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.counseling.permission.service.impl.PermissionMapper">
+
+		
+
+    <!-- CommonVO 클래스에 대한 resultMap 정의 -->
+	<resultMap id="userAthrReqVO" type="egovframework.counseling.permission.service.impl.UserAthrReqVO">
+	    <id property="userId" column="USER_ID"/>
+	    <result property="userNm" column="USER_NM"/>
+	    <result property="athrTypeCd" column="ATHR_TYPE_CD"/>
+	    <result property="athrCd" column="ATHR_CD"/>
+	    <result property="athrNm" column="ATHR_NM"/>
+	    <result property="useYn" column="USE_YN"/>
+	    <result property="amndId" column="AMND_ID"/>
+	    <result property="amntDttm" column="AMNT_DTTM"/>
+	    <result property="rgsrId" column="RGSR_ID"/>
+	    <result property="rgsnDttm" column="RGSN_DTTM"/>
+	</resultMap>
+	
+	    <!-- CommonVO 클래스에 대한 resultMap 정의 -->
+	<resultMap id="permissionReqVO" type="egovframework.counseling.permission.service.impl.PermissionReqVO">
+	    <id property="notiSqno" column="NOTI_SQNO"/>
+	    <result property="userId" column="USER_ID"/>
+	    <result property="userNm" column="USER_NM"/>
+	    <result property="athrTypeCd" column="ATHR_TYPE_CD"/>
+	    <result property="athrCd" column="ATHR_CD"/>
+	    <result property="athrNm" column="ATHR_NM"/>
+	    <result property="useYn" column="USE_YN"/>
+	    <result property="amndId" column="AMND_ID"/>
+	    <result property="amntDttm" column="AMNT_DTTM"/>
+	    <result property="rgsrId" column="RGSR_ID"/>
+	    <result property="rgsnDttm" column="RGSN_DTTM"/>
+	</resultMap>
+	
+	
+
+	<select id="selectPermissionReq" parameterType="egovframework.counseling.permission.service.impl.PermissionReqVO" resultMap="permissionReqVO">
+	
+		select * from tb_user_athr_req where USE_YN  = "Y";
+
+	</select>
+	
+    
+	<insert id="insertPermissionReq" parameterType="egovframework.counseling.permission.service.impl.UserAthrReqVO">
+	
+	
+		INSERT INTO TB_USER_ATHR_REQ (USER_ID,USER_NM, ATHR_TYPE_CD, ATHR_CD)
+		VALUES (#{userId},#{userNm}, #{athrTypeCd}, #{athrCd})
+
+	</insert>
+	
+	
+	<update id="deletePermissionReq" parameterType="egovframework.counseling.permission.service.impl.PermissionReqVO">
+	
+		UPDATE tb_user_athr_req
+		SET USE_YN = 'N', -- 사용 여부를 'N'으로 변경 (예시)
+		    AMNT_DTTM = NOW() -- 수정 일시를 현재 일시로 변경
+		WHERE USER_ID = #{userId}
+		AND USE_YN = 'Y';
+
+	</update>
+	
+	
+	<update id="updatePermissionRole" parameterType="egovframework.counseling.permission.service.impl.PermissionReqVO">
+		
+	UPDATE tb_user_info
+	SET USER_DIV_CD = #{athrCd}
+	WHERE USE_YN = 'Y'
+	  AND USER_ID = #{userId}
+
+
+	</update>
+	
+	
+
+</mapper>

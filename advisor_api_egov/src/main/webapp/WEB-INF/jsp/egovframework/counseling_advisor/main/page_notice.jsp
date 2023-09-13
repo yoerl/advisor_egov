@@ -47,47 +47,47 @@
     	});
 
     	
-    	
-    	
-        $.ajax({
-            type: "GET", // HTTP 요청 방식 (GET, POST 등)
-            url: "${path}/api/notices.do",
-            /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
-            success: function(jsonString) {
-                var jsonArray = JSON.parse(jsonString);
-                // 요청 성공 시 실행될 함수
-                console.log("AJAX  성공: " + jsonString);
-                
+    	$.ajax({
+    	    type: "GET",
+    	    url: "${path}/api/notices.do",
+    	    /* dataType: "json", */
+    	    success: function(jsonString) {
+    	        var jsonArray = JSON.parse(jsonString);
+    	        console.log("AJAX 성공: " + jsonString);
 
-				var ulElement = document.querySelector(".board-list");
-				ulElement.innerHTML = '';
-				
-			    for (var i = 0; i < jsonArray.length; i++) {
-			    	
-			        var item = jsonArray[i];
-	                console.log("AJAX  성공2222: " + item.amntDttm);
-			        var liElement = document.createElement("li");
-		
-			        liElement.innerHTML += '' +
-			        '<a href=${path}/page/notice_view.do?notiSqno='+item.notiSqno+'>' +
-			        '<p>' + item.notiTitlNm + '</p>' +
-			        '<span class="notice_date">'+item.amntDttm+'</span>' +
-			        '</a>' +
-			        '<div class="manager">' +
-			        '<span>'+item.rgsrId+'</span>' +
-			        '<a href="#" id="btn_del" data-noti_sqno='+item.notiSqno+' class="btn_del_con">삭제</a>' +
-			        '</div>';
-			        
-			        ulElement.appendChild(liElement);
-		            
-			    }
-                
-                
-            },
-            error: function(request, status, error) {
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
-        });
+    	        var targetElement = $(".board-list ul");
+    	        targetElement.empty(); // 기존 내용 지우기
+
+    	        var ulElement = $("ul");
+
+    	        for (var i = 0; i < jsonArray.length; i++) {
+    	            var item = jsonArray[i];
+    	            console.log("AJAX 성공2222: " + item.amntDttm);
+
+    	            var liElement = $("<li>");
+    	            liElement.append(
+    	                '<a href="${path}/page/notice_view.do?notiSqno=' + item.notiSqno + '">' +
+    	                '<p>' + item.notiTitlNm + '</p>' +
+    	                '<span class="notice_date">' + item.amntDttm + '</span>' +
+    	                '</a>' +
+    	                '<div class="manager">' +
+    	                '<span>' + item.rgsrId + '</span>' +
+    	                '<a href="#" id="btn_del" data-noti_sqno="' + item.notiSqno + '" class="btn_del_con">삭제</a>' +
+    	                '</div>'
+    	            );
+
+    	            ulElement.append(liElement);
+    	        }
+
+    	        targetElement.append(ulElement);
+    	    },
+    	    error: function(request, status, error) {
+    	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+    	    }
+    	});
+
+    	
+    	
     });
 
     </script>

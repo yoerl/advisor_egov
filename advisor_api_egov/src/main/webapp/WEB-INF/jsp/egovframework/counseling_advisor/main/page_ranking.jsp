@@ -123,7 +123,6 @@
 						<div class="rangking_keyword">
 							<form name="" method="" action="">	
 								<select name="">
-									<option id="" value="">급상승 키워드</option>
 										<option id="" value="">급상승 키워드</option>
 										<option id="" value="">누적 키워드 랭킹</option>
 										<option id="" value="">위험/블랙 키워드 랭킹</option>

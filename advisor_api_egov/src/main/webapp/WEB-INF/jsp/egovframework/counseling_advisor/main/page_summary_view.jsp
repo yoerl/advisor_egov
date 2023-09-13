@@ -129,9 +129,6 @@
 						
 						
 						
-							<div class="setting_btn">
-								<a href="${path}/page/summary_modify.do">수정</a>
-							</div>
 						
 						
 					<%-- 	<div class="board_bottom_btn">

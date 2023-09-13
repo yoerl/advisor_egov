@@ -71,12 +71,25 @@
 		<error-code>500</error-code>
 		<location>/common/error.jsp</location>
 	</error-page>
+	<context-param>
+	    <param-name>messageServerIp</param-name>
+	    <param-value>192.168.90.87</param-value>
+	</context-param>
+	<context-param>
+	    <param-name>messageServerPort</param-name>
+	    <param-value>8081</param-value>
+	</context-param>
 	
 	
-	<session-config>
+	<context-param>
+	    <param-name>userID</param-name>
+	    <param-value>user001</param-value>
+	</context-param>
+	
+<!-- 	<session-config>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
-	
+	 -->
 <!-- 	  <security-constraint>
     <web-resource-collection>
       <web-resource-name>HTTPS enabled</web-resource-name>

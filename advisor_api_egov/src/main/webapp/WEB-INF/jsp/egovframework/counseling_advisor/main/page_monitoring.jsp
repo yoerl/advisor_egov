@@ -19,13 +19,73 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>
     
-    
 <!-- 레이어팝업창 -->
 <script> 
 
 
 $(document).ready(  function() {
+	  
+	  // AJAX DELETE 요청 보내기
+    $.ajax({
+    	///api/common/data.do
+        //url: "${path}/api/common/agency.do", // 엔드포인트 URL
+        
+        url: "${path}/api/common/data/agentList.do", // 엔드포인트 URL
+        type: "GET", // HTTP DELETE 메서드 사용
+        success: function(response) {
+        	console.log(response);
+        	
+            // JSON 데이터 파싱
+            var agencies = JSON.parse(response);
+
+            // select 요소 선택
+            var selectElement = $("select[name='agent']");
+
+            // 기관명 옵션 추가
+            selectElement.append("<option value=''>기관명</option>");
+            // 각 기관 옵션 추가
+            for (var i = 0; i < agencies.length; i++) {
+                var agency = agencies[i];
+                selectElement.append("<option value='" + agency.comnCdVal + "'>" + agency.comnCdValNm + "</option>");
+            }
+            
+
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시 실행할 코드
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+        }
+    });
+		
+	  
 	
+	  
+
+    $.ajax({
+        url: "${path}/api/users.do",
+        type: "GET",
+        success: function(response) {
+            console.log(response);
+
+            var jsonArray = JSON.parse(response);
+            // 요청 성공 시 실행될 함수
+            console.log("AJAX  성공: " + jsonString);
+
+        },
+        error: function(xhr, status, error) {
+            // 두 번째 Ajax 요청의 요청 실패 시 실행할 코드
+            alert("code:" + xhr.status + "\n" + "message:" + xhr.responseText + "\n" + "error:" + error);
+        }
+    });
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  $('.monitor_couseller').on('click', function() {
 		    // 팝업 창의 URL과 창의 속성을 설정합니다.
 		    var popupURL = "http://localhost:8080/advisor_api_egov/page/monitoring_popup.do";
@@ -33,14 +93,21 @@ $(document).ready(  function() {
 		    // 팝업 창 열기
 		    window.open(popupURL, "_blank", "width=900, height=600");
 	  });
+	  
 });
 
 
+
+
+
 </script>
+ <script src="<c:url value='/js/egovframework/nxcapi_web.js' />"></script>
 </head>
 
 <body>
 <div id="wrap">
+
+
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
@@ -145,13 +212,8 @@ $(document).ready(  function() {
 					<form name="" method="" action="">
 						<div class="monitor_head">
 							<button class="refresh">새로고침</button>
-							<button class="monitor_history">접속이력</button>
-								<select name="">
-									<option id="" value="">기관선택</option>
-										<option id="" value="">기관명1</option>
-										<option id="" value="">기관명1</option>
-										<option id="" value="">기관명1</option>
-									</select>	
+								<select name='agent'>
+								</select>	
 						</div>	
 						<div class="monitor_content">
 							<div class="counseller_monitoring">
@@ -164,50 +226,13 @@ $(document).ready(  function() {
 									</li>
 									<li>
 										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-											</a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
 											<span class="counsel_end">통화종료</span>
 											<p>상담사 홍길동</p></a>
 										</div>
 									</li>
 									<li>
 										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
+											<span class="counsel_ready">통화 대기중</span>
 											<p>상담사 홍길동</p></a>
 										</div>
 									</li>
@@ -226,6 +251,18 @@ $(document).ready(  function() {
 									<li>
 										<div class="monitor_couseller"><a href="#">
 											<span class="counsel_ready">통화 대기중</span>
+											<p>상담사 홍길동</p></a>
+										</div>
+									</li>
+									<li>
+										<div class="monitor_couseller"><a href="#">
+											<span class="counsel_ing">통화중</span>
+											<p>상담사 홍길동</p></a>
+										</div>
+									</li>
+									<li>
+										<div class="monitor_couseller"><a href="#">
+											<span class="counsel_end">통화종료</span>
 											<p>상담사 홍길동</p></a>
 										</div>
 									</li>
@@ -410,5 +447,36 @@ $(document).ready(  function() {
 	</div>
 </div>
 
+
+
+
+<!--   <script>
+            NXApi.setEvent(function (json) {
+
+	            });
+	            NXApi.connect({
+		            // url: ["wss://testdo.nexuscommunity.net:9801"],
+		            url: ["ws://192.168.90.61:9800"],
+	                linkType: 4,
+	                deviceNumber : 2011
+	            }).then(function (response) {
+	                console.log('connect result:' + JSON.stringify(response));
+	            });
+	
+	
+            NXApi.command({
+	                cmd:'agentstatusgetii',
+	                group: 100,
+	                part: 102,
+	                mode: 203,  // NotReady
+	                //mode: 204,  // Ready
+	
+	
+		        //centerid : 4,
+	                maxcount: 10
+	            }).then(function(response) {
+	                console.log('agentstatusgetii result:'+JSON.stringify(response));
+	            })
+    </script> -->
 </body>
 </html>
