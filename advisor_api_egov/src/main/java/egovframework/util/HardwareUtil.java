@@ -62,20 +62,31 @@ public class HardwareUtil {
 		long bfprocesstime = osbean.getProcessCpuTime();
 		long bfuptime = runbean.getUptime();
 		long ncpus = osbean.getAvailableProcessors();
-		
 		for (int i = 0; i < 1000000; ++i) {
 			ncpus = osbean.getAvailableProcessors();
 		}
-
 		long afprocesstime = osbean.getProcessCpuTime();
 		long afuptime = runbean.getUptime();
 		float cal = (afprocesstime - bfprocesstime)/ ((afuptime - bfuptime) * 10000f);
 		float usage = Math.min(99f, cal);
-
 		System.out.println("Calculation: " + cal);
 		System.out.println("CPU Usage: " + usage);
+		try {
+			for(int i=0;i<100;i++){
+	            System.out.println("***********************************************************");
+	            System.out.println("CPU Usage : " + String.format("%.2f", osbean.getSystemCpuLoad() * 100));
+	            System.out.println("Memory Free Space : " + String.format("%.2f", (double)osbean.getFreePhysicalMemorySize()/1024/1024/1024  ));
+	            System.out.println("Memory Total Space : " + String.format("%.2f", (double)osbean.getTotalPhysicalMemorySize()/1024/1024/1024  ));
+	
+					Thread.sleep(1000);
+	        }
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+	
 	private void showRuntime() {
 		RuntimeMXBean runbean = (RuntimeMXBean) ManagementFactory.getRuntimeMXBean();
 	}
@@ -148,18 +159,16 @@ public class HardwareUtil {
 		showThreadBean();
 
 		seperator();
-		showClassLoading();
-
-		seperator();
 		showMemory();
-
-		seperator();
-		showDisk();
-
+		
 		seperator();
 		showCPU();
 
 		seperator();
+		showDisk();
+		
+		seperator();
+		showClassLoading();
 
 	}
 
