@@ -22,6 +22,7 @@ import java.util.List;
 import egovframework.example.sample.service.EgovSampleService;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
+import egovframework.util.Pagination;
 import egovframework.counseling.notice.service.impl.NoticeVO;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
@@ -197,4 +198,16 @@ public class PageController {
 		return "main/page_notice_write";
 	}
 	
+	@GetMapping("/page/commonPaging.do")
+	public String commonPaging(ModelMap model) throws Exception {
+		
+		Pagination pagination = new Pagination();
+		pagination.setTotalRecordCount(51);
+		
+		System.out.println(pagination.toString());
+		
+		model.addAttribute("pagination", pagination);
+		
+		return "main/commonPaging";
+	}	
 }

@@ -141,7 +141,41 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 		    });
 		
 		}
+	    /* 더보기 버튼 클릭 함수 */
+        function showMore(id) {
+            $("#ai_part_txt"+id).css("maxHeight","none"); // 더 보기 버튼을 클릭하면 높이 제한을 해제
+            $("#counsel_more_btn"+id).css("display","none"); // 더 보기 버튼을 숨김
+        }
+
+        /*  API로 데이터 리턴받고 영역 뿌려준 후 실행시켜야함 
+        	설명 : 영역의 높이가 70% 이상인지 확인해서 더보기 버튼 생성하는 로직
+        	파라미터 : 순번
+        */
+        function eventAny(id){
+        	var divElement = $("#ai_part_txt"+id);	//AI 답변영역 
+        	var divHeight = divElement.height();
+        	var windowHeight = $(window).height();
+        	
+        	// 더보기 버튼 html 
+        	var moreBtnHtml = "<div class='counsel_more_btn' id='counsel_more_btn"+id+"' onclick='showMore(\""+id+"\");'><a href='#'>더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=''></i></a><div>";
+        	
+        	// 높이가 70% 이상인지 확인합니다.
+        	if (divHeight >= windowHeight * 0.7) {
+        	  console.log("DIV의 높이가 화면의 70% 이상입니다.");
+        	  divElement.parent().append(moreBtnHtml);	// 더보기버튼 Element 추가
+        	  
+        	} else {
+        	  console.log("DIV의 높이가 화면의 70% 미만입니다.");
+        	}
+        }
+	        
 	</script>
+		<style>
+	        .ai_part_txt {
+	            max-height: 80vh; /* 화면 높이 제한 */
+	            overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+	        }
+	    </style>
 </head>
 
 <body>
