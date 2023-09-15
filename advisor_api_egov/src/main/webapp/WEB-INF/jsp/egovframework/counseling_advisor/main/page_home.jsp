@@ -45,14 +45,31 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
             
 			connectStomp();
 			
+			$(document).on("click", "#btn_adv_menual_question", function() {
+				
+				alert("111111");
+				
+			})
+			
+
+			
+			
+//			$("#adv_menual_question").
+			
+	//		<input id="adv_menual_question_text" type="text" size="20" name="" value="" placeholder="검색어를 입력하세요.">
+		//	<button id="adv_menual_question">검색</button>		
+			
+			
 		});
 		
 		var socket = null;
 		var stomp = null;
 		
 		function connectStomp() {
-			socket = new SockJS("http://<%= messageServerIp %>:<%= messageServerPort %>/advisor_message_egov/stomp"); // endpoint 
-			//socket = new SockJS("http://localhost:8081/advisor_message_egov/stomp"); // endpoint 
+
+			//socket = new SockJS("http://192.168.90.87:8081/advisor_message_egov/stomp"); // endpoint 
+			//socket = new SockJS("http://<%= messageServerIp %>:<%= messageServerPort %>/advisor_message_egov/stomp"); // endpoint 
+			socket = new SockJS("http://localhost:8081/advisor_message_egov/stomp"); // endpoint 
 			
 		    stomp = Stomp.over(socket);
 		    
@@ -73,12 +90,12 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 		            var messageType = messageData.type;
 		            
 		            if (messageType === 0) {
-		            	
+		            	$("#no_calling").css("display", "none");
 		            	
 		                console.log("통화시작");
 		            	$("#chating_head").css("display", "block");
 		            	
-		            	{"callId":"callTest","recId":"recTest","agentId":"agentTest","orgPhoneNumber":"010-1111-1234","type":0,"stopStatus":0}
+		            	//{"callId":"callTest","recId":"recTest","agentId":"agentTest","orgPhoneNumber":"010-1111-1234","type":0,"stopStatus":0}
 		            	
 		            	
 		                // 삽입할 HTML 코드를 생성합니다.
@@ -93,25 +110,66 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 		                
 		                
 		            } else if (messageType === 1) {
-		            	
+		            	$("#no_calling").css("display", "none");
 
+		                console.log("통화중");
+		            	
+		            	 $('#chating_contents ul').append('<li>' + messageData.orgPhoneNumber + '</li>');
+		            	
 		            	// 고객이 말하는거
 		            	if(messageData.rxTxFlag=="RX"){
-			            		
+
+			                console.log("고객 통화중");
+
+			                // 삽입할 HTML 코드를 생성합니다.
+								var insertedHTML = '<li class="guest">' +
+								                  '<em>010-1234-5678 (2023.12.31.23.59.59)</em>' +
+								                  '<div class="chattok">' +
+								                  '<span class="dengerus"><i>!</i>위험키워드 #탈영</span>' +
+								                  '<p>안녕하세요</p>' +
+								                  '</div>' +
+								                  '</li>';
+					           	$('#chating_contents').html(insertedHTML);
+
 		            	}
 		            	
 
 		            	// 상담사가 말하는거 말하는거
-		            	if(messageData.rxTxFlag=="TX"){
+		            	if(messageData.rxTxFlag=="TX")
 			           	{
-		            		
-		            	}
-		            	
-		            		
-		            	
-		                console.log("통화중");
+			           		
+			                console.log("상담사 통화중");
+
+
+							var insertedHTML = '<li class="counseller">>' +
+							                  '<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>' +
+							                  '<div class="chattok"><p>네  안녕하세요.<br />' +
+							                  '병역의무 이행<br />' +
+							                  '•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />' +
+							                  '<•상근예비역(18개월)<br />' +
+							                  '•산업기능요원 현역 입영대상사(34개월)<br />' +
+							                  '우선 모집일정,지원자격 등<br />' +
+							                  '확인 후 지원특기.......	</p>';
+
+				           	$('#chating_contents').html(insertedHTML);
+							                
+			           	}
 		            } else if (messageType === 2) {
-		                console.log("통화종료");
+		           		$("#no_calling").css("display", "none");
+
+		            	$("#chating_bottom").css("display", "block");
+		            	
+
+						var insertedHTML = '<div class="chating_head_inner">'
+												'<h2>'+messageData.orgPhoneNumber+' 고객님과 전화상담이 종료되었습니다.</h2>'
+												'<p>종료일시 ('+messageData.startConvTime+')</p>'
+											'</div>'
+		            	$('#chating_bottom').html(insertedHTML);
+											
+		            	
+						
+											
+		            	console.log("통화종료");
 		            }
 			        
 			        
@@ -141,41 +199,7 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 		    });
 		
 		}
-	    /* 더보기 버튼 클릭 함수 */
-        function showMore(id) {
-            $("#ai_part_txt"+id).css("maxHeight","none"); // 더 보기 버튼을 클릭하면 높이 제한을 해제
-            $("#counsel_more_btn"+id).css("display","none"); // 더 보기 버튼을 숨김
-        }
-
-        /*  API로 데이터 리턴받고 영역 뿌려준 후 실행시켜야함 
-        	설명 : 영역의 높이가 70% 이상인지 확인해서 더보기 버튼 생성하는 로직
-        	파라미터 : 순번
-        */
-        function eventAny(id){
-        	var divElement = $("#ai_part_txt"+id);	//AI 답변영역 
-        	var divHeight = divElement.height();
-        	var windowHeight = $(window).height();
-        	
-        	// 더보기 버튼 html 
-        	var moreBtnHtml = "<div class='counsel_more_btn' id='counsel_more_btn"+id+"' onclick='showMore(\""+id+"\");'><a href='#'>더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=''></i></a><div>";
-        	
-        	// 높이가 70% 이상인지 확인합니다.
-        	if (divHeight >= windowHeight * 0.7) {
-        	  console.log("DIV의 높이가 화면의 70% 이상입니다.");
-        	  divElement.parent().append(moreBtnHtml);	// 더보기버튼 Element 추가
-        	  
-        	} else {
-        	  console.log("DIV의 높이가 화면의 70% 미만입니다.");
-        	}
-        }
-	        
 	</script>
-		<style>
-	        .ai_part_txt {
-	            max-height: 80vh; /* 화면 높이 제한 */
-	            overflow: hidden; /* 내용이 넘칠 경우 숨김 */
-	        }
-	    </style>
 </head>
 
 <body>
@@ -194,7 +218,7 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
 			<a href="${path}/page/monitoring.do"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
 			<a href="${path}/page/authority.do"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
-			<a href="#" id="btn_logout"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
+			<a href="${path}/api/auth/logout.do" id="btn_logout"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
 		</nav>
 			
 		<div id="lnb">
@@ -212,8 +236,17 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
 				<div id="chating_head" class="chating_head" style="display:none;">
 <!-- 					<div class="chating_head_inner">
@@ -225,47 +258,14 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 				<!-- chating con -->
 				<div class="chating_con">
 					
-					<div class="chating_contents">
+					<div id="chating_contents" class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div id="chating_bottom" class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
 					<!-- chating popup -->
@@ -295,8 +295,8 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 										<option id="" value="">AI</option>
 										<option id="" value="">KMS</option>
 								</select>
-								<input type="text" size="20" maxlength="30" name="" value="" placeholder="검색어를 입력하세요.">
-								<button>검색</button>								
+								<input id="text_adv_menual_question" type="text" size="20" name="" value="" placeholder="검색어를 입력하세요.">
+								<button id="btn_adv_menual_question">검색</button>								
 							</form>
 						</div>
 					<!-- 내용 -->
@@ -663,6 +663,32 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 		$(".author_alert_btn a.bnt_cancle").click(function(){ 
 			$("#author_alert_popup").css("display", "none"); 
 		}); 
+		
+        function showMore(id) {
+            $("#ai_part_txt"+id).css("maxHeight","none"); // 더 보기 버튼을 클릭하면 높이 제한을 해제
+            $("#counsel_more_btn"+id).css("display","none"); // 더 보기 버튼을 숨김
+        }
+        /*  API로 데이터 리턴받고 영역에 뿌려준 후 실행시켜야함 
+        	설명 : 높이가 70% 이상인지 확인해서 더보기 버튼 생성하는 로직
+        	파라미터 : 순번
+        */
+        function eventAny(id){
+        	var divElement = $("#ai_part_txt"+id);	//AI 답변영역 
+        	var divHeight = divElement.height();
+        	var windowHeight = $(window).height();
+        	
+        	// 더보기 버튼 html 
+        	var moreBtnHtml = "<div class='counsel_more_btn' id='counsel_more_btn"+id+"' onclick='showMore(\""+id+"\");'><a href='#'>더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=''></i></a><div>";
+        	
+        	// 높이가 70% 이상인지 확인합니다.
+        	if (divHeight >= windowHeight * 0.7) {
+        	  console.log("DIV의 높이가 화면의 70% 이상입니다.");
+        	  divElement.parent().append(moreBtnHtml);	// 더보기버튼 Element 추가
+        	  
+        	} else {
+        	  console.log("DIV의 높이가 화면의 70% 미만입니다.");
+        	}
+        }
 	}); 
 </script>
 </body>

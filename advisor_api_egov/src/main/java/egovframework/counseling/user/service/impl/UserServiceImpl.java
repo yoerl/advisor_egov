@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import egovframework.counseling.notice.service.NoticeService;
 import egovframework.counseling.user.service.UserService;
-import egovframework.example.sample.service.impl.SampleDAO;
 
 @Service("userService")
 public class UserServiceImpl extends EgovAbstractServiceImpl implements UserService {

@@ -22,6 +22,8 @@ import java.util.Date;
 public class NoticeVO{
 
 
+	
+	
 	public String getNotiSqno() {
 		return notiSqno;
 	}
@@ -100,6 +102,12 @@ public class NoticeVO{
 	public void setRgsnDttm(Timestamp rgsnDttm) {
 		this.rgsnDttm = rgsnDttm;
 	}
+	public String getRgsnDttmStr() {
+		return rgsnDttmStr;
+	}
+	public void setRgsnDttmStr(String rgsnDttmStr) {
+		this.rgsnDttmStr = rgsnDttmStr;
+	}
 	public String getPageNumber() {
 		return pageNumber;
 	}
@@ -117,10 +125,9 @@ public class NoticeVO{
 		return "NoticeVO [notiSqno=" + notiSqno + ", userId=" + userId + ", userNm=" + userNm + ", notiDivNm="
 				+ notiDivNm + ", notiTitlNm=" + notiTitlNm + ", notiCntn=" + notiCntn + ", useYn=" + useYn + ", amndId="
 				+ amndId + ", amndNm=" + amndNm + ", amntDttm=" + amntDttm + ", rgsrId=" + rgsrId + ", rgsrNm=" + rgsrNm
-				+ ", rgsnDttm=" + rgsnDttm + ", pageNumber=" + pageNumber + ", pageSize=" + pageSize + "]";
+				+ ", rgsnDttm=" + rgsnDttm + ", rgsnDttmStr=" + rgsnDttmStr + ", pageNumber=" + pageNumber
+				+ ", pageSize=" + pageSize + "]";
 	}
-	
-	
 	private String notiSqno;
 	private String userId;
     private String userNm;
@@ -134,6 +141,7 @@ public class NoticeVO{
     private String rgsrId;
     private String rgsrNm;
     private Timestamp rgsnDttm;
+    private String rgsnDttmStr;
     
     
     private String pageNumber;

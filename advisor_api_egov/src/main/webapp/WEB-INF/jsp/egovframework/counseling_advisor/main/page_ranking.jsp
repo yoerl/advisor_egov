@@ -3,6 +3,10 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String taServer = getServletContext().getInitParameter("taServer");
+%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ko">
@@ -13,9 +17,57 @@
 <title>농촌진흥청</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
+    <link type="text/css" rel="stylesheet" href="<c:url value='/dist/tailwind.min.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+	<script src="<c:url value='/js/egovframework/sockjs.client.min.js' />"></script>
+	<script src="<c:url value='/js/egovframework/stomp-2.3.4.min.js' />"></script>
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
 </head>
+
+<script>
+
+$(document).ready(function() {
+
+	
+	performAjaxRequest("trending");
+	$("#keyword_type").on("change", function() {
+	    // 선택된 value 가져오기
+	    var selectedValue = $(this).val();
+	    
+	    // 선택된 value 출력 또는 다른 작업에 사용하기
+	    console.log("선택된 value: " + selectedValue);
+	    
+	    performAjaxRequest(selectedValue);
+	 
+	});
+	
+});
+
+
+
+</script>
+<style>
+    /* ul 요소의 스타일은 변경하지 않습니다. */
+    .rangking_data_table ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    /* li 요소를 가로로 배치하도록 스타일링합니다. */
+    .rangking_data_table li {
+        display: flex;
+    }
+
+    /* 각 div 요소가 3분의 1 가로 길이를 가지도록 스타일링합니다. */
+    .rangking_data_table li div {
+        flex: 1;
+        text-align: center;
+    }
+</style>
 
 <body>
 <div id="wrap">
@@ -44,14 +96,23 @@
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -59,47 +120,25 @@
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<form name="" method="" action="">
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+						</form>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -122,52 +161,19 @@
 					<div class="rangking_con_inner">
 						<div class="rangking_keyword">
 							<form name="" method="" action="">	
-								<select name="">
-										<option id="" value="">급상승 키워드</option>
-										<option id="" value="">누적 키워드 랭킹</option>
-										<option id="" value="">위험/블랙 키워드 랭킹</option>
-									</select>							
+											<select id="keyword_type" name="keyword_type">
+											    <option value="trending">급상승 키워드</option>
+											    <option value="accumulated">누적 키워드 랭킹</option>
+											    <option value="dangerous">위험/블랙 키워드 랭킹</option>
+											</select>					
 							</form>
 						</div>
 						<div class="rangking_data_table">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-							<caption></caption>
-								<colgroup>
-									<col style="width:33%;">
-									<col style="width:33%;">
-									<col style="width:34%;">
-								</colgroup>
-							  <tr>
-								<th>순번</th>
-								<th>키워드</th>
-								<th>%(건)</th>
-							  </tr>
-							  <tr>
-								<td>1</td>
-								<td>키워드1</td>
-								<td>12,123</td>
-							  </tr>
-							  <tr>
-								<td>2</td>
-								<td>키워드1</td>
-								<td>12,123</td>
-							  </tr>
-							  <tr>
-								<td>3</td>
-								<td>키워드1</td>
-								<td>12,123</td>
-							  </tr>
-							  <tr>
-								<td>4</td>
-								<td>키워드1</td>
-								<td>12,123</td>
-							  </tr>
-							  <tr>
-								<td>5</td>
-								<td>키워드1</td>
-								<td>12,123</td>
-							  </tr>
-							</table>							
+						    <ul>
+						        <li class="header"><div>순번</div><div>키워드</div><div>%(건)</div></li>
+						    </ul>
+						</div>
+													
 						</div>
 
 					
@@ -178,5 +184,193 @@
 	</div>
 	<!-- body -->
 </div>
+
+<script>
+function performAjaxRequest(selectedValue) {
+    // 선택된 값에 따라 다른 작업 수행
+    if (selectedValue === "trending") {
+
+    	
+			$.ajax({
+			    type: "GET",
+			    url: "http://<%= taServer %>/api/dashboard/rank/rising",
+			    data: {
+			        date_from: "2023-04-14",
+			        day_count: 1,
+			        top_rank: 5,
+			        rank_type: "RISING_SUDDEN"
+			    },
+			    success: function(data) {
+
+			          var jsonString = JSON.stringify(data, null, 2);
+			          console.log("AJAX 성공: \n" + jsonString);
+			    	
+			        var returnObject = data.returnObject; // "returnObject" 객체 가져오기
+
+			        // "2023.04.14" 키에 해당하는 배열을 가져옴
+			        var dataArray = returnObject["2023.04.14"];
+
+
+			      //  var trToRemove = $("#keyword_table tr"); // 예시로 순번이 4인 <tr> 요소를 선택합니다.
+
+		            // 선택한 <tr> 요소의 모든 자식 요소를 삭제합니다.
+		            //trToRemove.empty();
+			        $(".rangking_data_table li.rangking_data").remove();
+			        
+			        if (dataArray) {
+			            for (var i = 0; i < dataArray.length; i++) {
+			                var term = dataArray[i].term; // "term" 속성 가져오기
+			                var weight = dataArray[i].weight; // "weight" 속성 가져오기
+			                var rank = dataArray[i].rank; // "rank" 속성 가져오기
+			                var df = dataArray[i].df; // "df" 속성 가져오기
+			                var beforeRank = dataArray[i].beforeRank; // "beforeRank" 속성 가져오기
+			                var score = dataArray[i].score; // "score" 속성 가져오기
+
+			                // 가져온 데이터를 원하는 방식으로 처리
+			                console.log("term: " + term);
+			                console.log("weight: " + weight);
+			                console.log("rank: " + rank);
+			                console.log("df: " + df);
+			                console.log("beforeRank: " + beforeRank);
+			                console.log("score: " + score);
+			                
+			               		var ulElement = $(".rangking_data_table ul");
+			                    var newLi = $("<li class='rangking_data'><div>" + dataArray[i].rank + "</div><div>" + dataArray[i].term + "</div><div>" + dataArray[i].score + "</div></li>");
+			                    ulElement.append(newLi);
+			                    
+			                    
+			            }
+			        }
+			    },
+			    error: function(request, status, error) {
+			        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+			    }
+			});
+
+    	  
+        // 급상승 키워드에 대한 동작 수행
+    } else if (selectedValue === "accumulated") {
+
+    	
+		$.ajax({
+		    type: "GET",
+		    
+		    url: "http://<%= taServer %>/api/dashboard/rank/top",
+		    //url: "http://192.168.22.160:8081/api/dashboard/rank/top",
+		    data: {
+		        date_from: "2023-04-14",
+		        day_count: 1,
+		        top_rank: 5,
+		        rank_type: "RISING_SUDDEN"
+		    },
+		    success: function(data) {
+
+		          var jsonString = JSON.stringify(data, null, 2);
+		          console.log("AJAX 성공: \n" + jsonString);
+		    	
+		        var returnObject = data.returnObject; // "returnObject" 객체 가져오기
+
+		        // "2023.04.14" 키에 해당하는 배열을 가져옴
+		        var dataArray = returnObject["2023.04.14"];
+
+
+		      //  var trToRemove = $("#keyword_table tr"); // 예시로 순번이 4인 <tr> 요소를 선택합니다.
+
+	            // 선택한 <tr> 요소의 모든 자식 요소를 삭제합니다.
+	            //trToRemove.empty();
+		        $(".rangking_data_table li.rangking_data").remove();
+		        
+		        if (dataArray) {
+		            for (var i = 0; i < dataArray.length; i++) {
+		                var term = dataArray[i].term; // "term" 속성 가져오기
+		                var weight = dataArray[i].weight; // "weight" 속성 가져오기
+		                var rank = dataArray[i].rank; // "rank" 속성 가져오기
+		                var df = dataArray[i].df; // "df" 속성 가져오기
+		                var beforeRank = dataArray[i].beforeRank; // "beforeRank" 속성 가져오기
+		                var score = dataArray[i].score; // "score" 속성 가져오기
+
+		                // 가져온 데이터를 원하는 방식으로 처리
+		                console.log("term: " + term);
+		                console.log("weight: " + weight);
+		                console.log("rank: " + rank);
+		                console.log("df: " + df);
+		                console.log("beforeRank: " + beforeRank);
+		                console.log("score: " + score);
+		                
+		               		var ulElement = $(".rangking_data_table ul");
+		                    var newLi = $("<li class='rangking_data'><div>" + dataArray[i].rank + "</div><div>" + dataArray[i].term + "</div><div>" + dataArray[i].score + "</div></li>");
+		                    ulElement.append(newLi);
+		                    
+		                    
+		            }
+		        }
+		    },
+		    error: function(request, status, error) {
+		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		    }
+		});
+        // 누적 키워드 랭킹에 대한 동작 수행
+    } else if (selectedValue === "dangerous") {
+
+		$.ajax({
+		    type: "GET",
+		    url: "http://<%= taServer %>/api/dashboard/rank/black",
+		    data: {
+		        date_from: "2023-04-14",
+		        day_count: 1,
+		        top_rank: 5,
+		        rank_type: "RISING_SUDDEN"
+		    },
+		    success: function(data) {
+
+		          var jsonString = JSON.stringify(data, null, 2);
+		          console.log("AJAX 성공: \n" + jsonString);
+		    	
+		        var returnObject = data.returnObject; // "returnObject" 객체 가져오기
+
+		        // "2023.04.14" 키에 해당하는 배열을 가져옴
+		        var dataArray = returnObject["2023.04.14"];
+
+
+		      //  var trToRemove = $("#keyword_table tr"); // 예시로 순번이 4인 <tr> 요소를 선택합니다.
+
+	            // 선택한 <tr> 요소의 모든 자식 요소를 삭제합니다.
+	            //trToRemove.empty();
+		        $(".rangking_data_table li.rangking_data").remove();
+		        
+		        if (dataArray) {
+		            for (var i = 0; i < dataArray.length; i++) {
+		                var term = dataArray[i].term; // "term" 속성 가져오기
+		                var weight = dataArray[i].weight; // "weight" 속성 가져오기
+		                var rank = dataArray[i].rank; // "rank" 속성 가져오기
+		                var df = dataArray[i].df; // "df" 속성 가져오기
+		                var beforeRank = dataArray[i].beforeRank; // "beforeRank" 속성 가져오기
+		                var score = dataArray[i].score; // "score" 속성 가져오기
+
+		                // 가져온 데이터를 원하는 방식으로 처리
+		                console.log("term: " + term);
+		                console.log("weight: " + weight);
+		                console.log("rank: " + rank);
+		                console.log("df: " + df);
+		                console.log("beforeRank: " + beforeRank);
+		                console.log("score: " + score);
+		                
+		               		var ulElement = $(".rangking_data_table ul");
+		                    var newLi = $("<li class='rangking_data'><div>" + dataArray[i].rank + "</div><div>" + dataArray[i].term + "</div><div>" + dataArray[i].score + "</div></li>");
+		                    ulElement.append(newLi);
+		                    
+		                    
+		            }
+		        }
+		    },
+		    error: function(request, status, error) {
+		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		    }
+		});
+    }
+	
+	
+}
+</script>
 </body>
 </html>

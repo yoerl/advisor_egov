@@ -4,6 +4,21 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String messageServerIp = getServletContext().getInitParameter("messageServerIp");
+%>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String taServer = getServletContext().getInitParameter("taServer");
+%>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String myServerIp = getServletContext().getInitParameter("myServerIp");
+%>
+
+
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -19,22 +34,60 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
     
-<script> 
+<style>
+.ellipsis-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px; /* 원하는 너비 설정 */
+    display:inline-block;
+    
+    
+}
 
+a {
+  white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임 표시 (...) 적용 */
+  max-width: 100%; /* a 태그의 최대 너비를 설정 (부모 요소에 따라 다를 수 있음) */
+}
 
-$(document).ready(  function() {
-	
+    </style>
+    
+    
+<script>
+
+$(document).ready(function() {
+    // 페이지 로드 후 실행되는 코드
+    $("#btn_search").click(function() {
+        // 검색 버튼 클릭 시 AJAX 요청 수행
+        var currentPage = 1; // 현재 페이지
+        var searchText = $("#serch_text").val(); // 검색어 입력란의 값
+
+        performAjaxRequest(currentPage, searchText);
+        pagination1.movePageTo(1);
+    });
+
+    
+	  
 	  $('.btn_view_history').on('click', function() {
-		  
-		  console.log("qqqqq");
 		    // 팝업 창의 URL과 창의 속성을 설정합니다.
-		    var popupURL = "http://localhost:8080/advisor_api_egov/page/history_popup.do";
+		    var popupURL = "http://localhost:8080/advisor_api_egov/page/monitoring_popup.do";
 		    var popupName = "팝업 이름";
 		    // 팝업 창 열기
 		    window.open(popupURL, "_blank", "width=900, height=600");
 	  });
-});
+	  
+    
+    // 페이지 로드 후 초기 데이터 가져오기
+    var currentPage = 1; // 초기 페이지
+    var searchText = ""; // 초기 검색어
 
+    performAjaxRequest(currentPage, searchText);
+    
+    
+
+});
 
 </script>
 </head>
@@ -67,14 +120,23 @@ $(document).ready(  function() {
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -82,47 +144,25 @@ $(document).ready(  function() {
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<form name="" method="" action="">
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+						</form>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -146,99 +186,21 @@ $(document).ready(  function() {
 				</div>
 				<div class="right_contents">
 					<div class="notice_con_inner">
-					<form name="" method="" action="">
 						<div class="board_search">
-								<input type="text" size="20" maxlength="30" name="" value="" placeholder="검색어를 입력하세요.">
-								<button>조회</button>								
+								<input id="serch_text" type="text" size="20" maxlength="30" name="" value="" placeholder="검색어를 입력하세요.">
+								<button  id="btn_search">조회</button>						
 							
 						</div>
 						<!-- <p class="no-massage">조회된 내용이 없습니다.</p> -->
 					<!-- notice-list -->
-						<ul class="board-list" id="
-">
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>123334</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
-							<li>
-								<a href="#">
-									<p>기관명 또는 그룹명 나타남</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span><a href="#" class="btn_view_history">보기</a></div>
-							</li>
+						<ul class="board-list" id="board-list">
+
+							
 
 						</ul>
 					<!-- notice-list -->
 						
 					</div>
-					</form>
 					
 					
 					<div class="code-html pagenation">
@@ -277,14 +239,23 @@ $(document).ready(  function() {
 			</div>
 		<!-- 기관명 -->
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -292,56 +263,21 @@ $(document).ready(  function() {
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
 					<!-- chating popup -->
 					<div class="chating_popup" style="display:none;">
-						<form name="" method="" action="">
-						<h3><i><img src="../images/icons/smile_icon.png" alt=""></i>상담요약</h3>
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
 						<div class="chating_popup_con">
 							<textarea placeholder="군입대에 대한 상담"></textarea>
 							<button>저장</button>
 						</div>
-						</form>
 					</div>
 					<!-- chating popup -->
 				
@@ -353,7 +289,6 @@ $(document).ready(  function() {
 				<div class="counsel">
 					<!-- 검색 -->
 						<div class="counsel_search">
-							<form name="" method="" action="">
 	
 								<select name="">
 									<option id="" value="">전체</option>
@@ -361,8 +296,7 @@ $(document).ready(  function() {
 										<option id="" value="">KMS</option>
 									</select>
 								<input type="text" size="20" maxlength="30" name="" value="" placeholder="검색어를 입력하세요.">
-								<button>검색</button>								
-							</form>
+								<button>검색</button>			
 						</div>
 					<!-- 내용 -->
 					
@@ -497,7 +431,110 @@ $(document).ready(  function() {
 		itemsPerPage: 10,
 		visiblePages: 5
 	});
+	
+	 pagination1.on('afterMove', function(eventData) {
+		    // 이벤트 핸들러 내에서 현재 페이지 번호를 가져옵니다.
+		    var currentPage = eventData.page;
+		    
+		    
+		    performAjaxRequest(currentPage,$("#serch_text").val());
+		});
 </script>
+<script> 
+
+function performAjaxRequest(page_no,serch_text) {
+	console.log("performAjaxRequest    " + page_no  + "     "+ serch_text);
+
+	var requestData = {
+		    index_names: "tb_cons_meta_hstr",
+		    date_format: "yyyy-MM-dd HH:mm:ss",
+		    return_fields: "CONS_HSTR_ID/CONS_STT_TIME/CALL_ID/INTT_CD/INTT_CD_NM/CNSR_ID/CNSR_ID_NM/DPMS_ID",
+		    date_display_columns: "CONS_STT_TIME",
+		    date_display_format: "yyyy.MM.dd HH:mm:ss",
+		    q:serch_text,
+		    startPos: page_no,
+		    retCount: 10,
+		    sortOrder: "C_DATE desc"
+		};
+	
+
+  $.ajax({
+      type: "GET",
+      url: "http://<%= taServer %>/api/history/search/tbConsMetaHstr",
+      data: requestData, // 파라미터 데이터 설정
+      
+      success: function(data) {
+          var jsonString = JSON.stringify(data, null, 2);
+          console.log("AJAX 성공: \n" + jsonString);
+          
+          // 'SEARCH_CNTN' 값을 추출하는 로직
+          var returnObjects = data.returnObject;
+          
+
+	        var $boardList = $("#board-list");
+	        
+	    	$boardList.empty();
+          for (var i = 0; i < returnObjects.length; i++) {
+              
+		        // 삽입할 `<li>` 항목 정의
+		        var listItem = `
+		            <li>
+		                <a href="#">
+		                    <p class=".ellipsis-text">`+returnObjects[i].SEARCH_CNTN+`</p>
+		                    <span class="notice_date">`+returnObjects[i].CONS_HSTR_ID+`</span> 
+		                </a>
+		                <div class="manager">
+		                    <span>`+returnObjects[i].CNSR_ID_NM+`</span>
+		                    <span>`+returnObjects[i].DPMS_ID+`</span>
+		                    <a href="#"  class="btn_view_history">보기</a>
+		                    <button id="btn_view_history">보기</button>
+		                </div>
+		            </li>
+		        `;
+		        
+		        
+                                    
+
+		        // `<ul>` 태그 안에 `<li>` 항목 삽입
+		        
+                   $("#board-list").append(listItem);
+		        
+          }
+          
+          
+
+      },
+      error: function(request, status, error) {
+          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+      }
+  });
+  
+ 
+  
+}
+
+
+
+
+
+
+function onpenPopup(){
+	  
+    // 팝업 창의 URL과 창의 속성을 설정합니다.
+    var popupURL = "${path}/advisor_api_egov/page/history_popup.do";
+    var popupName = "팝업 이름";
+    // 팝업 창 열기
+    window.open(popupURL, "_blank", "width=900, height=600");
+}
+
+
+
+</script>
+
+
+
+
+
 <script> 
 
 </script>

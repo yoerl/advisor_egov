@@ -9,7 +9,6 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
 import egovframework.counseling.notice.service.NoticeService;
-import egovframework.example.sample.service.impl.SampleDAO;
 
 @Service("noticeService")
 public class NoticeServiceImpl extends EgovAbstractServiceImpl implements NoticeService {

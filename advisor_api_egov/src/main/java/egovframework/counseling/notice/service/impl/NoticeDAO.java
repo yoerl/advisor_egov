@@ -4,6 +4,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -13,9 +16,21 @@ public class NoticeDAO {
     private NoticeMapper noticeMapper;
 
     public List<NoticeVO> selectNoticeList() throws Exception {
-        return noticeMapper.selectNotice();
+        List<NoticeVO> notices = noticeMapper.selectNotice();
+
+        // 가져온 timestamp 값을 원하는 형식으로 변환
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (NoticeVO notice : notices) {
+            Date timestamp = notice.getRgsnDttm(); // 이 부분은 NoticeVO 클래스에 따라서 변경될 수 있습니다.
+            String formattedDate = dateFormat.format(timestamp);
+            notice.setRgsnDttmStr(formattedDate); // 변환된 값을 NoticeVO 객체에 저장합니다.
+        }
+
+        return notices;
     }
 
+
+    
     public List<NoticeVO> selectNoticeOne(String id) throws Exception {
         NoticeVO param = new NoticeVO();
         param.setNotiSqno(id);

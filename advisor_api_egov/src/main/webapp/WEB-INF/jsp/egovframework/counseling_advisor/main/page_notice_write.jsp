@@ -16,6 +16,11 @@
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+    <style>
+	  .ck-editor__editable { height: 2000px; }
+	</style>
     <script>
 	$(document).ready(function() {
 
@@ -26,14 +31,15 @@
 	    	
 	        // 버튼 클릭 이벤트 핸들러
 	        $("#btn_save").click(function() {
+	        	
 	            // 서버로 보낼 JSON 데이터
 	            var jsonData = {
 	                    notiSqno: "",          // 문자열 데이터
 	                    userId: "test_userId",        // 문자열 데이터
 	                    userNm: "test_userNm",       // 문자열 데이터
 	                    notiDivNm: "",    // 문자열 데이터
-	                    notiTitlNm: document.getElementById("area_noti_title").value, // 문자열 데이
-	                    notiCntn: document.getElementById("area_noti_content").value, // 문자열 데이터
+	                    notiTitlNm: document.getElementById("area_noti_title").value, // 문자열 데이터
+	                    notiCntn: editor.getData(), // 문자열 데이터
 	                    useYn: '',               // 문자 데이터 (char)
 	                    amndId: "",       // 문자열 데이터
 	                    amndNm: "",          // 문자열 데이터
@@ -82,6 +88,7 @@
 	    
 	    
 	});
+
     </script>
 </head>
 
@@ -173,40 +180,51 @@
 			</section>
 		<!-- chating -->
 		<!-- right -->
-			<section id="sub_right_con"><form name="" method="" action="">
-				<div class="right_input_title">
-					<h2>
-						<a href="javascript:history.go(-1);">
-							<img src="../images/icons/arrow-left.png" alt="">
-						</a><input id="area_noti_title" type="text" size="20" maxlength="30" name="" value="" placeholder="공지사항 제목을 작성해주세요."></h2>
-					
-					<div class="btn_close">
-						<a href="${path}/page/home.do">
-							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
-						</a>
-					</div>
-				</div>
-				<div class="right_contents">
-					<div class="view_con_inner">
-						<!-- <div class="board_data"><p>작성자명&nbsp; | &nbsp;2023.01.01 12:12</p></div> -->
-						<div class="edit_write_content">
-							<div class="editor_area">
-								<img src="../images/icons/edit.gif" alt="">
-							</div>
-							<textarea id="area_noti_content"></textarea>
+			<section id="sub_right_con">
+				<form name="frm" id="frm" method="POST" onsubmit="return false;">
+					<div class="right_input_title">
+						<h2>
+							<a href="javascript:history.go(-1);">
+								<img src="../images/icons/arrow-left.png" alt="">
+							</a>
+							<input id="area_noti_title" type="text" size="20" maxlength="30" placeholder="공지사항 제목을 작성해주세요.">
+						</h2>
+						<div class="btn_close">
+							<a href="${path}/page/home.do">
+								<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
+							</a>
 						</div>
-						<!-- button -->
-							<!-- button -->
-							<div class="board_bottom_btn">
-							    <button type="button" id="btn_cancel" class="btn_cancel">취소</button>
-							    <button type="button" id="btn_save">저장</button>
-							</div>
-
-						
-						<!-- button -->
-					
 					</div>
-				</div>
+					<div class="right_contents">
+						<div class="view_con_inner">
+							<!-- <div class="board_data"><p>작성자명&nbsp; | &nbsp;2023.01.01 12:12</p></div> -->
+							<div class="edit_write_content">
+								<textarea name="area_noti_content" id="area_noti_content"></textarea>
+								<script type="text/javascript">
+									/* ck editor 5 적용 */
+								  ClassicEditor
+								    .create( document.querySelector( '#area_noti_content' ),{
+								    	language : "ko"
+								    } )
+								    .then( newEditor => {
+									    editor = newEditor;
+									  } )
+								    .catch( error => {
+								    } );
+								</script>
+							</div>
+							<!-- button -->
+								<!-- button -->
+								<div class="board_bottom_btn">
+								    <button type="button" id="btn_cancel" class="btn_cancel">취소</button>
+								    <button type="button" id="btn_save">저장</button>
+								</div>
+	
+							
+							<!-- button -->
+						
+						</div>
+					</div>
 				</form>
 			</section>
 		<!-- right -->

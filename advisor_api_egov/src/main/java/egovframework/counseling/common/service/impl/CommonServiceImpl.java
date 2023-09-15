@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import egovframework.counseling.common.service.CommonService;
 import egovframework.counseling.notice.service.NoticeService;
 import egovframework.counseling.notice.service.impl.NoticeVO;
-import egovframework.example.sample.service.impl.SampleDAO;
 
 
 

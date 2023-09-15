@@ -260,6 +260,18 @@ span.dengerus i{margin-right:5px;text-align:center;background:#d64751;color:#fff
 
 .notice-list li a.visited p {font-size:16px;color:#A0A9B0;font-weight:400;}
 .notice-list li a.visited span.notice_date {color:#DBDFE0;}
+
+.news_con_inner li {clear: both;width: 100%;margin: 10px 0;border-radius: 30px;overflow: hidden;position:relative;}
+.news-list li a {background: #fff;display:block; padding: 12px 26px;border:transparent 2px solid; border-radius: 30px;}
+.news-list li a:hover {border:#0367a6 2px solid;}
+.news-list li a:hover p{}
+.news-list li a p {font-size:16px;color:#333;font-weight:600;}
+.news-list li a span.notice_date {font-size:10px;color:#333;}
+
+.news-list li a.visited p {font-size:16px;color:#A0A9B0;font-weight:400;}
+.news-list li a.visited span.notice_date {color:#DBDFE0;}
+
+
 .pagenation {border-top: #d5d5d5 1px solid;
     padding: 20px 0;
     text-align: center;
@@ -294,8 +306,9 @@ div.checkbox span {position: relative;display: inline-block;width: 20px;height: 
 .rangking_keyword select::-ms-expand {display:none;}
 
 .rangking_data_table table{border-bottom: 1px solid #d3d3d3;}
-.rangking_data_table th {color:#282A2E;font-size: 14px;padding: 8px 16px;text-align: center; font-weight:500;background: #D6E2FF;}
-.rangking_data_table td {color:#282A2E;font-size: 14px;padding: 8px 16px;text-align: center;border-bottom: 1px solid #DBDFE0;background: #fff;}
+
+.rangking_data_table ul li.header {color:#282A2E;font-size: 14px;padding: 8px 16px;text-align: center; font-weight:500;background: #D6E2FF;}
+.rangking_data_table ul li{color:#282A2E;font-size: 14px;padding: 8px 16px;text-align: center;border-bottom: 1px solid #DBDFE0;background: #fff;}
 
 /***서브공통**/
 .right_title {width: 100%;padding: 30px;border-bottom: #d5d5d5 1px solid;position:relative;height:86px}
@@ -640,4 +653,36 @@ a.btn_autho_setting {display: inline-block;width: 62px;height: 39px;border: #293
     z-index: 999;
 	
 }
+
+.btn_select {
+    margin-left: 10px;
+    width: 182px;
+    font-size: 16px;
+    color: #A0A9B0;
+    border: 1px solid #A0A9B0;
+    height: 48px;
+    padding: 12px 8px 12px 16px;
+    border-radius: 10px;
+    display: inline-block;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff url(../../images/icons/select_arr.gif) 90% 19px no-repeat;
+}
+
+
+.btn_click {
+    
+    background: #293E89;
+    display: inline-block;
+    width: 90px;
+    height: 48px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 48px;
+    color: #fff;
+}
+
+
 

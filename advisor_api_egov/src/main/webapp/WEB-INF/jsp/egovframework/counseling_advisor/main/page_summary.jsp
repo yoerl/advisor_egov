@@ -4,6 +4,10 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String taServer = getServletContext().getInitParameter("taServer");
+%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -18,6 +22,27 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
+    
+	<script> 
+	$(document).ready(function() {
+	    // 페이지 로드 후 실행되는 코드
+	    $("#btn_search").click(function() {
+	        // 검색 버튼 클릭 시 AJAX 요청 수행
+	        var currentPage = 1; // 현재 페이지
+	        var searchText = $("#serch_text").val(); // 검색어 입력란의 값
+	
+	        performAjaxRequest(currentPage, searchText);
+	        pagination1.movePageTo(1);
+	    });
+	
+	    // 페이지 로드 후 초기 데이터 가져오기
+	    var currentPage = 1; // 초기 페이지
+	    var searchText = ""; // 초기 검색어
+	
+	    performAjaxRequest(currentPage, searchText);
+	});
+	
+	</script>
 </head>
 
 <body>
@@ -47,14 +72,23 @@
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -62,47 +96,23 @@
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -124,98 +134,19 @@
 				</div>
 				<div class="right_contents">
 					<div class="notice_con_inner">
-					<form name="" method="" action="">
 						<div class="board_search">
-								<input type="text" size="20" maxlength="30" name="" value="" placeholder="검색어를 입력하세요.">
-								<button>조회</button>								
+								<input id="serch_text" type="text" size="20" maxlength="30" name="" value="" placeholder="검색어를 입력하세요.">
+								<button id = "btn_search">조회</button>								
 							
 						</div>
 						<!-- <p class="no-massage">조회된 내용이 없습니다.</p> -->
 					<!-- notice-list -->
-						<ul class="board-list">
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>Est fusce aliquam porttitor sit arcu habitant. Dolor pellentesque massa adipiscing commodo in tortor lobortis porta. Donec a et cursus volutpat volutpat egestas eu enim. </p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
-							<li>
-								<a href="${path}/page/summary_view.do">
-									<p>군입대 지원에 대한 질문</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-								<div class="manager"><span>상담사</span><span>1234</span></div>
-							</li>
+						<ul id="board-list" class="board-list">
 
 						</ul>
 					<!-- notice-list -->
 						
 					</div>
-					</form>
 					
 					<div class="code-html pagenation">
 						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
@@ -235,6 +166,83 @@
 		itemsPerPage: 10,
 		visiblePages: 5
 	});
+	
+
+	 pagination1.on('afterMove', function(eventData) {
+		    // 이벤트 핸들러 내에서 현재 페이지 번호를 가져옵니다.
+		    var currentPage = eventData.page;
+		    
+		    
+		    performAjaxRequest(currentPage,$("#serch_text").val());
+		});
+</script>
+<script>
+
+function performAjaxRequest(page_no,serch_text) {
+	console.log("performAjaxRequest    " + page_no  + "     "+ serch_text);
+
+	var requestData = {
+		    index_names: "tb_cons_meta_hstr",
+		    date_format: "yyyy-MM-dd HH:mm:ss",
+		    return_fields: "CONS_HSTR_ID/CONS_STT_TIME/CALL_ID/INTT_CD/INTT_CD_NM/CNSR_ID/CNSR_ID_NM/DPMS_ID",
+		    date_display_columns: "CONS_STT_TIME",
+		    date_display_format: "yyyy.MM.dd HH:mm:ss",
+		    q:serch_text,
+		    startPos: page_no,
+		    retCount: 10,
+		    sortOrder: "C_DATE desc"
+		};
+	
+
+  $.ajax({
+      type: "GET",
+      url: "http://<%= taServer %>/api/history/search/tbConsMetaHstr",
+      data: requestData, // 파라미터 데이터 설정
+      
+      success: function(data) {
+          var jsonString = JSON.stringify(data, null, 2);
+          console.log("AJAX 성공: \n" + jsonString);
+          
+          // 'SEARCH_CNTN' 값을 추출하는 로직
+          var returnObjects = data.returnObject;
+          
+
+	        var $boardList = $("#board-list");
+	        
+	    	$boardList.empty();
+          for (var i = 0; i < returnObjects.length; i++) {
+              
+		        // 삽입할 `<li>` 항목 정의
+		        var listItem = `
+		            <li>
+		                <a href="${path}/page/summary_view.do">
+		                    <p class=".ellipsis-text">`+returnObjects[i].SEARCH_CNTN+`</p>
+		                    <span class="notice_date">`+returnObjects[i].CONS_HSTR_ID+`</span> 
+		                </a>
+		                <div class="manager">
+		                    <span>`+returnObjects[i].CNSR_ID_NM+`</span>
+		                    <span>`+returnObjects[i].DPMS_ID+`</span>
+		                </div>
+		            </li>
+		        `;
+
+		        // `<ul>` 태그 안에 `<li>` 항목 삽입
+		        $boardList.append(listItem);
+		        
+          }
+          
+          
+
+      },
+      error: function(request, status, error) {
+          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+      }
+  });
+  
+ 
+  
+}
+
 </script>
 
 </body>

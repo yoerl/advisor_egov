@@ -18,6 +18,50 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
+    
+    <script>
+    $(document).ready(function() {
+    	
+    	
+    	$.ajax({
+    	    type: "GET",
+    	    url: "${path}/api/news.do",
+    	    /* dataType: "json", */
+    	    success: function(jsonString) {
+    	        var jsonArray = JSON.parse(jsonString);
+    	        console.log("AJAX 성공: " + jsonString);
+
+    	        var targetElement = $(".news_list");
+    	        targetElement.empty(); // 기존 내용 지우기
+
+    	        var ulElement = $(".news_list");
+
+    	        for (var i = 0; i < jsonArray.length; i++) {
+    	            var item = jsonArray[i];
+    	            console.log("AJAX 성공2222: " + item.amntDttm);
+
+    	            
+				
+    	            // 새로운 li 요소를 생성합니다.
+    	            var newListItem = '<li><div class="checkbox"><span><input type="checkbox" id="check1" name="check1" value=""><label for="check1"></label></span></div><a href="#"><p>'+item.newsTitlNm+'</p><span class="notice_date">'+item.rgsnDttm+'</span></a></li>';
+    	            
+    	            // #news-list ul 요소에 새로운 li 요소를 삽입합니다.
+    	            $("#news-list").append(newListItem);
+    	        }
+
+    	        targetElement.append(ulElement);
+    	    },
+    	    error: function(request, status, error) {
+    	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+    	    }
+    	});
+
+    	
+    	
+    });
+
+    </script>
+    
 </head>
 
 <body>
@@ -47,14 +91,23 @@
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -62,47 +115,25 @@
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<form name="" method="" action="">
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+						</form>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -128,36 +159,12 @@
 						<script>
 							$(document).ready(function() {
 								$('.btn_view_total').on("click",function(){
-								   $('.notice-list li a').addClass("visited");
+								   $('.news-list li a').addClass("visited");
 								  });
 							 });
 						</script>
-					<!-- notice-list -->
-						<ul class="notice-list">
-							<li><div class="checkbox"><span><input type="checkbox" id="check1" name="check1" value=""><label for="check1"></label></span></div>
-								<a href="#">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check2" name="check2" value=""><label for="check2"></label></span></div>
-								<a href="#">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check3" name="check3" value=""><label for="check3"></label></span></div>
-								<a href="#" class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
-							<li><div class="checkbox"><span><input type="checkbox" id="check4" name="check4" value=""><label for="check4"></label></span></div>
-								<a href="#"  class="visited">
-									<p>공지사항 제목입니다.</p>
-									<span class="notice_date">2023.01.01 16:40</span>
-								</a>
-							</li>
+					<!-- news-list -->
+						<ul id="news-list" class="news-list">
 						</ul>
 					<!-- 삭제팝업창 -->
 						<div id="del_alert_popup">

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import egovframework.counseling.notice.service.NoticeService;
 import egovframework.counseling.notice.service.impl.NoticeVO;
-import egovframework.example.sample.service.EgovSampleService;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -45,10 +44,15 @@ public class NoticeController {
 		logger.info("공지사항 리스트 조회");
 		
 		List<NoticeVO> result = noticeService.selectNotices();
-		
+
+		System.out.println("aaaaaa");
+		System.out.println(result.toString());
 		Gson gson = new Gson();
 		
 		String resultJson = gson.toJson(result);
+
+		System.out.println("qqqqqqqqqqqqqq");
+		System.out.println(resultJson);
 		
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");

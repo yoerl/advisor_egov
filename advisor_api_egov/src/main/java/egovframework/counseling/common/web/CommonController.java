@@ -23,7 +23,6 @@ import egovframework.counseling.common.service.impl.AgencyVO;
 import egovframework.counseling.common.service.impl.CommonVO;
 import egovframework.counseling.notice.service.NoticeService;
 import egovframework.counseling.notice.service.impl.NoticeVO;
-import egovframework.example.sample.service.EgovSampleService;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

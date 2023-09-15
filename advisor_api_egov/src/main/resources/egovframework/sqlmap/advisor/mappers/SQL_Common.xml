@@ -21,7 +21,7 @@
 
 	<select id="selectAgency" resultMap="commonVO">
 
-		select * from tb_comn_cd where USE_YN  = 'Y' and COMN_CD = "agentList";
+		select * from adv.tb_comn_cd where USE_YN  = 'Y' and COMN_CD = "agentList";
 
 	</select>
 	
@@ -29,7 +29,7 @@
 
 	<select id="selectCommonData" resultMap="commonVO">
 
-		select * from tb_comn_cd where USE_YN  = 'Y' and COMN_CD =  #{comnCd};
+		select * from adv.tb_comn_cd where USE_YN  = 'Y' and COMN_CD =  #{comnCd};
 
 	</select>
 

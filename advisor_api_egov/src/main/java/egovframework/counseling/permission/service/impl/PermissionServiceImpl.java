@@ -13,8 +13,6 @@ import egovframework.counseling.notice.service.NoticeService;
 import egovframework.counseling.notice.service.impl.NoticeVO;
 import egovframework.counseling.permission.service.PermissionService;
 import egovframework.counseling.user.service.impl.UserInfoVO;
-import egovframework.example.sample.service.impl.SampleDAO;
-
 
 @Service("permissionService")
 public class PermissionServiceImpl extends EgovAbstractServiceImpl implements PermissionService {

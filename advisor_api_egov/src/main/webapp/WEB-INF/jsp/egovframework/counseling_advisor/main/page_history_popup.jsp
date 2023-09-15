@@ -45,14 +45,19 @@
 			</div>
 		<!-- 기관명 -->
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -60,51 +65,18 @@
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
 					<!-- chating popup -->
 					<div class="chating_popup" style="display:none;">
 						<form name="" method="" action="">
-						<h3><i><img src="../images/icons/smile_icon.png" alt=""></i>상담요약</h3>
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
 						<div class="chating_popup_con">
 							<textarea placeholder="군입대에 대한 상담"></textarea>
 							<button>저장</button>
