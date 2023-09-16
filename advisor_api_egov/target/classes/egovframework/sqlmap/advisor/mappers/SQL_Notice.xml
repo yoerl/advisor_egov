@@ -11,27 +11,33 @@
     <result property="useYn" column="USE_YN"/>
     <result property="amndId" column="AMND_ID"/>
     <result property="amntDttm" column="AMNT_DTTM"/>
+    <result property="rgsrNm" column="rgsr_Nm"/>
     <result property="rgsrId" column="RGSR_ID"/>
     <result property="rgsnDttm" column="RGSN_DTTM"/>
 </resultMap>
 
+	
+	<select id="selectNotice" parameterType="egovframework.counseling.notice.service.impl.NoticeVO" resultMap="noticeVO">
 
-	<select id="selectNotice" resultMap="noticeVO">
+		SELECT	*
+		FROM 	adv.TB_NOTI_INFO
+		WHERE 	USE_YN = 'Y'
+		ORDER BY RGSN_DTTM DESC
+		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset};
 
-			SELECT *
-              FROM TB_NOTI_INFO
-             WHERE 1=1
-	   		   AND USE_YN = 'Y'
-	   		 ORDER BY RGSN_DTTM DESC
-			 LIMIT 10 OFFSET 0;
-
+	</select>
+	
+	<select id="selectNoticeListCnt" resultType="int">
+		SELECT	COUNT(*)
+		FROM 	adv.TB_NOTI_INFO
+		WHERE 	USE_YN = 'Y'
 	</select>
 	
 	
 	
 	<select id="selectNoticeOne" resultMap="noticeVO">
 	    SELECT *
-	    FROM TB_NOTI_INFO
+	    FROM adv.TB_NOTI_INFO
 	    WHERE 1=1
 	      AND USE_YN = 'Y'
 	    <if test="notiSqno != null">
@@ -40,24 +46,21 @@
 	</select>
 				
 	<insert id="insertNoticeOne" parameterType="egovframework.counseling.notice.service.impl.NoticeVO">
-	    INSERT INTO TB_NOTI_INFO (
-	        NOTI_TITL_NM,
-	        NOTI_CNTN
-	    ) VALUES (
-	        #{notiTitlNm},
-	        #{notiCntn}
-	    )
+	    INSERT INTO adv.TB_NOTI_INFO (NOTI_TITL_NM, NOTI_CNTN) VALUES (
+	    #{notiTitlNm},
+	    #{notiCntn}
+	        )
 	</insert>
 	
 	<update id="deleteNoticeOne" parameterType="egovframework.counseling.notice.service.impl.NoticeVO">
-	    UPDATE TB_NOTI_INFO
+	    UPDATE adv.TB_NOTI_INFO
 	    SET USE_YN = 'N'
 	      , AMNT_DTTM = NOW()
 	    WHERE NOTI_SQNO = #{notiSqno}
 	</update>
 	
 	<update id="updateNoticeOne" parameterType="egovframework.counseling.notice.service.impl.NoticeVO">
-	    UPDATE TB_NOTI_INFO
+	    UPDATE adv.TB_NOTI_INFO
 	    SET NOTI_TITL_NM = #{notiTitlNm},
 	        NOTI_CNTN = #{notiCntn}
 	    WHERE NOTI_SQNO = #{notiSqno}

@@ -101,7 +101,9 @@ function fnGetSetting(envrStupDivCd){
             // 요청 성공 시 실행할 코드
             // JSON 데이터 파싱
             responseData = JSON.parse(response);
+            console.log("11111");
             console.log(responseData);
+            console.log("22222");
         },
         error: function(xhr, status, error) {
             // 요청 실패 시 실행할 코드
@@ -114,7 +116,10 @@ function fnGetSetting(envrStupDivCd){
 
 /* 파라미터로 받은 DIV의 폰트에 class추가  */
 function fnChangeFont(divId){
-	var fontSetting = fnGetSetting("FontList");	// 폰트설정 조회
+	console.log("222");
+	console.log(divId);
+	console.log("5555");
+	var fontSetting = fnGetSetting("font");	// 폰트설정 조회
 	$("#"+divId).addClass(fontSetting.envrStupVl);
 }
 

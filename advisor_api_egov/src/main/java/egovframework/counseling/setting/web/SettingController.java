@@ -38,8 +38,8 @@ public class SettingController {
         ObjectMapper objectMapper = new ObjectMapper();
         SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
         
-        settingVO.setUserId("user001");	//TODO : 이 구문은 세션에 저장된  USER_ID 를 넣어주면 됨. 
-        
+        settingVO.setUserId("ID9991");	//TODO : 이 구문은 세션에 저장된  USER_ID 를 넣어주면 됨. 
+        getServletContext().getInitParameter("userID");
 		SettingVO result = settingService.selectSetting(settingVO);
 
 		Gson gson = new Gson();

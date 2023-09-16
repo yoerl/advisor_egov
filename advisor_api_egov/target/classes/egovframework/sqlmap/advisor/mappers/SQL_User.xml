@@ -25,7 +25,7 @@
 	<select id="selectUser" parameterType="egovframework.counseling.user.service.impl.UserInfoVO" resultMap="userVO">
 	
 	
-		select * from tb_user_info where USE_YN  = 'Y' and USER_ID = #{userId};
+		select * from ais.tb_user_info where USE_YN  = 'Y' and USER_ID = #{userId};
 
 	</select>
 	
@@ -34,7 +34,7 @@
 	<select id="selectUsers" parameterType="egovframework.counseling.user.service.impl.UserInfoVO" resultMap="userVO">
 	
 	
-		select * from tb_user_info where USE_YN  = 'Y';
+		select * from ais.tb_user_info where USE_YN  = 'Y';
 
 	</select>
 	

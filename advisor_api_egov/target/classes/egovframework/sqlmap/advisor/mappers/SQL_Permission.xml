@@ -37,7 +37,7 @@
 
 	<select id="selectPermissionReq" parameterType="egovframework.counseling.permission.service.impl.PermissionReqVO" resultMap="permissionReqVO">
 	
-		select * from tb_user_athr_req where USE_YN  = "Y";
+		select * from adv.tb_user_athr_req where USE_YN  = "Y";
 
 	</select>
 	
@@ -45,7 +45,7 @@
 	<insert id="insertPermissionReq" parameterType="egovframework.counseling.permission.service.impl.UserAthrReqVO">
 	
 	
-		INSERT INTO TB_USER_ATHR_REQ (USER_ID,USER_NM, ATHR_TYPE_CD, ATHR_CD)
+		INSERT INTO adv.TB_USER_ATHR_REQ (USER_ID,USER_NM, ATHR_TYPE_CD, ATHR_CD)
 		VALUES (#{userId},#{userNm}, #{athrTypeCd}, #{athrCd})
 
 	</insert>
@@ -53,7 +53,7 @@
 	
 	<update id="deletePermissionReq" parameterType="egovframework.counseling.permission.service.impl.PermissionReqVO">
 	
-		UPDATE tb_user_athr_req
+		UPDATE adv.tb_user_athr_req
 		SET USE_YN = 'N', -- 사용 여부를 'N'으로 변경 (예시)
 		    AMNT_DTTM = NOW() -- 수정 일시를 현재 일시로 변경
 		WHERE USER_ID = #{userId}
@@ -64,7 +64,7 @@
 	
 	<update id="updatePermissionRole" parameterType="egovframework.counseling.permission.service.impl.PermissionReqVO">
 		
-	UPDATE tb_user_info
+	UPDATE ais.tb_user_info
 	SET USER_DIV_CD = #{athrCd}
 	WHERE USE_YN = 'Y'
 	  AND USER_ID = #{userId}
