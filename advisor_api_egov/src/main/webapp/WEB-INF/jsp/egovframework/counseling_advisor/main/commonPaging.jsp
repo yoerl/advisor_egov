@@ -21,7 +21,7 @@
 <body>
 	<c:if test="${pagination != null && pagination.totalRecordCount != 0}">
 		<div class="code-html pagenation">
-			<div id="pagination1" class="tui-pagination">
+			<div id="pagingDiv" class="tui-pagination">
 				<c:if test="${pagination.prevBlock != 1}">
 					<a href="javascript:fnSearch('1');" class="tui-page-btn tui-first">
 						<span class="tui-ico-first">first</span>

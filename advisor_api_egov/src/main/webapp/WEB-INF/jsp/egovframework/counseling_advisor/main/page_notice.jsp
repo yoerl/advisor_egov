@@ -45,7 +45,13 @@
                 }
             });
     	});
-
+    	
+    	fnSearch();
+    	
+    });
+    
+    
+    function fnSearch() {
     	
     	$.ajax({
     	    type: "GET",
@@ -78,17 +84,23 @@
 
     	            ulElement.append(liElement);
     	        }
-
     	        targetElement.append(ulElement);
+    	        
+    	        
+				console.log("pagination ::: " + jsonArray[0].pagination);
+				//$("#pagingDiv").html(jsonArray[0].pagination);
+				$("#test").html(jsonArray[0]);
+		
+				
+				
+				
     	    },
     	    error: function(request, status, error) {
     	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
     	    }
     	});
-
     	
-    	
-    });
+    }
 
     </script>
 </head>
