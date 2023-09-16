@@ -60,6 +60,7 @@ $(document).ready(  function() {
 	                        var comnCdVal = item.comnCdVal;
 
 	                        $("input[name='font_family'][value="+comnCdVal+"]").prop("checked", true);
+
 	                        break; // 값을 찾았으므로 반복문 종료
 	                    }
 	                }
@@ -76,12 +77,51 @@ $(document).ready(  function() {
 	    }
 	});
 
-		
+	fnChangeFont('no_calling');
+
 });
 
+/* 로그인 유저의 환경설정 조회 함수 */
+function fnGetSetting(envrStupDivCd){
+	 // 서버로 보낼 JSON 데이터
+    var jsonData = {
+    		envrStupDivCd: envrStupDivCd,          // 문자열 데이터
+    };
+	 
+	var responseData;
+	
+    // AJAX 요청 설정
+    $.ajax({
+        url: "${path}/api/setting.do",  // 서버의 API 엔드포인트 URL
+        type: "POST",              // HTTP 메서드 (POST, GET 등)
+        async: false,                // 동기적 요청 활성화
+        data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+        contentType: "application/json", // 요청 본문의 데이터 타입 설정
+        success: function(response) {
+            // 요청 성공 시 실행할 코드
+            // JSON 데이터 파싱
+            responseData = JSON.parse(response);
+            console.log(responseData);
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시 실행할 코드
+            console.error("AJAX 오류: " + error);
+        }
+    });
+    
+    return responseData;
+}
+
+/* 파라미터로 받은 DIV의 폰트에 class추가  */
+function fnChangeFont(divId){
+	var fontSetting = fnGetSetting("FontList");	// 폰트설정 조회
+	$("#"+divId).addClass(fontSetting.envrStupVl);
+}
 
 </script>
-
+<style>
+	.Myeongjo {font-family: 'Noto Serif', serif; font-weight: bold;}
+</style>
 </head>
 
 <body>
