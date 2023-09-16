@@ -125,7 +125,7 @@ function fnChangeFont(divId){
 
 </script>
 <style>
-	.Myeongjo {font-family: 'Noto Serif', serif; font-weight: bold;}
+	.font_myeongjo {font-family: 'Noto Serif', serif; font-weight: bold;}
 </style>
 </head>
 

@@ -31,7 +31,7 @@
                 //url: "${path}/api/common/agency.do", // 엔드포인트 URL
                 
                 url: "${path}/api/common/data/agentList.do", // 엔드포인트 URL
-                type: "GET", // HTTP DELETE 메서드 사용
+                type: "GET", // HTTP DELTETE 메서드 사용
                 success: function(response) {
                 	//console.log(response);
                 	
