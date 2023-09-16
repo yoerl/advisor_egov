@@ -25,6 +25,7 @@ import egovframework.counseling.notice.service.impl.NoticeVO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,16 +41,17 @@ public class NoticeController {
 
 
 	@GetMapping("/api/notices.do")
-	public ResponseEntity<String> selectNotices() throws Exception{
+	public ResponseEntity<String> selectNotices(ModelMap model, @ModelAttribute("NoticeVo") NoticeVO noticeVO) throws Exception{
 		logger.info("공지사항 리스트 조회");
 		
-		List<NoticeVO> result = noticeService.selectNotices();
+		List<NoticeVO> result = noticeService.selectNotices(noticeVO);
 
 		System.out.println("aaaaaa");
 		System.out.println(result.toString());
 		Gson gson = new Gson();
 		
 		String resultJson = gson.toJson(result);
+		model.addAttribute("pagination", result.get(0).getPagination());
 
 		System.out.println("qqqqqqqqqqqqqq");
 		System.out.println(resultJson);

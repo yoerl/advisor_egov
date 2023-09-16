@@ -15,8 +15,15 @@ public class NoticeDAO {
     @Resource(name = "noticeMapper")
     private NoticeMapper noticeMapper;
 
-    public List<NoticeVO> selectNoticeList() throws Exception {
-        List<NoticeVO> notices = noticeMapper.selectNotice();
+    public List<NoticeVO> selectNoticeList(NoticeVO noticeVO) throws Exception {
+    	
+    	// 페이징 처리를 위한 목록 count
+    	int noticesCnt = noticeMapper.selectNoticeListCnt();
+    	noticeVO.getPagination().setTotalRecordCount(noticesCnt);
+    	
+        List<NoticeVO> notices = noticeMapper.selectNotice(noticeVO);
+//        notices.add(0, noticeVO);
+        notices.get(0).setPagination(noticeVO.getPagination());
 
         // 가져온 timestamp 값을 원하는 형식으로 변환
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -28,9 +35,8 @@ public class NoticeDAO {
 
         return notices;
     }
-
-
     
+
     public List<NoticeVO> selectNoticeOne(String id) throws Exception {
         NoticeVO param = new NoticeVO();
         param.setNotiSqno(id);
@@ -79,5 +85,11 @@ public class NoticeDAO {
             throw e; // 예외를 상위로 던집니다.
         }
     }
+
+
+
+
+
+	
 
 }

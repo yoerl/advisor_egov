@@ -3,6 +3,8 @@ package egovframework.counseling.notice.service.impl;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import egovframework.util.Pagination;
+
 /**
  * @Class Name : SampleVO.java
  * @Description : SampleVO Class
@@ -22,7 +24,9 @@ import java.util.Date;
 public class NoticeVO{
 
 
-	
+	public NoticeVO() {
+		this.pagination = new Pagination();
+	}
 	
 	public String getNotiSqno() {
 		return notiSqno;
@@ -120,14 +124,25 @@ public class NoticeVO{
 	public void setPageSize(String pageSize) {
 		this.pageSize = pageSize;
 	}
+
+	public Pagination getPagination() {
+		return pagination;
+	}
+	public void setPagination(Pagination pagination) {
+		this.pagination = pagination;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "NoticeVO [notiSqno=" + notiSqno + ", userId=" + userId + ", userNm=" + userNm + ", notiDivNm="
 				+ notiDivNm + ", notiTitlNm=" + notiTitlNm + ", notiCntn=" + notiCntn + ", useYn=" + useYn + ", amndId="
 				+ amndId + ", amndNm=" + amndNm + ", amntDttm=" + amntDttm + ", rgsrId=" + rgsrId + ", rgsrNm=" + rgsrNm
 				+ ", rgsnDttm=" + rgsnDttm + ", rgsnDttmStr=" + rgsnDttmStr + ", pageNumber=" + pageNumber
-				+ ", pageSize=" + pageSize + "]";
+				+ ", pageSize=" + pageSize + ", pagination=" + pagination + "]";
 	}
+
+
 	private String notiSqno;
 	private String userId;
     private String userNm;
@@ -146,6 +161,8 @@ public class NoticeVO{
     
     private String pageNumber;
     private String pageSize;
+    
+    private Pagination pagination;
     
     
 

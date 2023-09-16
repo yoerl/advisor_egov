@@ -3,7 +3,7 @@ package egovframework.util;
 public class Pagination {
 	
 	public Pagination() {
-        this.currentPage = 4;
+        this.currentPage = 1;
         this.cntPerPage = 10;
         this.pageSize = 5;
     }

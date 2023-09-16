@@ -15,10 +15,10 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
-    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
+    <%-- <script src="<c:url value='/js/egovframework/pagenation.js' />"></script> --%>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
+    <%-- <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/> --%>
     <script>
     $(document).ready(function() {
     	
@@ -212,22 +212,23 @@
 					<!-- 삭제팝업창 -->
 					</form>
 					
-					<div class="code-html pagenation">
+					<jsp:include page="/WEB-INF/jsp/egovframework/counseling_advisor/main/commonPaging.jsp"></jsp:include>
+					<!-- <div class="code-html pagenation">
 						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
-					</div>
+					</div> -->
 				</div>
 			</section>
 		<!-- right -->
 	</div>
 	<!-- body -->
 </div>
-<script class="code-js">
+<!-- <script class="code-js">
 	var pagination1 = new tui.Pagination('pagination1', {
 		totalItems: 500,
 		itemsPerPage: 10,
 		visiblePages: 5
 	});
-</script>
+</script> -->
 <script> 
  	$(document).ready(function(){ 
 	$("a.btn_del_con").click(function(){ 
