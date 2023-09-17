@@ -16,6 +16,7 @@
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/common.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
@@ -46,11 +47,6 @@
             });
     	});
     	
-    	/* var currentPage;
-    	if($("#currentPage").val() == null) {
-    		currentPage = 1;
-    	} */
-    		
     	fnSearch(1);
     	
     });
@@ -91,50 +87,8 @@
 					ulElement.appendChild(liElement);
 					
 				}
-				
-				// 페이징 처리
-				var pageObj = jsonArray[0].pagination;
-				//console.log(pageObj);
-				
-				$("#pagingDiv").remove();
-				
-				var html = "";
-
-				if(pageObj != null && pageObj.totalPageCount != 0) {
-
-					//html += "<div class='code-html pagenation'>";
-					html += "	<div id='pagingDiv' class='tui-pagination'>";
-					if(pageObj.prevBlock != 1) {
-						html += "	<a href='javascript:fnSearch(1);' class='tui-page-btn tui-first'>";
-						html += "		<span class='tui-ico-first'>first</span>";
-						html += "	</a>";
-						html += "	<a href='javascript:fnSearch(" + pageObj.prevBlock + ");' class='tui-page-btn tui-prev'>";
-						html += "		<span class='tui-ico-prev'>prev</span>";
-						html += "	</a>";
-					}
-					for(var i = pageObj.firstPage; i <= pageObj.lastPage; i++) {
-						html += "	<a href='javascript:fnSearch(" + i + ")' class='tui-page-btn ";
-						if(pageObj.currentPage == i) {
-							html += "tui-is-selected";
-						}
-						html += "'>" + i + "</a>";
-					}
-					if(pageObj.lastPage < pageObj.totalPageCount) {
-						html += "	<a href='javascript:fnSearch(" + pageObj.nextBlock + ");' class='tui-page-btn tui-next'>";
-						html += "		<span class='tui-ico-next'>next</span>";
-						html += "	</a>";
-						html += " 	<a href='javascript:fnSearch(" + pageObj.totalPageCount + ");' class='tui-page-btn tui-last'>";
-						html += "		<span class='tui-ico-last'>last</span>";
-						html += "	</a>";
-					}
-					html += "	</div>";
-					html += "</div>";
-
-					$("#pageArea").append(html);
-
-				}
-				
-				
+				// 페이징 적용
+				fnPaging(jsonArray[0].pagination);
 			},
 			error: function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -142,8 +96,6 @@
 		});
 
 	}
-    	
-   
 
     </script>
 </head>
@@ -270,7 +222,6 @@
 					
 					<!-- <div id="pageArea"></div> -->
 					<div class="code-html pagenation" id="pageArea">
-						<!-- <div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div> -->	
 					</div>
 				</div>
 			</section>
@@ -278,13 +229,6 @@
 	</div>
 	<!-- body -->
 </div>
-<script class="code-js">
-	var pagination1 = new tui.Pagination('pagination1', {
-		totalItems: 500,
-		itemsPerPage: 10,
-		visiblePages: 5
-	});
-</script>
 <script> 
  	$(document).ready(function(){ 
 	$("a.btn_del_con").click(function(){ 
@@ -297,143 +241,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<%-- 
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagination Example</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 추가 -->
-    <style>
-        /* CSS 스타일링 */
-        .pagenation {
-            margin: 20px 0;
-        }
-
-        .pagenation ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        .pagenation li {
-            margin-right: 10px;
-        }
-
-        .pagenation li a {
-            text-decoration: none;
-            padding: 5px 10px;
-            background-color: #f0f0f0;
-            color: #333;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        .pagenation li.on a {
-            background-color: #007bff;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- 페이징 컨테이너 -->
-    <div class="pagenation" data-page_number="1" data-page_size="10" data-total_pages="14">
-        <ul class="pagenation_content" id="pagination"></ul>
-    </div>
-
-    <script>
-        var paginationContainer = document.querySelector(".pagenation");
-        var pageNumber = parseInt(paginationContainer.getAttribute("data-page_number"));
-        var pageSize = parseInt(paginationContainer.getAttribute("data-page_size"));
-        var totalPageCount = parseInt(paginationContainer.getAttribute("data-total_pages"));
-
-        function fetchDataAndUpdatePage() {
-            $.ajax({
-                type: "GET",
-                url: "${path}/api/notices.do",
-                data: {
-                    pageNumber: pageNumber,
-                    pageSize: pageSize
-                },
-                success: function(response) {
-                    // Here, handle the response. For example, if you receive new page data, render it.
-
-                    // Update the total page count if it's provided in the response
-                    if (response.totalPages) {
-                        totalPageCount = response.totalPages;
-                    }
-
-                    // After handling the data, re-render the pagination
-                    renderPagination();
-                },
-                error: function(request, status, error) {
-                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-                }
-            });
-        }
-
-        function renderPagination() {
-            var paginationContent = document.getElementById("pagination");
-            paginationContent.innerHTML = ""; 
-            
-            // Previous button
-            var prevButton = document.createElement("li");
-            prevButton.innerHTML = `<a href="#">이전</a>`;
-            prevButton.addEventListener("click", function () {
-                if (pageNumber > 1) {
-                    pageNumber--;
-                    fetchDataAndUpdatePage();
-                }
-            });
-            paginationContent.appendChild(prevButton);
-
-            // Page numbers
-            var pageStart = Math.max(1, Math.ceil(pageNumber / 5) * 5 - 4);
-            var pageEnd = Math.min(totalPageCount, pageStart + 4);
-            for (var i = pageStart; i <= pageEnd; i++) {
-                var pageItem = document.createElement("li");
-                pageItem.className = i === pageNumber ? "on" : "";
-                pageItem.innerHTML = `<a href="#">${i}</a>`;
-                pageItem.addEventListener("click", function () {
-                    pageNumber = parseInt(this.textContent);
-                    fetchDataAndUpdatePage();
-                });
-                paginationContent.appendChild(pageItem);
-            }
-
-            // Next button
-            var nextButton = document.createElement("li");
-            nextButton.innerHTML = `<a href="#">다음</a>`;
-            nextButton.addEventListener("click", function () {
-                if (pageNumber < totalPageCount) {
-                    pageNumber++;
-                    fetchDataAndUpdatePage();
-                }
-            });
-            paginationContent.appendChild(nextButton);
-        }
-
-        // Initially fetch data and render pagination
-        fetchDataAndUpdatePage();
-    </script>
-</body>
-</html>
- --%>
