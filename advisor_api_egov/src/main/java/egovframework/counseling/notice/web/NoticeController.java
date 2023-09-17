@@ -4,6 +4,7 @@ package egovframework.counseling.notice.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,9 +39,11 @@ public class NoticeController {
 
 
 	@GetMapping("/api/notices.do")
-	public ResponseEntity<String> selectNotices(Model model, @ModelAttribute("NoticeVo") NoticeVO noticeVO) throws Exception{
+	public ResponseEntity<String> selectNotices(HttpServletRequest request, Model model, @ModelAttribute("NoticeVo") NoticeVO noticeVO) throws Exception{
 		logger.info("공지사항 리스트 조회");
 		
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		noticeVO.getPagination().setCurrentPage(currentPage);
 		List<NoticeVO> result = noticeService.selectNotices(noticeVO);
 
 		System.out.println("aaaaaa");

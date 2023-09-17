@@ -45,50 +45,103 @@
                 }
             });
     	});
-
     	
-    	$.ajax({
-    	    type: "GET",
-    	    url: "${path}/api/notices.do",
-    	    /* dataType: "json", */
-    	    success: function(jsonString) {
-    	        var jsonArray = JSON.parse(jsonString);
-    	        console.log("AJAX 성공: " + jsonString);
-
-    	        var targetElement = $(".board-list ul");
-    	        targetElement.empty(); // 기존 내용 지우기
-
-    	        var ulElement = $("ul");
-
-    	        for (var i = 0; i < jsonArray.length; i++) {
-    	            var item = jsonArray[i];
-    	            console.log("AJAX 성공2222: " + item.amntDttm);
-
-    	            var liElement = $("<li>");
-    	            liElement.append(
-    	                '<a href="${path}/page/notice_view.do?notiSqno=' + item.notiSqno + '">' +
-    	                '<p>' + item.notiTitlNm + '</p>' +
-    	                '<span class="notice_date">' + item.rgsnDttmStr + '</span>' +
-    	                '</a>' +
-    	                '<div class="manager">' +
-    	                '<span>' + item.rgsrNm + '</span>' +
-    	                '<a href="#" id="btn_del" data-noti_sqno="' + item.notiSqno + '" class="btn_del_con">삭제</a>' +
-    	                '</div>'
-    	            );
-
-    	            ulElement.append(liElement);
-    	        }
-
-    	        targetElement.append(ulElement);
-    	    },
-    	    error: function(request, status, error) {
-    	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-    	    }
-    	});
-
-    	
+    	/* var currentPage;
+    	if($("#currentPage").val() == null) {
+    		currentPage = 1;
+    	} */
+    		
+    	fnSearch(1);
     	
     });
+
+    	
+    function fnSearch(currentPage) {
+
+		$.ajax({
+			type: "GET", // HTTP 요청 방식 (GET, POST 등)
+			url: "${path}/api/notices.do",
+			/* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
+			data : {"currentPage" : currentPage},
+			success: function(jsonString) {
+				var jsonArray = JSON.parse(jsonString);
+				// 요청 성공 시 실행될 함수
+				console.log("AJAX  성공: " + jsonString);
+				
+	
+				var ulElement = document.querySelector(".board-list");
+				ulElement.innerHTML = '';
+				
+				for (var i = 0; i < jsonArray.length; i++) {
+					
+					var item = jsonArray[i];
+					console.log("AJAX  성공2222: " + item.amntDttm);
+					var liElement = document.createElement("li");
+		
+					liElement.innerHTML += '' +
+					'<a href=${path}/page/notice_view.do?notiSqno='+item.notiSqno+'>' +
+					'<p>' + item.notiTitlNm + '</p>' +
+					'<span class="notice_date">'+item.amntDttm+'</span>' +
+					'</a>' +
+					'<div class="manager">' +
+					'<span>'+item.rgsrId+'</span>' +
+					'<a href="#" id="btn_del" data-noti_sqno='+item.notiSqno+' class="btn_del_con">삭제</a>' +
+					'</div>';
+					
+					ulElement.appendChild(liElement);
+					
+				}
+				
+				// 페이징 처리
+				var pageObj = jsonArray[0].pagination;
+				//console.log(pageObj);
+
+				var html = "";
+
+				if(pageObj != null && pageObj.totalPageCount != 0) {
+
+					//html += "<div class='code-html pagenation'>";
+					html += "	<div id='pagingDiv' class='tui-pagination'>";
+					if(pageObj.prevBlock != 1) {
+						html += "	<a href='javascript:fnSearch(1);' class='tui-page-btn tui-first'>";
+						html += "		<span class='tui-ico-first'>first</span>";
+						html += "	</a>";
+						html += "	<a href='javascript:fnSearch(" + pageObj.prevBlock + ");' class='tui-page-btn tui-prev'>";
+						html += "		<span class='tui-ico-prev'>prev</span>";
+						html += "	</a>";
+					}
+					for(var i = pageObj.firstPage; i <= pageObj.lastPage; i++) {
+						html += "	<a href='javascript:fnSearch(" + i + ")' class='tui-page-btn";
+						if(pageObj.currentPage == i) {
+							html += "tui-is-selected";
+						}
+						html += "'>" + i + "</a>";
+					}
+					if(pageObj.lastPage < pageObj.totalPageCount) {
+						html += "	<a href='javascript:fnSearch(" + pageObj.nextBlock + ");' class='tui-page-btn tui-next'>";
+						html += "		<span class='tui-ico-next'>next</span>";
+						html += "	</a>";
+						html += " 	<a href='javascript:fnSearch(" + pageObj.totalPageCount + ");' class='tui-page-btn tui-last'>";
+						html += "		<span class='tui-ico-last'>last</span>";
+						html += "	</a>";
+					}
+					html += "	</div>";
+					html += "</div>";
+
+					$("#pageArea").appendChild(html);
+
+				}
+				
+				
+			},
+			error: function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+			}
+		});
+
+	}
+    	
+   
 
     </script>
 </head>
@@ -155,6 +208,7 @@
 					<!-- chating popup -->
 					<div class="chating_popup" style="display:none;">
 						<form name="" method="" action="">
+							<input type="hidden" id="currentPage" value=""/>
 						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
 						<div class="chating_popup_con">
 							<textarea placeholder="군입대에 대한 상담"></textarea>
@@ -212,8 +266,9 @@
 					<!-- 삭제팝업창 -->
 					</form>
 					
-					<div class="code-html pagenation">
-						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+					<!-- <div id="pageArea"></div> -->
+					<div class="code-html pagenation" id="pageArea">
+						<!-- <div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div> -->	
 					</div>
 				</div>
 			</section>
