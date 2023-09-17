@@ -37,7 +37,7 @@ public class NewsController {
 
 
 	@GetMapping("/api/news.do")
-	public ResponseEntity<String> selectNews() throws Exception{
+	public ResponseEntity<String> selectNews() throws Exception {
 		logger.info("소식 리스트 조회");
 		
 		NewsVO newsVo = new NewsVO();

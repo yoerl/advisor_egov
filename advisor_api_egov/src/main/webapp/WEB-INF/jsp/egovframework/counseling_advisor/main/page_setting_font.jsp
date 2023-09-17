@@ -4,6 +4,10 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String userID = getServletContext().getInitParameter("userID");
+%>
 
 <!doctype html>
 <html lang="ko">
@@ -31,6 +35,7 @@ $(document).ready(  function() {
 	    url: "${path}/api/common/data/FontList.do", // 첫 번째 엔드포인트 URL
 	    type: "GET", // HTTP GET 메서드 사용
 	    success: function(response) {
+	        console.log("999999999999");
 	        console.log(response);
 
 	        var jsonArray = JSON.parse(response);
@@ -58,6 +63,7 @@ $(document).ready(  function() {
 	                    var item = responseData[i];
 	                    if (item.comnCdValNm === "font") {
 	                        var comnCdVal = item.comnCdVal;
+	                        
 
 	                        $("input[name='font_family'][value="+comnCdVal+"]").prop("checked", true);
 
@@ -77,15 +83,16 @@ $(document).ready(  function() {
 	    }
 	});
 
-	fnChangeFont('no_calling');
+	fnChangeFont();
 
 });
 
 /* 로그인 유저의 환경설정 조회 함수 */
-function fnGetSetting(envrStupDivCd){
+function fnGetSetting(){
 	 // 서버로 보낼 JSON 데이터
     var jsonData = {
-    		envrStupDivCd: envrStupDivCd,          // 문자열 데이터
+    		envrStupDivCd: 'font',          // 문자열 데이터
+    		userId: '<%=userID%>',          // 문자열 데이터
     };
 	 
 	var responseData;
@@ -115,18 +122,16 @@ function fnGetSetting(envrStupDivCd){
 }
 
 /* 파라미터로 받은 DIV의 폰트에 class추가  */
-function fnChangeFont(divId){
-	console.log("222");
-	console.log(divId);
+function fnChangeFont(){
 	console.log("5555");
-	var fontSetting = fnGetSetting("font");	// 폰트설정 조회
-	$("#"+divId).addClass(fontSetting.envrStupVl);
+	var fontSetting = fnGetSetting();	// 폰트설정 조회
+	$("#no_calling").addClass(fontSetting.envrStupVl);
 }
 
 </script>
 <style>
-	.font_myeongjo {font-family: 'Noto Serif', serif; font-weight: bold;}
 </style>
+
 </head>
 
 <body>
@@ -235,8 +240,8 @@ function fnChangeFont(divId){
 									
 								</ul>
 							</div>
-							<div class="setting_btn">
-								<a href="">저장</a>
+							<div id="btn_save" class="setting_btn">
+								<a href="#">저장</a>
 							</div>
 
 						</div>

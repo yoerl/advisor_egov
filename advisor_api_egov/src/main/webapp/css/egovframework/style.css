@@ -76,7 +76,8 @@ input[id="check1"]:checked + label::after{content:'';display:block;width: 20px;h
 #gnb a:hover {background:#172555;opacity:1;}
 
 #container {clear: both;width: 100%;height:calc(100% - 51px);background: #f5f8ff;padding:14px;}
-#container > section {border-radius:10px ;border:#a0a9b0 1px solid;width: 49.5%;background: #fff;height: 100%;overflow:hidden;}
+#container > section {border-radius:10px ;border:#a0a9b0 1px solid;width: 49.5%;background: #fff;height: 100%;
+/*overflow:hidden;*/}
 #charting {float: left;}
 #right_con {float: right;}
 .chating_inner {width:100%;height:100%;border:#eceeef 1px solid;overflow:hidden;background: #f3f5f9;border-radius: 8px;position:relative;}
@@ -123,7 +124,9 @@ input[id="check1"]:checked + label::after{content:'';display:block;width: 20px;h
 span.dengerus {padding: 6px;border-radius: 12px;display: inline-block;margin-bottom: 10px;background:#fef2f2;color:#E54C60;font-size:12px;}
 span.dengerus i{margin-right:5px;text-align:center;background:#d64751;color:#fff;width:13px;height:13px;line-height:13px;border-radius:50%;display:inline-block;font-size:10px;} 
 /********/
-.counsel {width:100%;height:100%;border:#eceeef 1px solid;overflow:hidden;position: relative;background: #f3f5f9;border-radius: 8px;}
+.counsel {width:100%;height:100%;border:#eceeef 1px solid;
+/*overflow:hidden;*/
+position: relative;background: #f3f5f9;border-radius: 8px;}
 .counsel_search {
 	width: 100%;
     height: 86px;

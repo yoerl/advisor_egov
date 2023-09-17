@@ -14,6 +14,7 @@
     <result property="rgsrId" column="RGSR_ID"/>
     <result property="rgsrNm" column="RGSR_NM"/>
     <result property="rgsnDttm" column="RGSN_DTTM"/>
+    <result property="rgsnDttmStr" column="RGSN_DTTM_STR"/>
 </resultMap>
 
 

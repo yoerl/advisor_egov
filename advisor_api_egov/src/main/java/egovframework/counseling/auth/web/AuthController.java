@@ -24,8 +24,6 @@ public class AuthController {
 
 		System.out.println("로그아웃 처리1111");
         // 세션을 무효화하여 로그아웃 처리
-        sessionStatus.setComplete();
-
 		System.out.println("로그아웃 처리2222");
 
 	    return "main/page_login";

@@ -42,7 +42,7 @@
                     var selectElement = $("select[name='agent']");
 
                     // 기관명 옵션 추가
-                    selectElement.append("<option value=''>기관을 선택하세요.</option>");
+                    selectElement.append("<option value=''>기관 선택</option>");
                     // 각 기관 옵션 추가
                     for (var i = 0; i < agencies.length; i++) {
                         var agency = agencies[i];
@@ -107,7 +107,7 @@
                     	    success: function(response) {
                     	        var agencies = JSON.parse(response);
                     	        var selectElement = $("select[name='agent']");
-                    	        selectElement.append("<option value=''>기관을 선택하세요.</option>");
+                    	        selectElement.append("<option value=''>기관 선택</option>");
 
                     	        for (var i = 0; i < agencies.length; i++) {
                     	            var agency = agencies[i];
@@ -253,8 +253,8 @@
 					
 					<div class="btn_close"><span><a href="/advisor_api_egov/page/home.do"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a><span></div>
 				</div>
-				<div class="right_contents" style="height:100%;">
-					<div class="notice_con_inner">
+				<div class="right_contents">
+					<div class="notice_con_inner" style="height:100%;">
 					<form name="" method="" action="">
 						<div class="setting_keyword">
 								<select name="menu" onchange="window.open(value,'_self');">
@@ -322,9 +322,9 @@
 									  </tr>
 									  <tr>
 										<td class="w30">공동지식<br>보기권한</td>
-										<td class="w30">
+										<td class="w30" style="padding-left: 0;">
 
-											<select name="agent" class="btn_select" style="width: 110px;">
+											<select name="agent" class="btn_select" style="width: 110px;magin-left:0px;">
 											</select>
 
 										</td>

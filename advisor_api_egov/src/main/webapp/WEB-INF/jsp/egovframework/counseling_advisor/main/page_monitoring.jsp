@@ -24,6 +24,7 @@
 
 
 $(document).ready(  function() {
+
 	  
 	  // AJAX DELETE 요청 보내기
     $.ajax({
@@ -69,7 +70,42 @@ $(document).ready(  function() {
 
             var jsonArray = JSON.parse(response);
             // 요청 성공 시 실행될 함수
-            console.log("AJAX  성공: " + jsonString);
+            
+                        var targetElement = document.querySelector(".counseller_monitoring ul");
+                        targetElement.innerHTML = ''; // ul 요소 초기화
+
+                        var jsonArray = JSON.parse(response);
+                        for (var i = 0; i < jsonArray.length; i++) {
+                        	
+                            var item = jsonArray[i];
+                      
+						
+
+                            console.log(jsonArray[i]);
+
+                            console.log("8888888888888888888888888888888888888");
+                            console.log(item.comnCdValNm);
+                            
+                            var element = document.createElement("li");
+
+                            element.innerHTML += ''+
+                            '<div class="monitor_couseller"><a href="#">'+
+                            '<span class="counsel_ready">통화대기</span>'+
+                            '<p>상담사 '+item.userNm+'</p></a>'+
+                            '</div>';
+
+                            targetElement.appendChild(element);
+                        }
+                        
+                    	
+
+                        $('.monitor_couseller').on('click', function() {
+                            var popupURL = "http://localhost:8080/advisor_api_egov/page/monitoring_popup.do";
+                            var popupName = "팝업 이름";
+                            window.open(popupURL, "_blank", "width=900, height=600");
+                        });
+                        
+            
 
         },
         error: function(xhr, status, error) {
@@ -86,13 +122,7 @@ $(document).ready(  function() {
 	  
 	  
 	  
-	  $('.monitor_couseller').on('click', function() {
-		    // 팝업 창의 URL과 창의 속성을 설정합니다.
-		    var popupURL = "http://localhost:8080/advisor_api_egov/page/monitoring_popup.do";
-		    var popupName = "팝업 이름";
-		    // 팝업 창 열기
-		    window.open(popupURL, "_blank", "width=900, height=600");
-	  });
+
 	  
 });
 
@@ -101,7 +131,9 @@ $(document).ready(  function() {
 
 
 </script>
- <script src="<c:url value='/js/egovframework/nxcapi_web.js' />"></script>
+<script src="<c:url value='/js/egovframework/nxcapi_web.js' />"></script>
+
+
 </head>
 
 <body>
@@ -261,9 +293,9 @@ $(document).ready(  function() {
 									</li>
 								</ul>
 							</div>
-							<div class="setting_btn">
+<!-- 						<div class="setting_btn">
 								<a href="">접속</a>
-							</div>
+							</div> -->	
 
 						</div>
 					</form>
@@ -441,5 +473,6 @@ $(document).ready(  function() {
 	                console.log('agentstatusgetii result:'+JSON.stringify(response));
 	            })
     </script> -->
+
 </body>
 </html>

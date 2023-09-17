@@ -39,11 +39,9 @@
     	        for (var i = 0; i < jsonArray.length; i++) {
     	            var item = jsonArray[i];
     	            console.log("AJAX 성공2222: " + item.amntDttm);
-
-    	            
 				
     	            // 새로운 li 요소를 생성합니다.
-    	            var newListItem = '<li><div class="checkbox"><span><input type="checkbox" id="check1" name="check1" value=""><label for="check1"></label></span></div><a href="#"><p>'+item.newsTitlNm+'</p><span class="notice_date">'+item.rgsnDttm+'</span></a></li>';
+    	            var newListItem = '<li><div class="checkbox"><span><input type="checkbox" id="check1" name="check1" value=""><label for="check1"></label></span></div><a href="#"><p>'+item.newsTitlNm+'</p><span class="notice_date">'+item.rgsnDttmStr+'</span></a></li>';
     	            
     	            // #news-list ul 요소에 새로운 li 요소를 삽입합니다.
     	            $("#news-list").append(newListItem);
@@ -94,7 +92,7 @@
 						<section id="charting">
 				<div class="chating_inner">
 				
-				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center; ">
 				    <p> 현재 통화 상태가 아닙니다. </p>
 				</div>
 

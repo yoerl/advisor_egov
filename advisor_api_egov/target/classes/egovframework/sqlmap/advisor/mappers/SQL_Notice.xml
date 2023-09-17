@@ -46,9 +46,10 @@
 	</select>
 				
 	<insert id="insertNoticeOne" parameterType="egovframework.counseling.notice.service.impl.NoticeVO">
-	    INSERT INTO adv.TB_NOTI_INFO (NOTI_TITL_NM, NOTI_CNTN) VALUES (
+	    INSERT INTO adv.TB_NOTI_INFO (NOTI_TITL_NM, NOTI_CNTN, RGSR_NM) VALUES (
 	    #{notiTitlNm},
-	    #{notiCntn}
+	    #{notiCntn},
+	    'admin'
 	        )
 	</insert>
 	
