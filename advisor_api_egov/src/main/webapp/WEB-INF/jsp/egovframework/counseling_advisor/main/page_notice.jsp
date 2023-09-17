@@ -95,7 +95,9 @@
 				// 페이징 처리
 				var pageObj = jsonArray[0].pagination;
 				//console.log(pageObj);
-
+				
+				$("#pagingDiv").remove();
+				
 				var html = "";
 
 				if(pageObj != null && pageObj.totalPageCount != 0) {
@@ -111,7 +113,7 @@
 						html += "	</a>";
 					}
 					for(var i = pageObj.firstPage; i <= pageObj.lastPage; i++) {
-						html += "	<a href='javascript:fnSearch(" + i + ")' class='tui-page-btn";
+						html += "	<a href='javascript:fnSearch(" + i + ")' class='tui-page-btn ";
 						if(pageObj.currentPage == i) {
 							html += "tui-is-selected";
 						}
@@ -128,7 +130,7 @@
 					html += "	</div>";
 					html += "</div>";
 
-					$("#pageArea").appendChild(html);
+					$("#pageArea").append(html);
 
 				}
 				
