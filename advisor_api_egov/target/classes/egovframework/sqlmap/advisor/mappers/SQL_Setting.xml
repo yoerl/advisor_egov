@@ -26,4 +26,18 @@
 		 WHERE USER_ID = #{userId} 
 		   AND ENVR_STUP_DIV_CD = #{envrStupDivCd}
 	</select>
+	
+	<insert id="insertFont" parameterType="egovframework.counseling.setting.service.impl.SettingVO">
+
+    INSERT INTO adv.tb_envr_stup (USER_ID, ENVR_STUP_DIV_CD, ENVR_STUP_DIV_NM, ENVR_STUP_VL)
+    VALUES (#{userId}, #{envrStupDivCd}, null, #{envrStupVl})
+    ON DUPLICATE KEY UPDATE
+        ENVR_STUP_DIV_NM = NULL,
+        ENVR_STUP_VL = #{envrStupVl}
+
+
+	</insert>
+	
+	
+	
 </mapper>

@@ -33,7 +33,7 @@ public class SettingController {
 	
 	@PostMapping("/api/setting.do")
 	public ResponseEntity<String> selectSetting(@RequestBody String input_json) throws Exception{
-		LOGGER.info("환경설정 조회");
+		LOGGER.info("환경설정 조회1111");
 
         ObjectMapper objectMapper = new ObjectMapper();
         SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
@@ -51,5 +51,53 @@ public class SettingController {
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
 	    return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/api/setting/font.do")
+	public ResponseEntity<String> insertFont(@RequestBody String input_json) throws Exception{
+		LOGGER.info("폰트입력 2222");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
+
+        System.out.println("qqqqqqqqqqqqqqq");
+        System.out.println(settingVO.toString());
+        System.out.println("wwwwwwwwwww");
+        
+        
+        
+//nvrStupDivCd=font, userId=ID9991, envrStupDivNm=null, envrStupVl=null, amndId=null, amntDttm=null, rgsrId=null, rgsnDttm=null]
+       
+		boolean result = settingService.inserfont(settingVO);
+
+		
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
+	    return new ResponseEntity<>(String.valueOf(result), headers, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/api/setting/font.do")
+	public ResponseEntity<String> selectFont(@RequestBody String input_json) throws Exception{
+		LOGGER.info("폰트입력 2222");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
+
+        System.out.println("qqqqqqqqqqqqqqq");
+        System.out.println(settingVO.toString());
+        System.out.println("wwwwwwwwwww");
+        
+        
+        
+//nvrStupDivCd=font, userId=ID9991, envrStupDivNm=null, envrStupVl=null, amndId=null, amntDttm=null, rgsrId=null, rgsnDttm=null]
+       
+		boolean result = settingService.inserfont(settingVO);
+
+		
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
+	    return new ResponseEntity<>(String.valueOf(result), headers, HttpStatus.OK);
 	}
 }

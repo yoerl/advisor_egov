@@ -29,6 +29,42 @@ String userID = getServletContext().getInitParameter("userID");
 
 
 $(document).ready(  function() {
+	
+    $("#btn_save").click(function () {
+        // 이곳에 클릭했을 때 실행할 코드를 작성합니다.
+        alert("버튼이 클릭되었습니다."); // 예시: 경고창을 띄움
+
+        var jsonData = {
+        		envrStupDivCd: 'font',          // 문자열 데이터
+        		userId: '<%=userID%>',          // 문자열 데이터
+        		envrStupVl: $("input[name='font_family']:checked").val(),
+        };
+
+        $.ajax({
+            url: "${path}/api/setting/font.do",  // 서버의 API 엔드포인트 URL
+            type: "POST",              // HTTP 메서드 (POST, GET 등)
+            async: false,                // 동기적 요청 활성화
+            data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+            contentType: "application/json", // 요청 본문의 데이터 타입 설정
+            success: function(response) {
+                // 요청 성공 시 실행할 코드
+                // JSON 데이터 파싱
+                responseData = JSON.parse(response);
+                console.log("11111");
+                console.log(responseData);
+                console.log("22222");
+            },
+            error: function(xhr, status, error) {
+                // 요청 실패 시 실행할 코드
+                console.error("AJAX 오류: " + error);
+            }
+        });
+        
+        location.reload();
+
+        
+    });
+    
 	  
 	// 첫 번째 AJAX 요청
 	$.ajax({
@@ -58,6 +94,12 @@ $(document).ready(  function() {
 	                // JSON 데이터 파싱
 	                var responseData = JSON.parse(response);
 
+	        	     // 원하는 value 값을 가진 라디오 버튼 선택하기
+	    	        var desiredValue = "font_myeongjo"; // 원하는 value 값
+	    	        $("input[name='font_family'][value='" + responseData.envrStupVl + "']").prop("checked", true);
+
+	    	        
+	    	        
 	                // "comnCdValNm"이 "font"인 항목 찾기
 	                for (var i = 0; i < responseData.length; i++) {
 	                    var item = responseData[i];
@@ -70,12 +112,20 @@ $(document).ready(  function() {
 	                        break; // 값을 찾았으므로 반복문 종료
 	                    }
 	                }
+	                
+
+	            	fnChangeFont();
+	    	        
+	    	        
 	            },
 	            error: function(xhr, status, error) {
 	                // 두 번째 요청 실패 시 실행할 코드
 	                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 	            }
 	        });
+	        
+
+	        
 	    },
 	    error: function(xhr, status, error) {
 	        // 첫 번째 요청 실패 시 실행할 코드
@@ -83,12 +133,11 @@ $(document).ready(  function() {
 	    }
 	});
 
-	fnChangeFont();
 
 });
 
 /* 로그인 유저의 환경설정 조회 함수 */
-function fnGetSetting(){
+function fnChangeFont(){
 	 // 서버로 보낼 JSON 데이터
     var jsonData = {
     		envrStupDivCd: 'font',          // 문자열 데이터
@@ -108,9 +157,22 @@ function fnGetSetting(){
             // 요청 성공 시 실행할 코드
             // JSON 데이터 파싱
             responseData = JSON.parse(response);
-            console.log("11111");
-            console.log(responseData);
-            console.log("22222");
+            console.log("888888888888888888");
+            console.log("qwd"+response);
+            console.log("uuu"+response.length);
+
+	        // 요청 성공 시 실행할 코드
+	        // JSON 데이터 파싱
+	        var responseData = JSON.parse(response);
+	        console.log("response: " + response);
+	        console.log("envrStupVl: " + responseData.envrStupVl); // "envrStupVl" 값 출력
+	        
+	     // 원하는 value 값을 가진 라디오 버튼 선택하기
+	        $("input[name='font_family'][value='" + responseData.envrStupVl + "']").prop("checked", true);
+
+
+	        $("#no_calling").addClass(responseData.envrStupVl);
+            
         },
         error: function(xhr, status, error) {
             // 요청 실패 시 실행할 코드
@@ -121,12 +183,6 @@ function fnGetSetting(){
     return responseData;
 }
 
-/* 파라미터로 받은 DIV의 폰트에 class추가  */
-function fnChangeFont(){
-	console.log("5555");
-	var fontSetting = fnGetSetting();	// 폰트설정 조회
-	$("#no_calling").addClass(fontSetting.envrStupVl);
-}
 
 </script>
 <style>
