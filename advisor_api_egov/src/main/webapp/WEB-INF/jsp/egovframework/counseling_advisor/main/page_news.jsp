@@ -14,57 +14,64 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
-    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>
+    <script src="<c:url value='/js/egovframework/common.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
           <script>
     $(document).ready(function() {
     	
-        
+    	fnSearch(1);
     	
-    	$.ajax({
-    	    type: "GET",
-    	    url: "${path}/api/news.do",
-    	    /* dataType: "json", */
-    	    success: function(jsonString) {
-    	        var jsonArray = JSON.parse(jsonString);
-    	        console.log("AJAX 성공: " + jsonString);
-
-    	        $('.news-list').empty(); // 기존 내용 지우기
-
-
-    	        for (var i = 0; i < jsonArray.length; i++) {
-    	            var item = jsonArray[i];
-
-        	        console.log("AJAX 성공: " + item.newsSqno);
-
-    	        	   var newItem = '<li>' +
-    	               '<div class="checkbox">' +
+    });
+    
+    function fnSearch(currentPage) {
+    	
+	    $.ajax({
+		    type: "GET",
+		    url: "${path}/api/news.do",
+		    /* dataType: "json", */
+		    data : {"currentPage" : currentPage},
+		    success: function(jsonString) {
+		        var jsonArray = JSON.parse(jsonString);
+		        console.log("AJAX 성공: " + jsonString);
+	
+		        $('.news-list').empty(); // 기존 내용 지우기
+	
+	
+		        for (var i = 0; i < jsonArray.length; i++) {
+		            var item = jsonArray[i];
+	
+	    	        console.log("AJAX 성공: " + item.newsSqno);
+	
+		        	   var newItem = '<li>' +
+		               '<div class="checkbox">' +
 	    	               '<span>' +
 		    	               '<input type="checkbox" id="check'+i+'" name="check'+i+'" value="">' +
 		    	               '<label for="check'+i+'"></label>' +
 	    	               '</span>' +
-    	               '</div>' +
-    	               '<a href="${path}/page/news_view.do">' +
-    	               		'<p>'+item.newsCntn+'</p>' +
-    	               		'<span class="notice_date">2023.09.17 10:00</span>' +
-    	               '</a>' +
-    	               '</li>';
-
-    	           // Append the new item to the ul
-    	           $('.news-list').append(newItem);
-    	        }
-
-    	    },
-    	    error: function(request, status, error) {
-    	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-    	    }
-    	});
-
-    	
-    	
-    });
+		               '</div>' +
+		               '<a href="${path}/page/news_view.do">' +
+		               		'<p>'+item.newsCntn+'</p>' +
+		               		'<span class="notice_date">2023.09.17 10:00</span>' +
+		               '</a>' +
+		               '</li>';
+	
+		           // Append the new item to the ul
+		           $('.news-list').append(newItem);
+		        }
+		        
+		        // 페이징
+		        fnPaging(jsonArray[0].pagination);
+	
+		    },
+		    error: function(request, status, error) {
+		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		    }
+		});
+	    
+    }
 
     </script>
 </head>
@@ -151,9 +158,9 @@
 					</div>
 					
 					
-					<div class="code-html pagenation">
-						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
-					</div>
+					<!-- 페이징 -->
+					<div class="code-html pagenation" id="pageArea"></div>
+					
 				</div>
 			</section>
 		<!-- right -->

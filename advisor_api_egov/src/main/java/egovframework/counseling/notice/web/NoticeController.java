@@ -39,7 +39,7 @@ public class NoticeController {
 
 
 	@GetMapping("/api/notices.do")
-	public ResponseEntity<String> selectNotices(HttpServletRequest request, Model model, @ModelAttribute("NoticeVo") NoticeVO noticeVO) throws Exception{
+	public ResponseEntity<String> selectNotices(HttpServletRequest request, @ModelAttribute("NoticeVo") NoticeVO noticeVO) throws Exception{
 		logger.info("공지사항 리스트 조회");
 		
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -51,7 +51,6 @@ public class NoticeController {
 		Gson gson = new Gson();
 		
 		String resultJson = gson.toJson(result);
-		model.addAttribute("pagination", result.get(0).getPagination());
 
 		System.out.println("qqqqqqqqqqqqqq");
 		System.out.println(resultJson);

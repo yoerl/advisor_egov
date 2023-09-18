@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,15 +39,13 @@ public class NewsController {
 
 
 	@GetMapping("/api/news.do")
-	public ResponseEntity<String> selectNews() throws Exception {
+	public ResponseEntity<String> selectNews(HttpServletRequest request, @ModelAttribute("newsVO") NewsVO newsVO) throws Exception {
 		logger.info("소식 리스트 조회");
 		
-		NewsVO newsVo = new NewsVO();
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		newsVO.getPagination().setCurrentPage(currentPage);
+		List<NewsVO> result = newsService.selectNewss(newsVO);
 
-		logger.info("소식 리스트 조회1111");
-		List<NewsVO> result = newsService.selectNewss(newsVo);
-
-		logger.info("소식 리스트 조회222");
 		Gson gson = new Gson();
 
 		String resultJson = gson.toJson(result);

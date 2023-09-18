@@ -220,9 +220,9 @@
 					<!-- 삭제팝업창 -->
 					</form>
 					
-					<!-- <div id="pageArea"></div> -->
-					<div class="code-html pagenation" id="pageArea">
-					</div>
+					<!-- 페이징 -->
+					<div class="code-html pagenation" id="pageArea"></div>
+					
 				</div>
 			</section>
 		<!-- right -->

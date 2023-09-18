@@ -10,7 +10,9 @@
  public interface NewsMapper {
  
  
- public List<NewsVO> selectNews() throws Exception;
+	 public List<NewsVO> selectNews(NewsVO newsVO) throws Exception;
+
+	 public int selectNewsListCnt() throws Exception;
  
  
  }

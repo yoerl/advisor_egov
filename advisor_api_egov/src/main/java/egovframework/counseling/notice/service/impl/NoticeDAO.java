@@ -22,7 +22,6 @@ public class NoticeDAO {
     	noticeVO.getPagination().setTotalRecordCount(noticesCnt);
     	
         List<NoticeVO> notices = noticeMapper.selectNotice(noticeVO);
-//        notices.add(0, noticeVO);
         notices.get(0).setPagination(noticeVO.getPagination());
 
         // 가져온 timestamp 값을 원하는 형식으로 변환

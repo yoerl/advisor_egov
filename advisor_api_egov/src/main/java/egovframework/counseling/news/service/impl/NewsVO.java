@@ -2,9 +2,14 @@ package egovframework.counseling.news.service.impl;
 
 import java.sql.Timestamp;
 
+import egovframework.util.Pagination;
+
 public class NewsVO {
 
-
+	public NewsVO() {
+		this.pagination = new Pagination();
+	}
+	
 	public int getNewsSqno() {
 		return newsSqno;
 	}
@@ -71,13 +76,21 @@ public class NewsVO {
 	public void setRgsnDttmStr(String rgsnDttmStr) {
 		this.rgsnDttmStr = rgsnDttmStr;
 	}
+	public Pagination getPagination() {
+		return pagination;
+	}
+	public void setPagination(Pagination pagination) {
+		this.pagination = pagination;
+	}
+	
 	@Override
 	public String toString() {
 		return "NewsVO [newsSqno=" + newsSqno + ", receiverId=" + receiverId + ", newsTitlNm=" + newsTitlNm
 				+ ", newsCntn=" + newsCntn + ", useYn=" + useYn + ", amndId=" + amndId + ", amntDttm=" + amntDttm
 				+ ", rgsrId=" + rgsrId + ", rgsrNm=" + rgsrNm + ", rgsnDttm=" + rgsnDttm + ", rgsnDttmStr="
-				+ rgsnDttmStr + "]";
+				+ rgsnDttmStr + ", pagination=" + pagination + "]";
 	}
+
 	private int newsSqno;
     private String receiverId;
     private String newsTitlNm;
@@ -89,5 +102,7 @@ public class NewsVO {
     private String rgsrNm;
     private Timestamp rgsnDttm;
     private String rgsnDttmStr;
+    
+    private Pagination pagination;
 
 }

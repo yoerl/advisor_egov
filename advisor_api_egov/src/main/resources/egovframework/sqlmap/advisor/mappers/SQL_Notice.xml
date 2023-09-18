@@ -23,7 +23,7 @@
 		FROM 	adv.TB_NOTI_INFO
 		WHERE 	USE_YN = 'Y'
 		ORDER BY RGSN_DTTM DESC
-		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset};
+		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset}
 
 	</select>
 	

@@ -20,14 +20,16 @@ import java.util.List;
     private NewsMapper newsMapper;
     
     
-    public List<NewsVO> selectNews(NewsVO param) throws Exception {
-
-    	System.out.println("22222222");
-    	 List<NewsVO> newss = newsMapper.selectNews();
-    	System.out.println("33333");
+    public List<NewsVO> selectNews(NewsVO newsVO) throws Exception {
+    	
+    	// 페이징 처리를 위한 목록 count
+    	int newsCnt = newsMapper.selectNewsListCnt();
+    	newsVO.getPagination().setTotalRecordCount(newsCnt);
+    	
+    	List<NewsVO> newss = newsMapper.selectNews(newsVO);
+    	newss.get(0).setPagination(newsVO.getPagination());
     	
     	
-  
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         
         for (NewsVO news : newss) {

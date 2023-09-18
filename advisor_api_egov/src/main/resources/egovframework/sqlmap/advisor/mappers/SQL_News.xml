@@ -22,13 +22,18 @@
 
 	<select id="selectNews" resultMap="newsVO">
 
-			SELECT *
-              FROM adv.TB_NEWS_INFO
-             WHERE 1=1
-	   		   AND USE_YN = 'Y'
-	   		 ORDER BY RGSN_DTTM DESC
-			 LIMIT 10 OFFSET 0;
+		SELECT	*
+		FROM 	adv.TB_NEWS_INFO
+		WHERE 	USE_YN = 'Y'
+		ORDER BY RGSN_DTTM DESC
+		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset}
 
+	</select>
+	
+	<select	id="selectNewsListCnt" resultType="int">
+		SELECT	COUNT(*)
+		FROM 	adv.TB_NEWS_INFO
+		WHERE 	USE_YN = 'Y'
 	</select>
 	
 	
