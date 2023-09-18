@@ -1,4 +1,4 @@
-   /* 페이징처리 공통함수 */
+ /* 페이징처리 공통함수 */
    function fnPaging(pageObj){
 
 		var html = "";

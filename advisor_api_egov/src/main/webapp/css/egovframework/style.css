@@ -248,7 +248,7 @@ position: relative;background: #f3f5f9;border-radius: 8px;}
 .btn_close {display: inline-block;position: absolute;right: 30px;top: 30px;}
 .notice_title h2 > a {display: inline-block;vertical-align: bottom;margin-right: 10px;}
 .notice_contents {background: #f3f5fa;width: 100%;overflow: hidden;height: calc(100% - 86px);position:relative;}
-.notice_con_inner {padding:20px;width: 100%;height: calc(100% - 0px);position: absolute;left: 0;top: 0;overflow-x:hidden;overflow-y:auto;z-index:99;}
+.notice_con_inner {padding:20px;width: 100%;height: calc(100% - 60px);position: absolute;left: 0;top: 0;overflow-x:hidden;overflow-y:auto;z-index:99;}
 .view_total {width: 100%;overflow: hidden;margin-bottom: 20px;}
 .view_total .btn_ranking {background:#fff;text-align:center;width:104px;height:50px;line-height:50px;display: inline-block;float:left;border: 1px solid #293E89;border-radius:10px;color: #293E89;font-size:16px;}
 .alim_button {display: inline-block;float: right;text-align:right}

@@ -235,60 +235,7 @@ $(document).ready(  function() {
 						<div class="monitor_content">
 							<div class="counseller_monitoring">
 								<ul>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_end">통화종료</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ready">통화 대기중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_end">통화종료</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ready">통화 대기중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_end">통화종료</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ready">통화 대기중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
+									
 								</ul>
 							</div>
 <!-- 						<div class="setting_btn">
