@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.counseling.news.service.impl.NewsMapper">
+                   
+<resultMap id="newsVO" type="egovframework.counseling.news.service.impl.NewsVO">
+    <result property="newsSqno" column="NEWS_SQNO"/>
+    <result property="receiverId" column="RECEIVER_ID"/>
+    <result property="newsTitlNm" column="NEWS_TITL_NM"/>
+    <result property="newsCntn" column="NEWS_CNTN"/>
+    <result property="useYn" column="USE_YN"/>
+    <result property="amndId" column="AMND_ID"/>
+    <result property="amntDttm" column="AMNT_DTTM"/>
+    <result property="amntDttm" column="AMNT_DTTM"/>
+    <result property="rgsrId" column="RGSR_ID"/>
+    <result property="rgsrNm" column="RGSR_NM"/>
+    <result property="rgsnDttm" column="RGSN_DTTM"/>
+    <result property="rgsnDttmStr" column="RGSN_DTTM_STR"/>
+</resultMap>
+
+
+    
+
+	<select id="selectNews" resultMap="newsVO">
+
+			SELECT *
+              FROM adv.TB_NEWS_INFO
+             WHERE 1=1
+	   		   AND USE_YN = 'Y'
+	   		 ORDER BY RGSN_DTTM DESC
+			 LIMIT 10 OFFSET 0;
+
+	</select>
+	
+	
+	
+	
+	
+
+
+
+</mapper>

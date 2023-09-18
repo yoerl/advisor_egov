@@ -17,6 +17,116 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
     
+        
+    <script>
+    
+        $(document).ready(  function() {
+			  
+	    		/* document.getElementById("font_rd2").checked = true;
+	    		document.getElementById("font_rd4").checked = true;
+	    		document.getElementById("font_rd6").checked = true;
+	    		document.getElementById("font_rd8").checked = true;
+	    		document.getElementById("font_rd10").checked = true;
+	    		document.getElementById("font_rd12").checked = true;
+	    		document.getElementById("font_rd14").checked = true;
+	    		document.getElementById("font_rd16").checked = true; */
+	    		
+
+            // AJAX DELETE 요청 보내기
+            $.ajax({
+            	///api/common/data.do
+                //url: "${path}/api/common/agency.do", // 엔드포인트 URL
+                
+                url: "${path}/api/common/data/agentList.do", // 엔드포인트 URL
+                type: "GET", // HTTP DELETE 메서드 사용
+                success: function(response) {
+                	//console.log(response);
+                	
+                    // JSON 데이터 파싱
+                    var agencies = JSON.parse(response);
+
+                    // select 요소 선택
+                    var selectElement = $("select[name='agent']");
+
+                    // 기관명 옵션 추가
+                    selectElement.append("<option value=''>기관을 선택하세요.</option>");
+                    // 각 기관 옵션 추가
+                    for (var i = 0; i < agencies.length; i++) {
+                        var agency = agencies[i];
+                        selectElement.append("<option value='" + agency.comnCdVal + "'>" + agency.comnCdValNm + "</option>");
+                    }
+                    
+
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행할 코드
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+	    		
+	    		
+            $("#agentSelect").change(function() {
+                var selectedAgent = $(this).val(); // 선택된 값 가져오기
+
+                // 선택된 에이전트에 따라 다른 로직 수행 가능
+                // 적절한 URL 및 AJAX 요청 등을 여기에 추가
+
+                // 예: 선택된 에이전트 출력
+                console.log("Selected Agent: " + selectedAgent);
+                
+                
+                $.ajax({
+                    url: "${path}/api/common/data/roleList.do",
+                    type: "GET",
+                    success: function(response) {
+                        console.log(response);
+
+                        var jsonArray = JSON.parse(response);
+
+                        var targetElement = document.querySelector(".group_menu ul");
+                        targetElement.innerHTML = ''; // ul 요소 초기화
+
+                        for (var i = 0; i < jsonArray.length; i++) {
+                        	
+                            var item = jsonArray[i];
+                            
+
+                            console.log(jsonArray[i]);
+
+                            console.log("8888888888888888888888888888888888888");
+                            console.log(item.comnCdValNm);
+                            
+                            var element = document.createElement("li");
+
+                            element.innerHTML += '<a href="#" onclick="setActive(' + i + ')">' + item.comnCdValNm + '</a>';
+
+                            targetElement.appendChild(element);
+                        }
+                        
+                        
+                        $("#group_autho_list").css("display", "block");
+
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        // 요청 실패 시 실행할 코드
+                        alert("code:" + xhr.status + "\n" + "message:" + xhr.responseText + "\n" + "error:" + error);
+                    }
+                });
+                
+                
+            });
+            
+            
+
+    		
+            
+            
+	    		
+	
+        });
+		    
+    </script>
 </head>
 
 <body>
@@ -46,14 +156,23 @@
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -61,47 +180,25 @@
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<form name="" method="" action="">
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+						</form>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -126,7 +223,7 @@
 								<select name="" onchange="window.open(value,'_self');">
 									<option id="" value="${path}/page/authority.do" selected>선택</option>
 									<option id="" value="${path}/page/authority_group.do">그룹권한</option>
-									<option id="" value="${path}/page/authority_setting.do" >그룹 여자 설정</option>
+									<option id="" value="${path}/page/authority_setting.do" >그룹 참여자 설정</option>
 								</select>	
 						</div>	
 						<p class="no-massage">메뉴를 선택해 주세요.</p>

@@ -34,7 +34,24 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
     
+    <!-- SSO Agent Setting Start -->
+   	<!--<listener>
+                <listener-class>com.ubintis.framework.SSOListener</listener-class>
+        </listener>
+
+        <servlet>
+                <servlet-name>SSOService</servlet-name>
+                <servlet-class>com.ubintis.app.AppService</servlet-class>
+        </servlet>
+
+        <servlet-mapping>
+                <servlet-name>SSOService</servlet-name>
+                <url-pattern>/SSOService.do</url-pattern>
+	</servlet-mapping>-->
+	<!-- SSO Agent Setting End -->
+	
 	<servlet>
 		<servlet-name>action</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -73,10 +90,35 @@
 	</error-page>
 	
 	
-	<session-config>
+	<context-param>
+	    <param-name>myServerIp</param-name>
+	    <param-value>192.168.90.87:8080</param-value>
+	</context-param>
+	<context-param>
+	    <param-name>messageServerIp</param-name>
+	    <param-value>192.168.90.87</param-value>
+	</context-param>
+	<context-param>
+	    <param-name>messageServerPort</param-name>
+	    <param-value>8081</param-value>
+	</context-param>
+	
+	
+	<context-param>
+	    <param-name>userID</param-name>
+	    <param-value>ID9991</param-value>
+	</context-param>
+	
+	
+	<context-param>
+	    <param-name>taServer</param-name>
+	    <param-value>192.168.22.132:8081</param-value>
+	</context-param>
+	
+<!-- 	<session-config>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
-	
+	 -->
 <!-- 	  <security-constraint>
     <web-resource-collection>
       <web-resource-name>HTTPS enabled</web-resource-name>

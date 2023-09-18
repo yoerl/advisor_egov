@@ -1,0 +1,366 @@
+/*   MOTP Stage  */
+
+/* Log in main page -----------------------------------------------*/
+
+body.main {
+	width: 460px;
+	height: 700px;
+	margin: 0 auto;    
+    background: #f7fbfc;
+    position: relative;  
+}
+
+body.main h1 {
+	position: absolute;
+	right: 90px;
+	top: 20px;	
+	cursor: 	auto;
+}
+
+body.main .contant {
+	position: absolute;
+	top: 145px;	
+}
+
+body.main input[type="text"],
+body.main input[type="password"] {
+	width: 443px !important;	
+	height: 30px !important;	
+	margin-left: 0 !important;	
+	margin-bottom: 10px;	
+	padding: 10px;
+	padding-left: 20px;	
+	border: 1px solid #8a8a8a;
+	font-size: 18px;
+}
+
+body.main h2 {
+   font-size: 14px;
+    color: #e47a5a;
+	line-height: 30px;		
+	font-weight: normal;
+}
+
+body.main h3 {
+   font-size: 11px;
+    color: #555555;
+	line-height: 20px;		
+	font-weight: normal;
+	margin-bottom: 20px
+}
+
+body.main .button_wrap {
+	margin: 40px 0;
+}
+
+body.main .article {
+	color: #4d7586;
+}
+
+body.main .link a {
+	color: #4d7586;
+}
+
+body.main .link a:hover {
+	color: red;
+}
+
+/*   Main OTP  */
+
+body.main_otp {
+	width: 364px;
+	height: 734px;	
+}
+
+.main_otp h1 {
+	left: 70px;
+}
+
+body.main_otp .wrap {
+	width: 364px;
+	height: 542px;
+	position: relative;
+	top: 132px;
+	background: url("../img/bg_main.png") no-repeat;			
+}
+
+body.main.main_otp input[type="text"],
+body.main.main_otp input[type="password"] {
+	width: 250px !important;	
+	height: 30px !important;	
+	margin-left: 0 !important;	
+	margin-bottom: 10px !important;	
+	padding: 10px;
+	padding-left: 20px !important;	
+	border: 1px solid #8a8a8a;
+	font-size: 18px;
+}
+
+body.main.main_otp .contant {
+	left: 41px;
+	top: 140px;
+}
+
+body.main.main_otp .button_wrap {
+	margin: 0px 0 75px 0;
+}
+
+/* Sub page ---------------------------------------------------------*/
+
+body.sub .wrap {
+	width: 720px;
+	margin: 0 auto;
+    position: relative;
+}
+
+/* Header */
+
+body.sub .header {
+	width: 720px;
+	height: 140px;
+}
+
+body.sub .header h1{
+	width: 183px;
+	height: 70px;
+	margin: 0 auto;
+	padding-top: 27px;
+}
+
+.header  .nav_top {
+	overflow: hidden;
+	margin-top: 5px;
+}
+
+.header  .nav_top ul li {
+	float: right;
+}
+
+.nav_top ul li a {
+	text-indent: 12px;	
+	font-size: 12px;
+	font-family: "맑은 고딕", "Malgun Gothic";
+	color: #666;
+	line-height:  30px;	
+}
+
+.nav_top ul li a:hover, .nav_top ul li a:focus, .nav_top ul li a:active {
+	color: #e2714e;
+}
+
+.line {
+	line-height:  30px;	
+	padding: 0 10px;
+}
+
+ul.step {
+	width: 720px;
+	height: 65px;	
+	overflow: hidden;
+	color: #fff;	
+	font-size: 14px;
+}
+
+ul.step li {
+	float: left;	
+	margin: 25px;
+	text-indent: 55px;	
+}
+
+ul.step li.step_1 {
+	text-indent: 50px;	
+} 
+
+ul.step li.step_5 {
+	text-indent: 120px;	
+} 
+
+ul.step li.step_6 {
+	text-indent: 220px;	
+} 
+
+
+ul.step_bg1 {
+	background: url("../img/bg_step1.png") no-repeat;	
+}
+
+ul.step_bg2 {
+	background: url("../img/bg_step2.png") no-repeat;	
+}
+
+ul.step_bg3 {
+	background: url("../img/bg_step3.png") no-repeat;	
+}
+
+ul.step_bg4 {
+	background: url("../img/bg_step4.png") no-repeat;	
+}
+
+ul.step_bg5 {
+	background: url("../img/bg_step5.png") no-repeat;	
+}
+
+ul.step_bg6 {
+	background: url("../img/bg_step6.png") no-repeat;	
+}
+
+body.sub form, body.sub .box, body.sub .otp_wrap {
+	margin-top: 30px; 
+}
+
+#f_step03 {
+	margin-top: 0px; 
+}
+
+.box {
+	width: 720px;
+	height: 245px;
+	background: #f3f9f9;
+	overflow: hidden;
+}
+
+.qr_code {
+	float: left;
+	margin-left: 125px;
+	margin-top: 40px;
+}
+
+.qr_code:first-child {
+	margin-left: 145px;
+}
+
+.qr_code li {
+	font-size: 14px;
+	color: #666;
+	line-height:  30px;	
+	text-align: center;
+}
+
+/*Contant ---------------------------------------------------------------------*/
+
+.bt_wrap {
+	width: 720px;
+	height: 50px;
+	position:relative;
+	margin-top: 	30px;
+}
+
+.bt_wrap p {
+	position: absolute;
+	left: 286px;
+}
+
+/*contant_head*/
+
+/* Contant style */
+
+body.sub h2 {
+   font-size: 16px;
+    color: #4d7586;
+	line-height: 30px;	
+	font-family: "나눔바른고딕","NanumBarunGothic";
+	font-weight: normal;
+}
+
+body.sub h3 {
+   font-size: 20px;
+    color: #e2714e;
+    font-weight: normal;
+	line-height: 37px;	
+	margin-top: 50px;
+	margin-bottom: 15px;
+}
+
+body.sub h4 {
+   font-size: 13px;
+    color: #2b3d3d;
+	line-height: 37px;	
+}
+
+.article {
+    font-size: 12px;
+    color: #666;
+	line-height: 23px;	
+	margin-bottom: 10px;
+}
+
+.article span {
+	color: #03aba9;
+	font-weight: bold;
+}
+
+.article li {		
+	list-style-image:  url("../img/list_style.png") !important ;
+	list-style-position: inside !important ;
+}
+
+/* Table style */
+
+.app_write {
+    border-top: 1px solid #dedede !important;
+    width: 720px;
+    text-align: left;
+    color: #666;   
+}
+
+.app_write tbody th {
+    background: #f3f9f9;
+    color: #465555;
+    padding: 20px 80px;
+    text-align: center;
+    border-bottom: 1px solid #dedede;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.app_write.per_50 {
+	 width: 500px !important;
+} 
+
+.app_write.per_50 tbody th {
+    padding: 20px 20px;
+    width: 100px;
+}
+
+.app_write td {
+    border-bottom: 1px solid #dedede;
+    padding: 6px 0 6px 10px;
+    line-height: 18px;
+    font-size: 11px;
+}
+
+.app_write td a {
+	color: #f9777a;	
+}
+
+body.sub input[type="button"] {
+	width: 149px;
+	height: 43px;
+	background: url("../img/bg_bt.png") no-repeat;
+	border: 0;
+	color: #fff;
+}
+
+body.main input[type="button"] {
+	width: 460px;
+	height: 50px;
+	background: #01abaa;
+	border: 0;
+	color: #fff;
+	font-size: 18px;
+	font-family: "나눔바른고딕","NanumBarunGothic";
+}
+
+body.main_otp input[type="button"] {
+	width: 282px;
+	height: 50px;
+	background: #01abaa;
+	border: 0;
+	color: #fff;
+	font-size: 18px;
+	font-family: "나눔바른고딕","NanumBarunGothic";
+}
+
+.margin-bottom50 {
+	margin-bottom: 50px;
+}

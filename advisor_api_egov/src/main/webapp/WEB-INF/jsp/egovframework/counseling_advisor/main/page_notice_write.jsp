@@ -19,7 +19,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
 	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
     <style>
-	  .ck-editor__editable { height: 400px; }
+	  .ck-editor__editable { height: 2000px; }
 	</style>
     <script>
 	$(document).ready(function() {

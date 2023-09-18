@@ -19,28 +19,125 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>
     
-    
 <!-- 레이어팝업창 -->
 <script> 
 
 
 $(document).ready(  function() {
+
+	  
+	  // AJAX DELETE 요청 보내기
+    $.ajax({
+    	///api/common/data.do
+        //url: "${path}/api/common/agency.do", // 엔드포인트 URL
+        
+        url: "${path}/api/common/data/agentList.do", // 엔드포인트 URL
+        type: "GET", // HTTP DELETE 메서드 사용
+        success: function(response) {
+        	console.log(response);
+        	
+            // JSON 데이터 파싱
+            var agencies = JSON.parse(response);
+
+            // select 요소 선택
+            var selectElement = $("select[name='agent']");
+
+            // 기관명 옵션 추가
+            selectElement.append("<option value=''>기관을 선택하세요.</option>");
+            // 각 기관 옵션 추가
+            for (var i = 0; i < agencies.length; i++) {
+                var agency = agencies[i];
+                selectElement.append("<option value='" + agency.comnCdVal + "'>" + agency.comnCdValNm + "</option>");
+            }
+            
+
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시 실행할 코드
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+        }
+    });
+		
+	  
 	
-	  $('.monitor_couseller').on('click', function() {
-		    // 팝업 창의 URL과 창의 속성을 설정합니다.
-		    var popupURL = "http://localhost:8080/advisor_api_egov/page/monitoring_popup.do";
-		    var popupName = "팝업 이름";
-		    // 팝업 창 열기
-		    window.open(popupURL, "_blank", "width=900, height=600");
-	  });
+	  
+
+    $.ajax({
+        url: "${path}/api/users.do",
+        type: "GET",
+        success: function(response) {
+            console.log(response);
+
+            var jsonArray = JSON.parse(response);
+            // 요청 성공 시 실행될 함수
+            
+                        var targetElement = document.querySelector(".counseller_monitoring ul");
+                        targetElement.innerHTML = ''; // ul 요소 초기화
+
+                        var jsonArray = JSON.parse(response);
+                        for (var i = 0; i < jsonArray.length; i++) {
+                        	
+                            var item = jsonArray[i];
+
+                            console.log(jsonArray[i]);
+
+                            console.log("8888888888888888888888888888888888888");
+                            console.log(item.comnCdValNm);
+                            
+                            var element = document.createElement("li");
+
+                            element.innerHTML += ''+
+                            '<div class="monitor_couseller"><a href="#">'+
+                            '<span class="counsel_ready">통화대기</span>'+
+                            '<p>상담사 '+item.userNm+'</p></a>'+
+                            '</div>';
+
+                            targetElement.appendChild(element);
+                        }
+                        
+                    	
+
+                        $('.monitor_couseller').on('click', function() {
+                            var popupURL = "${path}/page/monitoring_popup.do";
+                            var popupName = "팝업 이름";
+                            window.open(popupURL, "_blank", "width=900, height=600");
+                        });
+                        
+            
+
+        },
+        error: function(xhr, status, error) {
+            // 두 번째 Ajax 요청의 요청 실패 시 실행할 코드
+            alert("code:" + xhr.status + "\n" + "message:" + xhr.responseText + "\n" + "error:" + error);
+        }
+    });
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+	  
 });
 
 
+
+
+
 </script>
+<script src="<c:url value='/js/egovframework/nxcapi_web.js' />"></script>
+
+
 </head>
 
 <body>
 <div id="wrap">
+
+
 	<!-- header -->
 	<header id="header">
 		<div id="logo">
@@ -67,14 +164,23 @@ $(document).ready(  function() {
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -82,47 +188,25 @@ $(document).ready(  function() {
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<form name="" method="" action="">
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+						</form>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -145,13 +229,8 @@ $(document).ready(  function() {
 					<form name="" method="" action="">
 						<div class="monitor_head">
 							<button class="refresh">새로고침</button>
-							<button class="monitor_history">접속이력</button>
-								<select name="">
-									<option id="" value="">기관선택</option>
-										<option id="" value="">기관명1</option>
-										<option id="" value="">기관명1</option>
-										<option id="" value="">기관명1</option>
-									</select>	
+								<select name='agent'>
+								</select>	
 						</div>	
 						<div class="monitor_content">
 							<div class="counseller_monitoring">
@@ -164,50 +243,13 @@ $(document).ready(  function() {
 									</li>
 									<li>
 										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-											</a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
 											<span class="counsel_end">통화종료</span>
 											<p>상담사 홍길동</p></a>
 										</div>
 									</li>
 									<li>
 										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
-											<p>상담사 홍길동</p></a>
-										</div>
-									</li>
-									<li>
-										<div class="monitor_couseller"><a href="#">
-											<span class="counsel_ing">통화중</span>
+											<span class="counsel_ready">통화 대기중</span>
 											<p>상담사 홍길동</p></a>
 										</div>
 									</li>
@@ -226,6 +268,18 @@ $(document).ready(  function() {
 									<li>
 										<div class="monitor_couseller"><a href="#">
 											<span class="counsel_ready">통화 대기중</span>
+											<p>상담사 홍길동</p></a>
+										</div>
+									</li>
+									<li>
+										<div class="monitor_couseller"><a href="#">
+											<span class="counsel_ing">통화중</span>
+											<p>상담사 홍길동</p></a>
+										</div>
+									</li>
+									<li>
+										<div class="monitor_couseller"><a href="#">
+											<span class="counsel_end">통화종료</span>
 											<p>상담사 홍길동</p></a>
 										</div>
 									</li>
@@ -237,9 +291,9 @@ $(document).ready(  function() {
 									</li>
 								</ul>
 							</div>
-							<div class="setting_btn">
+<!-- 						<div class="setting_btn">
 								<a href="">접속</a>
-							</div>
+							</div> -->	
 
 						</div>
 					</form>
@@ -269,14 +323,23 @@ $(document).ready(  function() {
 		<!-- body -->
 	<div class="detail_pop_container" id="jubsok_detail">	
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -284,45 +347,12 @@ $(document).ready(  function() {
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
 					<!-- chating popup -->
@@ -409,6 +439,38 @@ $(document).ready(  function() {
 	<!-- body -->
 	</div>
 </div>
+
+
+
+
+<!--   <script>
+            NXApi.setEvent(function (json) {
+
+	            });
+	            NXApi.connect({
+		            // url: ["wss://testdo.nexuscommunity.net:9801"],
+		            url: ["ws://192.168.90.61:9800"],
+	                linkType: 4,
+	                deviceNumber : 2011
+	            }).then(function (response) {
+	                console.log('connect result:' + JSON.stringify(response));
+	            });
+	
+	
+            NXApi.command({
+	                cmd:'agentstatusgetii',
+	                group: 100,
+	                part: 102,
+	                mode: 203,  // NotReady
+	                //mode: 204,  // Ready
+	
+	
+		        //centerid : 4,
+	                maxcount: 10
+	            }).then(function(response) {
+	                console.log('agentstatusgetii result:'+JSON.stringify(response));
+	            })
+    </script> -->
 
 </body>
 </html>

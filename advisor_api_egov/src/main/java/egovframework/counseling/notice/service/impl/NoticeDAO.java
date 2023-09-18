@@ -1,11 +1,12 @@
 package egovframework.counseling.notice.service.impl;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -14,9 +15,27 @@ public class NoticeDAO {
     @Resource(name = "noticeMapper")
     private NoticeMapper noticeMapper;
 
-    public List<NoticeVO> selectNoticeList() throws Exception {
-        return noticeMapper.selectNotice();
+    public List<NoticeVO> selectNoticeList(NoticeVO noticeVO) throws Exception {
+    	
+    	// 페이징 처리를 위한 목록 count
+    	int noticesCnt = noticeMapper.selectNoticeListCnt();
+    	noticeVO.getPagination().setTotalRecordCount(noticesCnt);
+    	
+        List<NoticeVO> notices = noticeMapper.selectNotice(noticeVO);
+//        notices.add(0, noticeVO);
+        notices.get(0).setPagination(noticeVO.getPagination());
+
+        // 가져온 timestamp 값을 원하는 형식으로 변환
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (NoticeVO notice : notices) {
+            Date timestamp = notice.getRgsnDttm(); // 이 부분은 NoticeVO 클래스에 따라서 변경될 수 있습니다.
+            String formattedDate = dateFormat.format(timestamp);
+            notice.setRgsnDttmStr(formattedDate); // 변환된 값을 NoticeVO 객체에 저장합니다.
+        }
+
+        return notices;
     }
+    
 
     public List<NoticeVO> selectNoticeOne(String id) throws Exception {
         NoticeVO param = new NoticeVO();
@@ -66,5 +85,11 @@ public class NoticeDAO {
             throw e; // 예외를 상위로 던집니다.
         }
     }
+
+
+
+
+
+	
 
 }

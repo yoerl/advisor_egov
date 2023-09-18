@@ -17,6 +17,61 @@
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
+     <style>
+
+      .skill-box:not(:first-child) {
+        margin-top: 50px;
+      }
+      .skill-name {
+        color: #878787;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+      .progress-bar {
+        position: relative;
+        width: 100%;
+        height: 10px;
+        border-radius: 10px;
+
+        background: #333333;
+      }
+      .progress {
+        height: 10px;
+        border-radius: 10px;
+        background: #96764f;
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: scaleUp 0.1s cubic-bezier(0.1, 0.1, 0.1, 0.1) forwards;
+      }
+      .progress-rate {
+        position: absolute;
+        background: #222;
+        color: #96764f;
+        font-size: 14px;
+        bottom: calc(100% + 10px);
+        transform: translateX(-50%);
+        padding: 2px 8px;
+      }
+      .progress-rate::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        background: #222;
+        width: 5px;
+        height: 5px;
+      }
+      @keyframes scaleUp {
+        0% {
+          transform: scaleX(0);
+        }
+        100% {
+          transform: scaleX(1);
+        }
+      }
+    </style>
 </head>
 
 <body>
@@ -48,58 +103,34 @@
 		<!-- chating -->
 			<section id="charting">
 				<div class="chating_inner">
-				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
 				</div>
 				<!-- chating head -->
-				<!-- chating con -->
-				<div class="chating_con">
-					
-					<div class="chating_contents">
-						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
-						</ul>
-					
-					
-					</div>
-					</div>
-					<!-- chating con -->
-					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
+				
+				<div style="display:none;">
+						<div class="chating_head">
+							<div class="chating_head_inner">
+							</div>
 						</div>
+						<!-- chating head -->
+						<!-- chating con -->
+							<div class="chating_con">
+							
+							<div class="chating_contents">
+								<ul>
+								</ul>
+							
+							
+							</div>
+							</div>
+							<!-- chating con -->
+							<!-- chating bottom -->
+							<div class="chating_bottom">
+								<div class="chating_head_inner">
+								</div>
+							</div>
 					</div>
 					<!-- chating bottom -->
 				
@@ -126,13 +157,42 @@
 						<div class="setting_keyword">
 								<select name="" onchange="window.open(value,'_self');">
 										<option id="" value="" selected>선택</option>
-										<option id="" value="${path}/page/setting_system.do">시스템 정보</option>
+										<option id="" value="${path}/page/setting_system.do" selected>시스템 정보</option>
 										<option id="" value="${path}/page/setting_font.do">폰트종류</option>
 										<option id="" value="${path}/page/setting_size.do">폰트크기</option>
 										<option id="" value="${path}/page/setting_my.do">마이페이지</option>
 								</select>	
 						</div>	
-						<div class="setting_content"><img src="../images/icons/system.gif" alt=""></div>
+						<div class="setting_content">
+						      		<div class="skill-box">
+				        				<h4 class="skill-name">CPU</h4>
+				
+								        <div class="progress-bar">
+								          <div class="progress" style="width: 95%"></div>
+								          <div class="progress-rate" style="left: 95%">95%</div>
+								        </div>
+								      </div>
+								
+								      <div class="skill-box">
+								        <h4 class="skill-name">메모리</h4>
+								
+								        <div class="progress-bar">
+								          <div class="progress" style="width: 95%"></div>
+								          <div class="progress-rate" style="left: 95%">95%</div>
+								        </div>
+								      </div>
+								
+								      <div class="skill-box">
+								        <h4 class="skill-name">디스크</h4>
+								
+								        <div class="progress-bar">
+								          <div class="progress" style="width: 95%"></div>
+								          <div class="progress-rate" style="left: 95%">95%</div>
+								        </div>
+								      </div>
+								      
+						
+						</div>
 					</form>
 				</div>
 			</section>

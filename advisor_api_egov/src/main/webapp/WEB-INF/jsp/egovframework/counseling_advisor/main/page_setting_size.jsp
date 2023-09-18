@@ -21,50 +21,61 @@
 
 <script>
 
+$(document).ready(  function() {
+	  
 
-/* $(document).ready(function() {
-    
+	// 첫 번째 AJAX 요청
 	$.ajax({
-	    type: "GET", // HTTP 요청 방식 (GET, POST 등)
-	    url: "${path}/api/fontsizelist.do",
-	    /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
-	    success: function(jsonString) {
-	        var jsonArray = JSON.parse(jsonString);
-	        // 요청 성공 시 실행될 함수
-	        console.log("AJAX  성공: " + jsonString);
-	        
+	    url: "${path}/api/common/data/FontSizeList.do", // 첫 번째 엔드포인트 URL
+	    type: "GET", // HTTP GET 메서드 사용
+	    success: function(response) {
+	        console.log(response);
 
-	/* 		var ulElement = document.querySelector(".board-list");
-			ulElement.innerHTML = '';
-			
-		    for (var i = 0; i < jsonArray.length; i++) {
-		    	
-		        var item = jsonArray[i];
-	            console.log("AJAX  성공2222: " + item.amntDttm);
-		        var liElement = document.createElement("li");
-
-		        liElement.innerHTML += '' +
-		        '<a href=${path}/page/notice_view.do?notiSqno='+item.notiSqno+'>' +
-		        '<p>' + item.notiTitlNm + '</p>' +
-		        '<span class="notice_date">'+item.amntDttm+'</span>' +
-		        '</a>' +
-		        '<div class="manager">' +
-		        '<span>'+item.rgsrId+'</span>' +
-		        '<a href="#" id="btn_del" data-noti_sqno='+item.notiSqno+' class="btn_del_con">삭제</a>' +
-		        '</div>';
-		        
-		        ulElement.appendChild(liElement); 
+	        var jsonArray = JSON.parse(response);
+	        for (var i = 0; i < jsonArray.length; i++) {
+	            var item = jsonArray[i];
+	            var newItemHTML = '<li><span class="radios"><input type="radio" id="font_rd'+i+'" name="font_size" value="'+item.comnCdVal+'"> <label for="font_rd'+i+'">'+item.comnCdValNm+'</label></span></li>';
 	            
-		    }*/
-	        
-	        
+	            // 아이디가 "size_list"인 ul 요소에 새 항목 추가
+	            $("#size_list").append(newItemHTML);
+	        }
+
+	        // 첫 번째 요청 완료 후 두 번째 AJAX 요청 실행
+	        $.ajax({
+	            url: "${path}/api/common/data/DefaltValue.do", // 두 번째 엔드포인트 URL
+	            type: "GET", // HTTP GET 메서드 사용
+	            success: function(response) {
+	                console.log(response);
+
+	                // JSON 데이터 파싱
+	                var responseData = JSON.parse(response);
+
+	                // "comnCdValNm"이 "fontSize"인 항목 찾기
+	                for (var i = 0; i < responseData.length; i++) {
+	                    var item = responseData[i];
+	                    if (item.comnCdValNm === "fontSize") {
+	                        var comnCdVal = item.comnCdVal;
+	                        console.log("fontSize 값:", comnCdVal);
+	                        
+	                        $("input[name='font_size'][value="+comnCdVal+"]").prop("checked", true);
+	                        break; // 값을 찾았으므로 반복문 종료
+	                    }
+	                }
+	            },
+	            error: function(xhr, status, error) {
+	                // 두 번째 요청 실패 시 실행할 코드
+	                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+	            }
+	        });
 	    },
-	    error: function(request, status, error) {
+	    error: function(xhr, status, error) {
+	        // 첫 번째 요청 실패 시 실행할 코드
 	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 	    }
 	});
-	
-}); */
+
+		
+});
 
 
 
@@ -84,9 +95,9 @@
 			</a>
 		</div>
 		<nav id="gnb">
-			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
+			<a href="${path}/page/summary.do"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
 			<a href="${path}/page/history.do"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
-			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
+			<a href="${path}/page/setting.do" class="active"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
 			<a href="${path}/page/monitoring.do"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
 			<a href="${path}/page/authority.do"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
 			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
@@ -100,14 +111,23 @@
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -115,47 +135,25 @@
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<form name="" method="" action="">
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+						</form>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -179,26 +177,17 @@
 					<form name="" method="" action="">
 						<div class="setting_keyword">
 								<select name="" onchange="window.open(value,'_self');">
-										<option id="" value="" selected>선택</option>
+										<option id="" value="">선택</option>
 										<option id="" value="${path}/page/setting_system.do">시스템 정보</option>
 										<option id="" value="${path}/page/setting_font.do">폰트종류</option>
-										<option id="" value="${path}/page/setting_size.do">폰트크기</option>
+										<option id="" value="${path}/page/setting_size.do" selected>폰트크기</option>
 										<option id="" value="${path}/page/setting_my.do">마이페이지</option>
 								</select>	
 						</div>	
 						<div class="setting_content">
 							<div class="size_choice">
-								<ul>
-									<li><span class="radios"><input type="radio" id="font_rd1" name="font_size"> <label for="font_rd1">12</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd2" name="font_size"> <label for="font_rd2">14</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd3" name="font_size"> <label for="font_rd3">16</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd4" name="font_size"> <label for="font_rd4">18</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd5" name="font_size"> <label for="font_rd5">20</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd6" name="font_size"> <label for="font_rd6">22</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd7" name="font_size"> <label for="font_rd7">24</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd8" name="font_size"> <label for="font_rd8">26</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd9" name="font_size"> <label for="font_rd9">28</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd10" name="font_size"> <label for="font_rd10">30</label></span></li> 
+								<ul id="size_list">
+									
 								</ul>
 							</div>
 							<div class="setting_btn">

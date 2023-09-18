@@ -9,7 +9,6 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
 import egovframework.counseling.notice.service.NoticeService;
-import egovframework.example.sample.service.impl.SampleDAO;
 
 @Service("noticeService")
 public class NoticeServiceImpl extends EgovAbstractServiceImpl implements NoticeService {
@@ -20,10 +19,10 @@ public class NoticeServiceImpl extends EgovAbstractServiceImpl implements Notice
   private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<NoticeVO> selectNotices() throws Exception {
+	public List<NoticeVO> selectNotices(NoticeVO noticeVO) throws Exception {
 
 
-		List<NoticeVO> noticeInfo = noticeDAO.selectNoticeList();
+		List<NoticeVO> noticeInfo = noticeDAO.selectNoticeList(noticeVO);
 		return noticeInfo;
 	}
 	
@@ -62,5 +61,8 @@ public class NoticeServiceImpl extends EgovAbstractServiceImpl implements Notice
         boolean result = noticeDAO.updateNoticeOne(noticeVO);
         return result;
     }
+
+
+	
 
 }

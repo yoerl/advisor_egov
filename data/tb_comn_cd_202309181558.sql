@@ -1,0 +1,98 @@
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('agentList','기관리스트','1130000','공정거래위원회',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1140100','국민권익위원회',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1192000','해양수산부',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1240000','통계청',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1371000','문화체육관광부',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1471000','식품의약품안전처',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1543000','농림축산식품부',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1741000','행정안전부',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1760000','인사혁신처',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('agentList','기관리스트','1830000','국가보훈부',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('DefaltValue','기본값','18','fontSize',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:56'),
+	 ('DefaltValue','기본값','fontSize','12',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-12 21:35:58'),
+	 ('DefaltValue','기본값','font_dotum','font',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:56'),
+	 ('FontList','폰트리스트','font_dotum','돋움',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:58'),
+	 ('FontList','폰트리스트','font_myeongjo','명조',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:58'),
+	 ('FontSizeList','폰트사이즈리스트','10','10',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:58'),
+	 ('FontSizeList','폰트사이즈리스트','12','12',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:58'),
+	 ('FontSizeList','폰트사이즈리스트','14','14',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:58'),
+	 ('FontSizeList','폰트사이즈리스트','16','16',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:58'),
+	 ('FontSizeList','폰트사이즈리스트','18','18',NULL,NULL,'Y',NULL,NULL,'ADMIN','2023-09-11 16:15:58');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('menuGroup','메뉴그룹','menu_agentadmin','기관 관리자 메뉴권한','',NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menuGroup','메뉴그룹','menu_counselor','상담사','',NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menuGroup','메뉴그룹','menu_operationAdminr','운영 관리자','',NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menuGroup','메뉴그룹','menu_subteamLeader','부팀장',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menuGroup','메뉴그룹','menu_systemAdmin','시스템 관리자','',NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menuGroup','메뉴그룹','menu_teacher','강사','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menuGroup','메뉴그룹','menu_teamLeader','팀장','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_agentadmin','기관 관리자 메뉴권한','history','이력','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_agentadmin','기관 관리자 메뉴권한','memo','메모','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_agentadmin','기관 관리자 메뉴권한','monitering','모니터링','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('menu_agentadmin','기관 관리자 메뉴권한','permission','권한','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_agentadmin','기관 관리자 메뉴권한','setting','설정','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_agentadmin','기관 관리자 메뉴권한','subteamLeader','부팀장','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_agentadmin','기관 관리자 메뉴권한','teamLeader','팀장','','','Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_counselor','상담사 메뉴권한','history','이력',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_counselor','상담사 메뉴권한','memo','메뉴',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_counselor','상담사 메뉴권한','monitering','모니터링',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_counselor','상담사 메뉴권한','permission','권한',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_counselor','상담사 메뉴권한','setting','설정',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_counselor','상담사 메뉴권한','subteamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('menu_counselor','상담사 메뉴권한','teamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_operationAdminr','운영 관리자 메뉴권한','history','이력',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_operationAdminr','운영 관리자 메뉴권한','memo','메뉴',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_operationAdminr','운영 관리자 메뉴권한','monitering','모니터링',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_operationAdminr','운영 관리자 메뉴권한','permission','권한',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_operationAdminr','운영 관리자 메뉴권한','setting','설정',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_operationAdminr','운영 관리자 메뉴권한','subteamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_operationAdminr','운영 관리자 메뉴권한','teamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_subteamLeader','부팀장 메뉴권한','history','이력',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_subteamLeader','부팀장 메뉴권한','memo','메뉴',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('menu_subteamLeader','부팀장 메뉴권한','monitering','모니터링',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_subteamLeader','부팀장 메뉴권한','permission','권한',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_subteamLeader','부팀장 메뉴권한','setting','설정',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_subteamLeader','부팀장 메뉴권한','subteamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_subteamLeader','부팀장 메뉴권한','teamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_systemAdmin','시스템 관리자 메뉴권한','history','이력',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_systemAdmin','시스템 관리자 메뉴권한','memo','메뉴',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_systemAdmin','시스템 관리자 메뉴권한','monitering','모니터링',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_systemAdmin','시스템 관리자 메뉴권한','permission','권한',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_systemAdmin','시스템 관리자 메뉴권한','setting','설정',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('menu_systemAdmin','시스템 관리자 메뉴권한','subteamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_systemAdmin','시스템 관리자 메뉴권한','teamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teacher','강사 메뉴권한','history','이력',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teacher','강사 메뉴권한','memo','메뉴',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teacher','강사 메뉴권한','monitering','모니터링',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teacher','강사 메뉴권한','permission','권한',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teacher','강사 메뉴권한','setting','설정',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teacher','강사 메뉴권한','subteamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teacher','강사 메뉴권한','teamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teamLeader','팀장 메뉴권한','history','이력',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('menu_teamLeader','팀장 메뉴권한','memo','메뉴',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teamLeader','팀장 메뉴권한','monitering','모니터링',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teamLeader','팀장 메뉴권한','permission','권한',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teamLeader','팀장 메뉴권한','setting','설정',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teamLeader','팀장 메뉴권한','subteamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('menu_teamLeader','팀장 메뉴권한','teamLeader','공지사항',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('roleList','역활리스트','counselor','상담사',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('roleList','역활리스트','operationAdminr','운영 관리자',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('roleList','역활리스트','subteamLeader','부팀장',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('roleList','역활리스트','systemAdmin','시스템 관리자',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');
+INSERT INTO adv.tb_comn_cd (COMN_CD,COMN_CD_NM,COMN_CD_VAL,COMN_CD_VAL_NM,HGRN_COMN_CD,HGRN_COMN_CD_NM,USE_YN,AMND_ID,AMNT_DTTM,RGSR_ID,RGSN_DTTM) VALUES
+	 ('roleList','역활리스트','teacher','강사',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('roleList','역활리스트','teamLeader','팀장',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('RolePower','역활권한','1','상담사',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('RolePower','역활권한','2','강사',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('RolePower','역활권한','3','부팀장',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('RolePower','역활권한','4','팀장',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('RolePower','역활권한','5','기관 관리자',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('RolePower','역활권한','6','운영 관리자',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56'),
+	 ('RolePower','역활권한','7','시스템 관리자',NULL,NULL,'Y','ADMIN','2023-09-11 16:15:56','ADMIN','2023-09-11 16:15:56');

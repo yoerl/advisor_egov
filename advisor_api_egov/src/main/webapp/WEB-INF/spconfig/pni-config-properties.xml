@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>SSO Agent properties</comment>
+<entry key="product">Pass-Ni SSO v4.0.007</entry>
+<entry key="appliation">Pass-Ni SSO Agent for JAVA v4.0.007</entry>
+<entry key="server.id">call-sso-server</entry>
+<entry key="server.version">4.0.007</entry>
+<entry key="server.domain">192.168.90.92</entry>
+<entry key="server.port">80</entry>
+<entry key="server.context.root">/sso</entry>
+<entry key="server.ssl.yn">N</entry>
+<entry key="server.self.url">1AC47975957363CB0B364A6B22468313</entry>
+<entry key="server.login.url">9270EABDE7B649B88961D7CBC378F7B1</entry>
+<entry key="server.logout.url">3242FDF8C5D6A12829C961886D205C87E2F84CD31ADF267B9262D66D86217B40</entry>
+<entry key="server.api.url">AFA63AEF246E55EE232E64DAE76EC43A</entry>
+<entry key="agent.id">call-advisor</entry>
+<entry key="agent.version">4.0.007</entry>
+<entry key="agent.domain">192.168.90.87</entry>
+<entry key="agent.port">8080</entry>
+<entry key="agent.context.root">/advisor_api_egov</entry>
+<entry key="agent.ssl.yn">N</entry>
+<entry key="agent.proc.url">/passni/sample/loginProc.jsp</entry>
+<entry key="agent.logout.url">/passni/sample/logout.jsp</entry>
+<entry key="agent.redirect.url">/passni/sso/spRedirect.jsp</entry>
+<entry key="agent.error.url">/passni/sample/error.jsp</entry>
+<entry key="agent.root.path">/usr/local/apache-tomcat-9.0.64-api/webapps/advisor_api_egov</entry>
+<entry key="agent.secky">D5A602C5DB435824C88EC76DA7B3C26F9EB3E0E1564E23CE43830A96A72B3233143DD00390EF9A793C40921197212DF9</entry>
+<entry key="cert.file.path">/usr/local/apache-tomcat-9.0.64-api/sso-conf/sso-cert/cert/call-advisor</entry>
+<entry key="cert.file.server.name">call-sso-server-cert</entry>
+<entry key="cert.file.agent.name">call-advisor-cert</entry>
+<entry key="cert.pni.type">9</entry>
+<entry key="logger.file.path">/usr/local/apache-tomcat-9.0.64-api/sso-conf/sso-logs</entry>
+<entry key="logger.file.name">passni_log</entry>
+<entry key="logger.file.limit">500000</entry>
+<entry key="logger.file.count">1</entry>
+<entry key="logger.level">ALL</entry>
+<entry key="crypto.file.path">/usr/local/apache-tomcat-9.0.64-api/sso-conf/sso-crypto</entry>
+<entry key="crypto.algorithm">29434D9837E8AB05C28FCB9DB931ED21</entry>
+<entry key="crypto.algorithm.mode">7E7D77303F3FEF65042118FF93E4A607</entry>
+<entry key="crypto.digest">A8171674DDBCF3850DF921E6BF25F42C</entry>
+<entry key="crypto.rsasize">AB851DA0A256715AEBBA50CC91199A0F</entry>
+<entry key="crypto.ec.type">26D3D1A6DF43545D072225DECCE507B2</entry>
+<entry key="crypto.encoding">UTF-8</entry>
+<entry key="agent.action.url">/SSOService.do</entry>
+</properties>

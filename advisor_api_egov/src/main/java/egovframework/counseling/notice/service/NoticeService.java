@@ -6,7 +6,7 @@ import egovframework.counseling.notice.service.impl.NoticeVO;
 
 public interface NoticeService {
 
-	List<NoticeVO> selectNotices() throws Exception;
+	List<NoticeVO> selectNotices(NoticeVO noticeVO) throws Exception;
 
 	List<NoticeVO> selectNoticeOne(String id) throws Exception;
 

@@ -16,6 +16,7 @@
 <meta name="keywords" content="">
     <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
     <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/common.js' />"></script>	
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
@@ -45,50 +46,57 @@
                 }
             });
     	});
+    	
+    	fnSearch(1);
+    	
+    });
 
     	
-    	
-    	
-        $.ajax({
-            type: "GET", // HTTP 요청 방식 (GET, POST 등)
-            url: "${path}/api/notices.do",
-            /* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
-            success: function(jsonString) {
-                var jsonArray = JSON.parse(jsonString);
-                // 요청 성공 시 실행될 함수
-                console.log("AJAX  성공: " + jsonString);
-                
+    function fnSearch(currentPage) {
 
+		$.ajax({
+			type: "GET", // HTTP 요청 방식 (GET, POST 등)
+			url: "${path}/api/notices.do",
+			/* dataType: "json", // 응답 데이터 형식 (JSON, XML 등) */
+			data : {"currentPage" : currentPage},
+			success: function(jsonString) {
+				var jsonArray = JSON.parse(jsonString);
+				// 요청 성공 시 실행될 함수
+				console.log("AJAX  성공: " + jsonString);
+				
+	
 				var ulElement = document.querySelector(".board-list");
 				ulElement.innerHTML = '';
 				
-			    for (var i = 0; i < jsonArray.length; i++) {
-			    	
-			        var item = jsonArray[i];
-	                console.log("AJAX  성공2222: " + item.amntDttm);
-			        var liElement = document.createElement("li");
+				for (var i = 0; i < jsonArray.length; i++) {
+					
+					var item = jsonArray[i];
+					console.log("AJAX  성공2222: " + item);
+					console.log("AJAX  성공333: " + item);
+					var liElement = document.createElement("li");
 		
-			        liElement.innerHTML += '' +
-			        '<a href=${path}/page/notice_view.do?notiSqno='+item.notiSqno+'>' +
-			        '<p>' + item.notiTitlNm + '</p>' +
-			        '<span class="notice_date">'+item.amntDttm+'</span>' +
-			        '</a>' +
-			        '<div class="manager">' +
-			        '<span>'+item.rgsrId+'</span>' +
-			        '<a href="#" id="btn_del" data-noti_sqno='+item.notiSqno+' class="btn_del_con">삭제</a>' +
-			        '</div>';
-			        
-			        ulElement.appendChild(liElement);
-		            
-			    }
-                
-                
-            },
-            error: function(request, status, error) {
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
-        });
-    });
+					liElement.innerHTML += '' +
+					'<a href=${path}/page/notice_view.do?notiSqno='+item.notiSqno+'>' +
+					'<p>' + item.notiTitlNm + '</p>' +
+					'<span class="notice_date">'+item.rgsnDttmStr+'</span>' +
+					'</a>' +
+					'<div class="manager">' +
+					'<span>'+item.rgsrNm+'</span>' +
+					'<a href="#" id="btn_del" data-noti_sqno='+item.notiSqno+' class="btn_del_con">삭제</a>' +
+					'</div>';
+					
+					ulElement.appendChild(liElement);
+					
+				}
+				// 페이징 적용
+				fnPaging(jsonArray[0].pagination);
+			},
+			error: function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+			}
+		});
+
+	}
 
     </script>
 </head>
@@ -120,14 +128,23 @@
 	<!-- body -->
 	<div id="container">
 		<!-- chating -->
-			<section id="charting">
+						<section id="charting">
 				<div class="chating_inner">
+				
+				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+				    <p> 현재 통화 상태가 아닙니다. </p>
+				</div>
+
+				
+				
+				
+				
 				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
+				<div id="chating_head" class="chating_head" style="display:none;">
+<!-- 					<div class="chating_head_inner">
 						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
 						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
+					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->
@@ -135,47 +152,26 @@
 					
 					<div class="chating_contents">
 						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
 						</ul>
-					
-					
 					</div>
 					</div>
 					<!-- chating con -->
 					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
+					<div class="chating_bottom" style="display:none;">
 					</div>
 					<!-- chating bottom -->
+					<!-- chating popup -->
+					<div class="chating_popup" style="display:none;">
+						<form name="" method="" action="">
+							<input type="hidden" id="currentPage" value=""/>
+						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
+						<div class="chating_popup_con">
+							<textarea placeholder="군입대에 대한 상담"></textarea>
+							<button>저장</button>
+						</div>
+						</form>
+					</div>
+					<!-- chating popup -->
 				
 				</div>
 			</section>
@@ -225,8 +221,8 @@
 					<!-- 삭제팝업창 -->
 					</form>
 					
-					<div class="code-html pagenation">
-						<div id="pagination1" class="tui-pagination"><a href="#" class="tui-page-btn tui-first"><span class="tui-ico-first">first</span></a><a href="#" class="tui-page-btn tui-prev"><span class="tui-ico-prev">prev</span></a><a href="#" class="tui-page-btn tui-first-child">1</a><strong class="tui-page-btn tui-is-selected">2</strong><a href="#" class="tui-page-btn">3</a><a href="#" class="tui-page-btn">4</a><a href="#" class="tui-page-btn">5</a><a href="#" class="tui-page-btn tui-next-is-ellip tui-last-child"><span class="tui-ico-ellip">...</span></a><a href="#" class="tui-page-btn tui-next"><span class="tui-ico-next">next</span></a><a href="#" class="tui-page-btn tui-last"><span class="tui-ico-last">last</span></a></div>	
+					<!-- <div id="pageArea"></div> -->
+					<div class="code-html pagenation" id="pageArea">
 					</div>
 				</div>
 			</section>
@@ -234,13 +230,6 @@
 	</div>
 	<!-- body -->
 </div>
-<script class="code-js">
-	var pagination1 = new tui.Pagination('pagination1', {
-		totalItems: 500,
-		itemsPerPage: 10,
-		visiblePages: 5
-	});
-</script>
 <script> 
  	$(document).ready(function(){ 
 	$("a.btn_del_con").click(function(){ 
@@ -253,143 +242,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<%-- 
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagination Example</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 라이브러리 추가 -->
-    <style>
-        /* CSS 스타일링 */
-        .pagenation {
-            margin: 20px 0;
-        }
-
-        .pagenation ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        .pagenation li {
-            margin-right: 10px;
-        }
-
-        .pagenation li a {
-            text-decoration: none;
-            padding: 5px 10px;
-            background-color: #f0f0f0;
-            color: #333;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        .pagenation li.on a {
-            background-color: #007bff;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- 페이징 컨테이너 -->
-    <div class="pagenation" data-page_number="1" data-page_size="10" data-total_pages="14">
-        <ul class="pagenation_content" id="pagination"></ul>
-    </div>
-
-    <script>
-        var paginationContainer = document.querySelector(".pagenation");
-        var pageNumber = parseInt(paginationContainer.getAttribute("data-page_number"));
-        var pageSize = parseInt(paginationContainer.getAttribute("data-page_size"));
-        var totalPageCount = parseInt(paginationContainer.getAttribute("data-total_pages"));
-
-        function fetchDataAndUpdatePage() {
-            $.ajax({
-                type: "GET",
-                url: "${path}/api/notices.do",
-                data: {
-                    pageNumber: pageNumber,
-                    pageSize: pageSize
-                },
-                success: function(response) {
-                    // Here, handle the response. For example, if you receive new page data, render it.
-
-                    // Update the total page count if it's provided in the response
-                    if (response.totalPages) {
-                        totalPageCount = response.totalPages;
-                    }
-
-                    // After handling the data, re-render the pagination
-                    renderPagination();
-                },
-                error: function(request, status, error) {
-                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-                }
-            });
-        }
-
-        function renderPagination() {
-            var paginationContent = document.getElementById("pagination");
-            paginationContent.innerHTML = ""; 
-            
-            // Previous button
-            var prevButton = document.createElement("li");
-            prevButton.innerHTML = `<a href="#">이전</a>`;
-            prevButton.addEventListener("click", function () {
-                if (pageNumber > 1) {
-                    pageNumber--;
-                    fetchDataAndUpdatePage();
-                }
-            });
-            paginationContent.appendChild(prevButton);
-
-            // Page numbers
-            var pageStart = Math.max(1, Math.ceil(pageNumber / 5) * 5 - 4);
-            var pageEnd = Math.min(totalPageCount, pageStart + 4);
-            for (var i = pageStart; i <= pageEnd; i++) {
-                var pageItem = document.createElement("li");
-                pageItem.className = i === pageNumber ? "on" : "";
-                pageItem.innerHTML = `<a href="#">${i}</a>`;
-                pageItem.addEventListener("click", function () {
-                    pageNumber = parseInt(this.textContent);
-                    fetchDataAndUpdatePage();
-                });
-                paginationContent.appendChild(pageItem);
-            }
-
-            // Next button
-            var nextButton = document.createElement("li");
-            nextButton.innerHTML = `<a href="#">다음</a>`;
-            nextButton.addEventListener("click", function () {
-                if (pageNumber < totalPageCount) {
-                    pageNumber++;
-                    fetchDataAndUpdatePage();
-                }
-            });
-            paginationContent.appendChild(nextButton);
-        }
-
-        // Initially fetch data and render pagination
-        fetchDataAndUpdatePage();
-    </script>
-</body>
-</html>
- --%>

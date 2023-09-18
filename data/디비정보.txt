@@ -1,0 +1,131 @@
+-- adv.tb_comn_cd definition
+
+CREATE TABLE adv.`tb_comn_cd` (
+  `COMN_CD` varchar(50) NOT NULL,
+  `COMN_CD_NM` varchar(20) DEFAULT NULL,
+  `COMN_CD_VAL` varchar(50) NOT NULL,
+  `COMN_CD_VAL_NM` varchar(20) DEFAULT NULL,
+  `HGRN_COMN_CD` varchar(50) DEFAULT NULL,
+  `HGRN_COMN_CD_NM` varchar(20) DEFAULT NULL,
+  `USE_YN` char(1) DEFAULT NULL,
+  `AMND_ID` varchar(50) DEFAULT NULL,
+  `AMNT_DTTM` timestamp NULL DEFAULT NULL,
+  `RGSR_ID` varchar(50) DEFAULT NULL,
+  `RGSN_DTTM` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`COMN_CD`,`COMN_CD_VAL`),
+  KEY `IX_COMN_CD_PK` (`COMN_CD`,`COMN_CD_VAL`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- adv.tb_envr_stup definition
+
+CREATE TABLE adv.`tb_envr_stup` (
+  `ENVR_STUP_DIV_CD` varchar(20) NOT NULL,
+  `USER_ID` varchar(20) DEFAULT NULL,
+  `ENVR_STUP_DIV_NM` varchar(100) DEFAULT NULL,
+  `ENVR_STUP_VL` varchar(20) DEFAULT NULL,
+  `AMND_ID` varchar(50) DEFAULT NULL,
+  `AMNT_DTTM` timestamp NULL DEFAULT NULL,
+  `RGSR_ID` varchar(50) DEFAULT NULL,
+  `RGSN_DTTM` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`ENVR_STUP_DIV_CD`),
+  KEY `IX_ENVR_STUP_PK` (`ENVR_STUP_DIV_CD`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- adv.tb_news_info definition
+
+CREATE TABLE adv.`tb_news_info` (
+  `NEWS_SQNO` int(11) NOT NULL AUTO_INCREMENT,
+  `RECEIVER_ID` varchar(50) DEFAULT NULL,
+  `NEWS_TITL_NM` varchar(100) NOT NULL,
+  `NEWS_CNTN` longtext NOT NULL,
+  `USE_YN` char(1) DEFAULT 'Y',
+  `AMND_ID` varchar(50) DEFAULT NULL,
+  `AMNT_DTTM` timestamp NULL DEFAULT NULL,
+  `RGSR_ID` varchar(50) DEFAULT NULL,
+  `RGSR_NM` varchar(50) DEFAULT NULL,
+  `RGSN_DTTM` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`NEWS_SQNO`),
+  KEY `IX_NEWS_INFO_PK` (`NEWS_SQNO`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+
+-- adv.tb_noti_info definition
+
+CREATE TABLE adv.`tb_noti_info` (
+  `NOTI_SQNO` int(11) NOT NULL AUTO_INCREMENT,
+  `NOTI_TITL_NM` varchar(100) NOT NULL,
+  `NOTI_CNTN` longtext NOT NULL,
+  `USE_YN` char(1) DEFAULT 'Y',
+  `AMND_ID` varchar(50) DEFAULT NULL,
+  `AMNT_DTTM` timestamp NULL DEFAULT NULL,
+  `RGSR_ID` varchar(50) DEFAULT NULL,
+  `RGSR_NM` varchar(50) DEFAULT NULL,
+  `RGSN_DTTM` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`NOTI_SQNO`),
+  KEY `IX_NOTI_INFO_PK` (`NOTI_SQNO`)
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb4;
+
+
+-- adv.tb_user_athr definition
+
+CREATE TABLE adv.`tb_user_athr` (
+  `USER_ID` varchar(20) NOT NULL,
+  `USER_NM` varchar(100) DEFAULT NULL,
+  `ATHR_TYPE_CD` varchar(20) NOT NULL,
+  `ATHR_CD` varchar(20) NOT NULL,
+  `ATHR_NM` varchar(100) DEFAULT NULL,
+  `USE_YN` char(1) DEFAULT NULL,
+  `AMND_ID` varchar(50) DEFAULT NULL,
+  `AMNT_DTTM` timestamp NULL DEFAULT NULL,
+  `RGSR_ID` varchar(50) DEFAULT NULL,
+  `RGSN_DTTM` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`,`ATHR_CD`,`ATHR_TYPE_CD`),
+  KEY `IX_USER_ATHR_PK` (`USER_ID`,`ATHR_CD`,`ATHR_TYPE_CD`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- adv.tb_user_athr_req definition
+
+CREATE TABLE adv.`tb_user_athr_req` (
+  `NOTI_SQNO` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` varchar(20) NOT NULL,
+  `USER_NM` varchar(100) DEFAULT NULL,
+  `ATHR_TYPE_CD` varchar(20) NOT NULL,
+  `ATHR_CD` varchar(20) NOT NULL,
+  `ATHR_NM` varchar(100) DEFAULT NULL,
+  `USE_YN` char(1) DEFAULT 'Y',
+  `AMND_ID` varchar(50) DEFAULT NULL,
+  `AMNT_DTTM` timestamp NULL DEFAULT NULL,
+  `RGSR_ID` varchar(50) DEFAULT NULL,
+  `RGSN_DTTM` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`NOTI_SQNO`),
+  KEY `IX_USER_ATHR_PK` (`NOTI_SQNO`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4;
+
+
+-- ais.tb_user_info definition
+
+CREATE TABLE ais.`tb_user_info` (
+  `USER_ID` varchar(50) NOT NULL COMMENT 'id',
+  `USER_NM` varchar(20) DEFAULT NULL COMMENT '이름',
+  `USER_DIV_CD` varchar(20) DEFAULT NULL,
+  `USER_DIV_NM` varchar(20) DEFAULT NULL,
+  `BOT_ID` varchar(50) DEFAULT NULL,
+  `EXTN_NO` varchar(20) DEFAULT NULL COMMENT '내선번호',
+  `CONS_STAT_CD` varchar(20) DEFAULT NULL,
+  `INTT_CD` varchar(50) DEFAULT NULL COMMENT '기관코드',
+  `GROUP_CD` varchar(50) DEFAULT NULL COMMENT '그룹코드',
+  `PART_CD` varchar(50) DEFAULT NULL COMMENT '파트코드',
+  `TEAM_CD` varchar(50) DEFAULT NULL COMMENT '팀코드',
+  `USE_YN` char(1) DEFAULT 'Y',
+  `AMND_ID` varchar(50) DEFAULT NULL,
+  `AMND_NM` varchar(50) DEFAULT NULL,
+  `AMNT_DTTM` timestamp NULL DEFAULT NULL,
+  `RGSR_ID` varchar(50) DEFAULT NULL,
+  `RGSR_NM` varchar(50) DEFAULT NULL,
+  `RGSN_DTTM` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`USER_ID`),
+  KEY `IX_USER_INFO_PK` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
