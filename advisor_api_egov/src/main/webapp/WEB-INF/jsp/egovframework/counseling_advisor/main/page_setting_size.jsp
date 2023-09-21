@@ -25,7 +25,7 @@ String userID = getServletContext().getInitParameter("userID");
 
 <script>
 
-$(document).ready(  function() {
+$(document).ready(  function() { 
 	  
 	/* 폰트사이즈 등록 */
     $("#btn_save").click(function () {
