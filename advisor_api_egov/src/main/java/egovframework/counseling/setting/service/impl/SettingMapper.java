@@ -11,4 +11,6 @@ public interface SettingMapper  {
     public SettingVO selectSettingOne(SettingVO settingVO) throws Exception;
 
 	public int insertFont(SettingVO settingVO) throws Exception;
+	
+	public int insertFontSize(SettingVO settingVO) throws Exception;
 }

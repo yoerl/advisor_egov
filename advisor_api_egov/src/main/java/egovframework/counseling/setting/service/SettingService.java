@@ -12,5 +12,7 @@ public interface SettingService {
 	// 환경설정 조회
 	public boolean inserfont(SettingVO settingVO) throws Exception;
 	
+	// 폰트사이즈 등록
+	public boolean insertFontSize(SettingVO settingVO) throws Exception;
 	
 }

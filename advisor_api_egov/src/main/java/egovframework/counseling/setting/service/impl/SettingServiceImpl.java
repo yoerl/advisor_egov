@@ -32,6 +32,16 @@ public class SettingServiceImpl extends EgovAbstractServiceImpl implements Setti
 	   return result;
    }
    
+   /**
+    * 폰트사이즈 등록
+    */
+   @Transactional(rollbackFor = Exception.class)
+   public boolean insertFontSize(SettingVO settingVO) throws Exception {
+	   boolean result = settingDAO.insertFontSize(settingVO);
+	   
+	   return result;
+   }
+   
    
 	
 	

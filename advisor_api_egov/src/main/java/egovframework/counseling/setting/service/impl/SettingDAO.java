@@ -28,7 +28,7 @@ public class SettingDAO {
     
 
     /**
-     * 환경설정 정보 조회
+     * 폰트저장
      * @return
      * @throws Exception
      */
@@ -44,6 +44,25 @@ public class SettingDAO {
         }
         
         return false;
+    }
+    
+    /**
+     * 폰트 사이즈 저장
+     * @return
+     * @throws Exception
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public boolean insertFontSize(SettingVO settingVO) throws Exception {
+    	
+    	try {
+    		int rowsAffected = settingMapper.insertFontSize(settingVO);
+    		return rowsAffected > 0; // INSERT 쿼리가 성공하면 true, 그렇지 않으면 false 반환
+    	} catch (Exception e) {
+    		// 예외 처리 로직 작성
+    		e.printStackTrace();
+    	}
+    	
+    	return false;
     }
     
 

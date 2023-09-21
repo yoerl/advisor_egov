@@ -1,6 +1,5 @@
 package egovframework.counseling.setting.web;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -10,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,19 +36,8 @@ public class SettingController {
         ObjectMapper objectMapper = new ObjectMapper();
         SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
 
-        System.out.println("qqqqqqqqqqqqqqq");
-        System.out.println(settingVO.toString());
-        System.out.println("wwwwwwwwwww");
-        
-
 		SettingVO result = settingService.selectSetting(settingVO);
 
-
-        System.out.println("44444");
-        System.out.println(result.toString());
-        System.out.println("8845762");
-        
-        
 		Gson gson = new Gson();
 		String resultJson = gson.toJson(result);
 		
@@ -67,12 +54,6 @@ public class SettingController {
         ObjectMapper objectMapper = new ObjectMapper();
         SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
 
-        System.out.println("qqqqqqqqqqqqqqq");
-        System.out.println(settingVO.toString());
-        System.out.println("wwwwwwwwwww");
-        
-        
-        
 //nvrStupDivCd=font, userId=ID9991, envrStupDivNm=null, envrStupVl=null, amndId=null, amntDttm=null, rgsrId=null, rgsnDttm=null]
        
 		boolean result = settingService.inserfont(settingVO);
@@ -83,6 +64,21 @@ public class SettingController {
 	    return new ResponseEntity<>(String.valueOf(result), headers, HttpStatus.OK);
 	}
 	
+	@PostMapping("/api/setting/fontSize.do")
+	public ResponseEntity<String> insertFontSize(@RequestBody String input_json) throws Exception{
+		LOGGER.info("폰트사이즈 입력");
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
+		
+//nvrStupDivCd=fontSize, userId=ID9991, envrStupDivNm=null, envrStupVl=null, amndId=null, amntDttm=null, rgsrId=null, rgsnDttm=null]
+		
+		boolean result = settingService.insertFontSize(settingVO);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
+		return new ResponseEntity<>(String.valueOf(result), headers, HttpStatus.OK);
+	}
 	
 	@GetMapping("/api/setting/font.do")
 	public ResponseEntity<String> selectFont(@RequestBody String input_json) throws Exception{
@@ -90,18 +86,11 @@ public class SettingController {
 
         ObjectMapper objectMapper = new ObjectMapper();
         SettingVO settingVO = objectMapper.readValue(input_json, SettingVO.class);
-
-        System.out.println("qqqqqqqqqqqqqqq");
-        System.out.println(settingVO.toString());
-        System.out.println("wwwwwwwwwww");
-        
-        
         
 //nvrStupDivCd=font, userId=ID9991, envrStupDivNm=null, envrStupVl=null, amndId=null, amntDttm=null, rgsrId=null, rgsnDttm=null]
        
 		boolean result = settingService.inserfont(settingVO);
 
-		
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
 	    return new ResponseEntity<>(String.valueOf(result), headers, HttpStatus.OK);

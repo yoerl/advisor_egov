@@ -4,6 +4,10 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String userID = getServletContext().getInitParameter("userID");
+%>
 
 <!doctype html>
 <html lang="ko">
@@ -23,7 +27,37 @@
 
 $(document).ready(  function() {
 	  
+	/* 폰트사이즈 등록 */
+    $("#btn_save").click(function () {
+        // 이곳에 클릭했을 때 실행할 코드를 작성합니다.
 
+        var jsonData = {
+        		envrStupDivCd: 'fontSize',          // 문자열 데이터
+        		userId: '<%=userID%>',          // 문자열 데이터
+        		envrStupVl: $("input[name='font_size']:checked").val(),
+        };
+
+        $.ajax({
+            url: "${path}/api/setting/fontSize.do",  // 서버의 API 엔드포인트 URL
+            type: "POST",              // HTTP 메서드 (POST, GET 등)
+            async: false,                // 동기적 요청 활성화
+            data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+            contentType: "application/json", // 요청 본문의 데이터 타입 설정
+            success: function(response) {
+                // 요청 성공 시 실행할 코드
+                // JSON 데이터 파싱
+                responseData = JSON.parse(response);
+                console.log("btn_save success = " + responseData);
+		        fnChangeFontSize();
+            },
+            error: function(xhr, status, error) {
+                // 요청 실패 시 실행할 코드
+                console.error("AJAX 오류: " + error);
+            }
+        });
+
+    });
+    
 	// 첫 번째 AJAX 요청
 	$.ajax({
 	    url: "${path}/api/common/data/FontSizeList.do", // 첫 번째 엔드포인트 URL
@@ -78,6 +112,41 @@ $(document).ready(  function() {
 });
 
 
+/* 로그인 유저의 환경설정(폰트사이즈) 조회 후 영역 css 변경 함수 */
+function fnChangeFontSize(){
+	 // 서버로 보낼 JSON 데이터
+    var jsonData = {
+    		envrStupDivCd: 'fontSize',          // 문자열 데이터
+    		userId: '<%=userID%>',          // 문자열 데이터
+    };
+	 
+    // AJAX 요청 설정
+    $.ajax({
+        url: "${path}/api/setting.do",  // 서버의 API 엔드포인트 URL
+        type: "POST",              // HTTP 메서드 (POST, GET 등)
+        async: false,                // 동기적 요청 활성화
+        data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+        contentType: "application/json", // 요청 본문의 데이터 타입 설정
+        success: function(response) {
+
+        // 요청 성공 시 실행할 코드
+        // JSON 데이터 파싱
+        var responseData = JSON.parse(response);
+        console.log("response: " + response);
+        console.log("envrStupVl: " + responseData.envrStupVl); // "envrStupVl" 값 출력
+	        
+	     // 원하는 value 값을 가진 라디오 버튼 선택하기
+	     $("input[name='font_size'][value='" + responseData.envrStupVl + "']").prop("checked", true);
+
+	     $("#no_calling").css('font-size',responseData.envrStupVl+"px");
+            
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시 실행할 코드
+            console.error("AJAX 오류: " + error);
+        }
+    });
+}
 
 </script>
 
@@ -174,7 +243,6 @@ $(document).ready(  function() {
 				</div>
 				<div class="right_contents">
 					<div class="notice_con_inner">
-					<form name="" method="" action="">
 						<div class="setting_keyword">
 								<select name="" onchange="window.open(value,'_self');">
 										<option id="" value="">선택</option>
@@ -190,12 +258,11 @@ $(document).ready(  function() {
 									
 								</ul>
 							</div>
-							<div class="setting_btn">
-								<a href="">저장</a>
+							<div id="btn_save" class="setting_btn">
+								<a href="#none">저장</a>
 							</div>
 
 						</div>
-					</form>
 				</div>
 			</section>
 		<!-- right -->
