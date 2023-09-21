@@ -55,17 +55,26 @@ public class Pagination {
         }
  
         // 페이지 리스트의 첫 페이지 번호
-        if( this.getCurrentPage() < (double)(pageSize/2) ) {
-        	firstPage = 1;
-        } else {
-        	firstPage = this.getCurrentPage() - (pageSize/2 - 1);	
+        firstPage = 1;	
+        int start = this.getCurrentPage() / pageSize;
+
+        if (start >= 1) {
+        	if (this.getCurrentPage() % pageSize == 0) {
+        		start--;
+        	}
+        	firstPage = (start * pageSize) + 1;
         }
- 
+        
         // 페이지 리스트의 마지막 페이지 번호 (마지막 페이지가 전체 페이지 수보다 크면 마지막 페이지에 전체 페이지 수를 저장)
         lastPage = firstPage + this.getPageSize() - 1;
         if (lastPage > totalPageCount) {
             lastPage = totalPageCount;
         }
+        int lastPage = (firstPage - 1) + this.getPageSize();
+        if (lastPage > totalPageCount) {
+        	lastPage = totalPageCount;
+        }
+        
  
         //getNextBlock
         getNextBlock();
