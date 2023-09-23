@@ -15,6 +15,7 @@
     <result property="rgsrNm" column="RGSR_NM"/>
     <result property="rgsnDttm" column="RGSN_DTTM"/>
     <result property="rgsnDttmStr" column="RGSN_DTTM_STR"/>
+    <result property="readYn" column="READ_YN"/>
 </resultMap>
 
 
@@ -22,20 +23,54 @@
 
 	<select id="selectNews" resultMap="newsVO">
 
-		SELECT	*
-		FROM 	adv.TB_NEWS_INFO
-		WHERE 	USE_YN = 'Y'
-		ORDER BY RGSN_DTTM DESC
+		SELECT	A.NEWS_SQNO
+				, A.RECEIVER_ID
+				, A.NEWS_TITL_NM
+				, A.NEWS_CNTN
+				, A.USE_YN
+				, A.AMND_ID
+				, A.AMNT_DTTM
+				, A.RGSR_ID
+				, A.RGSR_NM
+				, TO_CHAR(A.RGSN_DTTM, 'YYYY-MM-DD HH24:MI:MM') as RGSN_DTTM
+				, A.READ_YN
+		FROM 	adv.TB_NEWS_INFO A
+		WHERE 	A.USE_YN = 'Y'
+		ORDER BY A.RGSN_DTTM DESC
 		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset}
-
 	</select>
 	
 	<select	id="selectNewsListCnt" resultType="int">
+	
 		SELECT	COUNT(*)
 		FROM 	adv.TB_NEWS_INFO
 		WHERE 	USE_YN = 'Y'
 	</select>
 	
+	<select id="selectNewsOne" resultMap="newsVO">
+
+		SELECT	A.NEWS_SQNO
+				, A.RECEIVER_ID
+				, A.NEWS_TITL_NM
+				, A.NEWS_CNTN
+				, A.USE_YN
+				, A.AMND_ID
+				, A.AMNT_DTTM
+				, A.RGSR_ID
+				, A.RGSR_NM
+				, TO_CHAR(A.RGSN_DTTM, 'YYYY-MM-DD HH24:MI:MM') as RGSN_DTTM
+				, A.READ_YN
+		FROM 	adv.TB_NEWS_INFO A
+		WHERE 	A.USE_YN = 'Y'
+		AND		A.NEWS_SQNO = #{newsSqno}
+	</select>
+	
+	<update id="updateNewsReadYn">
+		
+		UPDATE 	adv.TB_NEWS_INFO
+		SET		READ_YN = 'Y'
+		WHERE	NEWS_SQNO = #{newsSqno}
+	</update>
 	
 	
 	

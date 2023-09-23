@@ -46,10 +46,10 @@ public class NewsVO {
 	public void setAmndId(String amndId) {
 		this.amndId = amndId;
 	}
-	public Timestamp getAmntDttm() {
+	public String getAmntDttm() {
 		return amntDttm;
 	}
-	public void setAmntDttm(Timestamp amntDttm) {
+	public void setAmntDttm(String amntDttm) {
 		this.amntDttm = amntDttm;
 	}
 	public String getRgsrId() {
@@ -64,10 +64,10 @@ public class NewsVO {
 	public void setRgsrNm(String rgsrNm) {
 		this.rgsrNm = rgsrNm;
 	}
-	public Timestamp getRgsnDttm() {
+	public String getRgsnDttm() {
 		return rgsnDttm;
 	}
-	public void setRgsnDttm(Timestamp rgsnDttm) {
+	public void setRgsnDttm(String rgsnDttm) {
 		this.rgsnDttm = rgsnDttm;
 	}
 	public String getRgsnDttmStr() {
@@ -82,13 +82,19 @@ public class NewsVO {
 	public void setPagination(Pagination pagination) {
 		this.pagination = pagination;
 	}
+	public String getReadYn() {
+		return readYn;
+	}
+	public void setReadYn(String readYn) {
+		this.readYn = readYn;
+	}
 	
 	@Override
 	public String toString() {
 		return "NewsVO [newsSqno=" + newsSqno + ", receiverId=" + receiverId + ", newsTitlNm=" + newsTitlNm
 				+ ", newsCntn=" + newsCntn + ", useYn=" + useYn + ", amndId=" + amndId + ", amntDttm=" + amntDttm
 				+ ", rgsrId=" + rgsrId + ", rgsrNm=" + rgsrNm + ", rgsnDttm=" + rgsnDttm + ", rgsnDttmStr="
-				+ rgsnDttmStr + ", pagination=" + pagination + "]";
+				+ rgsnDttmStr + ", readYn=" + readYn + ", pagination=" + pagination + "]";
 	}
 
 	private int newsSqno;
@@ -97,11 +103,12 @@ public class NewsVO {
     private String newsCntn;
     private char useYn;
     private String amndId;
-    private Timestamp amntDttm;
+    private String amntDttm;
     private String rgsrId;
     private String rgsrNm;
-    private Timestamp rgsnDttm;
+    private String rgsnDttm;
     private String rgsnDttmStr;
+    private String readYn;
     
     private Pagination pagination;
 

@@ -28,6 +28,8 @@
     
     function fnSearch(currentPage) {
     	
+    	//var frm = $("#frm").serialize();
+    	
 	    $.ajax({
 		    type: "GET",
 		    url: "${path}/api/news.do",
@@ -36,34 +38,47 @@
 		    success: function(jsonString) {
 		        var jsonArray = JSON.parse(jsonString);
 		        console.log("AJAX 성공: " + jsonString);
-	
-		        $('.news-list').empty(); // 기존 내용 지우기
-	
-	
+
+				// 안읽은 알람 count
+				let noReadCnt = 0;
+				
+				let html = "";
+				
 		        for (var i = 0; i < jsonArray.length; i++) {
+		        	
 		            var item = jsonArray[i];
-	
 	    	        console.log("AJAX 성공: " + item.newsSqno);
-	
-		        	   var newItem = '<li>' +
-		               '<div class="checkbox">' +
-	    	               '<span>' +
-		    	               '<input type="checkbox" id="check'+i+'" name="check'+i+'" value="">' +
-		    	               '<label for="check'+i+'"></label>' +
-	    	               '</span>' +
-		               '</div>' +
-		               '<a href="${path}/page/news_view.do">' +
-		               		'<p>'+item.newsCntn+'</p>' +
-		               		'<span class="notice_date">2023.09.17 10:00</span>' +
-		               '</a>' +
-		               '</li>';
-	
-		           // Append the new item to the ul
-		           $('.news-list').append(newItem);
+		            
+		        	// 안읽은 알람 count
+		        	if(item.readYn == 'N') noReadCnt++;
+		        	
+		        	html += "<li>";
+		        	html += "	<div class='checkbox'>";
+		        	html += "		<span>";
+		        	html += "			<input type='checkbox' id='check" + i + "' name='chk" + i + "' value='" + item.newsSqno + "'>";
+		        	html += "			<label for='check" + i + "'></label>";
+		        	html += "		</span>";
+		        	html += "	</div>";
+		        	html += "	<a href='${path}/page/news_view.do?newsSqno=" + item.newsSqno + "'";
+		        	if(item.readYn == "Y") {
+		        		html += "	class='visited'";
+		        	}
+		        	html += ">";
+		        	html += "		<p>" + item.newsCntn + "</p>";
+		        	html += "		<span class='notice_date'>" + item.rgsnDttm + "</span>";
+		        	html += "	</a>";
+		        	html += "</li>";
+
 		        }
+		        
+		        $('.news-list').html(html);
 		        
 		        // 페이징
 		        fnPaging(jsonArray[0].pagination);
+		        
+		        // 안읽은 알람 cnt set
+		        if(noReadCnt > 99) noReadCnt = "99+";
+		        $("#nrdCnt").html(noReadCnt);
 	
 		    },
 		    error: function(request, status, error) {
@@ -71,6 +86,54 @@
 		    }
 		});
 	    
+    }
+    
+    // 전체선택 클릭 함수
+    function fnSelAllBtn() {
+    	let chkBox = $(".checkbox input[type=checkbox]");
+    	let chkAllYn = $("#chkAllYn");
+
+    	if(chkAllYn.val() == "N") {
+	    	chkBox.prop("checked", true);
+	    	chkAllYn.val("Y");
+    	} else {
+    		chkBox.prop("checked", false);
+    		chkAllYn.val("N");
+    	}
+    }
+    
+    // 읽음처리 클릭 함수
+    function fnReadAct() {
+    	
+		var chkArry = new Array();
+		
+		$(".checkbox input[type='checkbox']:checked").each(function() {
+			chkArry.push($(this).val());
+		});
+		
+		if(chkArry.length < 1) {
+			alert("읽음처리 할 항목을 선택해주세요.");
+			return false;
+		}
+		
+		console.log("chkArry :: " + chkArry);
+		
+		
+    	$.ajax({
+		    type: "GET",
+		    url: "${path}/api/newsRead.do",
+		    /* dataType: "json", */
+		    data : { "chkArry" : chkArry },
+		    success: function(jsonString) {
+		    	
+		    	fnSearch(1);
+		    	
+		    },
+		    error: function(request, status, error) {
+		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		    }
+		});
+    	
     }
 
     </script>
@@ -96,7 +159,7 @@
 		</nav>
 		<div id="lnb">
 			<a href="${path}/page/notice.do" class="call"></a>
-			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
+			<a href="${path}/page/news.do" class="push"><span id="nrdCnt">99+</span></a>
 		</div>
 	</header>
 	<!-- header -->
@@ -128,17 +191,25 @@
 				</div>
 				<div class="notice_contents">
 					<div class="notice_con_inner">
-						<div class="view_total"><button type="button" class="btn_ranking"  onClick="location.href='${path}/page/ranking.do'">키워드 랭킹</button><div class="alim_button"><a href="#" class="btn_choice_total">전체선택</a><a href="#" class="btn_view_total">읽음처리</a></div></div>
+						<div class="view_total">
+							<button type="button" class="btn_ranking"  onClick="location.href='${path}/page/ranking.do'">키워드 랭킹</button>
+							<div class="alim_button">
+								<input type="hidden" id="chkAllYn" value="N">
+								<a href="#" class="btn_choice_total" onclick="fnSelAllBtn();">전체선택</a>
+								<a href="#" class="btn_view_total" onclick="fnReadAct();">읽음처리</a>
+							</div>
+						</div>
 						<script>
-							$(document).ready(function() {
+							/* $(document).ready(function() {
 								$('.btn_view_total').on("click",function(){
 								   $('.notice-list li a').addClass("visited");
 								  });
-							 });
+							 }); */
 						</script>
 					<!-- notice-list -->
-						<ul class="news-list">
-						</ul>
+					<form id="frm" name="frm" method="post">
+						<ul class="news-list"></ul>
+					</form>
 					<!-- 삭제팝업창 -->
 						<div id="del_alert_popup">
 							<div class="del_alert_head">
@@ -169,22 +240,16 @@
 </div>
 
 
-<script class="code-js">
-	var pagination1 = new tui.Pagination('pagination1', {
-		totalItems: 500,
-		itemsPerPage: 10,
-		visiblePages: 5
-	});
-</script>
+
 <script> 
 	$(document).ready(function(){ 
-		$("a.btn_del_con").click(function(){ 
+		/* $("a.btn_del_con").click(function(){ 
 			$("#del_alert_popup").css("display", "block");
 		}); 
 		
 		$(".del_alert_btn a.bnt_cancle").click(function(){ 
 			$("#del_alert_popup").css("display", "none"); 
-		}); 
+		});  */
 	
 	
 /* 	// 모든 체크박스를 선택합니다.
@@ -198,7 +263,7 @@
 	
 	}); 
 	
-	// "btn_choice_total" 클래스를 가진 링크 요소를 가져옵니다.
+	/* // "btn_choice_total" 클래스를 가진 링크 요소를 가져옵니다.
 	const btnChoiceTotal = document.querySelector('.btn_choice_total');
 
 	// 링크를 클릭하면 이벤트 핸들러를 실행합니다.
@@ -215,7 +280,7 @@
 	  checkboxes.forEach(checkbox => {
 	    checkbox.checked = !allChecked;
 	  });
-	});
+	}); */
 
 	
 </script>

@@ -1,31 +1,26 @@
 package egovframework.counseling.news.web;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import egovframework.counseling.news.service.NewsService;
-import egovframework.counseling.news.service.impl.NewsVO;
-import egovframework.counseling.notice.service.impl.NoticeVO;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.Gson;
+
+import egovframework.counseling.news.service.NewsService;
+import egovframework.counseling.news.service.impl.NewsVO;
 
 @RestController
 public class NewsController {
@@ -55,31 +50,41 @@ public class NewsController {
 	    return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
 	}
 
+	@GetMapping("/api/news/{id}.do")
+	public ResponseEntity<String> selectNewsOne(@PathVariable int id) throws Exception{
+		logger.info("소식 단건 조회");
+	  
+		NewsVO result = newsService.selectNewsOne(id);
+	  
+		Gson gson = new Gson();
+	  
+		String resultJson = gson.toJson(result);
+	  
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8"); 
+		return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
+	}
+	  
+
+	
+	@GetMapping("/api/newsRead.do")
+	public ResponseEntity<String> updateNewsRead(@RequestParam("chkArry[]") List<Integer> newsSqnoArry, @ModelAttribute("newsVO") NewsVO newsVO) throws Exception {
+		
+		boolean result = newsService.updateNewsRead(newsSqnoArry);
+
+		return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK);
+	}
+	
+	
+	
 	/*
-	 * @GetMapping("/api/news/{id}.do") public ResponseEntity<String>
-	 * selectNewsOne(@PathVariable String id) throws Exception{
-	 * logger.info("소식 단건 조회");
-	 * 
-	 * List<NoticeVO> result = newsService.selectNewsOne(id);
-	 * 
-	 * Gson gson = new Gson();
-	 * 
-	 * String resultJson = gson.toJson(result);
-	 * 
-	 * HttpHeaders headers = new HttpHeaders();
-	 * headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8"); return
-	 * new ResponseEntity<>(resultJson, headers, HttpStatus.OK); }
-	 * 
-	 * 
-	 * 
-	 * @PostMapping(value = "/api/news/{id}/read.do", headers =
-	 * {"content-type=application/json,application/xml,application/x-www-form-urlencoded"
-	 * }) public ResponseEntity<String> newsRead(@RequestBody String input_json)
-	 * throws Exception { logger.info("소식 읽음 처리"); boolean result =
-	 * newsService.readNews("");
-	 * 
-	 * return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK); }
-	 */
+	@PostMapping(value = "/api/news/{id}/read.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"}) 
+	public ResponseEntity<String> newsRead(@RequestBody String input_json) throws Exception {
+		logger.info("소식 읽음 처리"); boolean result = newsService.readNews("");
+  
+		return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK); 
+	}*/
+	 
     
 
     

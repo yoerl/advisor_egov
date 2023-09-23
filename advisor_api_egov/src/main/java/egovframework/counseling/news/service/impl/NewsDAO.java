@@ -1,17 +1,11 @@
 
 package egovframework.counseling.news.service.impl;
 
-import org.springframework.stereotype.Repository; 
-import org.springframework.transaction.annotation.Transactional;
-
-import egovframework.counseling.notice.service.impl.NoticeMapper;
-import egovframework.counseling.notice.service.impl.NoticeVO;
+import java.util.List;
 
 import javax.annotation.Resource;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
 @Repository public class NewsDAO {
 	
@@ -19,7 +13,12 @@ import java.util.List;
     @Resource(name = "newsMapper")
     private NewsMapper newsMapper;
     
-    
+    /**
+     * 알림 목록 조회
+     * @param newsVO
+     * @return
+     * @throws Exception
+     */
     public List<NewsVO> selectNews(NewsVO newsVO) throws Exception {
     	
     	// 페이징 처리를 위한 목록 count
@@ -28,19 +27,33 @@ import java.util.List;
     	
     	List<NewsVO> newss = newsMapper.selectNews(newsVO);
     	newss.get(0).setPagination(newsVO.getPagination());
-    	
-    	
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
-        for (NewsVO news : newss) {
-            Date timestamp = news.getRgsnDttm(); // 이 부분은 NoticeVO 클래스에 따라서 변경될 수 있습니다.
-            String formattedDate = dateFormat.format(timestamp);
-            news.setRgsnDttmStr(formattedDate); // 변환된 값을 NoticeVO 객체에 저장합니다.
-        }
-        
-        
-    	 return newss;
+
+    	return newss;
     
     }
+
+    /**
+     * 알림 상세조회
+     * @param id
+     * @return
+     * @throws Exception
+     */
+	public NewsVO selectNewsOne(int id) throws Exception {
+		NewsVO param = new NewsVO();
+		param.setNewsSqno(id);
+		return newsMapper.selectNewsOne(param);
+	}
+
+	/**
+	 * 알림 읽음처리
+	 * @param id
+	 * @throws Exception
+	 */
+	public int updateNewsReadYn(int id) throws Exception {
+		NewsVO param = new NewsVO();
+		param.setNewsSqno(id);
+		return newsMapper.updateNewsReadYn(param);
+	}
+	
 
 }

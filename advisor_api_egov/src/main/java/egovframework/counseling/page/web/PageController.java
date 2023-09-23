@@ -17,6 +17,7 @@ package egovframework.counseling.page.web;
 
 import java.util.List;
 
+import egovframework.counseling.news.service.impl.NewsVO;
 //import egovframework.advisor.counseling.auth.service.AuthDTO;
 //import egovframework.advisor.counseling.auth.service.AuthService;
 import egovframework.counseling.notice.service.impl.NoticeVO;
@@ -164,7 +165,8 @@ public class PageController {
 	
 
 	@GetMapping("/page/news_view.do")
-	public String moveNewsView(ModelMap model) throws Exception {
+	public String moveNewsView(@ModelAttribute("NewsVO") NewsVO newsVO, ModelMap model) throws Exception {
+		model.addAttribute("newsVO", newsVO);
 		return "main/page_news_view";
 	}
 

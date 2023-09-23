@@ -3,19 +3,14 @@
 
 import java.util.List;
 
-import egovframework.counseling.news.service.impl.NewsVO; import
-egovframework.counseling.notice.service.impl.NoticeVO;
+import egovframework.counseling.news.service.impl.NewsVO;
 
  public interface NewsService {
  
-		/*
-		 * List<NoticeVO> selectNewsOne(String id);
-		 * 
-		 * boolean readNews(String id);
-		 */
+	 List<NewsVO> selectNewss(NewsVO newsVo) throws Exception;
+	 
+	 NewsVO selectNewsOne(int id) throws Exception;
 
-List<NewsVO> selectNewss(NewsVO newsVo) throws Exception;
-
-
+	boolean updateNewsRead(List<Integer> newsSqnoArry) throws Exception;
 
 }
