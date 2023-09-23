@@ -55,7 +55,10 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 @Controller
 public class PageController {
 
-
+	@GetMapping("/page/template.do")
+	public String movePageTemplate(ModelMap model) throws Exception {
+		return "template";
+	}
 	@GetMapping("/page/home.do")
 	public String movePageHome(ModelMap model) throws Exception {
 		return "main/page_home";
