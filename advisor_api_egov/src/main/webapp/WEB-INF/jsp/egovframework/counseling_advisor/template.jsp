@@ -78,7 +78,7 @@ String messageServerPort = getServletContext().getInitParameter("messageServerPo
 			
 		<div id="lnb">
 			<a href="javascript:fnPageLoad('${path}/page/notice.do','');" class="call"></a>
-			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
+			<a href="javascript:fnPageLoad('${path}/page/news.do','');" class="push"><span id="nrdCnt"></span></a>
 		</div>
 	</header>
 	
