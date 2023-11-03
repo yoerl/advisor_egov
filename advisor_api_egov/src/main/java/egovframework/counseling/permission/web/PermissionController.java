@@ -6,14 +6,17 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,8 +29,6 @@ import egovframework.counseling.notice.service.impl.NoticeVO;
 import egovframework.counseling.permission.service.PermissionService;
 import egovframework.counseling.permission.service.impl.PermissionReqDTO;
 import egovframework.counseling.permission.service.impl.PermissionReqVO;
-import egovframework.counseling.permission.service.impl.UserAthrReqVO;
-import egovframework.counseling.user.service.UserService;
 import egovframework.counseling.user.service.impl.UserInfoVO;
 
 @RestController
@@ -42,11 +43,11 @@ public class PermissionController {
 
 
 	
-	@PostMapping(value = "/api/{use_id}/permission/req/{role}.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
-	public ResponseEntity<String> selectUser(@RequestBody String input_json,@PathVariable String use_id,@PathVariable String role) throws Exception{
+	@PostMapping(value = "/api/{userId}/permission/req/{role}.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
+	public ResponseEntity<String> selectUser(@RequestBody String inputJson,@PathVariable String userId,@PathVariable String role) {
 
 
-		logger.info("권한 요청"+input_json.toString());
+		logger.debug("권aaaa요청 " + inputJson.toString());
 		
        ObjectMapper objectMapper = new ObjectMapper();
        
@@ -56,18 +57,23 @@ public class PermissionController {
        
 		
 		PermissionReqDTO permissionReqDTO = new PermissionReqDTO();
-		try {
-			 permissionReqDTO = objectMapper.readValue(input_json.toString(), PermissionReqDTO.class);
+		
 
+		try {
+		    permissionReqDTO = objectMapper.readValue(inputJson, PermissionReqDTO.class);
+
+			logger.debug("권wwww청 permissionReqDTO" + permissionReqDTO.toString());
 		} catch (IOException e) {
-		    logger.error("JSON을 객체로 변환하는 중에 예외 발생: " + e.getMessage());
+		    logger.error("권한 요청 e: {}", e.toString());
 		    // 예외 처리 로직 추가
 		}
 
-		permissionReqVO.setUserId(use_id);
+		
+		permissionReqVO.setUserId(userId);
 		permissionReqVO.setAthrTypeCd("role");
 		permissionReqVO.setAthrCd(role);
 		permissionReqVO.setUserNm(permissionReqDTO.getUserNm());
+		permissionReqVO.setInttCd(permissionReqDTO.getInttCd());
 		
         
 		boolean result = permissionService.reqPermission(permissionReqVO);
@@ -79,12 +85,10 @@ public class PermissionController {
 	
 
 	@GetMapping(value = "/api/permission/req.do")
-	public ResponseEntity<String> selectPermissionReq() throws Exception{
-
-
-		PermissionReqVO permissionReqVO = new PermissionReqVO();
+	public ResponseEntity<String> selectPermissionReq(HttpServletRequest request, Model model, @ModelAttribute("PermissionReqVO") PermissionReqVO permissionReqVO){
 		
 		
+		logger.error("/api/permission/req.do : " + permissionReqVO.toString());
 		List<PermissionReqVO> result  = permissionService.selectPermissionRequest(permissionReqVO);
 		
 		
@@ -100,26 +104,23 @@ public class PermissionController {
 	
 	
 	
-	@PutMapping(value = "/api/permission/{use_id}.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
-	public ResponseEntity<String> insertPermissionUserRole(@PathVariable String use_id,@RequestBody String input_json) throws Exception{
+	@PutMapping(value = "/api/permission/{userId}.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
+	public ResponseEntity<String> insertPermissionUserRole(@PathVariable String userId,@RequestBody String inputJson){
 
-		logger.info("/api/permission/{use_id}.do");
-		logger.info("/api/permission/{use_id}.do input_json" + input_json.toString());
 		
 		UserInfoVO userInfoVO = new UserInfoVO();
 	       ObjectMapper objectMapper = new ObjectMapper();
 		try {
-			userInfoVO = objectMapper.readValue(input_json.toString(), UserInfoVO.class);
+			userInfoVO = objectMapper.readValue(inputJson, UserInfoVO.class);
 
 		} catch (IOException e) {
-		    logger.error("JSON을 객체로 변환하는 중에 예외 발생: " + e.getMessage());
-		    // 예외 처리 로직 추가
+
+	    	logger.error(e.toString());
 		}
 		
 
 	
 
-		logger.info("4444  --  "+userInfoVO.toString());
 		
 		PermissionReqVO permissionReqVO = new PermissionReqVO();
 
@@ -131,6 +132,11 @@ public class PermissionController {
 
 	    return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
 	
 	
 }

@@ -1,28 +1,24 @@
+
 package egovframework.counseling.common.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import egovframework.counseling.common.service.CommonService;
-import egovframework.counseling.common.service.impl.AgencyVO;
+import egovframework.counseling.common.service.impl.ChatbotVO;
 import egovframework.counseling.common.service.impl.CommonVO;
-import egovframework.counseling.notice.service.NoticeService;
-import egovframework.counseling.notice.service.impl.NoticeVO;
+import egovframework.counseling.common.service.impl.MenuAuthVO;
+import egovframework.counseling.permission.web.PermissionController;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,104 +26,195 @@ import org.springframework.http.ResponseEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+
 @RestController
 public class CommonController {
-	
+
+	private static final String CONTENT_TYPE_UTF8 = "text/plain; charset=UTF-8";
 	private static final Logger logger = LogManager.getLogger(CommonController.class);
-
-
+	private static final String MENU_PREFIX = "menu_";
+	
 	/** EgovSampleService */
 	@Resource(name = "commonService")
 	private CommonService commonService;
-		
+
 	@GetMapping("/api/common/agency.do")
-	public ResponseEntity<String> selectAgency() throws Exception{
-		logger.info("행정기관11");
-		
+	public ResponseEntity<String> selectAgency() {
+
 		List<CommonVO> result = commonService.selectAgency();
-		logger.info("행정기관2"+result.toString());
-			Gson gson = new Gson();
-			String resultJson = gson.toJson(result);
+		Gson gson = new Gson();
+		String resultJson = gson.toJson(result);
 
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
-	    return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_TYPE, CONTENT_TYPE_UTF8);
+		return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
 	}
-	
-	
-	@GetMapping("/api/common/data/{common_code}.do")
-	public ResponseEntity<String> selectCommonCode(@PathVariable String common_code) throws Exception{
-		logger.info("행정기관11");
-		
-		
+
+	@GetMapping("/api/common/data/{commonCode}.do")
+	public ResponseEntity<String> selectCommonCode(@PathVariable String commonCode) {
+		logger.info("/api/common/data/{commonCode}.do");
+
 		CommonVO commonVO = new CommonVO();
-		commonVO.setComnCd(common_code);
-		
-		List<CommonVO> result = commonService.selectCommonCode(commonVO);
-		logger.info("행정기관2"+result.toString());
-			Gson gson = new Gson();
-			String resultJson = gson.toJson(result);
+		commonVO.setComnCd(commonCode);
 
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
-	    return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
+		List<CommonVO> result = commonService.selectCommonCode(commonVO);
+		Gson gson = new Gson();
+		String resultJson = gson.toJson(result);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_TYPE, CONTENT_TYPE_UTF8);
+		return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
+	}
+	
+
+	@GetMapping("/api/auth/menu/{insttCode}/{authCd}.do")
+	public ResponseEntity<String> selectUserAuthCd(@PathVariable String insttCode, @PathVariable String authCd) {
+		logger.debug("행342424");
+		logger.debug("행342424 : " + insttCode.toString());
+		logger.debug("행342424 " + authCd.toString());
+
+		CommonVO commonVO = new CommonVO();
+		commonVO.setComnCd(authCd);
+		commonVO.setHgrnComnCd(insttCode);
+		List<CommonVO> result = commonService.selectAuthMenu(commonVO);
+		
+		
+
+		CommonVO commonwVO = new CommonVO();
+		commonwVO.setComnCd("system_check");
+		commonwVO.setComnCdVal(insttCode);
+		
+		
+		CommonVO ad= commonService.selectSystemChkAuth(commonwVO).get(0);
+		
+		
+		
+		CommonVO sysVo = new CommonVO();
+
+		
+		sysVo.setUseYn(ad.getUseYn());
+		sysVo.setComnCdVal("systemcheck");
+		
+
+		
+		result.add(sysVo);
+
+		Gson gson = new Gson();
+		String resultJson = gson.toJson(result);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_TYPE, CONTENT_TYPE_UTF8);
+		return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
 	}
 	
 	
-//
-//	@GetMapping("/api/notice/{id}.do")
-//	public ResponseEntity<String> selectNotice(@PathVariable String id) throws Exception{
-//		logger.info("공지사항 단건 조회");
-//		
-//		List<NoticeVO> result = noticeService.selectNoticeOne(id);
-//		
-//		Gson gson = new Gson();
-//		
-//		String resultJson = gson.toJson(result);
-//		
-//	    HttpHeaders headers = new HttpHeaders();
-//	    headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
-//	    return new ResponseEntity<>(resultJson, headers, HttpStatus.OK);
-//	}
-//	
-//    @PostMapping(value = "/api/notice.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
-//    public ResponseEntity<String> insertNotice(@RequestBody String input_json) throws Exception {
-//		logger.info("공지사항 입력");
-//    	
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        NoticeVO noticeVO = objectMapper.readValue(input_json, NoticeVO.class);
-//
-//        boolean result = noticeService.insertNoticeOne(noticeVO);
-//        
-//        return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK);
-//    }
-//    
-//    @DeleteMapping("/api/notice/{id}.do")
-//    public ResponseEntity<String> deleteNotice(@PathVariable String id) throws Exception {
-//        logger.info("공지사항 삭제");
-//        logger.info(id.toString());
-//
-//        boolean result = noticeService.deleteNoticeOne(id);
-//
-//        return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK);
-//    }
-//    
-//
-//    @PutMapping(value = "/api/notice.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
-//    public ResponseEntity<String> updateNotice(@RequestBody String input_json) throws Exception {
-//        logger.info("공지사항 수정");
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        NoticeVO noticeVO = objectMapper.readValue(input_json, NoticeVO.class);
-//        
-//        // 여기서 noticeVO 객체에 있는 데이터를 사용하여 공지사항을 수정하는 로직을 작성합니다.
-//        // 예를 들어, noticeService.updateNoticeOne(noticeVO)와 같은 메서드를 사용할 수 있습니다.
-//        boolean result = noticeService.updateNoticeOne(noticeVO);
-//
-//        return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK);
-//    }
+	
+    @PutMapping(value = "/api/auth/menu.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
+    public ResponseEntity<String> updateMunuAuth(@RequestBody String inputJson) throws JsonProcessingException {
+       ObjectMapper objectMapper = new ObjectMapper();
+ 
+       MenuAuthVO menuAuthVO = objectMapper.readValue(inputJson, MenuAuthVO.class);
 
-	
-	
-	
+	   
+	   
+	   CommonVO cmmonVO = new CommonVO();
+	   
+	   cmmonVO.setUseYn(menuAuthVO.getMemo());
+	   cmmonVO.setComnCd(MENU_PREFIX+menuAuthVO.getRolecode());
+	   cmmonVO.setComnCdVal("memo");
+	   cmmonVO.setHgrnComnCd(menuAuthVO.getInsttcode());  
+       commonService.updateMunuAuth(cmmonVO);
+       
+	   
+	   cmmonVO.setUseYn(menuAuthVO.getHistory());
+	   cmmonVO.setComnCd(MENU_PREFIX+menuAuthVO.getRolecode());
+	   cmmonVO.setComnCdVal("history");
+	   cmmonVO.setHgrnComnCd(menuAuthVO.getInsttcode());  
+       commonService.updateMunuAuth(cmmonVO);
+       
+	   
+       cmmonVO.setUseYn(menuAuthVO.getSetting());
+	   cmmonVO.setComnCd(MENU_PREFIX+menuAuthVO.getRolecode());
+	   cmmonVO.setComnCdVal("setting");
+	   cmmonVO.setHgrnComnCd(menuAuthVO.getInsttcode());  
+       commonService.updateMunuAuth(cmmonVO);
+       
+
+       cmmonVO.setUseYn(menuAuthVO.getMonitering());
+	   cmmonVO.setComnCd(MENU_PREFIX+menuAuthVO.getRolecode());
+	   cmmonVO.setComnCdVal("monitering");
+	   cmmonVO.setHgrnComnCd(menuAuthVO.getInsttcode());  
+       commonService.updateMunuAuth(cmmonVO);
+       
+
+       cmmonVO.setUseYn(menuAuthVO.getPermission());
+	   cmmonVO.setComnCd(MENU_PREFIX+menuAuthVO.getRolecode());
+	   cmmonVO.setComnCdVal("permission");
+	   cmmonVO.setHgrnComnCd(menuAuthVO.getInsttcode());  
+       commonService.updateMunuAuth(cmmonVO);
+       
+       
+
+       cmmonVO.setUseYn(menuAuthVO.getNotice());
+	   cmmonVO.setComnCd(MENU_PREFIX+menuAuthVO.getRolecode());
+	   cmmonVO.setComnCdVal("notice");
+	   cmmonVO.setHgrnComnCd(menuAuthVO.getInsttcode());  
+	   
+	   cmmonVO.setUseYn(menuAuthVO.getKnow());
+	   cmmonVO.setComnCd(MENU_PREFIX+menuAuthVO.getRolecode());
+	   cmmonVO.setComnCdVal("know");
+	   cmmonVO.setHgrnComnCd(menuAuthVO.getInsttcode());  
+	   
+       commonService.updateMunuAuth(cmmonVO);
+	   
+
+       CommonVO cmmonVOs = new CommonVO();
+       cmmonVOs.setComnCd("system_check");
+       // 기간
+       cmmonVOs.setComnCdVal(menuAuthVO.getInsttcode());
+       cmmonVOs.setUseYn(menuAuthVO.getSystemChk());
+       
+       logger.debug("21d21d21d1 : " +cmmonVOs.toString());
+       boolean result = commonService.updateSystemChkAuth(cmmonVOs);
+
+       logger.debug("ecqncoeqvciehoc");
+       
+       // 봇 ID 변경
+       ChatbotVO chatbotVO = new ChatbotVO();
+       
+       chatbotVO.setInttCd(menuAuthVO.getInsttcode());
+       chatbotVO.setUserDivCd(menuAuthVO.getRolecode());
+       
+       if("Y".equals(menuAuthVO.getKnow())) {
+           chatbotVO.setCmnSpcDivCd("CMN");
+       }
+       else
+       {
+    	   chatbotVO.setCmnSpcDivCd("SPC");
+       }
+       
+		
+
+       try {
+           commonService.updateChatBotGrop(chatbotVO);
+       } catch (NullPointerException  e) {
+           // 예외 처리 로직 작성
+       	logger.error("NullPointerException : "+ e, e.toString());
+       } catch (Exception e) {
+           // 예외 처리 로직 작성
+       		logger.error("봇 ID 변경 하다 에러 : ", e);
+       }
+
+	   
+
+       
+       
+        
+        
+       return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK);
+    }
+    
+
+
 }

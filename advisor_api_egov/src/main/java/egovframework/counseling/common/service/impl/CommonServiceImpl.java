@@ -9,8 +9,6 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
 import egovframework.counseling.common.service.CommonService;
-import egovframework.counseling.notice.service.NoticeService;
-import egovframework.counseling.notice.service.impl.NoticeVO;
 
 
 
@@ -23,23 +21,55 @@ public class CommonServiceImpl extends EgovAbstractServiceImpl implements Common
 	
 	
 	@Override
-	public List<CommonVO> selectAgency() throws Exception {
-		// TODO Auto-generated method stub
-
-		List<CommonVO> agencyInfo = commonDAO.selectAgencyList();
-		
-		return agencyInfo;
-	}
+	public List<CommonVO> selectAgency(){
 	
+
+		return commonDAO.selectAgencyList();
+	}
+
 	@Override
-	public List<CommonVO> selectCommonCode(CommonVO cmmonVO) throws Exception {
-		// TODO Auto-generated method stub
+	public List<CommonVO> selectCommonCode(CommonVO cmmonVO){
 
-		List<CommonVO> agencyInfo = commonDAO.selectCommonData(cmmonVO);
-		
-		return agencyInfo;
+
+		return commonDAO.selectCommonData(cmmonVO);
 	}
-
 	
+
+	@Override
+	public List<CommonVO> selectAuthMenu(CommonVO cmmonVO) {
+		
+
+		return commonDAO.selectAuthMenu(cmmonVO);
+	}
+	// 공지사항을 수정하는 메서드를 추가합니다.
+	@Override
+    public boolean updateSystemChkAuth(CommonVO commonVO) {
+        return commonDAO.updateSystemChkAuth(commonVO);
+    }
+
+    // 공지사항을 수정하는 메서드를 추가합니다.
+	@Override
+    public boolean updateMunuAuth(CommonVO commonVO) {
+        return commonDAO.updateMunuAuth(commonVO);
+    }
+
+    // 공지사항을 수정하는 메서드를 추가합니다.
+	@Override
+    public boolean updateChatBotOne(ChatbotVO chatbotVO) {
+        return commonDAO.updateChatBotOne(chatbotVO);
+    }
+	
+    // 공지사항을 수정하는 메서드를 추가합니다.
+	@Override
+    public boolean updateChatBotGrop(ChatbotVO chatbotVO) {
+        return commonDAO.updateChatBotGrop(chatbotVO);
+    }	
+    // 공지사항을 수정하는 메서드를 추가합니다.
+	@Override
+	public List<CommonVO> selectSystemChkAuth(CommonVO commonVO) {
+        return commonDAO.selectSystemChkAuth(commonVO);
+    }
+	
+
 
 }

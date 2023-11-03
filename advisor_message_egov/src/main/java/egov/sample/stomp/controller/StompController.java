@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeoutException;
 
 import javax.annotation.Resource;
@@ -32,97 +34,19 @@ import java.util.concurrent.Executors;
 @Controller
 @Slf4j
 public class StompController {
-	
 
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private boolean connectionClosed = false;
+    private Connection connection;
+    private Channel channel;
+    private Timer timer;
+
 
 	@Resource(name = "rabbitmqProperties")
 	Properties rabbitmqProperties;
 	
+
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
-
 	
-//
-//	@MessageMapping("/recvRabbit")
-//	public void sendToAll2() throws Exception {
-//	    ConnectionFactory factory = new ConnectionFactory();
-//
-//	    factory.setHost(rabbitmqProperties.getProperty("Globals.rabbitmq.Host"));
-//	    factory.setPort(Integer.parseInt(rabbitmqProperties.getProperty("Globals.rabbitmq.Port").toString()));
-//	    factory.setUsername(rabbitmqProperties.getProperty("Globals.rabbitmq.Username"));
-//	    factory.setPassword(rabbitmqProperties.getProperty("Globals.rabbitmq.Password"));
-//	    
-//	    
-//        executorService.execute(() -> {
-//            try {
-//                while (!connectionClosed) {
-//                    Connection connection = factory.newConnection();
-//                    Channel channel = connection.createChannel();
-//
-//    	            channel.queueDeclare("hello", false, false, false, null);
-//    	            System.out.println(" [*] Waiting for messages. To exit press CTRL+C_a");
-//    
-//    	            Consumer consumer = new DefaultConsumer(channel) {
-//    	                @Override
-//    	                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-//    	                    String message = new String(body, "UTF-8");
-//    	                    System.out.println("received : " + message);
-//    
-//    	                    messagingTemplate.convertAndSend("/topic/message", message);
-//    	                }
-//    	            };
-//    	            channel.basicConsume("hello", true, consumer);
-//
-//                    connection.addShutdownListener(cause -> connectionClosed = true);
-//                }
-//            } catch (Exception e) {
-//                connectionClosed = true;
-//            }
-//        });
-//        
-//	}
-//
-//	@MessageMapping("/recvRabbit_a")
-//	public void sendToAll2_a() throws Exception {
-//	    ConnectionFactory factory = new ConnectionFactory();
-//
-//	    factory.setHost(rabbitmqProperties.getProperty("Globals.rabbitmq.Host"));
-//	    factory.setPort(Integer.parseInt(rabbitmqProperties.getProperty("Globals.rabbitmq.Port").toString()));
-//	    factory.setUsername(rabbitmqProperties.getProperty("Globals.rabbitmq.Username"));
-//	    factory.setPassword(rabbitmqProperties.getProperty("Globals.rabbitmq.Password"));
-//	    
-//	    
-//        executorService.execute(() -> {
-//            try {
-//                while (!connectionClosed) {
-//                    Connection connection = factory.newConnection();
-//                    Channel channel = connection.createChannel();
-//
-//    	            channel.queueDeclare("hello_a", false, false, false, null);
-//    	            System.out.println(" [*] Waiting for messages. To exit press CTRL+C_a");
-//    
-//    	            Consumer consumer = new DefaultConsumer(channel) {
-//    	                @Override
-//    	                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-//    	                    String message = new String(body, "UTF-8");
-//    	                    System.out.println("received_a : " + message);
-//    
-//    	                    messagingTemplate.convertAndSend("/topic/message_a", message);
-//    	                }
-//    	            };
-//    	            channel.basicConsume("hello_a", true, consumer);
-//
-//                    connection.addShutdownListener(cause -> connectionClosed = true);
-//                }
-//            } catch (Exception e) {
-//                connectionClosed = true;
-//            }
-//        });
-//	}
-
-
 	@MessageMapping("/recvScript")
 	public void sendToAll2() throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
@@ -151,13 +75,16 @@ public class StompController {
                 String message = new String(body, "UTF-8");
                 System.out.println("received : " + message);
                 
+                // 메세지를 받았으므로 타이머 재설정
+                resetTimer(connection);
+                
                 messagingTemplate.convertAndSend("/topic/script", message);
                 
             }
         };
         channel.basicConsume("SCRIPT", true, consumer);
         
-		
+        startTimer(connection);
 	}
 	@MessageMapping("/recvAnswer")
 	public void sendToAll2_a() throws Exception {
@@ -185,6 +112,9 @@ public class StompController {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
                 System.out.println("received_a : " + message);
+
+                // 메세지를 받았으므로 타이머 재설정
+                resetTimer(connection);
                 
                 messagingTemplate.convertAndSend("/topic/answer", message);
                 
@@ -192,7 +122,7 @@ public class StompController {
         };
         channel.basicConsume("ANSWER", true, consumer);
         
-		
+        startTimer(connection);
 	}
 	
 	
@@ -247,5 +177,37 @@ public class StompController {
         }
 		
 	}
+
+    // 60분 타이머 시작
+    private void startTimer(Connection connection) {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                // 연결 종료 로직을 여기에 추가
+            	closeConnection(connection);
+            }
+        }, 3600 * 60 * 1000); // 메세지가 없는 시간이 하루가 넘어가면 커넥션 종료
+    }
+
+    // 타이머 재설정
+    private void resetTimer(Connection connection) {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        startTimer(connection);
+    }
+	  
+	  private void closeConnection(Connection connection) {
+	    try {
+	      connection.close();
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    } 
+	  }
+	
+	
+	
 	
 }

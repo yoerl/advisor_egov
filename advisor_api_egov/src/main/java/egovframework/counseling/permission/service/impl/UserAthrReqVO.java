@@ -4,7 +4,9 @@ package egovframework.counseling.permission.service.impl;
 
     public class UserAthrReqVO {
 
-        public String getUserId() {
+		
+		
+		public String getUserId() {
 			return userId;
 		}
 		public void setUserId(String userId) {
@@ -33,6 +35,12 @@ package egovframework.counseling.permission.service.impl;
 		}
 		public void setAthrNm(String athrNm) {
 			this.athrNm = athrNm;
+		}
+		public String getInttCd() {
+			return inttCd;
+		}
+		public void setInttCd(String inttCd) {
+			this.inttCd = inttCd;
 		}
 		public char getUseYn() {
 			return useYn;
@@ -64,20 +72,12 @@ package egovframework.counseling.permission.service.impl;
 		public void setRgsnDttm(Timestamp rgsnDttm) {
 			this.rgsnDttm = rgsnDttm;
 		}
-		
-		@Override
-		public String toString() {
-			return "UserAthrReqVO [userId=" + userId + ", userNm=" + userNm + ", athrTypeCd=" + athrTypeCd + ", athrCd="
-					+ athrCd + ", athrNm=" + athrNm + ", useYn=" + useYn + ", amndId=" + amndId + ", amntDttm="
-					+ amntDttm + ", rgsrId=" + rgsrId + ", rgsnDttm=" + rgsnDttm + "]";
-		}
-		
-		
 		private String userId;
         private String userNm;
         private String athrTypeCd;
         private String athrCd;
         private String athrNm;
+        private String inttCd;
         private char useYn;
         private String amndId;
         private Timestamp amntDttm;

@@ -1,10 +1,3 @@
-/********************************************************************************/
-/*								                                                */
-/*  Design RIAN     			                                                */
-/*  Date : 2007-03-21		                                                  	*/
-/*      				         			                                    */
-/*									                                            */
-/********************************************************************************/
 * {margin:0;padding:0;}
 * html {height:1px;}
 body {margin:0; padding:0; font-family:"굴림", sans-serif; font-size:12px; color:#666;}
@@ -59,7 +52,7 @@ a:hover { font-size:11px; font-family:"돋움", sans-serif; color:#339999; text-
 #content_pop {float:left; text-align:left; /*overflow:hidden;*/width:680px; background-color:#FFFFFF; padding:10px 10px 10px 10px;}
 #title {float:left; text-align:left; margin:0 0 10 0; padding:0; height:30px; border-bottom:1px solid #e5e5e5; width:680px;}
 #title ul {float:left; margin:0; padding:0;}
-#title li {list-style-type:none; width:200px; padding:3px 0px 2px 0px; float:left; font-family:"돋움", sans-serif, sans-serif; font-size:16px; font-weight:bold; color:#000000;}
+#title li {list-style-type:none; width:200px; padding:3px 0px 2px 0px; float:left; font-family:"돋움", sans-serif; font-size:16px; font-weight:bold; color:#000000;}
 #title .location {float:right; height:20px; margin:0; padding:5 0 0 0; font-family:"돋움", sans-serif; font-size:11px;}
 #foot {margin:0; padding:0 0 0 0; text-align:left; /*overflow:hidden;*/ height:40px; clear:both; background-color:#F7F7F7; border-top:1px solid #e5e5e5; font-family:Tahoma, sans-serif; font-size:11px; color:#999999;}
 #search {float:right; margin:0; padding:10px 0 10px 0; width:680px;}

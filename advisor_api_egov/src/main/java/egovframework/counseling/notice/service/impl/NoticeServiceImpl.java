@@ -14,52 +14,45 @@ import egovframework.counseling.notice.service.NoticeService;
 public class NoticeServiceImpl extends EgovAbstractServiceImpl implements NoticeService {
 
 //	/** SampleDAO */
-//	// TODO ibatis 사용
    @Resource(name = "noticeDAO")
   private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<NoticeVO> selectNotices(NoticeVO noticeVO) throws Exception {
+	public List<NoticeVO> selectNotices(NoticeVO noticeVO){
 
 
-		List<NoticeVO> noticeInfo = noticeDAO.selectNoticeList(noticeVO);
-		return noticeInfo;
+		return noticeDAO.selectNoticeList(noticeVO);
 	}
 	
 	
 	@Override
-	public List<NoticeVO> selectNoticeOne(String id) throws Exception {
+	public List<NoticeVO> selectNoticeOne(String id){
 
 
-		List<NoticeVO> noticeInfo = noticeDAO.selectNoticeOne(id);
-
-		return noticeInfo;
+		return noticeDAO.selectNoticeOne(id);
 	}
 	
 
 	@Override
-	public boolean insertNoticeOne(NoticeVO noticeVO) throws Exception{
+	public boolean insertNoticeOne(NoticeVO noticeVO){
 		
-		boolean result = noticeDAO.insertNoticeOne(noticeVO);
-		
-		return result;
+		return noticeDAO.insertNoticeOne(noticeVO);
 	
 	}
 	
 
 	@Override
-	public boolean deleteNoticeOne(String id) throws Exception{
+	public boolean deleteNoticeOne(String id){
 		
-		boolean result = noticeDAO.deleteNoticeOne(id);
 		
-		return result;
+		return noticeDAO.deleteNoticeOne(id);
 	
 	}
 
     // 공지사항을 수정하는 메서드를 추가합니다.
-    public boolean updateNoticeOne(NoticeVO noticeVO) throws Exception {
-        boolean result = noticeDAO.updateNoticeOne(noticeVO);
-        return result;
+	@Override
+    public boolean updateNoticeOne(NoticeVO noticeVO){
+        return noticeDAO.updateNoticeOne(noticeVO);
     }
 
 

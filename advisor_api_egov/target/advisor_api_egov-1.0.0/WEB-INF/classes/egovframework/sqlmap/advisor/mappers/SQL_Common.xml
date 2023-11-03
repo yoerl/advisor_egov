@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.counseling.common.service.impl.CommonMapper">
+
+
+    <!-- CommonVO 클래스에 대한 resultMap 정의 -->
+    <resultMap id="commonVO" type="egovframework.counseling.common.service.impl.CommonVO">
+        <id property="comnCd" column="COMN_CD"/>
+        <result property="comnCdNm" column="COMN_CD_NM"/>
+        <result property="comnCdVal" column="COMN_CD_VAL"/>
+        <result property="comnCdValNm" column="COMN_CD_VAL_NM"/>
+        <result property="hgrnComnCd" column="HGRN_COMN_CD"/>
+        <result property="hgrnComnCdNm" column="HGRN_COMN_CD_NM"/>
+        <result property="useYn" column="USE_YN"/>
+        <result property="amndId" column="AMND_ID"/>
+        <result property="amntDttm" column="AMNT_DTTM"/>
+        <result property="rgsrId" column="RGSR_ID"/>
+        <result property="rgsnDttm" column="RGSN_DTTM"/>
+    </resultMap>
+
+
+	<select id="selectAgency" resultMap="commonVO">
+		select instt_code as COMN_CD_VAL, all_instt_nm as COMN_CD_VAL_NM from ais.comtninsttcode where  abl_ennc = 'N';
+	</select>
+	
+	
+
+	<select id="selectCommonData" resultMap="commonVO">
+
+		select * from adv.tb_comn_cd where USE_YN  = 'Y'
+		
+	     and COMN_CD =  #{comnCd}
+	     order by RGSN_DTTM desc;
+
+	</select>
+	
+	
+	<select id="selectAuthMenu" resultMap="commonVO">
+
+		select * from adv.tb_comn_cd 
+	   where COMN_CD =  #{comnCd}
+	     and HGRN_COMN_CD  =  #{hgrnComnCd};
+
+	</select>
+	
+	
+	
+
+
+	<update id="updateMunuAuth" parameterType="egovframework.counseling.common.service.impl.CommonVO">
+
+	   UPDATE adv.tb_comn_cd
+	      SET USE_YN = #{useYn}
+		WHERE COMN_CD = #{comnCd}
+		  AND COMN_CD_VAL = #{comnCdVal}
+		  AND HGRN_COMN_CD = #{hgrnComnCd};
+    
+	</update>
+	
+	<update id="updateChatBotOne" parameterType="egovframework.counseling.common.service.impl.ChatbotVO">
+		UPDATE ais.tb_user_info
+		SET BOT_ID = (select chbt_id from ais.tb_chatbot where chbt_type = 'BOT_GROUP' and intt_cd = #{inttCd} and cmn_spc_div_cd =#{cmnSpcDivCd})
+		WHERE USER_ID=#{userId};
+	</update>
+	
+	
+	<update id="updateChatBotGrop" parameterType="egovframework.counseling.common.service.impl.ChatbotVO">
+			UPDATE ais.tb_user_info
+			SET BOT_ID = (select chbt_id from ais.tb_chatbot where chbt_type = 'BOT_GROUP' and intt_cd = #{inttCd} and cmn_spc_div_cd=#{cmnSpcDivCd})
+			WHERE INTT_CD = #{inttCd} and USER_DIV_CD = #{userDivCd};
+	</update>
+
+
+
+
+</mapper>

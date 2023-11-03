@@ -8,9 +8,9 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 public interface SettingMapper  {
 
 	//환경설정 정보 조회
-    public SettingVO selectSettingOne(SettingVO settingVO) throws Exception;
+    public SettingVO selectSettingOne(SettingVO settingVO);
 
-	public int insertFont(SettingVO settingVO) throws Exception;
+	public int insertFont(SettingVO settingVO);
 	
-	public int insertFontSize(SettingVO settingVO) throws Exception;
+	public int insertFontSize(SettingVO settingVO);
 }

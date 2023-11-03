@@ -1,17 +1,19 @@
 package egovframework.counseling.setting.service.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import egovframework.counseling.notice.service.impl.NoticeVO;
-
 import javax.annotation.Resource;
 
-import java.util.List;
 
 @Repository
 public class SettingDAO {
 
+
+	private static final Logger logger = LogManager.getLogger(SettingDAO.class);
+	
     @Resource(name = "settingMapper")
     private SettingMapper settingMapper;
 
@@ -20,10 +22,9 @@ public class SettingDAO {
      * @return
      * @throws Exception
      */
-    public SettingVO selectSetting(SettingVO settingVO) throws Exception {
-        SettingVO setting = settingMapper.selectSettingOne(settingVO);
-
-        return setting;
+    public SettingVO selectSetting(SettingVO settingVO) {
+    
+        return settingMapper.selectSettingOne(settingVO);
     }
     
 
@@ -33,14 +34,17 @@ public class SettingDAO {
      * @throws Exception
      */
     @Transactional(rollbackFor = Exception.class)
-    public boolean insetfont(SettingVO settingVO) throws Exception {
+    public boolean insetfont(SettingVO settingVO) {
 
         try {
             int rowsAffected = settingMapper.insertFont(settingVO);
             return rowsAffected > 0; // INSERT 쿼리가 성공하면 true, 그렇지 않으면 false 반환
+        } catch (NullPointerException  e) {
+            // 예외 처리 로직 작성
+        	logger.error("에러 : "+ e, e.toString());
         } catch (Exception e) {
             // 예외 처리 로직 작성
-            e.printStackTrace();
+        	logger.error("폰트 입력 : ", e);
         }
         
         return false;
@@ -52,14 +56,17 @@ public class SettingDAO {
      * @throws Exception
      */
     @Transactional(rollbackFor = Exception.class)
-    public boolean insertFontSize(SettingVO settingVO) throws Exception {
+    public boolean insertFontSize(SettingVO settingVO) {
     	
     	try {
     		int rowsAffected = settingMapper.insertFontSize(settingVO);
     		return rowsAffected > 0; // INSERT 쿼리가 성공하면 true, 그렇지 않으면 false 반환
-    	} catch (Exception e) {
+    	} catch (NullPointerException  e) {
+            // 예외 처리 로직 작성
+        	logger.error("에러 : "+ e, e.toString());
+        } catch (Exception e) {
     		// 예외 처리 로직 작성
-    		e.printStackTrace();
+        	logger.error("폰트사이즈 입력 : ", e);
     	}
     	
     	return false;

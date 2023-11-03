@@ -10,11 +10,18 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
  public interface NewsMapper {
  
  
-	 public List<NewsVO> selectNews(NewsVO newsVO) throws Exception;
+	 public List<NewsVO> selectNews(NewsVO newsVO);
 
-	 public int selectNewsListCnt() throws Exception;
+	 public int selectNewsListCnt(NewsVO param);
+	 
+	 public int selectNewsNotReadCnt(NewsVO param);
 
-	 public NewsVO selectNewsOne(NewsVO param) throws Exception;
+	 public NewsVO selectNewsOne(NewsVO param);
 
-	 public int updateNewsReadYn(NewsVO param) throws Exception;
+	 public int updateNewsReadYn(NewsVO param);
+	 
+	 
+	 public int insertNews(NewsVO param);
+	 
+	 
  }

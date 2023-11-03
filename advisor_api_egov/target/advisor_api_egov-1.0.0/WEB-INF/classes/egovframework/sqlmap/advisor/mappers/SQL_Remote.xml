@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.counseling.remote.service.impl.RemoteMapper">
+                   
+<resultMap id="remoteVO" type="egovframework.counseling.remote.service.impl.SummaryVO">
+
+
+    <result property="callId" column="CALL_ID"/>
+    <result property="inttCd" column="INTT_CD"/>
+    <result property="recpNo" column="RECP_NO"/>
+    <result property="aiBrfCntn" column="AI_BRF_CNTN"/>
+    <result property="kmsMemoCntn" column="KMS_MEMO_CNTN"/>
+    <result property="consSttTime" column="CONS_STT_TIME"/>
+    <result property="pageNumber" column="PAGE_NUMBER"/>
+    <result property="pageSize" column="PAGE_SIZE"/>
+    <result property="userNm" column="USER_NM"/>
+    
+</resultMap>
+
+
+<select id="selectSummary" parameterType="egovframework.counseling.remote.service.impl.SummaryVO" resultMap="remoteVO">
+ select
+    tabh.cons_hstr_id as CALL_ID
+    , tcmh.recp_no #고객 전화번호(masking 필요)
+    , tcmh.cons_stt_time #상담(시작)시각
+    , tabh.ai_brf_cntn #요약내용
+    , tabh.kms_memo_cntn #상담메모
+    , tcmh.cnsr_id as USER_ID
+    , (select tui.USER_NM from ais.tb_user_info tui where USER_ID = tcmh.cnsr_id) as USER_NM #상담사명
+    from 
+    ais.tb_cons_meta_hstr tcmh 
+    , ais.tb_ai_brf_hstr tabh 
+    where 1=1
+    and tcmh.cons_hstr_id = tabh.cons_hstr_id 
+    and tabh.ai_brf_cntn is not null and (length(tabh.ai_brf_cntn) > 0 and length(tabh.kms_memo_cntn) > 0 )
+
+    
+	<if test="recpNo != null and kmsMemoCntn != null">
+	  AND (tcmh.recp_no LIKE CONCAT('%', #{recpNo}, '%') OR tabh.kms_memo_cntn LIKE CONCAT('%', #{kmsMemoCntn}, '%'))
+	</if>
+    order by tcmh.cons_stt_time desc
+	LIMIT #{pagination.cntPerPage} OFFSET #{pagination.offset};
+</select>
+
+
+	<select	id="selectOneSummary" parameterType="egovframework.counseling.remote.service.impl.SummaryVO" resultMap="remoteVO">
+
+	
+	
+	
+	select tabh.cons_hstr_id #call_id
+	, tcmh.recp_no #고객 전화번호(masking 필요)
+	, tcmh.cons_stt_time #상담(시작)시각
+	, tabh.ai_brf_cntn #요약내용
+	, tabh.kms_memo_cntn #상담메모
+	, tcmh.cnsr_id #상담사ID
+	, (select tui.USER_NM from ais.tb_user_info tui where USER_ID = tcmh.cnsr_id) as USER_NM #상담사명
+from 
+	ais.tb_cons_meta_hstr tcmh 
+	, ais.tb_ai_brf_hstr tabh 
+where 
+	tabh.cons_hstr_id = #{callId}
+	and tcmh.cons_hstr_id = tabh.cons_hstr_id;
+	
+	
+	
+	</select>
+
+
+
+	<select	id="selectSummaryAllCnt" parameterType="egovframework.counseling.remote.service.impl.SummaryVO" resultType="int">
+
+	
+	select count(tabh.cons_hstr_id)
+	from 
+		ais.tb_cons_meta_hstr tcmh 
+		, ais.tb_ai_brf_hstr tabh 
+	where 1=1
+		and tcmh.cons_hstr_id = tabh.cons_hstr_id 
+		and tabh.ai_brf_cntn is not null and (length(tabh.ai_brf_cntn) > 0 and length(tabh.kms_memo_cntn) > 0 )
+
+    
+	<if test="recpNo != null and kmsMemoCntn != null">
+	  AND (tcmh.recp_no LIKE CONCAT('%', #{recpNo}, '%') OR tabh.kms_memo_cntn LIKE CONCAT('%', #{kmsMemoCntn}, '%'))
+	</if>
+    order by tcmh.cons_stt_time desc
+	
+	
+	</select>
+	
+	
+
+
+</mapper>

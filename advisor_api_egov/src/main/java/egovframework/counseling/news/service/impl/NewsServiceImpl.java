@@ -24,15 +24,17 @@ private NewsDAO newsDAO;
 	 * 알림 목록조회
 	 */
 	@Override
-	public List<NewsVO> selectNewss(NewsVO newsVo) throws Exception  {
+	public List<NewsVO> selectNewss(NewsVO newsVo) {
+
 		return newsDAO.selectNews(newsVo);
+
 	}
 
 	/**
 	 * 알림 상세조회
 	 */
 	@Override
-	public NewsVO selectNewsOne(int id) throws Exception {
+	public NewsVO selectNewsOne(int id) {
 		
 		NewsVO result = newsDAO.selectNewsOne(id);
 		
@@ -42,7 +44,7 @@ private NewsDAO newsDAO;
 		return result;
 	}
 
-	public int updateNewsReadYn(int id) throws Exception {
+	public int updateNewsReadYn(int id) {
 		return newsDAO.updateNewsReadYn(id);
 	}
 
@@ -50,7 +52,7 @@ private NewsDAO newsDAO;
 	 * 알림 읽음처리
 	 */
 	@Override
-	public boolean updateNewsRead(List<Integer> newsSqnoArry) throws Exception {
+	public boolean updateNewsRead(List<Integer> newsSqnoArry) {
 		
 		boolean result = false;
 		int resultCnt = 0;
@@ -62,7 +64,32 @@ private NewsDAO newsDAO;
 		
 		return result;
 	}
- 
- 
+	
+
+	/**
+	 * 알림 상세조회
+	 */
+	@Override
+	public boolean insertNews(NewsVO newsVo) {
+		
+		return newsDAO.insertNews(newsVo);
+	}
+	
+
+	/**
+	 * 알림 상세조회
+	 */
+	@Override
+	public int selectNewsNotReadCnt(NewsVO newsVo) {
+		
+		return newsDAO.selectNewsNotReadCnt(newsVo);
+	}
+
+	
+	
+	
+	
+	
+	
  
  }

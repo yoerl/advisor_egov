@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
+<Configuration status="INFO">
+	<!-- 
     <Appenders>
-        <Console name="console" target="SYSTEM_OUT">
+        <RollingFile name="RollingFile" fileName="/logs/myapp.log"
+                     filePattern="/logs/myapp-%d{yyyy-MM-dd-HH-mm}.log">
             <PatternLayout pattern="%d %5p [%c] %m%n" />
-        </Console>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="51" />
+        </RollingFile>
     </Appenders>
+     -->
     <Loggers>
-        <Logger name="java.sql" level="INFO" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
+        <!-- 전자정부 패키지에 대한 DEBUG 로그 설정 -->
         <Logger name="egovframework" level="DEBUG" additivity="false">
-            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
         </Logger>
-        <Logger name="org.egovframe" level="DEBUG" additivity="false">
-            <AppenderRef ref="console" />
+        <!-- 나머지 패키지에 대한 INFO 로그 설정 -->
+        <Logger name="java.sql" level="INFO" additivity="false">
+            <AppenderRef ref="RollingFile" />
         </Logger>
-          <!-- log SQL with timing information, post execution -->
+        <Logger name="org.egovframe" level="INFO" additivity="false">
+            <AppenderRef ref="RollingFile" />
+        </Logger>
         <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
-            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
         </Logger>
         <Logger name="org.springframework" level="INFO" additivity="false">
-            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
         </Logger>
+        <!-- Root 로거 설정 (모든 로그 기록) -->
         <Root level="INFO">
-            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
         </Root>
     </Loggers>
 </Configuration>

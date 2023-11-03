@@ -1,7 +1,6 @@
 package egovframework.counseling.user.service.impl;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @Class Name : SampleVO.java
@@ -92,17 +91,41 @@ public class UserInfoVO {
 	public void setRgsnDttm(Timestamp rgsnDttm) {
 		this.rgsnDttm = rgsnDttm;
 	}
+
+	
+	public String getInttCd() {
+		return inttCd;
+	}
+	public void setInttCd(String inttCd) {
+		this.inttCd = inttCd;
+	}
+
+
+    public String getRolePower() {
+		return rolePower;
+	}
+	public void setRolePower(String rolePower) {
+		this.rolePower = rolePower;
+	}
+	
+	
+
 	@Override
 	public String toString() {
-		return "UserInfoVO [userId=" + userId + ", userNm=" + userNm + ", userDivCd=" + userDivCd + ", userDivNm="
-				+ userDivNm + ", botId=" + botId + ", extnNo=" + extnNo + ", consStatCd=" + consStatCd + ", useYn="
-				+ useYn + ", amndId=" + amndId + ", amntDttm=" + amntDttm + ", rgsrId=" + rgsrId + ", rgsnDttm="
-				+ rgsnDttm + "]";
+		return "UserInfoVO [inttCd=" + inttCd + ", userId=" + userId + ", userNm=" + userNm + ", userDivCd=" + userDivCd
+				+ ", rolePower=" + rolePower + ", userDivNm=" + userDivNm + ", botId=" + botId + ", extnNo=" + extnNo
+				+ ", consStatCd=" + consStatCd + ", useYn=" + useYn + ", amndId=" + amndId + ", amntDttm=" + amntDttm
+				+ ", rgsrId=" + rgsrId + ", rgsnDttm=" + rgsnDttm + "]";
 	}
-	private String userId;
+
+
+
+	private String inttCd;
+    private String userId;
     private String userNm;
     private String userDivCd;
-    private String userDivNm;
+    private String rolePower;
+	private String userDivNm;
     private String botId;
     private String extnNo;
     private String consStatCd;

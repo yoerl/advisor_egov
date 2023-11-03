@@ -4,133 +4,66 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-</head>
 
-<body>
-<div id="wrap">
-	<!-- header -->
-	<header id="header">
-		<div id="logo">
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
-		</div>
-		<nav id="gnb">
-			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
-			<a href="${path}/page/history.do"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
-			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
-			<a href="${path}/page/monitoring.do"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
-			<a href="${path}/page/authority.do"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
-		</nav>
-		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
-		</div>
-	</header>
-	<!-- header -->
-	<!-- body -->
-	<div id="container">
-		<!-- chating -->
-			<section id="charting">
-				<div class="chating_inner">
-				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
-				</div>
-				<!-- chating head -->
-				<!-- chating con -->
-				<div class="chating_con">
-					
-					<div class="chating_contents">
-						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
-						</ul>
-					
-					
-					</div>
-					</div>
-					<!-- chating con -->
-					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
-					</div>
-					<!-- chating bottom -->
-				
-				</div>
-			</section>
-		<!-- chating -->
-		<!-- right -->
-			<section id="sub_right_con">
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String taServer = getServletContext().getInitParameter("taServer");
+%>
+
 				<div class="right_title">
-					<h2><a href="javascript:history.go(-1);"><img src="../images/icons/arrow-left.png" alt=""></a>01012341234/상담사명(1234)</h2>
+					<h2>
+						<a href="javascript:fnPageLoad('${path}/page/summary.do','');">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a><span id="text_title"></span></h2>
+					
 					<div class="btn_close">
-						<a href="${path}/page/home.do">
+						<a href="javascript:fnPageLoad('${path}/page/answer.do','');">
 							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
 						</a>
 					</div>
 				</div>
 				<div class="right_contents">
 					<div class="view_con_inner">
-						<div class="board_data"><p>2023.01.01 12:12</p></div>
+						<div class="board_data"><p id="date_summary">2023.01.01 12:12</p></div>
 						<div class="board_view_content">
-							<p>군입대 지원에 대한 상담  </p>
+							<p id="text_content">  </p>
 						</div>
 						<!-- button -->
-						<div class="board_bottom_btn">
-							<a href="${path}/page/summary_modify.do">수정</a>
-						</div>
-						<!-- button -->
+						
+						
+						
 					
 					</div>
 				</div>
-			</section>
-		<!-- right -->
-	</div>
-	<!-- body -->
-</div>
-</body>
-</html>
+				
+				<script>
+				
+				
+				
+				
+
+				  $.ajax({
+				      type: "GET",
+					  url: "${path}/api/ext-api/one/summary.do",
+					  data : {"callId" : "<%= request.getParameter("callId")%>"},
+				      success: function(jsonString) {
+
+							var jsonArray = JSON.parse(jsonString);
+							// 요청 성공 시 실행될 함수
+				
+
+							$("#date_summary").text(jsonArray[0].consSttTime);
+							$("#text_content").text(jsonArray[0].aiBrfCntn);
+							$("#text_title").text(jsonArray[0].userNm+"("+jsonArray[0].recpNo+")");
+							
+							//01012341234/상담사명(1234)
+				
+				      },
+				      error: function(request, status, error) {
+				          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+				      }
+				  });
+			
+				  
+				  
+				</script>

@@ -8,67 +8,35 @@ import javax.annotation.Resource;
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
-import egovframework.counseling.notice.service.NoticeService;
 import egovframework.counseling.user.service.UserService;
 
 @Service("userService")
 public class UserServiceImpl extends EgovAbstractServiceImpl implements UserService {
 
+	
   @Resource(name = "userDAO")
   private UserDAO userDAO;
 	
 
 
 	@Override
-	public List<UserInfoVO> selectUser(UserInfoVO userInfoVO) throws Exception {
+	public List<UserInfoVO> selectUser(UserInfoVO userInfoVO){
 
-		System.out.println("22222" + userInfoVO.toString());
-		List<UserInfoVO> userInfoVOList = userDAO.selectUser(userInfoVO);
-		System.out.println("22222" + userInfoVO.toString());
-		return userInfoVOList;
+		return userDAO.selectUser(userInfoVO);
+	}
+	
+
+
+	@Override
+	public boolean updateConsStat(UserInfoVO userInfoVO) {
+		
+		return userDAO.updateConsStat(userInfoVO);
 	}
 
 	@Override
-	public List<UserInfoVO> selectUsers(UserInfoVO userInfoVO) throws Exception {
+	public List<UserInfoVO> selectUsers(UserInfoVO userInfoVO) {
 
-		List<UserInfoVO> userInfoVOList = userDAO.selectUsers(userInfoVO);
-		return userInfoVOList;
+		return userDAO.selectUsers(userInfoVO);
 	}
 	
-//	
-//	@Override
-//	public List<NoticeVO> selectNoticeOne(String id) throws Exception {
-//
-//
-//		List<NoticeVO> noticeInfo = noticeDAO.selectNoticeOne(id);
-//
-//		return noticeInfo;
-//	}
-//	
-//
-//	@Override
-//	public boolean insertNoticeOne(NoticeVO noticeVO) throws Exception{
-//		
-//		boolean result = noticeDAO.insertNoticeOne(noticeVO);
-//		
-//		return result;
-//	
-//	}
-//	
-//
-//	@Override
-//	public boolean deleteNoticeOne(String id) throws Exception{
-//		
-//		boolean result = noticeDAO.deleteNoticeOne(id);
-//		
-//		return result;
-//	
-//	}
-//
-//    // 공지사항을 수정하는 메서드를 추가합니다.
-//    public boolean updateNoticeOne(NoticeVO noticeVO) throws Exception {
-//        boolean result = noticeDAO.updateNoticeOne(noticeVO);
-//        return result;
-//    }
-
 }

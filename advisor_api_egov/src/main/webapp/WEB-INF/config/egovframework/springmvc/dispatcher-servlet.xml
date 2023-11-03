@@ -7,9 +7,6 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-
-
-
     <context:component-scan base-package="egovframework">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
@@ -23,13 +20,15 @@
         
 
     </bean>
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    
+    
+   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
             <list>
                 <ref bean="localeChangeInterceptor" />
             </list>
         </property>
-    </bean>
+    </bean> 
     
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
     <!-- 쿠키를 이용한 Locale 이용시 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
@@ -66,6 +65,12 @@
 	<!-- /For Pagination Tag -->
 
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
-    
+<!-- 
+  <mvc:interceptors>
+		<bean id="authenticInterceptor" class="egovframework.counseling.auth.AuthenticInterceptor">
+		
+		</bean>
+	</mvc:interceptors> 
+ -->	
 
 </beans>

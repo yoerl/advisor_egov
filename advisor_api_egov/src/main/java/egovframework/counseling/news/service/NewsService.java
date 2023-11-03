@@ -7,10 +7,20 @@ import egovframework.counseling.news.service.impl.NewsVO;
 
  public interface NewsService {
  
-	 List<NewsVO> selectNewss(NewsVO newsVo) throws Exception;
+	 List<NewsVO> selectNewss(NewsVO newsVo);
 	 
-	 NewsVO selectNewsOne(int id) throws Exception;
+	 NewsVO selectNewsOne(int id);
 
-	boolean updateNewsRead(List<Integer> newsSqnoArry) throws Exception;
+	boolean updateNewsRead(List<Integer> newsSqnoArry);
+
+	/**
+	 * 알림 상세조회
+	 */
+	boolean insertNews(NewsVO newsVo);
+
+	/**
+	 * 알림 상세조회
+	 */
+	int selectNewsNotReadCnt(NewsVO newsVo);
 
 }

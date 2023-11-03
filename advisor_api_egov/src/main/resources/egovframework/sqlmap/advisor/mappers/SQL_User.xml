@@ -11,30 +11,62 @@
 	    <result property="userDivNm" column="USER-DIV_NM"/>
 	    <result property="botId" column="BOT_ID"/>
 	    <result property="extnNo" column="EXTN_NO"/>
-	    
+	    <result property="inttCd" column="INTT_CD"/>
 	    <result property="consStatCd" column="CONS_STAT_CD"/>
 	    <result property="useYn" column="USE_YN"/>
 	    <result property="amndId" column="AMND_ID"/>
 	    <result property="amntDttm" column="AMNT-DTTM"/>
 	    <result property="rgsrId" column="RGSR_ID"/>
 	    <result property="rgsnDttm" column="RGSN_DTTM"/>
+	    <result property="rolePower" column="ROLE_POWER"/>
 	</resultMap>
 
     
     
 	<select id="selectUser" parameterType="egovframework.counseling.user.service.impl.UserInfoVO" resultMap="userVO">
 	
-	
-		select * from ais.tb_user_info where USE_YN  = 'Y' and USER_ID = #{userId};
+SELECT
+    atable.USER_ID,
+    atable.USER_NM,
+    atable.USER_DIV_CD,
+    atable.USER_DIV_NM,
+    (SELECT COMN_CD_VAL FROM adv.tb_comn_cd WHERE COMN_CD = 'RolePower' AND HGRN_COMN_CD = CAST(atable.USER_DIV_CD AS CHAR)) AS ROLE_POWER,
+    atable.BOT_ID,
+    atable.EXTN_NO,
+    atable.CONS_STAT_CD,
+    atable.INTT_CD,
+    atable.GROUP_CD,
+    atable.PART_CD,
+    atable.TEAM_CD,
+    atable.USE_YN,
+    atable.AMND_ID,
+    atable.AMND_NM,
+    atable.AMNT_DTTM,
+    atable.RGSR_ID,
+    atable.RGSR_NM,
+    atable.RGSN_DTTM
+FROM ais.tb_user_info atable
+    where 1=1
+    and atable.USE_YN  = 'Y'
+ 	and atable.USER_ID = #{userId};
 
 	</select>
+	
+	<update id="updateConsStat" parameterType="egovframework.counseling.user.service.impl.UserInfoVO" >
+	
+		update ais.tb_user_info set cons_stat_cd = #{consStatCd} where user_id = #{userId} and USE_YN  = 'Y';
+		
+	</update>
 	
 	
     
 	<select id="selectUsers" parameterType="egovframework.counseling.user.service.impl.UserInfoVO" resultMap="userVO">
-	
-	
-		select * from ais.tb_user_info where USE_YN  = 'Y';
+		select * from ais.tb_user_info 
+		where 1=1
+		  	<if test="inttCd != null or inttCd != ''">
+		  and intt_cd= #{inttCd}
+			</if>
+		  and USE_YN  = 'Y';
 
 	</select>
 	

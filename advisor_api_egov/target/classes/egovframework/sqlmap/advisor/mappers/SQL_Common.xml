@@ -20,18 +20,87 @@
 
 
 	<select id="selectAgency" resultMap="commonVO">
-
-		select * from adv.tb_comn_cd where USE_YN  = 'Y' and COMN_CD = "agentList";
-
+		select instt_code as COMN_CD_VAL, all_instt_nm as COMN_CD_VAL_NM from ais.comtninsttcode where  abl_ennc = 'N';
 	</select>
 	
 	
 
 	<select id="selectCommonData" resultMap="commonVO">
 
-		select * from adv.tb_comn_cd where USE_YN  = 'Y' and COMN_CD =  #{comnCd};
+		select * from adv.tb_comn_cd where USE_YN  = 'Y'
+		
+	     and COMN_CD =  #{comnCd}
+	     
+	     	<if test="comnCdVal != null">
+				and COMN_CD_VAL =  #{comnCdVal}
+		     </if>
+	
+	
+	     order by RGSN_DTTM desc;
 
 	</select>
+	
+	
+	<select id="selectSystemChkAuth" resultMap="commonVO">
+
+		select * from adv.tb_comn_cd where 1=1
+		
+	     and COMN_CD =  #{comnCd}
+	     
+	     	<if test="comnCdVal != null">
+				and COMN_CD_VAL =  #{comnCdVal}
+		     </if>
+	
+	
+	     order by RGSN_DTTM desc;
+
+	</select>
+	
+	
+	
+	<select id="selectAuthMenu" resultMap="commonVO">
+
+		select * from adv.tb_comn_cd 
+	   where COMN_CD =  #{comnCd}
+	     and HGRN_COMN_CD  =  #{hgrnComnCd};
+
+	</select>
+	
+	<update id="updateSystemChkAuth" parameterType="egovframework.counseling.common.service.impl.CommonVO">
+
+	   UPDATE adv.tb_comn_cd
+	      SET USE_YN = #{useYn}
+		WHERE COMN_CD = #{comnCd}
+		  AND COMN_CD_VAL = #{comnCdVal}
+    
+	</update>
+	
+
+
+	<update id="updateMunuAuth" parameterType="egovframework.counseling.common.service.impl.CommonVO">
+
+	   UPDATE adv.tb_comn_cd
+	      SET USE_YN = #{useYn}
+		WHERE COMN_CD = #{comnCd}
+		  AND COMN_CD_VAL = #{comnCdVal}
+		  AND HGRN_COMN_CD = #{hgrnComnCd};
+    
+	</update>
+	
+	<update id="updateChatBotOne" parameterType="egovframework.counseling.common.service.impl.ChatbotVO">
+		UPDATE ais.tb_user_info
+		SET BOT_ID = (select chbt_id from ais.tb_chatbot where chbt_type = 'BOT_GROUP' and intt_cd = #{inttCd} and cmn_spc_div_cd =#{cmnSpcDivCd})
+		WHERE USER_ID=#{userId};
+	</update>
+	
+	
+	<update id="updateChatBotGrop" parameterType="egovframework.counseling.common.service.impl.ChatbotVO">
+			UPDATE ais.tb_user_info
+			SET BOT_ID = (select chbt_id from ais.tb_chatbot where chbt_type = 'BOT_GROUP' and intt_cd = #{inttCd} and cmn_spc_div_cd=#{cmnSpcDivCd})
+			WHERE INTT_CD = #{inttCd} and USER_DIV_CD = #{userDivCd};
+	</update>
+
+
 
 
 </mapper>

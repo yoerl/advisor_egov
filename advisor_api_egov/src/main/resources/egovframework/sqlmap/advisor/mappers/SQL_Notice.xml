@@ -11,7 +11,7 @@
     <result property="useYn" column="USE_YN"/>
     <result property="amndId" column="AMND_ID"/>
     <result property="amntDttm" column="AMNT_DTTM"/>
-    <result property="rgsrNm" column="rgsr_Nm"/>
+    <result property="rgsrNm" column="RGSR_NM"/>
     <result property="rgsrId" column="RGSR_ID"/>
     <result property="rgsnDttm" column="RGSN_DTTM"/>
 </resultMap>
@@ -23,7 +23,7 @@
 		FROM 	adv.TB_NOTI_INFO
 		WHERE 	USE_YN = 'Y'
 		ORDER BY RGSN_DTTM DESC
-		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset}
+		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset};
 
 	</select>
 	
@@ -46,10 +46,11 @@
 	</select>
 				
 	<insert id="insertNoticeOne" parameterType="egovframework.counseling.notice.service.impl.NoticeVO">
-	    INSERT INTO adv.TB_NOTI_INFO (NOTI_TITL_NM, NOTI_CNTN, RGSR_NM) VALUES (
+	    INSERT INTO adv.TB_NOTI_INFO (NOTI_TITL_NM, NOTI_CNTN, RGSR_ID, RGSR_NM) VALUES (
 	    #{notiTitlNm},
 	    #{notiCntn},
-	    'admin'
+	    #{rgsrId},
+	    #{rgsrNm}
 	        )
 	</insert>
 	
@@ -66,6 +67,7 @@
 	        NOTI_CNTN = #{notiCntn}
 	    WHERE NOTI_SQNO = #{notiSqno}
 	</update>
+	
 	
 	
 

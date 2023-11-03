@@ -9,51 +9,44 @@ import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
 import egovframework.counseling.common.service.CommonService;
-import egovframework.counseling.notice.service.NoticeService;
-import egovframework.counseling.notice.service.impl.NoticeVO;
+import egovframework.counseling.common.service.impl.CommonVO;
 import egovframework.counseling.permission.service.PermissionService;
-import egovframework.counseling.user.service.impl.UserInfoVO;
 
 @Service("permissionService")
 public class PermissionServiceImpl extends EgovAbstractServiceImpl implements PermissionService {
 
-	@Resource(name = "permissionDAO")
-	private PermissionDAO permissionDAO;
-	
-	
+	  @Resource(name = "permissionDAO")
+	  private PermissionDAO permissionDAO;
+	  
+	  @Resource(name = "commonService")
+	  private CommonService commonService;
+	  
 
 	@Override
-	public boolean reqPermission(PermissionReqVO permissionReqVO) throws Exception {
-		
-		boolean result = permissionDAO.insertPermissionReq(permissionReqVO);
-		// TODO Auto-generated method stub
+	public boolean reqPermission(PermissionReqVO permissionReqVO){
 		
 
-		return result;
+		return permissionDAO.insertPermissionReq(permissionReqVO);
 	}
 
 
 
-	@Override
-	public List<PermissionReqVO> selectPermissionRequest(PermissionReqVO permissionReqVO) throws Exception {
-		// TODO Auto-generated method stub
-		
-		List<PermissionReqVO> result  = permissionDAO.selectPermissionRequest(permissionReqVO);
-		
-		return result;
-	}
+	 public List<PermissionReqVO> selectPermissionRequest(PermissionReqVO permissionReqVO) {
+		    List<PermissionReqVO> result = this.permissionDAO.selectPermissionRequest(permissionReqVO);
+		    for (int i = 0; i < result.size(); i++) {
+		      CommonVO cmmonVO = new CommonVO();
+		      cmmonVO.setComnCd("roleList");
+		      cmmonVO.setComnCdVal(((PermissionReqVO)result.get(i)).getAthrCd());
+		      ((PermissionReqVO)result.get(i)).setAthrNm(((CommonVO)this.commonService.selectCommonCode(cmmonVO).get(0)).getComnCdValNm());
+		    } 
+		    return result;
+		  }
 	
 	@Override
-	public boolean updatePermission(PermissionReqVO permissionReqVO) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean updatePermission(PermissionReqVO permissionReqVO){
 		
 		
-		
-		boolean result = permissionDAO.updatePermission(permissionReqVO);
-		// TODO Auto-generated method stub
-		
-
-		return result;
+		return permissionDAO.updatePermission(permissionReqVO);
 	}
 	
 	

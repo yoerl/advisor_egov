@@ -1,7 +1,6 @@
 package egovframework.counseling.notice.service.impl;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import egovframework.util.Pagination;
 

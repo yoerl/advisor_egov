@@ -6,16 +6,16 @@ import egovframework.counseling.notice.service.impl.NoticeVO;
 
 public interface NoticeService {
 
-	List<NoticeVO> selectNotices(NoticeVO noticeVO) throws Exception;
+	List<NoticeVO> selectNotices(NoticeVO noticeVO);
 
-	List<NoticeVO> selectNoticeOne(String id) throws Exception;
+	List<NoticeVO> selectNoticeOne(String id);
 
-	boolean insertNoticeOne(NoticeVO noticeVO) throws Exception;
+	boolean insertNoticeOne(NoticeVO noticeVO);
 
 
-	boolean deleteNoticeOne(String id) throws Exception;
+	boolean deleteNoticeOne(String id);
 
-	boolean updateNoticeOne(NoticeVO noticeVO) throws Exception;
+	boolean updateNoticeOne(NoticeVO noticeVO);
 	
 	
 

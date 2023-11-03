@@ -1,6 +1,5 @@
 package egovframework.counseling.permission.service.impl;
 
-    import java.sql.Timestamp;
 
     public class PermissionReqDTO {
      
@@ -41,16 +40,26 @@ package egovframework.counseling.permission.service.impl;
 		public void setExtnNo(String extnNo) {
 			this.extnNo = extnNo;
 		}
+		
+		public String getInttCd() {
+			return inttCd;
+		}
+		public void setInttCd(String inttCd) {
+			this.inttCd = inttCd;
+		}
+
 		@Override
 		public String toString() {
 			return "PermissionReqDTO [athrTypeCd=" + athrTypeCd + ", userId=" + userId + ", role=" + role + ", userNm="
-					+ userNm + ", athrCd=" + athrCd + ", extnNo=" + extnNo + "]";
+					+ userNm + ", athrCd=" + athrCd + ", extnNo=" + extnNo + ", inttCd=" + inttCd + "]";
 		}
+
 		private String athrTypeCd;
 		private String userId;
 		private String role;
         private String userNm;
         private String athrCd;
         private String extnNo;
+        private String inttCd;
 		
     }

@@ -28,6 +28,8 @@
 				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
 				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
 			</a>
+				<div class="btn_close"><span><a href="javascript:fnPageLoad('${path}/page/answer.do','');"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a><span></div>
+				
 		</div>
 		<nav id="gnb">
 			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
@@ -59,10 +61,6 @@
 				
 				<!-- chating head -->
 				<div id="chating_head" class="chating_head" style="display:none;">
-<!-- 					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->

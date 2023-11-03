@@ -29,6 +29,8 @@ $(document).ready(  function() {
         stomp.send("/sendScript", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
         stomp.send("/sendAnswer", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
     });
+	
+	
 	$('#btnRecv').on('click', function(event) {
 		event.preventDefault();
 		

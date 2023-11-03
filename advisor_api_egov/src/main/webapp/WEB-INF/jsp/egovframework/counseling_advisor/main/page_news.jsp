@@ -1,4 +1,16 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
+<%
+//http://localhost:8080/advisor_api_egov/api/auth/login.do
+
+String user_id = (String) session.getAttribute("user_id");
+%>
+
 <script>
     $(document).ready(function() {
     	
@@ -7,57 +19,53 @@
     });
     
     function fnSearch(currentPage) {
-    	
 	    $.ajax({
 		    type: "GET",
 		    url: "${path}/api/news.do",
-		    /* dataType: "json", */
-		    data : {"currentPage" : currentPage},
+		    data : {"currentPage" : currentPage, "receiverId" : '<%=user_id%>'},
 		    success: function(jsonString) {
-		        var jsonArray = JSON.parse(jsonString);
-		        console.log("AJAX 성공: " + jsonString);
-
-				// 안읽은 알람 count
-				let noReadCnt = 0;
-				
-				let html = "";
-				
-		        for (var i = 0; i < jsonArray.length; i++) {
-		        	
-		            var item = jsonArray[i];
-	    	        console.log("AJAX 성공: " + item.newsSqno);
-		            
-		        	// 안읽은 알람 count
-		        	if(item.readYn == 'N') noReadCnt++;
-		        	
-		        	html += "<li>";
-		        	html += "	<div class='checkbox'>";
-		        	html += "		<span>";
-		        	html += "			<input type='checkbox' id='check" + i + "' name='chk" + i + "' value='" + item.newsSqno + "'>";
-		        	html += "			<label for='check" + i + "'></label>";
-		        	html += "		</span>";
-		        	html += "	</div>";
-		        	html += "	<a href='${path}/page/news_view.do?newsSqno=" + item.newsSqno + "'";
-		        	if(item.readYn == "Y") {
-		        		html += "	class='visited'";
-		        	}
-		        	html += ">";
-		        	html += "		<p>" + item.newsCntn + "</p>";
-		        	html += "		<span class='notice_date'>" + item.rgsnDttm + "</span>";
-		        	html += "	</a>";
-		        	html += "</li>";
-
-		        }
-		        
-		        $('.news-list').html(html);
-		        
-		        // 페이징
-		        fnPaging(jsonArray[0].pagination);
-		        
-		        // 안읽은 알람 cnt set
-		        if(noReadCnt > 99) noReadCnt = "99+";
-		        $("#nrdCnt").html(noReadCnt);
-	
+		    	
+		    		if(jsonString!=="")
+		    		{
+				    		
+				        var jsonArray = JSON.parse(jsonString);
+		
+		
+						
+						let html = "";
+						
+				        for (var i = 0; i < jsonArray.length; i++) {
+				        	
+				            var item = jsonArray[i];
+				            
+				        	
+				        	html += "<li>";
+				        	html += "	<div class='checkbox'>";
+				        	html += "		<span>";
+				        	html += "			<input type='checkbox' id='check" + (i+1) + "' name='chk" + (i+1) + "' value='" + item.newsSqno + "'>";
+				        	html += "			<label for='check" + (i+1) + "'></label>";
+				        	html += "		</span>";
+				        	html += "	</div>";
+				        	html += "	<a href=javascript:fnPageLoad('${path}/page/news_view.do','newsSqno="+item.newsSqno+"');";
+				        	
+				        	
+				        	
+				        	if(item.readYn == "Y") {
+				        		html += "	class='visited'";
+				        	}
+				        	html += ">";
+				        	html += "		<p>" + item.newsTitlNm + "</p>";
+				        	html += "		<span class='notice_date'>" + item.rgsnDttm + "</span>";
+				        	html += "	</a>";
+				        	html += "</li>";
+		
+				        }
+				        
+				        $('.news-list').html(html);
+				        newsNotReadCnt();
+				        // 페이징
+				        fnPaging(jsonArray[0].pagination);
+		    		}
 		    },
 		    error: function(request, status, error) {
 		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -90,11 +98,12 @@
 		});
 		
 		if(chkArry.length < 1) {
-			alert("읽음처리 할 항목을 선택해주세요.");
+
+            $('#no_chang_news_read_popup').css('display', 'block');
+			
 			return false;
 		}
 		
-		console.log("chkArry :: " + chkArry);
 		
 		
     	$.ajax({
@@ -105,33 +114,46 @@
 		    success: function(jsonString) {
 		    	
 		    	fnSearch(1);
-		    	
+		    	$('#chk_news_popup').css('display', 'block');	
 		    },
 		    error: function(request, status, error) {
 		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 		    }
 		});
+
     	
     }
 
+	function newsNotReadCnt() {
+		  $.ajax({
+		      type: "GET",
+	          url: "${path}/api/news/cnt/read-not.do", // 엔드포인트 URL
+	          data : {"receiverId" : '<%=user_id%>'},
+	          success: function(data) {
+		          
+		          if(data > 99) data = "99+";
+		          $("#nrdCnt").html(data);
+	
+		      },
+		      error: function(request, status, error) {
+	
+		          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+		      }
+		  });
+	}
     </script>
 
 	<div class="notice_title">
-		<h2>
-			<a href="javascript:history.go(-1);">
-				<img src="../images/icons/arrow-left.png" alt="">
-			</a>알림</h2>
-		
-		<div class="btn_close">
-			<a href="${path}/page/home.do">
-				<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
-			</a>
-		</div>
+		<h2>알림</h2>
+		<div class="btn_close"><span><a href="javascript:fnPageLoad('${path}/page/answer.do','');"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a><span></div>
+					
 	</div>
 	<div class="notice_contents">
 		<div class="notice_con_inner">
 			<div class="view_total">
-				<button type="button" class="btn_ranking"  onClick="location.href='${path}/page/ranking.do'">키워드 랭킹</button>
+				<button type="button" class="btn_ranking"  onClick="fnPageLoad('${path}/page/ranking.do','');">키워드 랭킹</button>
+				
+				
 				<div class="alim_button">
 					<input type="hidden" id="chkAllYn" value="N">
 					<a href="#" class="btn_choice_total" onclick="fnSelAllBtn();">전체선택</a>
@@ -158,6 +180,7 @@
 		</div>
 		
 		<!-- 페이징 -->
-		<div class="code-html pagenation" id="pageArea"></div>
+		<div class="code-html pagenation" id="pageArea">
+		</div>
 		
 	</div>

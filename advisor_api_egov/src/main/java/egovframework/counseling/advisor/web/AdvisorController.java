@@ -1,96 +1,122 @@
-///*
-// * Copyright 2008-2009 the original author or authors.
-// *
-// * Licensed under the Apache License, Version 2.0 (the "License");
-// * you may not use this file except in compliance with the License.
-// * You may obtain a copy of the License at
-// *
-// *      http://www.apache.org/licenses/LICENSE-2.0
-// *
-// * Unless required by applicable law or agreed to in writing, software
-// * distributed under the License is distributed on an "AS IS" BASIS,
-// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// * See the License for the specific language governing permissions and
-// * limitations under the License.
-// */
-//package egovframework.counseling.advisor.web;
-//
-//import java.util.List;
-//
-////import egovframework.advisor.counseling.auth.service.AuthDTO;
-////import egovframework.advisor.counseling.auth.service.AuthService;
-//import egovframework.example.sample.service.EgovSampleService;
-//import egovframework.example.sample.service.SampleDefaultVO;
-//import egovframework.example.sample.service.SampleVO;
-//
-//import org.egovframe.rte.fdl.property.EgovPropertyService;
-//import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
-//
-//import javax.annotation.Resource;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.ui.ModelMap;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.support.SessionStatus;
-//import org.springmodules.validation.commons.DefaultBeanValidator;
-//
-///**
-// * @Class Name : EgovSampleController.java
-// * @Description : EgovSample Controller Class
-// * @Modification Information
-// * @
-// * @  수정일      수정자              수정내용
-// * @ ---------   ---------   -------------------------------
-// * @ 2009.03.16           최초생성
-// *
-// * @author 개발프레임웍크 실행환경 개발팀
-// * @since 2009. 03.16
-// * @version 1.0
-// * @see
-// *
-// *  Copyright (C) by MOPAS All right reserved.
-// */
-//
-//@Controller
-//public class AdvisorController {
-//
-//
-//	@RequestMapping(value = "/page/home.do", method = RequestMethod.GET)
-//	public String movePageHome(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
-//		return "main/page_home";
-//	}
-//	
-//	@RequestMapping(value = "/page/summary.do", method = RequestMethod.GET)
-//	public String movePageSummary(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
-//		return "main/page_summary";
-//	}
-//	
-//	
-//	@RequestMapping(value = "/page/history.do", method = RequestMethod.GET)
-//	public String movePageHistory(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
-//		return "main/page_history";
-//	}
-//	
-//	@RequestMapping(value = "/page/setting.do", method = RequestMethod.GET)
-//	public String movePageSetting(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
-//		return "main/page_setting";
-//	}
-//	
-//	@RequestMapping(value = "/page/monitoring.do", method = RequestMethod.GET)
-//	public String movePageMonitoring(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
-//		return "main/page_monitoring";
-//	}
-//	
-//	@RequestMapping(value = "/page/authority.do", method = RequestMethod.GET)
-//	public String movePageAuthority(@ModelAttribute("searchVO") SampleVO loginVO, ModelMap model) throws Exception {
-//		return "main/page_authority";
-//	}
-//
-//	
-//
-//}
+package egovframework.counseling.advisor.web;
+
+
+
+import javax.annotation.Resource;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import egovframework.counseling.advisor.service.AdvisorService;
+import egovframework.counseling.advisor.service.impl.AdvisorDTO;
+import egovframework.counseling.remote.service.impl.RecommendVO;
+import egovframework.counseling.remote.web.RemoteController;
+
+@RestController
+public class AdvisorController {
+
+	private static final Logger logger = LogManager.getLogger(AdvisorController.class);
+
+
+
+	@Resource(name = "advisorService")
+	private AdvisorService advisorService;
+	
+	@PutMapping(value = "/api/summary.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
+	public ResponseEntity<String> updateSummary(@RequestBody String inputJson) throws JsonProcessingException{
+		
+	       ObjectMapper objectMapper = new ObjectMapper();
+
+	       AdvisorDTO advisorDTO = objectMapper.readValue(inputJson, AdvisorDTO.class);
+
+	        boolean result = advisorService.updateSummary(advisorDTO);
+
+	        return new ResponseEntity<>(String.valueOf(result), HttpStatus.OK);
+
+	}
+	
+	
+	
+	
+	//AP 요약 정보 전송
+	@PostMapping(value = "/api/recommend.do", headers = {"content-type=application/json,application/xml,application/x-www-form-urlencoded"})
+	public ResponseEntity<String> updateRecommend(@RequestBody String inputJson){
+
+			
+	       ObjectMapper objectMapper = new ObjectMapper();
+			try {
+		
+	       RecommendVO recommendVO = objectMapper.readValue(inputJson, RecommendVO.class);
+
+
+
+	       
+		    String[] KMSkey =  recommendVO.getKmsKey();
+
+		    for (String kmskey : KMSkey) {
+		    	// 구분자로 문자열 분할
+		    	
+
+		        String[] parts = kmskey.split("\\|\\|\\|");
+
+		        
+		    	AdvisorDTO advisorDTO = new AdvisorDTO();
+		    	advisorDTO.setConsHstrId(parts[0]);
+		    	advisorDTO.setSqnc(parts[1]);
+		    	advisorDTO.setKmsCntsSqnc(parts[2]);
+			       
+		        advisorService.updateKmsRply(advisorDTO);
+		        
+		    }
+		    
+		    
+
+		       
+		    String[] AIkey =  recommendVO.getAiKey();
+		    for (String aikey : AIkey) {
+		    	// 구분자로 문자열 분할
+		        String[] parts = aikey.split("\\|\\|\\|");
+		        
+		        
+		    	AdvisorDTO advisorDTO = new AdvisorDTO();
+		    	advisorDTO.setConsHstrId(parts[0]);
+		    	advisorDTO.setSqnc(parts[1]);
+		        advisorService.updateAiRplyHist(advisorDTO);
+		        
+		        
+		    }
+		    
+		    
+			} catch (NullPointerException  e) {
+	            // 예외 처리 로직 작성
+	        	logger.error("NullPointerException : "+ e, e.toString());
+	        } catch (Exception e) {
+
+			    logger.error("kms 활용 여부, ai 활용 여부 error : %s " + e.toString(), e.toString());
+			    // 오류 처리 또는 예외 반환
+			}
+			
+	        return new ResponseEntity<>(String.valueOf("true"), HttpStatus.OK);
+	
+		
+		
+	}
+	
+	
+	
+}
+ 

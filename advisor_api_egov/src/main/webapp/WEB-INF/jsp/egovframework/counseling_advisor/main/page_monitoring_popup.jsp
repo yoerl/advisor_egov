@@ -1,171 +1,674 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!doctype html>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String messageServerIp = getServletContext().getInitParameter("messageServerIp");
+%>
+
+<%
+//http://localhost:8080/advisor_api_egov/api/auth/login.do
+
+String user_id = (String) session.getAttribute("user_id");
+%>
+
+
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>농촌진흥청</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cach, no-store, must-revalidate" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0">
+    <title>농촌진흥청</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/base.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/pagenation.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
+    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>    
+    <script src="<c:url value='/js/egovframework/sockjs.client.min.js' />"></script>
+    <script src="<c:url value='/js/egovframework/stomp-2.3.4.min.js' />"></script>
+    <script src="<c:url value='/js/egovframework/pagenation.js' />"></script>    
+    <script src="<c:url value='/js/egovframework/common.js' />"></script>    
+    <script src="<c:url value='/js/egovframework/ckeditor5_31.1.0_ckeditor.js' />"></script>	
+    <script src="<c:url value='/js/egovframework/ckeditor5_34.0.0_translations_ko.js' />"></script>	
+
 </head>
 
 <body>
+<div id="wrap">
+    <form id="pageInfoFrm" method="post">
+        <input type="hidden" name="url">
+        <input type="hidden" name="param">
+    </form>
+    <header id="header">
+        <div id="logo">
+            <a href="#">
+                <img src="<c:url value='/images/icons/mark.png'/>" alt="">
+                <span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
+            </a>
+        </div>
+            
+    </header>
+    
+    <div id="container">
+        <section id="charting">
+            <div class="chating_inner">
+                
+                <div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+                    <p> 현재 통화 상태가 아닙니다. </p>
+                </div>
+                
+                <div id="chating_head" class="chating_head" style="display:none;">
+                </div>
+                <div class="chating_con">
+                    
+                    <div id="chating_contents" class="chating_contents">
+                       
+                    </div>
+                </div>
+                <div id="chating_bottom" class="chating_bottom" style="display:none;"></div>
 
-<!-- 레이어팝업창 -->
-<div id="counsel_history_popup" style="display:block;">
-	<div class="history_detail_popup">
-	<div class="history_pop_header">
-		<div id="logo"> 
-			<a href="${path}/page/home.do">
-				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
-			</a>
-		</div>
-	</div>
-		<!-- body -->
-	<div class="detail_pop_container" id="jubsok_detail">	
-		<!-- chating -->
-						<section id="charting">
-				<div class="chating_inner">
-				
-				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
-				    <p> 현재 통화 상태가 아닙니다. </p>
-				</div>
-
-				
-				
-				
-				
-				<!-- chating head -->
-				<div id="chating_head" class="chating_head" style="display:none;">
-<!-- 					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div> -->
-				</div>
-				<!-- chating head -->
-				<!-- chating con -->
-				<div class="chating_con">
-					
-					<div class="chating_contents">
-						<ul>
-						</ul>
-					</div>
-					</div>
-					<!-- chating con -->
-					<!-- chating bottom -->
-					<div class="chating_bottom" style="display:none;">
-					</div>
-					<!-- chating bottom -->
-					<!-- chating popup -->
-					<div class="chating_popup" style="display:none;">
-						<form name="" method="" action="">
-						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
-						<div class="chating_popup_con">
-							<textarea placeholder="군입대에 대한 상담"></textarea>
-							<button>저장</button>
-						</div>
-						</form>
-					</div>
-					<!-- chating popup -->
-				
-				</div>
-			</section>
-		<!-- chating -->
-		<!-- right -->
-			<section id="right_con">
-				<div class="counsel">
-				<form name="" method="" action="">
-					<!-- 검색 -->
-		
-					<!-- 내용 -->
-						<div class="jubsok_con">
-							<div class="counsel_con_inner">
-								<div class="counsel_flag"><a href="#" class="btn_flag"><img src="<c:url value='/images/icons/btn_tag.png'/>" alt=""></a></div>
-								<div class="counsel_pagenation">
-									<ul>
-										<li class="page_prev"><a href="#"><img src="<c:url value='/images/icons/page_prev.png'/>" alt=""></a></li>
-										<li class="on"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">6</a></li>
-										<li><a href="#">7</a></li>
-										<li><a href="#">8</a></li>
-										<li><a href="#">9</a></li>
-										<li><a href="#">10</a></li>
-										<li class="page_next"><a href="#"><img src="<c:url value='/images/icons/page_next.png'/>" alt=""></a></li>
-									</ul>
-								</div>
-								<script>
-									$( document ).ready(function() {
-									  $('.btn_flag').on('click', function() {
-										 $('.counsel_pagenation').toggleClass('open');
-										 return false;
-									  });
-									});
-								</script>
-							
-							<!-- 내용 -->
-							<div class="chating_contents">
-								<ul>
-									<li class="counseller">
-										<em>매니저명 (2023.12.31.23.59.59)</em>
-										<div class="chattok"><p>이아름 상담사님 멘탈 잡으세요</p>
-										</div>
-									</li>
-								</ul>							
-							
-							</div>
-							<!-- 내용 -->
-							
-							</div>
-							
-						</div>
-						
-					<!-- cousel -->
-					<!-- chating popup -->
-					<div class="chating_write">
+                
+            </div>
+        </section>
+        <section id="sub_right_con" style="background: #f3f5fa;">
+        			
+				<div class="chating_con_mange" style="height: calc(100% - 85px);">
+                    
+                    <div class="chating_contents" style="height: 100%">
+                        <ul id="chating_contents_manager">
+                             
+                            
+                       
+                        </ul>
+                	</div>
+                
+                
+        			</div>
+					<div style="height:calc(85px);" class="chating_write">
 						<div class="chating_write_con">
-							<textarea placeholder="내용을 입력해 주세요."></textarea>
-							<button>전송</button>
+							<textarea id="text_send" placeholder="내용을 입력해 주세요."></textarea>
+							<button style="height: 55px;" id="btn_send">전송</button>
 						</div>
 					</div>
-					<!-- chating popup -->
-				</div>
-				</form>
-			</section>
-		<!-- right -->
-	</div>
-	<!-- body -->
-	</div>
+        </section>
+    </div>
 </div>
 
 
-<!-- 레이어팝업창 -->
-<script> 
-/* 	$(document).ready(function(){ 
-	$(".monitor_couseller a").click(function(){ 
-	$("#counsel_history_popup").css("display", "block");
-	}); 
-	$("#counsel_dd > li > a").click(function(){ 
-	$("#counsel_history_popup").css("display", "block");
-	}); 
-	$("#counsel_history_popup .btn_close").click(function(){ 
-	$("#counsel_history_popup").css("display", "none"); 
-	}); 
-	});  */
+
+
+
+<script>
+/* 로그인 유저의 환경설정 조회 함수 */
+function fnChangeFont(){
+	 // 서버로 보낼 JSON 데이터
+    var jsonData = {
+    		envrStupDivCd: 'font',          // 문자열 데이터
+    		userId: '<%=user_id%>',          // 문자열 데이터
+    };
+	 
+	
+    var responseData = null;
+	
+    // AJAX 요청 설정
+    $.ajax({
+        url: "${path}/api/setting.do",  // 서버의 API 엔드포인트 URL
+        type: "POST",              // HTTP 메서드 (POST, GET 등)
+        async: false,                // 동기적 요청 활성화
+        data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+        contentType: "application/json", // 요청 본문의 데이터 타입 설정
+        success: function(response) {
+            // 요청 성공 시 실행할 코드
+            // JSON 데이터 파싱
+            var responseData = JSON.parse(response);
+            console.log("888888888888888888");
+            console.log("qwd"+response);
+            console.log("uuu"+response.length);
+
+	        // 요청 성공 시 실행할 코드
+	        // JSON 데이터 파싱
+	        console.log("response: " + response);
+	        console.log("envrStupVl: " + responseData.envrStupVl); // "envrStupVl" 값 출력
+	        console.log("input[name='font_family'][value='" + responseData.envrStupVl + "']"); // "envrStupVl" 값 출력
+	       
+	     // 원하는 value 값을 가진 라디오 버튼 선택하기
+	        $("input[name='font_family'][value='" + responseData.envrStupVl + "']").prop("checked", true);
+
+
+	        $(".chattok p").removeClass();
+	        $(".chattok p").addClass(responseData.envrStupVl);
+	        
+	        $("#summary_text").removeClass();
+	        $("#summary_text").addClass(responseData.envrStupVl);
+	        
+            
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시 실행할 코드
+            console.error("AJAX 오류: " + error);
+        }
+    });
+    
+    return responseData;
+}
+
+
+
+/* 로그인 유저의 환경설정(폰트사이즈) 조회 후 영역 css 변경 함수 */
+function fnChangeFontSize(){
+	
+	
+	 // 서버로 보낼 JSON 데이터
+    var jsonData = {
+    		envrStupDivCd: 'fontSize',          // 문자열 데이터
+    		userId: '<%=user_id%>',          // 문자열 데이터
+    };
+	 
+    // AJAX 요청 설정
+    $.ajax({
+        url: "${path}/api/setting.do",  // 서버의 API 엔드포인트 URL
+        type: "POST",              // HTTP 메서드 (POST, GET 등)
+        async: false,                // 동기적 요청 활성화
+        data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+        contentType: "application/json", // 요청 본문의 데이터 타입 설정
+        success: function(response) {
+
+        // 요청 성공 시 실행할 코드
+        // JSON 데이터 파싱
+        var responseData = JSON.parse(response);
+        console.log("response: " + response);
+        console.log("envrStupVl: " + responseData.envrStupVl); // "envrStupVl" 값 출력
+	        
+	     // 원하는 value 값을 가진 라디오 버튼 선택하기
+	     $("input[name='font_size'][value='" + responseData.envrStupVl + "']").prop("checked", true);
+
+	     
+	   	 $(".chattok p").css('font-size',responseData.envrStupVl+"px");
+	     $("#summary_text").css('font-size',responseData.envrStupVl+"px");
+            
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시 실행할 코드
+            console.error("AJAX 오류: " + error);
+        }
+    });
+}
+
+
 </script>
+
+
+
+<script>  
+
+
+$(document).ready(function() {
+	
+    
+
+	var socket = null;
+	var stomp = null;
+	var answer_num = 1;
+	
+    
+
+	function connectStomp() {
+		socket = new SockJS("http://<%= messageServerIp %>/advisor_message_egov/stomp"); // endpoint 
+		
+	    stomp = Stomp.over(socket);
+	    
+	    stomp.connect({}, function () {
+	        console.log("Connected stomp!");
+	        console.log(stomp.ws._transport.url); 
+
+	        // Message 토픽 구독!
+	        stomp.subscribe('/topic/script', function (event) {
+	        	console.log("왼쪽 화면 메세제 event=? "+event);
+	        	console.log("왼쪽 화면 메세제 event.body => "+event.body);
+	        	console.log("-----------------------------------------------");
+	        	
+	            // event.body를 JSON 형식으로 파싱하여 객체로 변환
+	            var messageData = JSON.parse(event.body);
+
+	            // type 속성 값을 가져와서 사용
+	            var messageType = messageData.type;
+
+                console.log("고객 통화 데이터 넘어오는 중");
+
+                console.log("모니터링 111111111111111111111111");
+                console.log(messageData.agentId +" : "+ '<%=user_id%>');
+                console.log("모니터링 2222222222222222222222222");
+                
+                
+                //TODO
+               if(messageData.agentId=='${userId}'){
+
+            	   
+                
+			            if (messageType === 0) {
+			            	
+
+			    			// 서버로 보낼 JSON 데이터
+			                var jsonData = {
+			    			            		  "userId": "<%=user_id%>",
+			    			            		  "consStatCd": "calling"
+			    							}
+
+					          
+			    			  $.ajax({
+			    			      type: "PUT",
+			    	              url: "${path}/api/cons-stat.do", // 엔드포인트 URL
+			    	              data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+			    	              contentType: "application/json", // 요청 본문의 데이터 타입 설정
+			    	              async:false,
+			    	              success: function(data) {
+			    			          var jsonString = JSON.stringify(data);
+			    			          console.log("수동질의 성공");
+			    			          console.log("AJAX 성공: \n" + data);
+			    			          console.log("AJAX 성공: \n" + jsonString);
+			    			          
+
+			    			      },
+			    			      error: function(request, status, error) {
+
+			    						alert("수동질의 실패");
+			    			          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+			    			      }
+			    			  });
+			    			  
+			            	
+			            	
+			                
+			    			$("#call_id").val("");
+			                //통화가 시작 되면 리셋 시키기
+			                $('#chating_contents').html("");
+			                $('#chating_bottom').html("");
+			                $('#chating_bottom').css('display', 'none');
+			                $('#answer_content').html("");
+			                $("#answer_cnt").val("0");
+			            	// 상담 종료시 요약화면 출력 
+			                
+
+					          
+			            	
+			            	$("#no_calling").css("display", "none");
+			            	$("#no_answer").css("display", "none");
+			            
+			                console.log("통화시작");
+			            	$("#chating_head").css("display", "flex");
+			            	
+			            	//{"callId":"callTest","recId":"recTest","agentId":"agentTest","orgPhoneNumber":"010-1111-1234","type":0,"stopStatus":0}
+			            	
+			            	
+						
+			                // 삽입할 HTML 코드를 생성합니다.
+								var insertedHTML = '<div class="chating_head_inner">' +
+								                  '<h2>'+messageData.orgPhoneNumber+'고객님과 전화상담이 시작되었습니다.</h2>' +
+								                  '<p>시작일시 ('+messageData.startConvTime+')</p>' +
+								                  '</div>';
+								                  
+	
+			                // 선택한 요소 안에 HTML을 삽입합니다.
+			                $('#chating_head').html(insertedHTML);
+			                
+
+			            	pagination_answer = new tui.Pagination('pagination_answer', {
+			                    totalItems: 1,
+			            		itemsPerPage: 1,
+			            		visiblePages: 1
+			            	});
+			                
+			                
+			                
+			            } else if (messageType === 1) {
+			            	$("#no_calling").css("display", "none");
+			            	$("#no_answer").css("display", "none");
+			            	$("#counsel_con_inner").css("display", "block");
+			            	
+
+			                console.log("통화중");
+			                
+			            	// 고객이 말하는거
+			            	if(messageData.rxTxFlag=="RX"||messageData.rxTxFlag=="MX"){
+	
+				                console.log("RX 고객 통화중");
+	//MX
+
+							var insertedHTML = ""
+								insertedHTML += '<li class="guest">';
+								insertedHTML += '<em>'+messageData.orgPhoneNumber+' ('+messageData.segmentOffset+')</em>';
+
+								if(messageData.rxTxFlag=="MX")
+								{
+									insertedHTML += '<div class="chattok" style="background-color: #D6E2FF;">';
+										
+								}
+								else
+								{
+									insertedHTML += '<div class="chattok">';
+									
+								}
+												            
+  
+								if( messageData.blackList == "")
+								{
+								}
+								else
+								{
+									insertedHTML += '<span class="dengerus"><i>!</i>' + messageData.blackList + '</span>';
+									
+									
+								    
+									
+								}
+								
+								if(messageData.rxTxFlag=="MX")
+								{
+									insertedHTML += '<p style="color: #293E89;" >'+messageData.transcript+'</p>';
+										
+								}
+								else
+								{
+									insertedHTML += '<p>'+messageData.transcript+'</p>';
+									
+								}
+								insertedHTML += '</div>';
+								insertedHTML += '</li>';
+														                  
+														                  
+									$('#chating_contents').append(insertedHTML);
+	
+								    //var paragraph = document.querySelector("p"); // 첫 번째 <p> 태그 선택
+								    //var text = paragraph.innerHTML;
+								    //text = text.replace(/노란/g, '<span class="highlight">노란</span>'); // "노란" 단어 강조
+								    //paragraph.innerHTML = text;
+			            	}
+			            	
+	
+			            	// 상담사가 말하는거 말하는거
+			            	if(messageData.rxTxFlag=="TX")
+				           	{
+	
+				                console.log("TX 상담사 통화중");
+	
+	
+								var insertedHTML = '<li class="counseller">' +
+								                  '<em>상담사 '+messageData.agentId+'(1234) ('+messageData.segmentOffset+')</em>' +
+								                  '<div class="chattok"><p>'+messageData.transcript+'</p>'+
+								                  '</div>';
+	
+								$('#chating_contents').append(insertedHTML);
+								                
+				           	}
+			            } else if (messageType === 2) {
+			            	
+
+			    			// 서버로 보낼 JSON 데이터
+			                var jsonData = {
+			    			            		  "userId": "<%=user_id%>",
+			    			            		  "consStatCd": "wait"
+			    							}
+
+					          
+			    			  $.ajax({
+			    			      type: "PUT",
+			    	              url: "${path}/api/cons-stat.do", // 엔드포인트 URL
+			    	              data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+			    	              contentType: "application/json", // 요청 본문의 데이터 타입 설정
+			    	              async:false,
+			    	              success: function(data) {
+			    			          var jsonString = JSON.stringify(data);
+			    			          console.log("수동질의 성공");
+			    			          console.log("AJAX 성공: \n" + data);
+			    			          console.log("AJAX 성공: \n" + jsonString);
+			    			          
+
+			    			      },
+			    			      error: function(request, status, error) {
+
+			    						alert("수동질의 실패");
+			    			          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+			    			      }
+			    			  });
+			    			  
+			    			
+			    			
+			           		$("#no_calling").css("display", "none");
+			            	$("#no_answer").css("display", "none");
+	
+			            	$("#chating_bottom").css("display", "flex");
+			            	
+	
+							var insertedHTML = '<div class="chating_head_inner">'  +
+													'<h2>'+messageData.orgPhoneNumber+' 고객님과 전화상담이 종료되었습니다.</h2>'  +
+													'<p>종료일시 ('+messageData.startConvTime+')</p>' +
+												'</div>';
+												
+									
+			            	$('#chating_bottom').html(insertedHTML);
+												
+			            	
+			            	
+			            	
+					          
+			            	
+
+			            	
+			            	// 요약내용 삽입합니다.
+			            	$('#summary_text').val(messageData.summary);
+		            		$("#rec_id").val(messageData.recId);
+												
+			            	console.log("통화종료");
+			            }
+                
+			            
+		            	if(messageData && messageData.callId !== undefined && messageData.callId !== null)
+		            	{
+		            		   $("#call_id").val(messageData.callId);
+		            		   
+		            	}
+
+			            // chating_contents 요소의 스크롤을 맨 아래로 이동합니다.
+			            
+			            $("#chating_contents").val(messageData.callId);
+			            var chatingContents = $("#chating_contents");
+			            chatingContents.scrollTop(chatingContents.prop("scrollHeight"));
+			            
+                }
+		        
+
+               fnChangeFontSize();
+               fnChangeFont();
+				
+	        });
+	        
+	        // Message 토픽 구독!
+	        stomp.subscribe('/topic/answer', function (event) {
+	        	console.log("topic/answer return = "+event);
+	        	console.log("topic/answer return = "+event.body);
+	        	console.log("-----------------------------------------------");
+	        
+		            
+	        });
+	        
+
+	        stomp.send("/recvScript", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": ""}));
+	        stomp.send("/recvAnswer", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": ""}));
+	        
+
+	    });
+	
+	}
+
+	$(document).on("click", "#btn_send", function() {
+		
+		
+		
+	    // 새로운 <li> 항목을 생성하여 추가합니다.
+	    var newLi = '<li class="counseller"><em>관리자 <%=user_id%> (20231004204259)</em><div class="chattok"><p class="font_dotum" style="font-size: 16px;">'+$('#text_send').val().replace(/\n/g, "<br>")+'</p></div></li>';
+	    $('#chating_contents_manager').append(newLi);
+	    
+        var msg = '{"callId":"","orgPhoneNumber":"매니저","segmentOffset":"<%=user_id%>","agentId":"${userId}","rxTxFlag":"MX","type":1,"transcript":"'+$('#text_send').val().replace(/\n/g, "<br>")+'","blackList":"","stopStatus":0}';
+        
+        
+        console.log("===>>", msg)
+
+        stomp.send("/sendScript", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+       // stomp.send("/sendAnswer", {}, JSON.stringify({"roomId": "message", "id": "test", "msg": msg}));
+
+       // stomp.send("/sendScript", {}, JSON.stringify({"callId":"202310050000106092169645705711339995","recId":"202310050000106092169645705711339995","agentId":"000","orgPhoneNumber":"11339994","type":0,"stopStatus":0,"startConvTime":"20231005160544"}));
+
+        
+        
+		
+		
+	});
+	
+	
+		$("#menu_logout").click(function(){ 
+			
+			$("#author_alert_popup").css("display", "block");
+			
+		}); 
+	
+        function showMore(id) {
+            $("#ai_part_txt"+id).css("maxHeight","none"); // 더 보기 버튼을 클릭하면 높이 제한을 해제
+            $("#counsel_more_btn"+id).css("display","none"); // 더 보기 버튼을 숨김
+        }
+        /*  API로 데이터 리턴받고 영역에 뿌려준 후 실행시켜야함 
+        	설명 : 높이가 70% 이상인지 확인해서 더보기 버튼 생성하는 로직
+        	파라미터 : 순번
+        */
+        function eventAny(id){
+        	var divElement = $("#ai_part_txt"+id);	//AI 답변영역 
+        	var divHeight = divElement.height();
+        	var windowHeight = $(window).height();
+        	
+        	// 더보기 버튼 html 
+        	var moreBtnHtml = "<div class='counsel_more_btn' id='counsel_more_btn"+id+"' onclick='showMore(\""+id+"\");'><a href='#'>더보기<i><img src=<c:url value='/images/icons/arr_down.png'/> alt=''></i></a><div>";
+        	
+        	// 높이가 70% 이상인지 확인합니다.
+        	if (divHeight >= windowHeight * 0.7) {
+        	  console.log("DIV의 높이가 화면의 70% 이상입니다.");
+        	  divElement.parent().append(moreBtnHtml);	// 더보기버튼 Element 추가
+        	  
+        	} else {
+        	  console.log("DIV의 높이가 화면의 70% 미만입니다.");
+        	}
+        }
+	
+		
+            
+            console.log("로그인 한 USER_ID : " + '<%=user_id%>');
+            
+			connectStomp();
+			
+			
+			
+			
+			
+			
+		});
+		
+
+
+	</script>
+	<input type="hidden" id ="call_id" value="">
+	<input type="hidden" id ="rec_id" value="">
+	<input type="hidden" id ="answer_cnt" value="">
+	
+
+    
+<script> 
+
+
+	$(document).on("click", "#btn_adv_menual_question", function() {
+		//alert("111111111111111");
+	
+		
+		if($("#call_id").val()=="")
+		{
+			alert("상담중일때만 수동질의가 가능합니다.");
+		}
+		else
+		{
+	        $.ajax({
+	            url: "${path}/api/user/<%=user_id%>.do",
+	            type: "GET",
+	            async:false,
+	            success: function(response) {
+	                console.log(response);
+
+	                // 서버 응답을 JSON 파싱
+	                var jsonResponse = JSON.parse(response);
+
+	    			// 서버로 보낼 JSON 데이터
+	                var jsonData = {
+	    			            		  "agentId": "<%=user_id%>",
+	    			            		  "callId":  $("#call_id").val(),
+	    			            		  "text": $("#text_adv_menual_question").val(),
+	    			            		  "orgCode": jsonResponse[0].inttCd,
+	    			            		  "type": $("#menual_query_div").val()
+	    							}
+
+	    			console.log(jsonResponse[0].inttCd);
+
+			          console.log("수동질의 실행전" + jsonData.agentId);
+			          console.log("수동질의 실행전" + jsonData.callId);
+			          console.log("수동질의 실행전" + jsonData.text);
+			          console.log("수동질의 실행전" + jsonData.orgCode);
+			          console.log("수동질의 실행전" + jsonData.type);
+			          
+			          
+	    			  $.ajax({
+	    			      type: "POST",
+	    	              url: "${path}/ext-api/ai-query.do", // 엔드포인트 URL
+	    	              data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+	    	              contentType: "application/json", // 요청 본문의 데이터 타입 설정
+	    	              async:false,
+	    	              success: function(data) {
+	    			          var jsonString = JSON.stringify(data);
+	    			          console.log("수동질의 성공");
+	    			          console.log("AJAX 성공: \n" + data);
+	    			          console.log("AJAX 성공: \n" + jsonString);
+	    			          
+
+	    			      },
+	    			      error: function(request, status, error) {
+
+	    						alert("수동질의 실패");
+	    			          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+	    			      }
+	    			  });
+	    			
+	    			
+	            },
+	            error: function(xhr, status, error) {
+	                // 두 번째 Ajax 요청의 요청 실패 시 실행할 코드
+	                alert("code:" + xhr.status + "\n" + "message:" + xhr.responseText + "\n" + "error:" + error);
+	            }
+	        });
+			
+			
+		}
+		
+		
+	})
+</script>
+
+
+
+						
 </body>
 </html>

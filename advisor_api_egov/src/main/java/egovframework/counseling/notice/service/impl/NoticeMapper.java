@@ -9,15 +9,15 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 public interface NoticeMapper  {
 
 
-    public List<NoticeVO> selectNotice(NoticeVO noticeVO) throws Exception;
+    public List<NoticeVO> selectNotice(NoticeVO noticeVO);
     
-    public int selectNoticeListCnt() throws Exception;
+    public int selectNoticeListCnt();
     
-    public List<NoticeVO> selectNoticeOne(NoticeVO param) throws Exception;
+    public List<NoticeVO> selectNoticeOne(NoticeVO param);
 
-	public int insertNoticeOne(NoticeVO noticeVO) throws Exception;
+	public int insertNoticeOne(NoticeVO noticeVO);
 
-	public int deleteNoticeOne(NoticeVO param) throws Exception;
+	public int deleteNoticeOne(NoticeVO param);
 
-	public int updateNoticeOne(NoticeVO noticeVO) throws Exception;
+	public int updateNoticeOne(NoticeVO noticeVO);
 }

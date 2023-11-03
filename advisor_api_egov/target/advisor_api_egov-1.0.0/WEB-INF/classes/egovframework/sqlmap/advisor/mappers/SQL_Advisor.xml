@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.counseling.advisor.service.impl.AdvisorMapper">
+                   
+<resultMap id="advisorDTO" type="egovframework.counseling.advisor.service.impl.AdvisorDTO">
+    <result property="cntn" column="CNTN"/>
+    <result property="id" column="ID"/>
+</resultMap>
+
+
+	<update id="updateSummary" parameterType="egovframework.counseling.advisor.service.impl.AdvisorDTO">
+		UPDATE ais.tb_ai_brf_hstr
+		SET ai_brf_cntn = #{cntn}
+		WHERE cons_hstr_id = #{id}
+	</update>
+</mapper>

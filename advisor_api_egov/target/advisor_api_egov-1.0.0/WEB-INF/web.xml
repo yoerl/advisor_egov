@@ -5,16 +5,16 @@
 	<display-name>egov.sample</display-name>
     
 	<filter>
-		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>utf-8</param-value>
-		</init-param>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+	    </init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
+	    <filter-name>encodingFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
     
 	<filter>
@@ -34,7 +34,26 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
     
+    <!-- SSO Agent Setting Start -->
+   	 <!--
+   	 <listener>
+                <listener-class>com.ubintis.framework.SSOListener</listener-class>
+        </listener>
+
+        <servlet>
+                <servlet-name>SSOService</servlet-name>
+                <servlet-class>com.ubintis.app.AppService</servlet-class>
+        </servlet>
+
+        <servlet-mapping>
+                <servlet-name>SSOService</servlet-name>
+                <url-pattern>/SSOService.do</url-pattern>
+	</servlet-mapping>
+	 -->
+	<!-- SSO Agent Setting End -->
+	
 	<servlet>
 		<servlet-name>action</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -46,18 +65,17 @@
 		<async-supported>true</async-supported>
 	</servlet>
     
+    
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
     
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
     
-	<login-config>
-		<auth-method>BASIC</auth-method>
-	</login-config>
     
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
@@ -73,8 +91,22 @@
 	</error-page>
 	
 	
-<!-- 	<session-config>
-		<tracking-mode>COOKIE</tracking-mode>
-	</session-config> -->
-    
+	<context-param>
+	    <param-name>myServerIp</param-name>
+	    <param-value>192.168.90.87:8080</param-value>
+	</context-param>
+	<context-param>
+	    <param-name>messageServerIp</param-name>
+	    <param-value>192.168.90.87:8081</param-value>
+	</context-param>
+	
+	<context-param>
+	    <param-name>taServer</param-name>
+	    <param-value>192.168.90.91:8081</param-value>
+	</context-param>
+	
+	<session-config>
+    <tracking-mode>COOKIE</tracking-mode>
+</session-config>
+
 </web-app>

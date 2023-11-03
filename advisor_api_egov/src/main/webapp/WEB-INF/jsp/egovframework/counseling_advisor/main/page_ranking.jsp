@@ -6,6 +6,7 @@
 <%
 // 맥락 파라미터 'userID' 값을 가져오기
 String taServer = getServletContext().getInitParameter("taServer");
+String intt_cd = (String) session.getAttribute("intt_cd");
 %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
@@ -39,7 +40,6 @@ $(document).ready(function() {
 	    var selectedValue = $(this).val();
 	    
 	    // 선택된 value 출력 또는 다른 작업에 사용하기
-	    console.log("선택된 value: " + selectedValue);
 	    
 	    performAjaxRequest(selectedValue);
 	 
@@ -67,106 +67,31 @@ $(document).ready(function() {
         flex: 1;
         text-align: center;
     }
+    
 </style>
 
-<body>
-<div id="wrap">
-	<!-- header -->
-	<header id="header">
-		<div id="logo">
-			<a href="${path}/page/home.do">
-				<img src="<c:url value='/images/icons/mark.png'/>" alt="">
-				<span>농촌진흥청<i><img src="<c:url value='/images/icons/logo_arr.png'/>" alt=""></i></span>
-			</a>
-		</div>
-		<nav id="gnb">
-			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
-			<a href="${path}/page/history.do"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
-			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
-			<a href="${path}/page/monitoring.do"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
-			<a href="${path}/page/authority.do"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
-		</nav>
-		<div id="lnb">
-			<a href="${path}/page/notice.do" class="call"></a>
-			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
-		</div>
-	</header>
-	<!-- header -->
-	<!-- body -->
-	<div id="container">
-		<!-- chating -->
-						<section id="charting">
-				<div class="chating_inner">
-				
-				<div id="no_calling" style="height: 100%; display: flex; justify-content: center; align-items: center;">
-				    <p> 현재 통화 상태가 아닙니다. </p>
-				</div>
-
-				
-				
-				
-				
-				<!-- chating head -->
-				<div id="chating_head" class="chating_head" style="display:none;">
-<!-- 					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div> -->
-				</div>
-				<!-- chating head -->
-				<!-- chating con -->
-				<div class="chating_con">
-					
-					<div class="chating_contents">
-						<ul>
-						</ul>
-					</div>
-					</div>
-					<!-- chating con -->
-					<!-- chating bottom -->
-					<div class="chating_bottom" style="display:none;">
-					</div>
-					<!-- chating bottom -->
-					<!-- chating popup -->
-					<div class="chating_popup" style="display:none;">
-						<form name="" method="" action="">
-						<h3><i><img src="<c:url value='/images/icons/smile_icon.png'/>" alt=""></i>상담요약</h3>
-						<div class="chating_popup_con">
-							<textarea placeholder="군입대에 대한 상담"></textarea>
-							<button>저장</button>
-						</div>
-						</form>
-					</div>
-					<!-- chating popup -->
-				
-				</div>
-			</section>
-		<!-- chating -->
-		<!-- right -->
-			<section id="rangking_con">
 				<div class="rangking_title">
-					<h2>
-						<a href="javascript:history.go(-1);">
+
+						<a href="javascript:fnPageLoad('${path}/page/news.do','');">
 							<img src="../images/icons/arrow-left.png" alt="">
-						</a>급상승 키워드</h2>
-					
-					<div class="btn_close">
-						<a href="${path}/page/home.do">
-							<span><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></span>
 						</a>
-					</div>
+						<h2 id="keyword" style="display: inline-block;">
+							급상승 키워드
+						</h2>
+						<div class="btn_close"><span><a href="javascript:fnPageLoad('${path}/page/answer.do','');"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a><span></div>
+				
 				</div>
+				
+				
 				<div class="rangking_contents">
 					<div class="rangking_con_inner">
 						<div class="rangking_keyword">
-							<form name="" method="" action="">	
 											<select id="keyword_type" name="keyword_type">
 											    <option value="trending">급상승 키워드</option>
 											    <option value="accumulated">누적 키워드 랭킹</option>
 											    <option value="dangerous">위험/블랙 키워드 랭킹</option>
 											</select>					
-							</form>
+							
 						</div>
 						<div class="rangking_data_table">
 						    <ul>
@@ -178,69 +103,73 @@ $(document).ready(function() {
 
 					
 					</div>
-				</div>
-			</section>
-		<!-- right -->
-	</div>
-	<!-- body -->
-</div>
-
+					
+					
+					
+					
 <script>
 function performAjaxRequest(selectedValue) {
+	
+	var currentDate = new Date();
+
+	var year = currentDate.getFullYear();
+	var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+	var day = currentDate.getDate().toString().padStart(2, '0');
+
+	var formattedDate = year + '-' + month + '-' + day;
+	
     // 선택된 값에 따라 다른 작업 수행
     if (selectedValue === "trending") {
-
+		$("#keyword").text("급상승 키워드");
     	
-			$.ajax({
-			    type: "GET",
-			    url: "http://<%= taServer %>/api/dashboard/rank/rising",
-			    data: {
-			        date_from: "2023-04-14",
-			        day_count: 1,
-			        top_rank: 5,
-			        rank_type: "RISING_SUDDEN"
-			    },
-			    success: function(data) {
+			    $.ajax({
+			    	  url: 'http://<%= taServer %>/api/ta/rank/rising',
+			    	  type: 'GET',
+			    	  data: {
+			    	    intt_cd: '<%=intt_cd%>',
+			    	    date_from: formattedDate,
+			    	    day_count: '1',
+			    	    top_rank: '5',
+			    	    rank_type: 'RISING_SUDDEN'
+			    	  },
+			    	  dataType: 'json',
+			   		 success: function(data) {
 
-			          var jsonString = JSON.stringify(data, null, 2);
-			          console.log("AJAX 성공: \n" + jsonString);
-			    	
-			        var returnObject = data.returnObject; // "returnObject" 객체 가져오기
+				          
+			   			
+				          var jsonString = JSON.stringify(data);
+				
 
-			        // "2023.04.14" 키에 해당하는 배열을 가져옴
-			        var dataArray = returnObject["2023.04.14"];
+			                console.log("data : " +data);
+			                console.log("jsonString : " +jsonString);
+		            		var ulElement = $(".rangking_data_table ul");
+		            		ulElement.html("<li class='header'><div>순위</div><div>키워드</div><div>현재순위</div></li>");
+		            		
+		            		
+				            for (var i = 0; i < Object.values(data.returnObject)[0].length; i++) {
+				                var term = Object.values(data.returnObject)[0][i].term; // "term" 속성 가져오기
+				               
 
+				                var rank = parseFloat(Object.values(data.returnObject)[0][i].rank);
+				                var beforeRank = parseFloat(Object.values(data.returnObject)[0][i].beforeRank);
 
-			      //  var trToRemove = $("#keyword_table tr"); // 예시로 순번이 4인 <tr> 요소를 선택합니다.
-
-		            // 선택한 <tr> 요소의 모든 자식 요소를 삭제합니다.
-		            //trToRemove.empty();
-			        $(".rangking_data_table li.rangking_data").remove();
-			        
-			        if (dataArray) {
-			            for (var i = 0; i < dataArray.length; i++) {
-			                var term = dataArray[i].term; // "term" 속성 가져오기
-			                var weight = dataArray[i].weight; // "weight" 속성 가져오기
-			                var rank = dataArray[i].rank; // "rank" 속성 가져오기
-			                var df = dataArray[i].df; // "df" 속성 가져오기
-			                var beforeRank = dataArray[i].beforeRank; // "beforeRank" 속성 가져오기
-			                var score = dataArray[i].score; // "score" 속성 가져오기
-
-			                // 가져온 데이터를 원하는 방식으로 처리
-			                console.log("term: " + term);
-			                console.log("weight: " + weight);
-			                console.log("rank: " + rank);
-			                console.log("df: " + df);
-			                console.log("beforeRank: " + beforeRank);
-			                console.log("score: " + score);
-			                
-			               		var ulElement = $(".rangking_data_table ul");
-			                    var newLi = $("<li class='rangking_data'><div>" + dataArray[i].rank + "</div><div>" + dataArray[i].term + "</div><div>" + dataArray[i].score + "</div></li>");
-			                    ulElement.append(newLi);
-			                    
-			                    
-			            }
-			        }
+				                console.log("11111 : " +rank);
+				                console.log("2222 : " + beforeRank);
+						     
+				                // 두 숫자를 뺄셈
+				                var upSize = beforeRank - rank;
+				                if(upSize<0)
+				                {
+				                	upSize = "new!"
+				                }
+				                	
+				                	
+				                    var newLi = $("<li class='rangking_data'><div>" + (i+1) + "</div><div>" + term + "</div><div>" + upSize + "</div></li>");
+				                    ulElement.append(newLi);
+				                    
+				                    
+				            }
+				            
 			    },
 			    error: function(request, status, error) {
 			        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -250,60 +179,51 @@ function performAjaxRequest(selectedValue) {
     	  
         // 급상승 키워드에 대한 동작 수행
     } else if (selectedValue === "accumulated") {
+    	$("#keyword").text("누적 키워드 랭킹");
 
-    	
 		$.ajax({
-		    type: "GET",
-		    
-		    url: "http://<%= taServer %>/api/dashboard/rank/top",
-		    //url: "http://192.168.22.160:8081/api/dashboard/rank/top",
-		    data: {
-		        date_from: "2023-04-14",
-		        day_count: 1,
-		        top_rank: 5,
-		        rank_type: "RISING_SUDDEN"
-		    },
+			  url: 'http://<%= taServer %>/api/dashboard/rank/top',
+			  type: 'GET',
+			  data: {
+			    intt_cd: '<%=intt_cd%>',
+			  	//date_from: '2023-09-22',
+			  	date_from: formattedDate,
+	    	    
+			    day_count: '1',
+			    top_rank: '5',
+			    rank_type: 'RISING'
+			  },
+			  dataType: 'json',
+			  headers: {
+			    'accept': 'application/json'
+			  },
 		    success: function(data) {
-
-		          var jsonString = JSON.stringify(data, null, 2);
-		          console.log("AJAX 성공: \n" + jsonString);
 		    	
-		        var returnObject = data.returnObject; // "returnObject" 객체 가져오기
-
-		        // "2023.04.14" 키에 해당하는 배열을 가져옴
-		        var dataArray = returnObject["2023.04.14"];
 
 
-		      //  var trToRemove = $("#keyword_table tr"); // 예시로 순번이 4인 <tr> 요소를 선택합니다.
+		          var jsonString = JSON.stringify(data);
+		          
 
-	            // 선택한 <tr> 요소의 모든 자식 요소를 삭제합니다.
-	            //trToRemove.empty();
-		        $(".rangking_data_table li.rangking_data").remove();
-		        
-		        if (dataArray) {
-		            for (var i = 0; i < dataArray.length; i++) {
-		                var term = dataArray[i].term; // "term" 속성 가져오기
-		                var weight = dataArray[i].weight; // "weight" 속성 가져오기
-		                var rank = dataArray[i].rank; // "rank" 속성 가져오기
-		                var df = dataArray[i].df; // "df" 속성 가져오기
-		                var beforeRank = dataArray[i].beforeRank; // "beforeRank" 속성 가져오기
-		                var score = dataArray[i].score; // "score" 속성 가져오기
-
-		                // 가져온 데이터를 원하는 방식으로 처리
-		                console.log("term: " + term);
-		                console.log("weight: " + weight);
-		                console.log("rank: " + rank);
-		                console.log("df: " + df);
-		                console.log("beforeRank: " + beforeRank);
-		                console.log("score: " + score);
-		                
-		               		var ulElement = $(".rangking_data_table ul");
-		                    var newLi = $("<li class='rangking_data'><div>" + dataArray[i].rank + "</div><div>" + dataArray[i].term + "</div><div>" + dataArray[i].score + "</div></li>");
+          		var ulElement = $(".rangking_data_table ul");
+          		ulElement.html("<li class='header'><div>순번</div><div>키워드</div><div>건수</div></li>");
+          		
+          		
+		            for (var i = 0; i < Object.values(data.returnObject)[0].length; i++) {
+		                var rank = Object.values(data.returnObject)[0][i].rank; // "term" 속성 가져오기
+		                var term = Object.values(data.returnObject)[0][i].term; // "term" 속성 가져오기
+		                var df = Object.values(data.returnObject)[0][i].df; // "term" 속성 가져오기
+		            
+		                	
+		                    var newLi = $("<li class='rangking_data'><div>" + rank + "</div><div>" + term + "</div><div>" + df + "</div></li>");
 		                    ulElement.append(newLi);
 		                    
 		                    
 		            }
-		        }
+		            
+		            
+		            
+
+		          var jsonString = JSON.stringify(data);
 		    },
 		    error: function(request, status, error) {
 		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -311,57 +231,49 @@ function performAjaxRequest(selectedValue) {
 		});
         // 누적 키워드 랭킹에 대한 동작 수행
     } else if (selectedValue === "dangerous") {
-
+    	$("#keyword").text("위험/블랙 키워드 랭킹");
+    	
 		$.ajax({
-		    type: "GET",
-		    url: "http://<%= taServer %>/api/dashboard/rank/black",
-		    data: {
-		        date_from: "2023-04-14",
-		        day_count: 1,
-		        top_rank: 5,
-		        rank_type: "RISING_SUDDEN"
-		    },
+
+			  url: 'http://<%= taServer %>/api/dashboard/rank/black',
+			  type: 'GET',
+			  data: {
+			    intt_cd: '<%=intt_cd%>',
+			  	// date_from: '2023-09-22',
+			  	date_from: formattedDate,
+	    	    
+			    return_fields: '*',
+			    startPos: '1',
+			    retCount: '5',
+			    sortOrder: 'DOC_COUNT DESC'
+			  },
+			  dataType: 'json',
+			  headers: {
+			    'accept': 'application/json'
+			  },
+			  
+			  
+			  
 		    success: function(data) {
+		          var jsonString = JSON.stringify(data);
+			
 
-		          var jsonString = JSON.stringify(data, null, 2);
-		          console.log("AJAX 성공: \n" + jsonString);
-		    	
-		        var returnObject = data.returnObject; // "returnObject" 객체 가져오기
-
-		        // "2023.04.14" 키에 해당하는 배열을 가져옴
-		        var dataArray = returnObject["2023.04.14"];
-
-
-		      //  var trToRemove = $("#keyword_table tr"); // 예시로 순번이 4인 <tr> 요소를 선택합니다.
-
-	            // 선택한 <tr> 요소의 모든 자식 요소를 삭제합니다.
-	            //trToRemove.empty();
-		        $(".rangking_data_table li.rangking_data").remove();
-		        
-		        if (dataArray) {
-		            for (var i = 0; i < dataArray.length; i++) {
-		                var term = dataArray[i].term; // "term" 속성 가져오기
-		                var weight = dataArray[i].weight; // "weight" 속성 가져오기
-		                var rank = dataArray[i].rank; // "rank" 속성 가져오기
-		                var df = dataArray[i].df; // "df" 속성 가져오기
-		                var beforeRank = dataArray[i].beforeRank; // "beforeRank" 속성 가져오기
-		                var score = dataArray[i].score; // "score" 속성 가져오기
-
-		                // 가져온 데이터를 원하는 방식으로 처리
-		                console.log("term: " + term);
-		                console.log("weight: " + weight);
-		                console.log("rank: " + rank);
-		                console.log("df: " + df);
-		                console.log("beforeRank: " + beforeRank);
-		                console.log("score: " + score);
-		                
-		               		var ulElement = $(".rangking_data_table ul");
-		                    var newLi = $("<li class='rangking_data'><div>" + dataArray[i].rank + "</div><div>" + dataArray[i].term + "</div><div>" + dataArray[i].score + "</div></li>");
+            		var ulElement = $(".rangking_data_table ul");
+            		ulElement.html("<li class='header'><div>순번</div><div>키워드</div><div>건수</div></li>");
+            		
+            		
+		            for (var i = 0; i < data.returnObject.length; i++) {
+		                var doc_count = data.returnObject[i].DOC_COUNT; // "term" 속성 가져오기
+		                var keyword = data.returnObject[i].KEYWORD; // "term" 속성 가져오기
+		                var row_num = data.returnObject[i].ROW_NUM; // "term" 속성 가져오기
+		
+		                    var newLi = $("<li class='rangking_data'><div>" + row_num + "</div><div>" + keyword + "</div><div>" + doc_count + "</div></li>");
 		                    ulElement.append(newLi);
 		                    
 		                    
 		            }
-		        }
+		            
+		            
 		    },
 		    error: function(request, status, error) {
 		        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
@@ -372,5 +284,3 @@ function performAjaxRequest(selectedValue) {
 	
 }
 </script>
-</body>
-</html>

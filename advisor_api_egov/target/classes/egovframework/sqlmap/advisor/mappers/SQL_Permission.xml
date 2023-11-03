@@ -31,13 +31,21 @@
 	    <result property="amntDttm" column="AMNT_DTTM"/>
 	    <result property="rgsrId" column="RGSR_ID"/>
 	    <result property="rgsnDttm" column="RGSN_DTTM"/>
+	    <result property="inttCd" column="INTT_CD"/>
 	</resultMap>
 	
 	
 
 	<select id="selectPermissionReq" parameterType="egovframework.counseling.permission.service.impl.PermissionReqVO" resultMap="permissionReqVO">
 	
-		select * from adv.tb_user_athr_req where USE_YN  = "Y";
+		select * from adv.tb_user_athr_req where USE_YN  = "Y"
+		<if test="athrCd != null and athrCd != ''">
+		   and ATHR_CD = #{athrCd}
+		</if>
+		<if test="inttCd != null and inttCd != ''">
+		   and INTT_CD = #{inttCd}
+		</if>
+		
 
 	</select>
 	
@@ -45,8 +53,8 @@
 	<insert id="insertPermissionReq" parameterType="egovframework.counseling.permission.service.impl.UserAthrReqVO">
 	
 	
-		INSERT INTO adv.TB_USER_ATHR_REQ (USER_ID,USER_NM, ATHR_TYPE_CD, ATHR_CD)
-		VALUES (#{userId},#{userNm}, #{athrTypeCd}, #{athrCd})
+		INSERT INTO adv.TB_USER_ATHR_REQ (USER_ID,USER_NM,INTT_CD, ATHR_TYPE_CD, ATHR_CD)
+		VALUES (#{userId},#{userNm},#{inttCd}, #{athrTypeCd}, #{athrCd})
 
 	</insert>
 	

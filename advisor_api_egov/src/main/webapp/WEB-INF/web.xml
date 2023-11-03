@@ -37,7 +37,7 @@
 	
     
     <!-- SSO Agent Setting Start -->
-   	<!--<listener>
+<!--    	 <listener>
                 <listener-class>com.ubintis.framework.SSOListener</listener-class>
         </listener>
 
@@ -49,7 +49,8 @@
         <servlet-mapping>
                 <servlet-name>SSOService</servlet-name>
                 <url-pattern>/SSOService.do</url-pattern>
-	</servlet-mapping>-->
+	</servlet-mapping> -->
+	
 	<!-- SSO Agent Setting End -->
 	
 	<servlet>
@@ -62,7 +63,6 @@
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>
 	</servlet>
-    
     
     
 	<servlet-mapping>
@@ -96,37 +96,16 @@
 	</context-param>
 	<context-param>
 	    <param-name>messageServerIp</param-name>
-	    <param-value>192.168.90.87</param-value>
+	    <param-value>192.168.90.87:8081</param-value>
 	</context-param>
-	<context-param>
-	    <param-name>messageServerPort</param-name>
-	    <param-value>8081</param-value>
-	</context-param>
-	
-	
-	<context-param>
-	    <param-name>userID</param-name>
-	    <param-value>ID9991</param-value>
-	</context-param>
-	
 	
 	<context-param>
 	    <param-name>taServer</param-name>
-	    <param-value>192.168.22.132:8081</param-value>
+	    <param-value>192.168.90.91:8081</param-value>
 	</context-param>
 	
-<!-- 	<session-config>
-		<tracking-mode>COOKIE</tracking-mode>
-	</session-config>
-	 -->
-<!-- 	  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>HTTPS enabled</web-resource-name>
-      <url-pattern>/*</url-pattern>
-    </web-resource-collection>
-    <user-data-constraint>
-      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    </user-data-constraint>
-  </security-constraint> -->
-    
+	<session-config>
+    <tracking-mode>COOKIE</tracking-mode>
+</session-config>
+
 </web-app>

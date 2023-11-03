@@ -1,7 +1,5 @@
 package egovframework.counseling.common.service.impl;
 
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @Class Name : SampleVO.java

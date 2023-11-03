@@ -2,6 +2,6 @@ autoEnabled=true
 bindingSuggestionsDisabled=true
 eclipse.preferences.version=1
 idePrefixKey=
-projectKey=cube-meaasage
+projectKey=advisor_api_egov
 serverId=localhost
 sqPrefixKey=

@@ -4,8 +4,7 @@ package egovframework.counseling.permission.service.impl;
 
     public class PermissionReqVO {
      
-
-        public int getNotiSqno() {
+		public int getNotiSqno() {
 			return notiSqno;
 		}
 		public void setNotiSqno(int notiSqno) {
@@ -41,6 +40,12 @@ package egovframework.counseling.permission.service.impl;
 		public void setAthrNm(String athrNm) {
 			this.athrNm = athrNm;
 		}
+		public String getInttCd() {
+			return inttCd;
+		}
+		public void setInttCd(String inttCd) {
+			this.inttCd = inttCd;
+		}
 		public char getUseYn() {
 			return useYn;
 		}
@@ -74,9 +79,14 @@ package egovframework.counseling.permission.service.impl;
 		@Override
 		public String toString() {
 			return "PermissionReqVO [notiSqno=" + notiSqno + ", userId=" + userId + ", userNm=" + userNm
-					+ ", athrTypeCd=" + athrTypeCd + ", athrCd=" + athrCd + ", athrNm=" + athrNm + ", useYn=" + useYn
-					+ ", amndId=" + amndId + ", amntDttm=" + amntDttm + ", rgsrId=" + rgsrId + ", rgsnDttm=" + rgsnDttm
-					+ "]";
+					+ ", athrTypeCd=" + athrTypeCd + ", athrCd=" + athrCd + ", athrNm=" + athrNm + ", inttCd=" + inttCd
+					+ ", useYn=" + useYn + ", amndId=" + amndId + ", amntDttm=" + amntDttm + ", rgsrId=" + rgsrId
+					+ ", rgsnDttm=" + rgsnDttm + ", getNotiSqno()=" + getNotiSqno() + ", getUserId()=" + getUserId()
+					+ ", getUserNm()=" + getUserNm() + ", getAthrTypeCd()=" + getAthrTypeCd() + ", getAthrCd()="
+					+ getAthrCd() + ", getAthrNm()=" + getAthrNm() + ", getInttCd()=" + getInttCd() + ", getUseYn()="
+					+ getUseYn() + ", getAmndId()=" + getAmndId() + ", getAmntDttm()=" + getAmntDttm()
+					+ ", getRgsrId()=" + getRgsrId() + ", getRgsnDttm()=" + getRgsnDttm() + ", getClass()=" + getClass()
+					+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 		}
 		private int notiSqno;
         private String userId;
@@ -84,6 +94,7 @@ package egovframework.counseling.permission.service.impl;
         private String athrTypeCd;
         private String athrCd;
         private String athrNm;
+        private String inttCd;
         private char useYn;
         private String amndId;
         private Timestamp amntDttm;

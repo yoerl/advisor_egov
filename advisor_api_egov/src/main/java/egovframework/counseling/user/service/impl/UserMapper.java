@@ -9,7 +9,10 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 public interface UserMapper  {
 
 
-    public List<UserInfoVO> selectUser(UserInfoVO userInfoVO) throws Exception;
+    public List<UserInfoVO> selectUser(UserInfoVO userInfoVO);
 
-    public List<UserInfoVO> selectUsers(UserInfoVO userInfoVO) throws Exception;
+    public List<UserInfoVO> selectUsers(UserInfoVO userInfoVO);
+    
+
+    public int updateConsStat(UserInfoVO userInfoVO);
 }

@@ -7,7 +7,12 @@
     <context:component-scan base-package="egovframework">
        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
-
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value = "1004857600"/>
+		<property name="maxUploadSizePerFile" value = "1004857600"/>
+		<property name="maxInMemorySize" value = "1004857600"/>
+	</bean>
+	
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>

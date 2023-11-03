@@ -32,19 +32,33 @@
 				, A.AMNT_DTTM
 				, A.RGSR_ID
 				, A.RGSR_NM
-				, TO_CHAR(A.RGSN_DTTM, 'YYYY-MM-DD HH24:MI:MM') as RGSN_DTTM
+				
+				, DATE_FORMAT(A.RGSN_DTTM, '%Y-%m-%d %H:%i:%s') as RGSN_DTTM
 				, A.READ_YN
 		FROM 	adv.TB_NEWS_INFO A
 		WHERE 	A.USE_YN = 'Y'
+		  AND	A.RECEIVER_ID = #{receiverId}
 		ORDER BY A.RGSN_DTTM DESC
 		LIMIT 	#{pagination.cntPerPage} OFFSET #{pagination.offset}
 	</select>
 	
 	<select	id="selectNewsListCnt" resultType="int">
 	
-		SELECT	COUNT(*)
-		FROM 	adv.TB_NEWS_INFO
-		WHERE 	USE_YN = 'Y'
+		SELECT COUNT(*)
+		FROM adv.TB_NEWS_INFO
+		WHERE USE_YN = 'Y'
+		  and RECEIVER_ID = #{receiverId};
+	</select>
+	
+		
+	<select	id="selectNewsNotReadCnt" resultType="int">
+	
+		SELECT COUNT(*)
+		FROM adv.TB_NEWS_INFO
+		WHERE 1=1
+		  and USE_YN = 'Y'
+		  and RECEIVER_ID = #{receiverId}
+		  and READ_YN='N';
 	</select>
 	
 	<select id="selectNewsOne" resultMap="newsVO">
@@ -58,7 +72,7 @@
 				, A.AMNT_DTTM
 				, A.RGSR_ID
 				, A.RGSR_NM
-				, TO_CHAR(A.RGSN_DTTM, 'YYYY-MM-DD HH24:MI:MM') as RGSN_DTTM
+				, DATE_FORMAT(A.RGSN_DTTM, '%Y-%m-%d %H:%i:%s') as RGSN_DTTM
 				, A.READ_YN
 		FROM 	adv.TB_NEWS_INFO A
 		WHERE 	A.USE_YN = 'Y'
@@ -71,6 +85,13 @@
 		SET		READ_YN = 'Y'
 		WHERE	NEWS_SQNO = #{newsSqno}
 	</update>
+	
+	
+	<insert id="insertNews">
+		
+		INSERT INTO adv.`tb_news_info` (`RECEIVER_ID`,`NEWS_TITL_NM`, `NEWS_CNTN`) VALUES (#{receiverId},#{newsTitlNm}, #{newsCntn})
+	</insert>
+	
 	
 	
 	

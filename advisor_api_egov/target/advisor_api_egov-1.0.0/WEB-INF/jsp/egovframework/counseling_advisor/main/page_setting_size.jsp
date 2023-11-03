@@ -5,150 +5,134 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
-</head>
+<%
+// 맥락 파라미터 'userID' 값을 가져오기
+String user_id = (String) session.getAttribute("user_id");
+//TODO
+%>
+<script>
 
-<body>
-<div id="wrap">
-	<!-- header -->
-	<header id="header">
-		<div id="logo">
-			<a href="#"><img src="../images/icons/mark.png" alt=""></a>
-			<span>범정보통합콜센터<i><img src="../images/icons/logo_arr.png" alt=""></i></span>
-		</div>
-		<nav id="gnb">
-			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
-			<a href="${path}/page/history.do"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
-			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
-			<a href="${path}/page/monitoring.do"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
-			<a href="${path}/page/authority.do"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
-		</nav>
-		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
-		</div>
-	</header>
-	<!-- header -->
-	<!-- body -->
-	<div id="container">
-		<!-- chating -->
-			<section id="charting">
-				<div class="chating_inner">
-				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
-				</div>
-				<!-- chating head -->
-				<!-- chating con -->
-				<div class="chating_con">
-					
-					<div class="chating_contents">
-						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
-						</ul>
-					
-					
-					</div>
-					</div>
-					<!-- chating con -->
-					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
-					</div>
-					<!-- chating bottom -->
-				
-				</div>
-			</section>
-		<!-- chating -->
-		<!-- right -->
-			<section id="sub_right_con">
-				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../images/icons/arrow-left.png" alt=""></a> -->설정</h2>
-					<div class="btn_close"><span><img src="../images/icons/btn_close.gif" alt=""><span></div>
-				</div>
-				<div class="right_contents">
-					<div class="notice_con_inner">
-					<form name="" method="" action="">
-						<div class="setting_keyword">
-								<select name="" onchange="window.open(value,'_self');">
-										<option id="" value="" selected>선택</option>
-										<option id="" value="${path}/page/setting_system.do">시스템 정보</option>
-										<option id="" value="${path}/page/setting_font.do">폰트종류</option>
-										<option id="" value="${path}/page/setting_size.do">폰트크기</option>
-										<option id="" value="${path}/page/setting_my.do">마이페이지</option>
-								</select>	
-						</div>	
-						<div class="setting_content">
-							<div class="size_choice">
-								<ul>
-									<li><span class="radios"><input type="radio" id="font_rd1"> <label for="font_rd1">12</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd2"> <label for="font_rd2">14</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd3"> <label for="font_rd3">16</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd4"> <label for="font_rd4">18</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd5"> <label for="font_rd5">20</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd6"> <label for="font_rd6">22</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd7"> <label for="font_rd7">24</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd8"> <label for="font_rd8">26</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd9"> <label for="font_rd9">28</label></span></li> 
-									<li><span class="radios"><input type="radio" id="font_rd10"> <label for="font_rd10">30</label></span></li> 
-								</ul>
-							</div>
-							<div class="setting_btn">
-								<a href="">저장</a>
-							</div>
+$(document).ready(  function() { 
+	  
+	/* 폰트사이즈 등록 */
+    $("#btn_save").click(function () {
+        // 이곳에 클릭했을 때 실행할 코드를 작성합니다.
 
-						</div>
-					</form>
-				</div>
-			</section>
-		<!-- right -->
+        var jsonData = {
+        		envrStupDivCd: 'fontSize',          // 문자열 데이터
+        		userId: '<%=user_id%>',          // 문자열 데이터
+        		envrStupVl: $("input[name='font_size']:checked").val(),
+        };
+        
+
+        alert("버튼이 클릭되었습니다."); // 예시: 경고창을 띄움
+
+        $.ajax({
+            url: "${path}/api/setting/fontSize.do",  // 서버의 API 엔드포인트 URL
+            type: "POST",              // HTTP 메서드 (POST, GET 등)
+            async: false,                // 동기적 요청 활성화
+            data: JSON.stringify(jsonData), // JSON 데이터 문자열로 변환
+            contentType: "application/json", // 요청 본문의 데이터 타입 설정
+            success: function(response) {
+                // 요청 성공 시 실행할 코드
+                // JSON 데이터 파싱
+                responseData = JSON.parse(response);
+                
+            },
+            error: function(xhr, status, error) {
+                // 요청 실패 시 실행할 코드
+                console.error("AJAX 오류: " + error);
+            }
+        });
+        
+
+        fnChangeFontSize();
+
+    });
+    
+	// 첫 번째 AJAX 요청
+	$.ajax({
+	    url: "${path}/api/common/data/FontSizeList.do", // 첫 번째 엔드포인트 URL
+	    type: "GET", // HTTP GET 메서드 사용
+	    success: function(response) {
+
+	        var jsonArray = JSON.parse(response);
+	        for (var i = 0; i < jsonArray.length; i++) {
+	            var item = jsonArray[i];
+	            var newItemHTML = '<li><span class="radios"><input type="radio" id="font_rd'+i+'" name="font_size" value="'+item.comnCdVal+'"> <label for="font_rd'+i+'">'+item.comnCdValNm+'</label></span></li>';
+	            
+	            // 아이디가 "size_list"인 ul 요소에 새 항목 추가
+	            $("#size_list").append(newItemHTML);
+	        }
+
+	        // 첫 번째 요청 완료 후 두 번째 AJAX 요청 실행
+	        $.ajax({
+	            url: "${path}/api/common/data/DefaltValue.do", // 두 번째 엔드포인트 URL
+	            type: "GET", // HTTP GET 메서드 사용
+	            success: function(response) {
+
+	                // JSON 데이터 파싱
+	                var responseData = JSON.parse(response);
+
+	                // "comnCdValNm"이 "fontSize"인 항목 찾기
+	                for (var i = 0; i < responseData.length; i++) {
+	                    var item = responseData[i];
+	                    if (item.comnCdValNm === "fontSize") {
+	                        var comnCdVal = item.comnCdVal;
+	                        
+	                        $("input[name='font_size'][value="+comnCdVal+"]").prop("checked", true);
+	                        break; // 값을 찾았으므로 반복문 종료
+	                    }
+	                }
+	                
+	                fnChangeFontSize();
+	            },
+	            error: function(xhr, status, error) {
+	                // 두 번째 요청 실패 시 실행할 코드
+	                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+	            }
+	        });
+	    },
+	    error: function(xhr, status, error) {
+	        // 첫 번째 요청 실패 시 실행할 코드
+	        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+	    }
+	});
+
+		
+});
+
+
+
+</script>
+
+<!-- right -->
+	<div class="right_title">
+		<h2>설정</h2>
+		
 	</div>
-	<!-- body -->
-</div>
-</body>
-</html>
+	<div class="right_contents">
+		<div class="notice_con_inner">
+			<div class="setting_keyword">
+							<select name="" onchange="fnPageLoad(value,'');">
+									<option id="" value="${path}/page/setting.do">선택</option>
+									<option id="" value="${path}/page/setting_system.do">시스템 정보</option>
+									<option id="" value="${path}/page/setting_font.do">폰트종류</option>
+									<option id="" value="${path}/page/setting_size.do" selected>폰트크기</option>
+									<option id="" value="${path}/page/setting_my.do">마이페이지</option>
+							</select>
+			</div>	
+			<div class="setting_content">
+				<div class="size_choice">
+					<ul id="size_list">
+						
+					</ul>
+				</div>
+				<div id="btn_save" class="setting_btn">
+                    <a href="#">저장</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<!-- right -->

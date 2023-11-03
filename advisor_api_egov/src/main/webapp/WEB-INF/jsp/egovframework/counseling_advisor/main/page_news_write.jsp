@@ -58,10 +58,6 @@
 				
 				<!-- chating head -->
 				<div id="chating_head" class="chating_head" style="display:none;">
-<!-- 					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div> -->
 				</div>
 				<!-- chating head -->
 				<!-- chating con -->

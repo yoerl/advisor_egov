@@ -3,146 +3,234 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%
+String intt_cd = (String) session.getAttribute("intt_cd");
+
+%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>범정부통합콜센터</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-    <script src="<c:url value='/js/egovframework/jquery-latest.js' />"></script>	
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/remixicon.css'/>"/>
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/style.css'/>"/>
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/font.css'/>"/>
-</head>
 
-<body>
-<div id="wrap">
-	<!-- header -->
-	<header id="header">
-		<div id="logo">
+    
+    <script>
+    
+        $(document).ready(  function() {
 
+
+            $("#agentSelect").change(function() {
+                var selectedAgent = $(this).val(); // 선택된 값 가져오기
+
+                // 선택된 에이전트에 따라 다른 로직 수행 가능
+                // 적절한 URL 및 AJAX 요청 등을 여기에 추가
+
+               
+                $.ajax({
+                    url: "${path}/api/common/data/roleList.do",
+                    type: "GET",
+                    success: function(response) {
+
+
+                        var targetElement = document.querySelector(".group_menu ul");
+                        targetElement.innerHTML = ''; // ul 요소 초기화
+
+                        var jsonArray = JSON.parse(response);
+                        for (var i = 0; i < jsonArray.length; i++) {
+                        	
+                            var item = jsonArray[i];
+                            
+
+                            
+                            var element = document.createElement("li");
+                            
+                            element.innerHTML += '<a href="#" onclick="setActive(' + i + ')" data-comn_cd_val="'+item.comnCdVal+'" >' + item.comnCdValNm + '</a>';
+
+                            targetElement.appendChild(element);
+                        }
+                        
+                        
+
+                        $("#group_menu").css("display", "block");
+                      	// 첫 번째 AJAX 요청
+                        $.ajax({
+            	            url: "${path}/api/common/data/roleList.do",
+            	            type: "GET",
+            	            success: function(response) {
+            	                var roles = JSON.parse(response);
+            	                var selectElement = $("select[name='role']");
+            	                selectElement.append("<option value=''>그룹을 선택하세요.</option>");
+
+            	                for (var i = 0; i < roles.length; i++) {
+            	                    var role = roles[i];
+            	                    selectElement.append("<option value='" + role.comnCdVal + "'>" + role.comnCdValNm + "</option>");
+            	                }
+            	            },
+            	            error: function(xhr, status, error) {
+            	                alert("두 번째 요청 실패: " + error);
+            	            }
+            	        });
+
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        // 요청 실패 시 실행할 코드
+                        alert("code:" + xhr.status + "\n" + "message:" + xhr.responseText + "\n" + "error:" + error);
+                    }
+                });
+                
+                
+            });
+            
+            
+            // AJAX DELETE 요청 보내기
+            $.ajax({
+            	///api/common/data.do
+                //url: "${path}/api/common/agency.do", // 엔드포인트 URL
+                
+                url: "${path}/api/common/agency.do", // 엔드포인트 URL
+                type: "GET", // HTTP DELTETE 메서드 사용
+                success: function(response) {
+                	
+                    // JSON 데이터 파싱
+                    var agencies = JSON.parse(response);
+
+                    // select 요소 선택
+                    var selectElement = $("select[name='agent']");
+
+                    // 기관명 옵션 추가
+                    selectElement.append("<option value=''>기관 선택</option>");
+                    // 각 기관 옵션 추가
+                    for (var i = 0; i < agencies.length; i++) {
+                        var agency = agencies[i];
+                        selectElement.append("<option value='" + agency.comnCdVal + "'>" + agency.comnCdValNm + "</option>");
+                        
+                        
+                    }
+                    
+
+                    $("#agentSelect option[value='<%=intt_cd%>']").prop("selected", true);
+                    $("#agentSelect").trigger("change");
+
+                    //selectUsers($("select[name='agent']").val());
+                    
+
+
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 시 실행할 코드
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+	    		
+	    		
+            
+            
+
+    		
+            
+            
+	    		
+	
+        });
+		    
+    </script>
+    <script>
+function setActive(index) {
+  // 모든 메뉴 항목의 "active" 클래스 제거
+  const menuItems = document.querySelectorAll(".group_menu ul li a");
+  menuItems.forEach(item => {
+    item.classList.remove("active");
+  });
+
+  // 클릭한 메뉴 항목에 "active" 클래스 추가
+  menuItems[index].classList.add("active");
+  
+  const comnCdVal = menuItems[index].getAttribute("data-comn_cd_val");
+ 
+  
+  $("#role_code").val(comnCdVal);
+  
+  
+  $("#group_autho_list").css("display", "block");
+  
+
+  $.ajax({
+      type: "GET",
+      //url: "${path}/api/menu/power",
+      //url: "${path}/api/common/data/1390000/menu_teacher.do",
+      url: "${path}/api/auth/menu/1390000/"+comnCdVal+".do",
+      
+     
+      success: function(jsonString) {
+
+			var jsonArray = JSON.parse(jsonString);
 			
-			<a href="#"><img src="<c:url value='/images/icons/mark.png'/>" alt=""></a>
-			<span>범정보통합콜센터<i><img src="<c:url value='/images/icons/logo_arr.png'/>"alt=""></i></span>
-		</div>
-		<nav id="gnb">
-			<a href="${path}/page/summary.do" class="active"><i><img src="<c:url value='/images/icons/gnb_01.png'/>" alt=""></i> 요약</a>
-			<a href="${path}/page/history.do"><i><img src="<c:url value='/images/icons/gnb_02.png'/>" alt=""></i> 이력</a>
-			<a href="${path}/page/setting.do"><i><img src="<c:url value='/images/icons/gnb_03.png'/>" alt=""></i> 설정</a>
-			<a href="${path}/page/monitoring.do"><i><img src="<c:url value='/images/icons/gnb_04.png'/>" alt=""></i> 모니터링</a>
-			<a href="${path}/page/authority.do"><i><img src="<c:url value='/images/icons/gnb_05.png'/>" alt=""></i> 권한</a>
-			<a href="#"><i><img src="<c:url value='/images/icons/gnb_06.png'/>" alt=""></i> 로그아웃</a>
-		</nav>
-		<div id="lnb">
-			<a href="${path}/page/news.do" class="call"></a>
-			<a href="${path}/page/news.do" class="push"><span>99+</span></a>
-		</div>
-	</header>
-	<!-- header -->
-	<!-- body -->
-	<div id="container">
-		<!-- chating -->
-			<section id="charting">
-				<div class="chating_inner">
-				<!-- chating head -->
-				<div class="chating_head">
-					<div class="chating_head_inner">
-						<h2>010-1234-5678 고객님과 전화상담이 시작되었습니다.</h2>
-						<p>시작일시 (2023.12.31.23.59.59)</p>
-					</div>
-				</div>
-				<!-- chating head -->
-				<!-- chating con -->
-				<div class="chating_con">
+	
+
+
+	          for (let i = 0; i < jsonArray.length; i++) {
+
+	            
+	            $("input[name='"+jsonArray[i].comnCdVal+"'][value='"+jsonArray[i].useYn+"']").prop("checked", true);
+	            
+	            //comnCdVal
+	            //useYn
+	            
+	            // 여기에서 원하는 작업을 수행할 수 있습니다.
+	          }
+          
+          
+          
+        //  AJAX 성공: 
+//[{"comnCd":"menu_systemAdmin","comnCdNm":"시스템 관리자 메뉴권한","comnCdVal":"history","comnCdValNm":"이력","hgrnComnCd":"1390000","useYn":"Y","amndId":"ADMIN","amntDttm":"Sep 11, 2023, 4:15:56 PM","rgsrId":"ADMIN","rgsnDttm":"Sep 11, 2023, 4:15:56 PM"},{"comnCd":"menu_systemAdmin","comnCdNm":"시스템 관리자 메뉴권한","comnCdVal":"memo","comnCdValNm":"메뉴","hgrnComnCd":"1390000","useYn":"Y","amndId":"ADMIN","amntDttm":"Sep 11, 2023, 4:15:56 PM","rgsrId":"ADMIN","rgsnDttm":"Sep 11, 2023, 4:15:56 PM"},{"comnCd":"menu_systemAdmin","comnCdNm":"시스템 관리자 메뉴권한","comnCdVal":"monitering","comnCdValNm":"모니터링","hgrnComnCd":"1390000","useYn":"Y","amndId":"ADMIN","amntDttm":"Sep 11, 2023, 4:15:56 PM","rgsrId":"ADMIN","rgsnDttm":"Sep 11, 2023, 4:15:56 PM"},{"comnCd":"menu_systemAdmin","comnCdNm":"시스템 관리자 메뉴권한","comnCdVal":"notice","comnCdValNm":"공지사항","hgrnComnCd":"1390000","useYn":"Y","amndId":"ADMIN","amntDttm":"Sep 11, 2023, 4:15:56 PM","rgsrId":"ADMIN","rgsnDttm":"Sep 11, 2023, 4:15:56 PM"},{"comnCd":"menu_systemAdmin","comnCdNm":"시스템 관리자 메뉴권한","comnCdVal":"permission","comnCdValNm":"권한","hgrnComnCd":"1390000","useYn":"Y","amndId":"ADMIN","amntDttm":"Sep 11, 2023, 4:15:56 PM","rgsrId":"ADMIN","rgsnDttm":"Sep 11, 2023, 4:15:56 PM"},{"comnCd":"menu_systemAdmin","comnCdNm":"시스템 관리자 메뉴권한","comnCdVal":"setting","comnCdValNm":"설정","hgrnComnCd":"1390000","useYn":"Y","amndId":"ADMIN","amntDttm":"Sep 11, 2023, 4:15:56 PM","rgsrId":"ADMIN","rgsnDttm":"Sep 11, 2023, 4:15:56 PM"}]
+
+
+          
+
+      },
+      error: function(request, status, error) {
+          alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+      }
+  });
+  
+  
+  
+}
+
+
+</script>
+<div class="right_title">
+					<h2>
+						<a href="javascript:history.go(-1);">
+							<img src="../images/icons/arrow-left.png" alt="">
+						</a>권한설정
+					</h2>
 					
-					<div class="chating_contents">
-						<ul>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>안녕하세요</p></div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>군대 지원하려고 합니다.<br />어떻게 할까요?</p></div>
-							</li>
-							<li class="counseller">
-								<em>상담사 이아름(1234) (2023.12.31.23.59.59)</em>
-								<div class="chattok"><p>네  안녕하세요.<br />
-									병역의무 이행<br />
-									•현역병 육군,해병대(18개월) 해군(20개월) 공군(21개월)<br />
-									•상근예비역(18개월)<br />
-									•전환복무 의무경찰(18개월) 의무소방/해양경찰(20개월)<br />
-									•사회복무요원(21개월)<br />
-									•산업기능요원 현역 입영대상사(34개월)<br />
-									우선 모집일정,지원자격 등<br />
-									확인 후 지원특기.......	</p>
-								</div>
-							</li>
-							<li class="guest">
-								<em>010-1234-5678 (2023.12.31.23.59.59)</em>
-								<div class="chattok">
-									<span class="dengerus"><i>!</i>위험키워드 #탈영</span>
-								<p>안녕하세요</p></div>
-							</li>
-						</ul>
-					
-					
-					</div>
-					</div>
-					<!-- chating con -->
-					<!-- chating bottom -->
-					<div class="chating_bottom">
-						<div class="chating_head_inner">
-							<h2>010-1234-5678 고객님과 전화상담이 종료되었습니다.</h2>
-							<p>종료일시 (2023.12.31.23.59.59)</p>
-						</div>
-					</div>
-					<!-- chating bottom -->
-				
-				</div>
-			</section>
-		<!-- chating -->
-		<!-- right -->
-			<section id="sub_right_con">
-				<div class="right_title">
-					<h2><!-- <a href="#"><img src="../images/icons/arrow-left.png" alt=""></a> -->권한설정</h2>
-					<div class="btn_close"><span><img src="<c:url value='/images/icons/btn_close.png'/>" alt=""><span></div>
+					<div class="btn_close"><span><a href="/advisor_api_egov/page/home.do"><img src="<c:url value='/images/icons/btn_close.gif'/>" alt=""></a><span></div>
 				</div>
 				<div class="right_contents">
-					<div class="notice_con_inner">
-					<form name="" method="" action="">
+					<div class="notice_con_inner" style="height:100%;">
 						<div class="setting_keyword">
-							<select name="" onchange="window.open(value,'_self');">
-									<option id="" value="${path}/page/authority.do">선택</option>
-									<option id="" value="${path}/page/authority_group.do" selected>그룹권한</option>
-									<option id="" value="${path}/page/authority_setting.do" >그룹 창여자 설정</option>
-								</select>
+
+								
+							<select name="" onchange="fnPageLoad(value,'');">
+									<option id="" value="${path}/page/authority.do" selected>선택</option>
+									<option id="" value="${path}/page/authority_group.do">그룹권한</option>
+									<option id="" value="${path}/page/authority_setting.do" >그룹 참여자 설정</option>
+							</select>
 								
 						</div>	
 						<div class="group_content">
 							<div class="group_head">
-								<select name="">
-									<option id="" value="">기관명</option>
-									<option id="" value="">기관1</option>
-									<option id="" value="">그룹1</option>
-								</select>
-								<span><input type="checkbox" id="check1" name="check1"><label for="check1">공통 AI</label></span>	
+									<select name="agent" id="agentSelect"> <!-- id 속성 추가 -->
+									    <!-- 옵션 추가할 수 있음 -->
+									</select>
 							</div>
 							<div class="group_authority_con">
-								<div class="group_menu">
-									<ul>
-										<li><a href="#">슈퍼 관리자</a></li>
-										<li><a href="#" class="active">관리자</a></li>
-										<li><a href="#">리더</a></li>
-										<li><a href="#">상담</a></li>
-									</ul>
-								</div>
-								<div class="group_autho_list">
-									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<div class="group_menu"  id="group_menu" style="display:none">
+							  <ul> 
+							  </ul>
+							</div>
+								 <div class="group_autho_list"  id="group_autho_list" style="display:none">
+								 
+								 	<table border="0" >
 									<caption></caption>
 									  <tr>
 										<th></th>
@@ -150,54 +238,136 @@
 									  <tr>
 										<td rowspan="6" class="border_none p30">메뉴권한</td>
 										<td  class="border_none w30">메모</td>
-										<td  class="border_none w20"><span class="radios"><input type="radio" id="font_rd1"> <label for="font_rd1">미사용</label></span></td>
-										<td  class="border_none w20"><span class="radios"><input type="radio" id="font_rd2"> <label for="font_rd2">사용</label></span></td>
+										<td  class="border_none w20"><span class="radios"><input type="radio"  name = "memo"  value="N" id="memo_y"> <label for="memo_y">미사용</label></span></td>
+										<td  class="border_none w20"><span class="radios"><input type="radio"  name = "memo" value="Y" id="memo_n"> <label for="memo_n">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">이력</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd3"> <label for="font_rd3">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd4"> <label for="font_rd4">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio" name = "history" value="N" id="history_y"> <label for="history_y">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio" name = "history" value="Y" id="history_n"> <label for="history_n">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">설정</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd5"> <label for="font_rd5">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd6"> <label for="font_rd6">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "setting" value="N" id="setting_y"> <label for="setting_y">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "setting" value="Y" id="setting_n"> <label for="setting_n">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">모니터링</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd7"> <label for="font_rd7">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd8"> <label for="font_rd8">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "monitering" value="N" id="monitering_y"> <label for="monitering_y">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "monitering" value="Y" id="monitering_n"> <label for="monitering_n">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">권한설정</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd9"> <label for="font_rd9">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd10"> <label for="font_rd10">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "permission" value="N" id="permission_y"> <label for="permission_y">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "permission" value="Y" id="permission_n"> <label for="permission_n">사용</label></span></td>
 									  </tr>
 									  <tr>
 										<td class="w30">공지사항</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd11"> <label for="font_rd11">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd12"> <label for="font_rd12">사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "notice" value="N" id="notice_y"> <label for="notice_y">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "notice" value="Y" id="notice_n"> <label for="notice_n">사용</label></span></td>
 									  </tr>
 									  <tr>
-										<td class="w30">지식보기 권한</td>
-										<td class="w30">공동지식</td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd13"> <label for="font_rd13">미사용</label></span></td>
-										<td class="w20"><span class="radios"><input type="radio" id="font_rd14"> <label for="font_rd14">사용</label></span></td>
+										<td class="w30">공동지식<br>보기권한</td>
+										<td class="w30" style="padding-left: 0;">
+
+
+										</td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "know" value="N" id="know_y"> <label for="know_y">미사용</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "know" value="Y" id="know_n"> <label for="know_n">사용</label></span></td>
 									  </tr>
-									</table>						
-								</div>
+									  <tr>
+										<td class="w30">시스템 점검</td>
+										<td class="w30"></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "systemcheck" id="font_rd15" checked> <label for="font_rd15">미정검중</label></span></td>
+										<td class="w20"><span class="radios"><input type="radio"  name = "systemcheck" id="font_rd16"> <label for="font_rd16">정검중</label></span></td>
+									  </tr>
+									</table>
+								 
+								 
+								 						
+								</div> 
 							</div>
 						</div>
-							<div class="setting_btn">
-								<a href="">저장</a>
+						<input type="hidden" id="role_code" value = "" />
+							<div id="btn_setting" class="setting_btn">
+								<a href="#">저장</a>
 							</div>
 
-					</form>
 				</div>
-			</section>
-		<!-- right -->
-	</div>
-	<!-- body -->
-</div>
+				</div>
+<script type="text/javascript">
+	$("#btn_setting").on("click", function () {
+	    
+	 // 모든 라디오 버튼을 선택합니다.
+	    var radioButtons = document.querySelectorAll('input[type="radio"]');
+
+	    // 체크된 라디오 버튼의 값을 저장할 객체를 생성합니다.
+	    var checkedRadioValues = {};
+
+	    // 라디오 버튼을 반복하며 값을 가져옵니다.
+	    radioButtons.forEach(function(radioButton) {
+	        var name = radioButton.getAttribute('name');
+	        var value = radioButton.value;
+
+	        // 라디오 버튼이 체크되었을 때만 해당 값을 저장합니다.
+	        if (radioButton.checked) {
+	            checkedRadioValues[name] = value;
+	        }
+	    });
+
+	    // 서버로 전송할 데이터를 객체 형태로 생성합니다.
+	    var requestData = {
+	        memo: checkedRadioValues.memo,
+	        history: checkedRadioValues.history,
+	        setting: checkedRadioValues.setting,
+	        monitering: checkedRadioValues.monitering,
+	        permission: checkedRadioValues.permission,
+	        notice: checkedRadioValues.notice,
+	        know: checkedRadioValues.know,
+	        // 나머지 라디오 버튼의 값을 필요에 따라 추가합니다.
+	        insttcode: '1390000',
+	        rolecode: $("#role_code").val(),
+	    };
+
+
+        
+
+        $.ajax({
+            url: "${path}/api/auth/menu.do",  // 서버의 API 엔드포인트 URL
+            type: "PUT",              // HTTP 메서드 (POST, GET 등)
+            async: false,                // 동기적 요청 활성화
+            data: JSON.stringify(requestData), // JSON 데이터 문자열로 변환
+            contentType: "application/json", // 요청 본문의 데이터 타입 설정
+            success: function(response) {
+                // 요청 성공 시 실행할 코드
+               	if(response=="true")
+               	{
+               		$("#group_auth_popup").css("display", "block");
+               	 	//window.location.href = "${path}/page/notice.do";
+               	 	//fnPageLoad('${path}/page/notice.do','');
+               	}
+               	else
+               	{
+               		alert("저장 실패 하였습니다");
+               	}
+               	
+               	
+            },
+            error: function(xhr, status, error) {
+                // 요청 실패 시 실행할 코드
+                console.error("AJAX 오류: " + error);
+            }
+        });
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	});
+</script>
+
+
 </body>
 </html>

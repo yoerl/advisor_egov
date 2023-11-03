@@ -1,32 +1,30 @@
 package egovframework.counseling.auth.web;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AuthController {
 	
-	private static final Logger logger = LogManager.getLogger(AuthController.class);
-
-
 
 	@GetMapping("/api/auth/login.do")
-	public String moveLogin() throws Exception{
+	public String moveLogin(@RequestParam(name = "pni_token") String pniToken, Model model){
+		
+        model.addAttribute("pni_token", pniToken);
+        
 	    return "main/page_login";
 	}
 	
 	@GetMapping("/api/auth/logout.do")
-	public String moveLoOut(SessionStatus sessionStatus) throws Exception{
+	public String moveLoOut(HttpServletRequest request) {
 
-		System.out.println("로그아웃 처리1111");
-        // 세션을 무효화하여 로그아웃 처리
-		System.out.println("로그아웃 처리2222");
-
-	    return "main/page_login";
+	    	return "redirect:/SSOService.do?pname=spLogout";
+	        
 	}
+
 	
 }

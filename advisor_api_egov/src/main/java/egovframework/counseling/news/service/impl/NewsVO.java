@@ -1,7 +1,5 @@
 package egovframework.counseling.news.service.impl;
 
-import java.sql.Timestamp;
-
 import egovframework.util.Pagination;
 
 public class NewsVO {
